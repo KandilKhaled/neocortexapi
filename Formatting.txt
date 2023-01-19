@@ -1,0 +1,91 @@
+Note: the letter after the number of the method indicates if the method itself should go into the formatting class (F) or the serializing/deserializing class (S)
+The number in inside () refers to the number of the line in the code which the method is used
+
+ **Method 1F (1601): Serializing the array Cell values into a Streamwriter.**
+public void SerializeValue(Cell[] val, StreamWriter sw)
+        {
+            //Writes a delimter value and while this value is diferent from 0, 
+            //it goes through the values one by one. First calling the method SerializeT and after writing the delimer value
+            sw.Write(ValueDelimiter);
+            if (val != null)
+            {
+                foreach (Cell cell in val)
+                {
+                    cell.SerializeT(sw);
+                    sw.Write(ValueDelimiter);
+                }
+            }
+            sw.Write(ParameterDelimiter);
+        }
+
+
+**Method 2S (188): Method SerializeT**
+   public void SerializeT(StreamWriter writer)
+        {
+            //Creates a new  HtmSerializer instance/object 
+            HtmSerializer ser = new HtmSerializer();
+
+            //Calling SerializeBegin method with the value of the Cell (array) as the parameter
+            ser.SerializeBegin(nameof(Cell), writer);
+
+            //Serializing the properties of the Cell
+            ser.SerializeValue(this.Index, writer);
+            //ser.SerializeValue(this.CellId, writer);
+            ser.SerializeValue(this.ParentColumnIndex, writer);
+
+            if (this.DistalDendrites != null && this.DistalDendrites.Count > 0)
+                ser.SerializeValue(this.DistalDendrites, writer);
+
+            if (this.ReceptorSynapses != null && this.ReceptorSynapses.Count > 0)
+                ser.SerializeValue(this.ReceptorSynapses, writer);
+
+            ser.SerializeEnd(nameof(Cell), writer);
+
+
+        }
+
+
+**Method 3F (50): method SerializeBegin**
+  public void SerializeBegin(String typeName, StreamWriter sw)
+        {
+            //
+            // -- BEGIN ---
+            // typeName
+            
+            //Writing a new line in the StreamWriter. This is use to move to the next line once we are done writing in the current line
+            //Very usuful to make easier the reading
+            sw.WriteLine();
+
+            //Writing the string into the text Stream. This string indicates the start of the serialize object 'BEGIN' (typeName)
+            sw.Write($"{TypeDelimiter} BEGIN '{typeName}' {TypeDelimiter}");
+            sw.WriteLine();
+
+        }
+
+
+**Method 4F (26): method SerializeValue**
+ public void SerializeValue(double val, StreamWriter sw)
+        {            
+            //allows you to format a string using placeholders and values. 
+            //It replaces placeholders in the string with the corresponding values.
+            //A placeholder is  used in a format string to indicate where a variable value should be inserted.
+            //In our case {0:0.00} : the first 0 is indicating that is going to use the first argument passed to the method 
+            // The 0.00 means the format of the argument. So our number is going to be a two decimal value
+            //By using CultureInfo.InvariantCulture you can ensure that the formatting of the data is consistent across different cultures and locales. 
+            //Culture meaning the setting of the computer running the code (language, format (DD/MM/YY))
+            //We are formatting the argument pass to the method ensuring everytime this process is going to stay the same
+            sw.Write(string.Format(CultureInfo.InvariantCulture, "{0:0.00}", val));
+            
+            //Writes the value of the delimeter variable into the stream. 
+            //This is used so when reading the serialize data, the computer knows when one serialize value ends and another beggins
+            sw.Write(delimiter);
+        }
+
+
+**Method 5 (108):method SerializeEnd**
+public void SerializeEnd(String typeName, StreamWriter sw)
+        {
+            sw.WriteLine();
+            sw.Write($"{TypeDelimiter} END '{typeName}' {TypeDelimiter}");
+            sw.WriteLine();
+        }
