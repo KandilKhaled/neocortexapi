@@ -1,0 +1,25 @@
+
+**INVESTIGATION**
+
+**Definition**
+
+Serialization is a concept in which C# class objects are written or serialized to files. Let’ say you had a C# class called People. And the class has 2 properties of ID and People names.
+Serializing can be used to directly write the data properties of the Tutorial class to a file. Deserialization is used to read the data from the file and construct the Tutorial object again.
+
+
+
+**Libraries**
+
+There are several libraries available for serializing and deserializing HTML in C#, some popular ones include:
+
+**HtmlAgilityPack**: This is a powerful and flexible library for working with HTML and XML in C#. 
+
+**AngleSharp and Fizzler**: This is a .NET library for analysing and manipulating HTML and CSS. 
+
+**HTML Parser**: This is a simple and lightweight library for analysing and manipulating HTML in C#. 
+
+**Microsoft.AspNet.WebPages.Data**: This is a library that is part of the ASP.NET WebPages framework and it provides a number of useful classes for analysing and manipulating HTML, it also includes support for serializing and deserializing HTML.
+
+
+
+*OUR TASK*: refractoring the code of the HTMSerializer File. This means making the code more legible and understandable. In order to do that, we are going to separate the methods that use serialize and deserialize in two classes. The class 1 will corresponde to those methods that are formatting the code while the secod class will correspond to the actual serializing and deserializing mehtods. This methods are used in a wide variaty of projects. Our task is try to encapsulate this methods so every project can use them (is like a library, you can take it and adapt it to you ow work). 
