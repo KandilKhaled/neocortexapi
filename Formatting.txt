@@ -82,10 +82,151 @@ public void SerializeValue(Cell[] val, StreamWriter sw)
         }
 
 
-**Method 5 (108):method SerializeEnd**
+**Method 5F (108):method SerializeEnd**
 public void SerializeEnd(String typeName, StreamWriter sw)
         {
             sw.WriteLine();
+            //It is indicating the end of the serialize object
             sw.Write($"{TypeDelimiter} END '{typeName}' {TypeDelimiter}");
             sw.WriteLine();
         }
+
+**Method 6S (1619): Deserializing the array Cell values **
+public Cell[] DeserializeCellArray(string data, StreamReader reader)
+        {
+            //Create an new empty list of Cell objects. 
+            //We will storage the deserilize cell objects in the list once they are read
+            List<Cell> cells = new List<Cell>();
+            
+            //Is the input data the beggining of the object? Calling the method ReadBegin
+            if (data == ReadBegin(nameof(Cell)))
+            {
+                //if so, calling the Deserialize method a creating a new object Cell
+                Cell cell1 = Cell.Deserialize(reader);
+
+                //Checking properties of the Cell
+                if (cell1.DistalDendrites.Count != 0)
+                {
+
+                    DistalDendrite distSegment1 = cell1.DistalDendrites[0];
+
+                    DistalDendrite distSegment2 = cell1.DistalDendrites[1];
+
+
+                    distSegment1.ParentCell = cell1;
+                    distSegment2.ParentCell = cell1;
+                }
+                //the object cell1 is add to the list of Cell
+                cells.Add(cell1);
+            }
+            
+           //reader.Peek() is a method of the StreamData
+           //While there is more data to be read from the StreamData, read
+            while (reader.Peek() >= 0)
+            {
+                string val = reader.ReadLine();
+
+                if (val == ReadBegin(nameof(Cell)))
+                {
+                    //Calling the deserialize method
+                    Cell cell1 = Cell.Deserialize(reader);
+                    //Checking the properties of the Cell
+                    if (cell1.DistalDendrites.Count != 0)
+                    {
+                        DistalDendrite distSegment1 = cell1.DistalDendrites[0];
+
+                        DistalDendrite distSegment2 = cell1.DistalDendrites[1];
+
+                        distSegment1.ParentCell = cell1;
+                        distSegment2.ParentCell = cell1;
+                    }
+                    cells.Add(cell1);
+
+                }
+            }
+
+            //Converting the list of cell to a array
+            Cell[] cells1 = cells.ToArray();
+            return cells1;
+        }
+
+
+**Mehtod 7 (1668): deserializing a single Cell object**
+public Cell DeserializeCell(StreamReader sr)
+        {
+            //While there is more data to be read from the StreamData, read
+            while (sr.Peek() >= 0)
+            {
+                string data = sr.ReadLine();
+
+                if (data == ReadBegin(nameof(Cell)))
+                {
+                    Cell cell1 = Cell.Deserialize(sr);
+
+                    DistalDendrite distSegment1 = cell1.DistalDendrites[0];
+
+                    DistalDendrite distSegment2 = cell1.DistalDendrites[1];
+
+                    distSegment1.ParentCell = cell1;
+                    distSegment2.ParentCell = cell1;
+
+                    return cell1;
+                }
+            }
+            //when there is no more to read, stop
+            return null;
+        }
+
+
+*Note: the main diference between the method 6 and 7 is that even though they both are deserializing, 
+the 6 Mehtod returns an array of Cell object while the 7 returns a single Cell object.
+But in the end the method itself is the same, it only changes the return value.*
+
+
+**Mehtod 8F (1716): **
+ public void SerializeValue(Dictionary<String, int> keyValues, StreamWriter sw)
+        {
+            sw.Write(ValueDelimiter);
+            foreach (KeyValuePair<string, int> i in keyValues)
+            {
+                //Writing the Key and Value into the StreamWriter. 
+                //Because the Value is a int, we need to transform it to a string
+                sw.Write(i.Key + KeyValueDelimiter + i.Value.ToString());
+                
+                //Each key and Value is separated by a KeyValueDelimeter. 
+                //While each pair of these parameters is separated by the ElementsDelimiter
+                sw.Write(ElementsDelimiter);
+            }
+            sw.Write(ParameterDelimiter);
+        }
+
+
+**Method 9F (1750): **
+ public void SerializeValue(Dictionary<int, int> keyValues, StreamWriter sw)
+        {
+            sw.Write(ValueDelimiter);
+            foreach (KeyValuePair<int, int> i in keyValues)
+            {
+                sw.Write(i.Key.ToString() + KeyValueDelimiter + i.Value.ToString());
+                sw.Write(ElementsDelimiter);
+            }
+            sw.Write(ParameterDelimiter);
+        }
+
+*Note: the diference between mehtod 8 and 9 is that while in the 8 the properties of Dictionary (key and value) are a 
+string and a int, int the 9, bot properties are ints. 
+To do a more generic method we could cahnge the specific type for the type paramerters. 
+This means that regardless of the type of parameter Key and Value, the method will still work:*
+public void SerializeValue<TKey, TValue>(Dictionary<TKey, TValue> keyValues, StreamWriter sw)
+{
+    sw.Write(ValueDelimiter);
+    foreach (KeyValuePair<TKey, TValue> i in keyValues)
+    {
+        sw.Write(i.Key.ToString() + KeyValueDelimiter + i.Value.ToString());
+        sw.Write(ElementsDelimiter);
+    }
+    sw.Write(ParameterDelimiter);
+}
+
+*Note: there are more SerializeValue methods, but in the end they all do the same. The main diference is the format of the serializes
+values and the type of parameters (int, array, etc) we want to serialize.*
