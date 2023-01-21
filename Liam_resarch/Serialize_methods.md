@@ -23,7 +23,9 @@ uses this Parameters object to create a new SpatialPooler object and a new Conne
 The test method uses the JsonConvert class to serialize the Connections object to a JSON string and then deserialize it back to a Connections object. 
 It also serializes the SpatialPooler object to a JSON string and then deserialize it back to a SpatialPooler object.
 
-##Method SerializeBegin(String typeName, StreamWriter sw) line 50
+***Methods in HtmSerializer***
+
+## Method SerializeBegin(String typeName, StreamWriter sw) line 50
 This method takes in two parameters: a typeName string and a StreamWriter object (sw). 
 The method serializes the begin marker of the type and writes it to the StreamWriter object.
 The method starts by writing a new line to the StreamWriter object using the WriteLine() method. 
@@ -50,7 +52,7 @@ For example, if you call this method with the typeName variable set to "MyType",
 
 -- BEGIN -- 'MyType' --
 
-##Method Reset() line 66
+## Method Reset() line 66
 
 The method is used to reset the state of the class where this method is defined.
 
