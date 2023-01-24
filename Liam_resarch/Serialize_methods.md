@@ -1,4 +1,4 @@
-#Methods explain:
+# Methods explain:
 
 > A serializer in C# is a process or mechanism that converts an object's state to a 
 format that can be persisted or transmitted across a network. 
@@ -74,3 +74,153 @@ and the value is of the type object, which can hold any reference type.
 
 In general, These dictionaries are used to store the hashcodes of the objects that are serialized to keep track of the objects that are already serialized, 
 so that the same object is not serialized multiple times.
+
+# Methods explain from line 479 of HtmSerializer
+
+## Method Serialize line 487 to 550 
+Here is the beginning of the code to understand which parameters takes the methods
+ /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="name"></param>
+        /// <param name="sw"></param>
+        /// <param name="propertyType"></param>
+        /// <param name="ignoreMembers"></param>
+        public static void Serialize(object obj, string name, StreamWriter sw, Type propertyType = null, List<string> ignoreMembers = null)
+
+This is a method for serializing an object to a file using the StreamWriter class. 
+The method takes in several parameters including the object to be serialized, a name for the object, 
+a StreamWriter object to write the serialized data to, and optional parameters for the property type and a list of members to ignore during serialization. 
+The method first checks if the object is null and returns if it is. 
+It then determines the type of the object and checks if it implements the ISerializable interface or is a primitive or string type. 
+If so, it calls the appropriate method for serializing the object. If the object is a dictionary or list, it calls the appropriate method for serializing those types. 
+If the object is a KeyValuePair, it calls the SerializeKeyValuePair method. If the object is a class, 
+it checks if the object has been serialized before and uses the serialized version if it has. 
+If not, it assigns an ID to the object and adds it to the SerializedHashCodes dictionary, then calls the SerializeObject method to serialize the object. 
+Finally, it calls the SerializeEnd method to close the serialized data.
+
+## Method SerializeObject line 554 to 607
+public static void SerializeObject(object obj, string name, StreamWriter sw, List<string> ignoreMembers = null)
+
+This is a **helper** method called by the main Serialize method to serialize the properties and fields of a class object. 
+It takes in the same parameters as the main Serialize method, plus an optional list of members to ignore during serialization. 
+It starts by checking if the object passed in is null, and if it is, it returns immediately. 
+It then gets the type of the object and creates lists of the object's properties and fields using the GetProperties and GetFields methods.
+It then loops through the properties and fields, checking if the current property or field is in the ignore list or if the property can't be written to. 
+If either of these conditions are true, it continues to the next property or field. Otherwise, 
+it gets the value of the property or field and calls the main Serialize method to serialize it. 
+If it throws an exception while trying to read the property or field, it will print a warning message.
+
+## Method  GetFields from 609 to 617
+
+private static List<FieldInfo> GetFields(Type type)
+        {
+            var fields = type.GetFields(BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic).Where(f => f.GetCustomAttribute<CompilerGeneratedAttribute>() == null).ToList();
+            if (type.BaseType != null)
+            {
+                fields.AddRange(type.BaseType.GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic).Where(f => f.GetCustomAttribute<CompilerGeneratedAttribute>() == null));
+            }
+
+            return fields;
+        }
+This is a **helper** method called by the SerializeObject method, which is used to get the fields of a specific type. 
+The method takes in a single parameter, "type", which is the Type of the object for which the fields are to be retrieved.
+The method starts by using the Type.GetFields method to get all fields of the type, with specific binding flags passed in to only include declared instance fields, 
+both public and non-public. The method filters out fields that have the CompilerGeneratedAttribute using LINQ Where method and then converts the result into a List.
+Then it check if the type has a base type and if it does, it adds all the fields of the base type to the fields list using GetFields method.
+It returns the final list of fields, which can be used to iterate through the fields of an object and retrieve their values.
+
+## Method GetProperties from 620 to 629
+
+private static List<PropertyInfo> GetProperties(Type type)
+        {
+            var properties = type.GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic).ToList();
+            //if (type.BaseType != null)
+            //{
+            //    properties.AddRange(type.BaseType.GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic));
+            //}
+
+            return properties;
+        }
+This is a **helper** method called by the SerializeObject method, which is used to get the properties of a specific type. The method takes in a single parameter, 
+"type", which is the Type of the object for which the properties are to be retrieved.
+The method starts by using the Type.GetProperties method to get all properties of the type, 
+with specific binding flags passed in to include only declared instance properties, both public and non-public.
+It then returns the list of properties, which can be used to iterate through the properties of an object and retrieve their values.
+It is worth noting that the commented code was supposed to get the properties of the base type as well but it is commented out which means that it is not currently used, 
+so this method will only retrieve the properties of the current type passed to it and not the base type.
+
+## Method  SerializeDistalDendrite from 631 to 643
+
+private static void SerializeDistalDendrite(object obj, string name, StreamWriter sw)
+        {
+            var ignoreMembers = new List<string> { nameof(DistalDendrite.ParentCell) };
+            SerializeObject(obj, name, sw, ignoreMembers);
+
+            var cell = (obj as DistalDendrite).ParentCell;
+
+            if (isCellsSerialized.Contains(cell.Index) == false)
+            {
+                isCellsSerialized.Add(cell.Index);
+                Serialize((obj as DistalDendrite).ParentCell, nameof(DistalDendrite.ParentCell), sw, ignoreMembers: ignoreMembers);
+            }
+        }
+This is a **helper** method called by the main Serialize method to serialize a DistalDendrite object. 
+It takes in the same parameters as the main Serialize method (the object to be serialized, a name for the object, 
+and a StreamWriter object to write the serialized data to).
+It starts by creating a new list of members to ignore during serialization, which includes the "ParentCell" property of the DistalDendrite object. 
+Then it calls the SerializeObject method, passing in the object, the name, the StreamWriter, and the ignore list.
+It then gets the ParentCell property of the DistalDendrite object and checks if it has been serialized before by checking if it exists in isCellsSerialized list, 
+if not it adds it to the list and call the Serialize method to serialize the ParentCell object, passing in the ParentCell object, the name "ParentCell", the StreamWriter, 
+and the ignore list as parameters.
+This method is specifically for the DistalDendrite class and it is used to serialize the parent cell object and make sure it is not serialized multiple times.
+
+## Method  SerializeHtmConfig from 645 to 653
+
+ private static void SerializeHtmConfig(object obj, string name, StreamWriter sw)
+        {
+            var excludeEntries = new List<string> { nameof(HtmConfig.Random) };
+            SerializeObject(obj, name, sw, excludeEntries);
+
+            var htmConfig = obj as HtmConfig;
+            Serialize(htmConfig.RandomGenSeed, nameof(HtmConfig.Random), sw);
+
+        }
+This is a **helper** method called by the main Serialize method to serialize a HtmConfig object. 
+It takes in the same parameters as the main Serialize method (the object to be serialized, a name for the object, 
+and a StreamWriter object to write the serialized data to).
+It starts by creating a new list of members to ignore during serialization, which includes the "Random" property of the HtmConfig object. 
+Then it calls the SerializeObject method, passing in the object, the name, the StreamWriter, and the ignore list.
+It then gets the HtmConfig object and calls the Serialize method to serialize the "Random" property, passing in the RandomGenSeed, 
+the name "Random" and the StreamWriter as parameters.
+This method is specifically for the HtmConfig class and it is used to exclude the "Random" property from the serialization while still serializing the RandomGenSeed property.
+
+## Method  SerializeHomeostaticPlasticityController from 655 to 670
+
+ private static void SerializeHomeostaticPlasticityController(object obj, string name, StreamWriter sw)
+        {
+            var excludeEntries = new List<string> { "m_OnStabilityStatusChanged" };
+            SerializeObject(obj, name, sw, excludeEntries);
+        }
+        #endregion
+        #region Deserialization
+
+        //public static T Deserialize<T>(StreamReader sr, string propName = null)
+        //{
+        //    var type = typeof(T);
+
+        //    T obj = ReadContent<T>(sr, propName);
+
+        //    return obj;
+        //}
+This is a helper method called by the main Serialize method to serialize a HomeostaticPlasticityController object. 
+It takes in the same parameters as the main Serialize method (the object to be serialized, a name for the object, 
+and a StreamWriter object to write the serialized data to).
+It starts by creating a new list of members to ignore during serialization, 
+which includes the "m_OnStabilityStatusChanged" field of the HomeostaticPlasticityController object. 
+Then it calls the SerializeObject method, passing in the object, the name, the StreamWriter, and the ignore list.
+The method then ends with the region Deserialization, which contains the definition of a Deserialize method but is commented out, 
+this method is not currently in use. It's purpose would be to deserialize the object by reading the contents of the StreamReader and returning the deserialized object of the type T.
+
+## Method  T Deserialize from 672 to 720
