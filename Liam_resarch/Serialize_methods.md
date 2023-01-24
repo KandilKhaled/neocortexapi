@@ -224,3 +224,11 @@ The method then ends with the region Deserialization, which contains the definit
 this method is not currently in use. It's purpose would be to deserialize the object by reading the contents of the StreamReader and returning the deserialized object of the type T.
 
 ## Method  T Deserialize from 672 to 720
+
+*** Some definitions ***
+###### Helper method
+> A helper method is a small, reusable piece of code that performs a specific task and can be called from other parts of the program to perform that task. 
+Helper methods are often used to encapsulate complex logic or repetitive tasks, making the code that calls them more readable and easier to understand. 
+They can also be used to provide a simplified interface to a more complex piece of code. 
+Helper methods are commonly used in object-oriented programming and are often defined as private or protected methods within a class, 
+so they can only be accessed by the class or its derived classes. They can also be defined as static methods in a separate utility class.
