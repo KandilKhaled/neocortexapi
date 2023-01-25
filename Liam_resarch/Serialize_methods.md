@@ -1,83 +1,10 @@
-# Methods explain:
-
-> A serializer in C# is a process or mechanism that converts an object's state to a 
-format that can be persisted or transmitted across a network. 
-This process is known as serialization, 
-and the resulting format is known as a serialized representation of the object.
-The reverse process,in which a serialized representation of an object is converted back into an object, 
-is known as deserialization. 
-C# provides built-in support for serialization and deserialization through various classes and interfaces, 
-such as the BinaryFormatter and XmlSerializer classes. These classes can be used to serialize objects to binary or XML formats, respectively.
-
-## 1rst Method
-###### SerializeT in Class Cell (a neuron)
-
-It serialize Index, ParentColumnIndex => 2 int 
-and if the list DistalDendrite and ReceptorSynapses are non null and have at least 1 element, they are serialize.
-
-## 2nd Method
-###### SerializationTest in SpatialPoolerPersistenceTests
-
-The test method SerializationTest() 
-uses this Parameters object to create a new SpatialPooler object and a new Connections object.
-The test method uses the JsonConvert class to serialize the Connections object to a JSON string and then deserialize it back to a Connections object. 
-It also serializes the SpatialPooler object to a JSON string and then deserialize it back to a SpatialPooler object.
 
 ***Methods in HtmSerializer***
-
-## Method SerializeBegin(String typeName, StreamWriter sw) line 50
-This method takes in two parameters: a typeName string and a StreamWriter object (sw). 
-The method serializes the begin marker of the type and writes it to the StreamWriter object.
-The method starts by writing a new line to the StreamWriter object using the WriteLine() method. 
-Then, it writes a string to the StreamWriter object using the Write() method. 
-This string contains the TypeDelimiter, the string " BEGIN '", the typeName variable, the string "' ", and the TypeDelimiter.
-For example, if you call this method with the typeName variable set to "MyType" and the sw variable 
-set to a StreamWriter object that is writing to a file, it will write the following text to the file:
-
-
--- BEGIN -- 'MyType' --
-
-It will also write a new line after the text using sw.WriteLine();
-
-## Method String ReadBegin(string typeName) line 60
-This method takes in a single parameter, a typeName string. 
-The method creates a new string variable named val by using a string interpolation, which is a way to embed expressions inside string literals. 
-It is done by wrapping the expressions inside curly braces {} and prefixing the string with the dollar sign $.
-
-The val variable is assigned with a string that contains the TypeDelimiter, the string " BEGIN '", the typeName variable, the string "' ", and the TypeDelimiter.
-
-Then, the method returns the value of the val variable, which is the string that was just created.
-
-For example, if you call this method with the typeName variable set to "MyType", it will return the following string:
-
--- BEGIN -- 'MyType' --
-
-## Method Reset() line 66
-
-The method is used to reset the state of the class where this method is defined.
-
-The method has no parameters. It calls the Clear() method on the SerializedHashCodes and MapObjectHashCode dictionaries, which removes all elements from the dictionaries. This effectively resets the state of the dictionaries, removing all the stored hashcodes and the mapped objects.
-
-It also reset Id variable to 0.
-
-This method can be used to clear the state of the class so that it can start fresh, for example, 
-if you are serializing a new object or starting a new serialization process.
-
-line 22 and 23 which are use in method Reset()
-SerializedHashCodes is a dictionary that maps an object to an integer (hash code). 
-The key of the dictionary is of the type object, which means that it can hold any reference type, 
-and the value is of the type int, which represents the hash code of the object.
-
-MapObjectHashCode is a dictionary that maps an integer (hash code) to an object. 
-The key of the dictionary is of the type int, which represents the hash code of the object, 
-and the value is of the type object, which can hold any reference type.
-
-In general, These dictionaries are used to store the hashcodes of the objects that are serialized to keep track of the objects that are already serialized, 
-so that the same object is not serialized multiple times.
-
+Path: neocortexapi/source/NeoCortexEntities/HtmSerializer
 # Methods explain from line 479 of HtmSerializer
 
-## Method Serialize line 487 to 550 
+## Method Serialize line 487 to 550
+ 
 Here is the beginning of the code to understand which parameters takes the methods
  /// <summary>
         /// 
@@ -88,6 +15,7 @@ Here is the beginning of the code to understand which parameters takes the metho
         /// <param name="propertyType"></param>
         /// <param name="ignoreMembers"></param>
         public static void Serialize(object obj, string name, StreamWriter sw, Type propertyType = null, List<string> ignoreMembers = null)
+
 
 This is a method for serializing an object to a file using the StreamWriter class. 
 The method takes in several parameters including the object to be serialized, a name for the object, 
@@ -101,6 +29,7 @@ If not, it assigns an ID to the object and adds it to the SerializedHashCodes di
 Finally, it calls the SerializeEnd method to close the serialized data.
 
 ## Method SerializeObject line 554 to 607
+
 public static void SerializeObject(object obj, string name, StreamWriter sw, List<string> ignoreMembers = null)
 
 This is a **helper** method called by the main Serialize method to serialize the properties and fields of a class object. 
@@ -124,6 +53,7 @@ private static List<FieldInfo> GetFields(Type type)
 
             return fields;
         }
+
 This is a **helper** method called by the SerializeObject method, which is used to get the fields of a specific type. 
 The method takes in a single parameter, "type", which is the Type of the object for which the fields are to be retrieved.
 The method starts by using the Type.GetFields method to get all fields of the type, with specific binding flags passed in to only include declared instance fields, 
@@ -143,6 +73,7 @@ private static List<PropertyInfo> GetProperties(Type type)
 
             return properties;
         }
+
 This is a **helper** method called by the SerializeObject method, which is used to get the properties of a specific type. The method takes in a single parameter, 
 "type", which is the Type of the object for which the properties are to be retrieved.
 The method starts by using the Type.GetProperties method to get all properties of the type, 
@@ -166,6 +97,7 @@ private static void SerializeDistalDendrite(object obj, string name, StreamWrite
                 Serialize((obj as DistalDendrite).ParentCell, nameof(DistalDendrite.ParentCell), sw, ignoreMembers: ignoreMembers);
             }
         }
+
 This is a **helper** method called by the main Serialize method to serialize a DistalDendrite object. 
 It takes in the same parameters as the main Serialize method (the object to be serialized, a name for the object, 
 and a StreamWriter object to write the serialized data to).
@@ -187,6 +119,7 @@ This method is specifically for the DistalDendrite class and it is used to seria
             Serialize(htmConfig.RandomGenSeed, nameof(HtmConfig.Random), sw);
 
         }
+
 This is a **helper** method called by the main Serialize method to serialize a HtmConfig object. 
 It takes in the same parameters as the main Serialize method (the object to be serialized, a name for the object, 
 and a StreamWriter object to write the serialized data to).
@@ -214,7 +147,8 @@ This method is specifically for the HtmConfig class and it is used to exclude th
 
         //    return obj;
         //}
-This is a helper method called by the main Serialize method to serialize a HomeostaticPlasticityController object. 
+
+This is a **helper** method called by the main Serialize method to serialize a HomeostaticPlasticityController object. 
 It takes in the same parameters as the main Serialize method (the object to be serialized, a name for the object, 
 and a StreamWriter object to write the serialized data to).
 It starts by creating a new list of members to ignore during serialization, 
@@ -225,7 +159,36 @@ this method is not currently in use. It's purpose would be to deserialize the ob
 
 ## Method  T Deserialize from 672 to 720
 
-*** Some definitions ***
+public static T Deserialize<T>(StreamReader sr, string propName = null)
+
+This is a **helper** method called by the main Deserialize method to deserialize an object. It takes in a single parameter, a StreamReader sr, which contains the serialized data, 
+and an optional string propName, which is the name of the property being deserialized.
+The method starts by defining a default value for the output object and getting the type of the object to be deserialized. 
+It then check if the type of the object to be deserialized implements the ISerializable interface, 
+if yes it finds the Deserialize method of that type by looking for the method which named Deserialize, is static and has two parameters by using reflection. 
+it then calls the method using the invoke method and passing the sr and propName as arguments.
+Otherwise, the method checks if the type is a value type, a dictionary, a list, or a KeyValuePair, it calls the corresponding method to deserialize these types.
+Otherwise, it calls the DeserializeObject method to deserialize the object and returns the deserialized object of the type T.
+It's worth noting that this method is generic and can be used to deserialize any type of object.
+
+## Method T DeserializeKeyValuePair from 722 to 785
+  
+private static T DeserializeKeyValuePair<T>(StreamReader sr, string propName)
+
+This is a **helpe**r method called by the main Deserialize method to deserialize a KeyValuePair object. 
+It takes in the same parameters as the main Deserialize method (a StreamReader sr and an optional string propName).
+The method starts by defining default values for the key and value of the KeyValuePair, 
+getting the types of the key and the value, and using reflection to get the generic version of the Deserialize method, the ReadGenericBegin method and the ReadGenericEnd method.
+Then it reads the content of the StreamReader line by line until the end of the file, and for each line, it checks if it starts with the beginKey or the beginValue, 
+it calls the Deserialize method passing the keyType or the valueType as a generic argument, to deserialize the key or the value respectively.
+Then it creates the key-value pair object by calling the Activator.CreateInstance method passing the type of the key-value pair, the key and the value as arguments.
+It returns the deserialized key-value pair object.
+
+## Method DeserializeCell from 787 to 868
+
+private static object DeserializeCell(StreamReader sr, string propName)
+
+***Some definitions***
 ###### Helper method
 > A helper method is a small, reusable piece of code that performs a specific task and can be called from other parts of the program to perform that task. 
 Helper methods are often used to encapsulate complex logic or repetitive tasks, making the code that calls them more readable and easier to understand. 
