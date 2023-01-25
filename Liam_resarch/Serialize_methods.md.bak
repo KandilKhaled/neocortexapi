@@ -6,7 +6,7 @@ Path: neocortexapi/source/NeoCortexEntities/HtmSerializer
 ## Method Serialize line 487 to 550
  
 Here is the beginning of the code to understand which parameters takes the methods
-'''
+```
  /// <summary>
         /// 
         /// </summary>
@@ -16,7 +16,7 @@ Here is the beginning of the code to understand which parameters takes the metho
         /// <param name="propertyType"></param>
         /// <param name="ignoreMembers"></param>
         public static void Serialize(object obj, string name, StreamWriter sw, Type propertyType = null, List<string> ignoreMembers = null)
-'''
+```
 
 This is a method for serializing an object to a file using the StreamWriter class. 
 The method takes in several parameters including the object to be serialized, a name for the object, 
@@ -43,7 +43,7 @@ it gets the value of the property or field and calls the main Serialize method t
 If it throws an exception while trying to read the property or field, it will print a warning message.
 
 ## Method  GetFields from 609 to 617
-'''
+```
 private static List<FieldInfo> GetFields(Type type)
         {
             var fields = type.GetFields(BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic).Where(f => f.GetCustomAttribute<CompilerGeneratedAttribute>() == null).ToList();
@@ -55,7 +55,7 @@ private static List<FieldInfo> GetFields(Type type)
             return fields;
         }
 
-'''
+```
 This is a **helper** method called by the SerializeObject method, which is used to get the fields of a specific type. 
 The method takes in a single parameter, "type", which is the Type of the object for which the fields are to be retrieved.
 The method starts by using the Type.GetFields method to get all fields of the type, with specific binding flags passed in to only include declared instance fields, 
@@ -64,7 +64,7 @@ Then it check if the type has a base type and if it does, it adds all the fields
 It returns the final list of fields, which can be used to iterate through the fields of an object and retrieve their values.
 
 ## Method GetProperties from 620 to 629
-'''
+```
 private static List<PropertyInfo> GetProperties(Type type)
         {
             var properties = type.GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic).ToList();
@@ -75,7 +75,7 @@ private static List<PropertyInfo> GetProperties(Type type)
 
             return properties;
         }
-'''
+```
 This is a **helper** method called by the SerializeObject method, which is used to get the properties of a specific type. The method takes in a single parameter, 
 "type", which is the Type of the object for which the properties are to be retrieved.
 The method starts by using the Type.GetProperties method to get all properties of the type, 
@@ -85,7 +85,7 @@ It is worth noting that the commented code was supposed to get the properties of
 so this method will only retrieve the properties of the current type passed to it and not the base type.
 
 ## Method  SerializeDistalDendrite from 631 to 643
-'''
+```
 private static void SerializeDistalDendrite(object obj, string name, StreamWriter sw)
         {
             var ignoreMembers = new List<string> { nameof(DistalDendrite.ParentCell) };
@@ -99,7 +99,7 @@ private static void SerializeDistalDendrite(object obj, string name, StreamWrite
                 Serialize((obj as DistalDendrite).ParentCell, nameof(DistalDendrite.ParentCell), sw, ignoreMembers: ignoreMembers);
             }
         }
-'''
+```
 This is a **helper** method called by the main Serialize method to serialize a DistalDendrite object. 
 It takes in the same parameters as the main Serialize method (the object to be serialized, a name for the object, 
 and a StreamWriter object to write the serialized data to).
@@ -111,7 +111,7 @@ and the ignore list as parameters.
 This method is specifically for the DistalDendrite class and it is used to serialize the parent cell object and make sure it is not serialized multiple times.
 
 ## Method  SerializeHtmConfig from 645 to 653
-'''
+```
 private static void SerializeHtmConfig(object obj, string name, StreamWriter sw)
         {
             var excludeEntries = new List<string> { nameof(HtmConfig.Random) };
@@ -121,7 +121,7 @@ private static void SerializeHtmConfig(object obj, string name, StreamWriter sw)
             Serialize(htmConfig.RandomGenSeed, nameof(HtmConfig.Random), sw);
 
         }
-'''
+```
 This is a **helper** method called by the main Serialize method to serialize a HtmConfig object. 
 It takes in the same parameters as the main Serialize method (the object to be serialized, a name for the object, 
 and a StreamWriter object to write the serialized data to).
@@ -132,7 +132,7 @@ the name "Random" and the StreamWriter as parameters.
 This method is specifically for the HtmConfig class and it is used to exclude the "Random" property from the serialization while still serializing the RandomGenSeed property.
 
 ## Method  SerializeHomeostaticPlasticityController from 655 to 670
-'''
+```
 private static void SerializeHomeostaticPlasticityController(object obj, string name, StreamWriter sw)
         {
             var excludeEntries = new List<string> { "m_OnStabilityStatusChanged" };
@@ -149,7 +149,7 @@ private static void SerializeHomeostaticPlasticityController(object obj, string 
 
         //    return obj;
         //}
-'''
+```
 This is a **helper** method called by the main Serialize method to serialize a HomeostaticPlasticityController object. 
 It takes in the same parameters as the main Serialize method (the object to be serialized, a name for the object, 
 and a StreamWriter object to write the serialized data to).
@@ -189,19 +189,62 @@ It returns the deserialized key-value pair object.
 ## Method DeserializeCell from 787 to 796
 
 private static object DeserializeCell(StreamReader sr, string propName)
+````
+private static object DeserializeCell(StreamReader sr, string propName)
+        {
+            var cell = DeserializeObject<Cell>(sr, propName);
+
+            foreach (var distalDentrite in cell.DistalDendrites)
+            {
+                distalDentrite.ParentCell = cell;
+            }
+            return cell;
+        }
+````
+This is a **helper** method called by the main Deserialize method to deserialize a Cell object. It takes in the same parameters as the main Deserialize method 
+(a StreamReader sr and an optional string propName)
+The method starts by calling the main Deserialize method with a generic argument of type Cell, passing the StreamReader as an argument. 
+This will deserialize the cell object from the StreamReader.
+Then it loops through the DistalDendrites of the deserialized cell object, and sets the ParentCell property of each DistalDendrite to the deserialized cell object.
+It returns the deserialized cell object with the correct ParentCell properties set for the DistalDendrites.
 
 ## Method T DeserializeIEnumerable from 798 to 868
 
 private static T DeserializeIEnumerable<T>(StreamReader sr, string propName)
 
+This is a method that deserializes an object of a generic type T that implements the IEnumerable interface, such as lists or arrays. 
+The method first determines the type of the elements in the enumerable by checking if the type is a generic type or an array. 
+It then creates an empty list and reads each line of the input stream, checking if it is a valid element of the enumerable. 
+If it is, it deserializes the element and adds it to the list. Once all elements have been read, the method converts the list to the appropriate type 
+(e.g. array or List<T>) using the Enumerable class's ToArray or ToList methods, and returns the resulting object.
+It also handle case when the element is int, it will deserialize the string of array of ints, split it by ',' and convert it back to int. 
+It also handles case when the element is multidimensional array.
+
 ## Method DeserializeMultidimensionalArray from 870 to 931
 
 private static Array DeserializeMultidimensionalArray(StreamReader sr, string propName, Type arrayType)
+
+This code defines methods for deserializing a C# object from a stream. The Deserialize<T> method is the main method and it is used to deserialize any type of object.
+The method checks if the type of the object to be deserialized is a value type, a dictionary, a list, or a KeyValuePair, 
+and calls the appropriate helper method to deserialize the object. If the type of the object is not any of the above, it deserializes the object as a regular object.
+The DeserializeMultidimensionalArray method is used to deserialize multidimensional arrays. 
+It reads the rank of the array and the size of each dimension and creates an array with the specified size and rank.
 
 ## Method CastListToType from 933 to 938
 
 private static object CastListToType(List<object> enumerable, Type elementType)
 
+````
+ private static object CastListToType(List<object> enumerable, Type elementType)
+        {
+            var castMethod = typeof(Enumerable).GetMethod("Cast").MakeGenericMethod(elementType);
+            var enumerableCast = castMethod.Invoke(null, new object[] { enumerable });
+            return enumerableCast;
+        }
+````
+
+The CastListToType method is used to convert a list of objects to a specific type. 
+It uses the Cast method of the System.Linq.Enumerable class to do the conversion.
 ## Method DeserializeDictionary from 940 to 1003 
 
 private static T DeserializeDictionary<T>(StreamReader sr, string propName)

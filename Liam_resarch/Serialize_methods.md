@@ -189,22 +189,74 @@ It returns the deserialized key-value pair object.
 ## Method DeserializeCell from 787 to 796
 
 private static object DeserializeCell(StreamReader sr, string propName)
+````
+private static object DeserializeCell(StreamReader sr, string propName)
+        {
+            var cell = DeserializeObject<Cell>(sr, propName);
+
+            foreach (var distalDentrite in cell.DistalDendrites)
+            {
+                distalDentrite.ParentCell = cell;
+            }
+            return cell;
+        }
+````
+This is a **helper** method called by the main Deserialize method to deserialize a Cell object. It takes in the same parameters as the main Deserialize method 
+(a StreamReader sr and an optional string propName)
+The method starts by calling the main Deserialize method with a generic argument of type Cell, passing the StreamReader as an argument. 
+This will deserialize the cell object from the StreamReader.
+Then it loops through the DistalDendrites of the deserialized cell object, and sets the ParentCell property of each DistalDendrite to the deserialized cell object.
+It returns the deserialized cell object with the correct ParentCell properties set for the DistalDendrites.
 
 ## Method T DeserializeIEnumerable from 798 to 868
 
 private static T DeserializeIEnumerable<T>(StreamReader sr, string propName)
 
+This is a method that deserializes an object of a generic type T that implements the IEnumerable interface, such as lists or arrays. 
+The method first determines the type of the elements in the enumerable by checking if the type is a generic type or an array. 
+It then creates an empty list and reads each line of the input stream, checking if it is a valid element of the enumerable. 
+If it is, it deserializes the element and adds it to the list. Once all elements have been read, the method converts the list to the appropriate type 
+(e.g. array or List<T>) using the Enumerable class's ToArray or ToList methods, and returns the resulting object.
+It also handle case when the element is int, it will deserialize the string of array of ints, split it by ',' and convert it back to int. 
+It also handles case when the element is multidimensional array.
+
 ## Method DeserializeMultidimensionalArray from 870 to 931
 
 private static Array DeserializeMultidimensionalArray(StreamReader sr, string propName, Type arrayType)
+
+This code defines methods for deserializing a C# object from a stream. The Deserialize<T> method is the main method and it is used to deserialize any type of object.
+The method checks if the type of the object to be deserialized is a value type, a dictionary, a list, or a KeyValuePair, 
+and calls the appropriate helper method to deserialize the object. If the type of the object is not any of the above, it deserializes the object as a regular object.
+The DeserializeMultidimensionalArray method is used to deserialize multidimensional arrays. 
+It reads the rank of the array and the size of each dimension and creates an array with the specified size and rank.
 
 ## Method CastListToType from 933 to 938
 
 private static object CastListToType(List<object> enumerable, Type elementType)
 
+````
+ private static object CastListToType(List<object> enumerable, Type elementType)
+        {
+            var castMethod = typeof(Enumerable).GetMethod("Cast").MakeGenericMethod(elementType);
+            var enumerableCast = castMethod.Invoke(null, new object[] { enumerable });
+            return enumerableCast;
+        }
+````
+
+The CastListToType method is used to convert a list of objects to a specific type. 
+It uses the Cast method of the System.Linq.Enumerable class to do the conversion.
 ## Method DeserializeDictionary from 940 to 1003 
 
 private static T DeserializeDictionary<T>(StreamReader sr, string propName)
+
+This method deserialize a dictionary from a stream reader. It starts by creating an instance of the dictionary using the Activator.CreateInstance method. 
+It then gets the generic argument types for the keys and values of the dictionary. 
+It then sets up some variables and methods that will be used later in the method such as the beginKey, beginValue, beginKeyValuePair, endKeyValuePair, and deserializeMethod.
+It enters a while loop that continues until there are no more lines left in the stream reader. It reads a line from the stream and trims it. 
+It then checks if the line is the end of the dictionary, if it is empty, or if it is the beginning of a key-value pair. If it is the end of the dictionary or empty, 
+the loop continues. If it is the beginning of a key-value pair, the values for key and value are reset to null.
+If the line starts with the beginKey, it gets the specified type for the key and deserializes it. If the line starts with the beginValue, 
+it gets the specified type for the value and deserializes it. Once both the key and value are not null, it attempts to add the key-value pair to the dictionary using the TryAdd or Add method depending on the type of the dictionary.
  
 ***Some definitions***
 ###### Helper method
