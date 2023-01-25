@@ -6,7 +6,8 @@ Path: neocortexapi/source/NeoCortexEntities/HtmSerializer
 ## Method Serialize line 487 to 550
  
 Here is the beginning of the code to understand which parameters takes the methods
-' /// <summary>
+'''
+ /// <summary>
         /// 
         /// </summary>
         /// <param name="obj"></param>
@@ -15,7 +16,7 @@ Here is the beginning of the code to understand which parameters takes the metho
         /// <param name="propertyType"></param>
         /// <param name="ignoreMembers"></param>
         public static void Serialize(object obj, string name, StreamWriter sw, Type propertyType = null, List<string> ignoreMembers = null)
-
+'''
 
 This is a method for serializing an object to a file using the StreamWriter class. 
 The method takes in several parameters including the object to be serialized, a name for the object, 
@@ -42,8 +43,8 @@ it gets the value of the property or field and calls the main Serialize method t
 If it throws an exception while trying to read the property or field, it will print a warning message.
 
 ## Method  GetFields from 609 to 617
-
-'private static List<FieldInfo> GetFields(Type type)
+'''
+private static List<FieldInfo> GetFields(Type type)
         {
             var fields = type.GetFields(BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic).Where(f => f.GetCustomAttribute<CompilerGeneratedAttribute>() == null).ToList();
             if (type.BaseType != null)
@@ -52,8 +53,9 @@ If it throws an exception while trying to read the property or field, it will pr
             }
 
             return fields;
-        }'
+        }
 
+'''
 This is a **helper** method called by the SerializeObject method, which is used to get the fields of a specific type. 
 The method takes in a single parameter, "type", which is the Type of the object for which the fields are to be retrieved.
 The method starts by using the Type.GetFields method to get all fields of the type, with specific binding flags passed in to only include declared instance fields, 
@@ -62,8 +64,8 @@ Then it check if the type has a base type and if it does, it adds all the fields
 It returns the final list of fields, which can be used to iterate through the fields of an object and retrieve their values.
 
 ## Method GetProperties from 620 to 629
-
-'private static List<PropertyInfo> GetProperties(Type type)
+'''
+private static List<PropertyInfo> GetProperties(Type type)
         {
             var properties = type.GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic).ToList();
             //if (type.BaseType != null)
@@ -72,8 +74,8 @@ It returns the final list of fields, which can be used to iterate through the fi
             //}
 
             return properties;
-        }'
-
+        }
+'''
 This is a **helper** method called by the SerializeObject method, which is used to get the properties of a specific type. The method takes in a single parameter, 
 "type", which is the Type of the object for which the properties are to be retrieved.
 The method starts by using the Type.GetProperties method to get all properties of the type, 
@@ -83,8 +85,8 @@ It is worth noting that the commented code was supposed to get the properties of
 so this method will only retrieve the properties of the current type passed to it and not the base type.
 
 ## Method  SerializeDistalDendrite from 631 to 643
-
-'private static void SerializeDistalDendrite(object obj, string name, StreamWriter sw)
+'''
+private static void SerializeDistalDendrite(object obj, string name, StreamWriter sw)
         {
             var ignoreMembers = new List<string> { nameof(DistalDendrite.ParentCell) };
             SerializeObject(obj, name, sw, ignoreMembers);
@@ -96,8 +98,8 @@ so this method will only retrieve the properties of the current type passed to i
                 isCellsSerialized.Add(cell.Index);
                 Serialize((obj as DistalDendrite).ParentCell, nameof(DistalDendrite.ParentCell), sw, ignoreMembers: ignoreMembers);
             }
-        }'
-
+        }
+'''
 This is a **helper** method called by the main Serialize method to serialize a DistalDendrite object. 
 It takes in the same parameters as the main Serialize method (the object to be serialized, a name for the object, 
 and a StreamWriter object to write the serialized data to).
@@ -109,8 +111,8 @@ and the ignore list as parameters.
 This method is specifically for the DistalDendrite class and it is used to serialize the parent cell object and make sure it is not serialized multiple times.
 
 ## Method  SerializeHtmConfig from 645 to 653
-
-'private static void SerializeHtmConfig(object obj, string name, StreamWriter sw)
+'''
+private static void SerializeHtmConfig(object obj, string name, StreamWriter sw)
         {
             var excludeEntries = new List<string> { nameof(HtmConfig.Random) };
             SerializeObject(obj, name, sw, excludeEntries);
@@ -118,8 +120,8 @@ This method is specifically for the DistalDendrite class and it is used to seria
             var htmConfig = obj as HtmConfig;
             Serialize(htmConfig.RandomGenSeed, nameof(HtmConfig.Random), sw);
 
-        }'
-
+        }
+'''
 This is a **helper** method called by the main Serialize method to serialize a HtmConfig object. 
 It takes in the same parameters as the main Serialize method (the object to be serialized, a name for the object, 
 and a StreamWriter object to write the serialized data to).
@@ -130,8 +132,8 @@ the name "Random" and the StreamWriter as parameters.
 This method is specifically for the HtmConfig class and it is used to exclude the "Random" property from the serialization while still serializing the RandomGenSeed property.
 
 ## Method  SerializeHomeostaticPlasticityController from 655 to 670
-
-'private static void SerializeHomeostaticPlasticityController(object obj, string name, StreamWriter sw)
+'''
+private static void SerializeHomeostaticPlasticityController(object obj, string name, StreamWriter sw)
         {
             var excludeEntries = new List<string> { "m_OnStabilityStatusChanged" };
             SerializeObject(obj, name, sw, excludeEntries);
@@ -146,8 +148,8 @@ This method is specifically for the HtmConfig class and it is used to exclude th
         //    T obj = ReadContent<T>(sr, propName);
 
         //    return obj;
-        //}'
-
+        //}
+'''
 This is a **helper** method called by the main Serialize method to serialize a HomeostaticPlasticityController object. 
 It takes in the same parameters as the main Serialize method (the object to be serialized, a name for the object, 
 and a StreamWriter object to write the serialized data to).
