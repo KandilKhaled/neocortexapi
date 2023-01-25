@@ -6,7 +6,7 @@ Path: neocortexapi/source/NeoCortexEntities/HtmSerializer
 ## Method Serialize line 487 to 550
  
 Here is the beginning of the code to understand which parameters takes the methods
- /// <summary>
+' /// <summary>
         /// 
         /// </summary>
         /// <param name="obj"></param>
@@ -43,7 +43,7 @@ If it throws an exception while trying to read the property or field, it will pr
 
 ## Method  GetFields from 609 to 617
 
-private static List<FieldInfo> GetFields(Type type)
+'private static List<FieldInfo> GetFields(Type type)
         {
             var fields = type.GetFields(BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic).Where(f => f.GetCustomAttribute<CompilerGeneratedAttribute>() == null).ToList();
             if (type.BaseType != null)
@@ -52,7 +52,7 @@ private static List<FieldInfo> GetFields(Type type)
             }
 
             return fields;
-        }
+        }'
 
 This is a **helper** method called by the SerializeObject method, which is used to get the fields of a specific type. 
 The method takes in a single parameter, "type", which is the Type of the object for which the fields are to be retrieved.
@@ -63,7 +63,7 @@ It returns the final list of fields, which can be used to iterate through the fi
 
 ## Method GetProperties from 620 to 629
 
-private static List<PropertyInfo> GetProperties(Type type)
+'private static List<PropertyInfo> GetProperties(Type type)
         {
             var properties = type.GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic).ToList();
             //if (type.BaseType != null)
@@ -72,7 +72,7 @@ private static List<PropertyInfo> GetProperties(Type type)
             //}
 
             return properties;
-        }
+        }'
 
 This is a **helper** method called by the SerializeObject method, which is used to get the properties of a specific type. The method takes in a single parameter, 
 "type", which is the Type of the object for which the properties are to be retrieved.
@@ -84,7 +84,7 @@ so this method will only retrieve the properties of the current type passed to i
 
 ## Method  SerializeDistalDendrite from 631 to 643
 
-private static void SerializeDistalDendrite(object obj, string name, StreamWriter sw)
+'private static void SerializeDistalDendrite(object obj, string name, StreamWriter sw)
         {
             var ignoreMembers = new List<string> { nameof(DistalDendrite.ParentCell) };
             SerializeObject(obj, name, sw, ignoreMembers);
@@ -96,7 +96,7 @@ private static void SerializeDistalDendrite(object obj, string name, StreamWrite
                 isCellsSerialized.Add(cell.Index);
                 Serialize((obj as DistalDendrite).ParentCell, nameof(DistalDendrite.ParentCell), sw, ignoreMembers: ignoreMembers);
             }
-        }
+        }'
 
 This is a **helper** method called by the main Serialize method to serialize a DistalDendrite object. 
 It takes in the same parameters as the main Serialize method (the object to be serialized, a name for the object, 
@@ -110,7 +110,7 @@ This method is specifically for the DistalDendrite class and it is used to seria
 
 ## Method  SerializeHtmConfig from 645 to 653
 
- private static void SerializeHtmConfig(object obj, string name, StreamWriter sw)
+'private static void SerializeHtmConfig(object obj, string name, StreamWriter sw)
         {
             var excludeEntries = new List<string> { nameof(HtmConfig.Random) };
             SerializeObject(obj, name, sw, excludeEntries);
@@ -118,7 +118,7 @@ This method is specifically for the DistalDendrite class and it is used to seria
             var htmConfig = obj as HtmConfig;
             Serialize(htmConfig.RandomGenSeed, nameof(HtmConfig.Random), sw);
 
-        }
+        }'
 
 This is a **helper** method called by the main Serialize method to serialize a HtmConfig object. 
 It takes in the same parameters as the main Serialize method (the object to be serialized, a name for the object, 
@@ -131,7 +131,7 @@ This method is specifically for the HtmConfig class and it is used to exclude th
 
 ## Method  SerializeHomeostaticPlasticityController from 655 to 670
 
- private static void SerializeHomeostaticPlasticityController(object obj, string name, StreamWriter sw)
+'private static void SerializeHomeostaticPlasticityController(object obj, string name, StreamWriter sw)
         {
             var excludeEntries = new List<string> { "m_OnStabilityStatusChanged" };
             SerializeObject(obj, name, sw, excludeEntries);
@@ -146,7 +146,7 @@ This method is specifically for the HtmConfig class and it is used to exclude th
         //    T obj = ReadContent<T>(sr, propName);
 
         //    return obj;
-        //}
+        //}'
 
 This is a **helper** method called by the main Serialize method to serialize a HomeostaticPlasticityController object. 
 It takes in the same parameters as the main Serialize method (the object to be serialized, a name for the object, 
@@ -175,7 +175,7 @@ It's worth noting that this method is generic and can be used to deserialize any
   
 private static T DeserializeKeyValuePair<T>(StreamReader sr, string propName)
 
-This is a **helpe**r method called by the main Deserialize method to deserialize a KeyValuePair object. 
+This is a **helper** method called by the main Deserialize method to deserialize a KeyValuePair object. 
 It takes in the same parameters as the main Deserialize method (a StreamReader sr and an optional string propName).
 The method starts by defining default values for the key and value of the KeyValuePair, 
 getting the types of the key and the value, and using reflection to get the generic version of the Deserialize method, the ReadGenericBegin method and the ReadGenericEnd method.
@@ -184,10 +184,26 @@ it calls the Deserialize method passing the keyType or the valueType as a generi
 Then it creates the key-value pair object by calling the Activator.CreateInstance method passing the type of the key-value pair, the key and the value as arguments.
 It returns the deserialized key-value pair object.
 
-## Method DeserializeCell from 787 to 868
+## Method DeserializeCell from 787 to 796
 
 private static object DeserializeCell(StreamReader sr, string propName)
 
+## Method T DeserializeIEnumerable from 798 to 868
+
+private static T DeserializeIEnumerable<T>(StreamReader sr, string propName)
+
+## Method DeserializeMultidimensionalArray from 870 to 931
+
+private static Array DeserializeMultidimensionalArray(StreamReader sr, string propName, Type arrayType)
+
+## Method CastListToType from 933 to 938
+
+private static object CastListToType(List<object> enumerable, Type elementType)
+
+## Method DeserializeDictionary from 940 to 1003 
+
+private static T DeserializeDictionary<T>(StreamReader sr, string propName)
+ 
 ***Some definitions***
 ###### Helper method
 > A helper method is a small, reusable piece of code that performs a specific task and can be called from other parts of the program to perform that task. 

@@ -175,7 +175,7 @@ It's worth noting that this method is generic and can be used to deserialize any
   
 private static T DeserializeKeyValuePair<T>(StreamReader sr, string propName)
 
-This is a **helpe**r method called by the main Deserialize method to deserialize a KeyValuePair object. 
+This is a **helper** method called by the main Deserialize method to deserialize a KeyValuePair object. 
 It takes in the same parameters as the main Deserialize method (a StreamReader sr and an optional string propName).
 The method starts by defining default values for the key and value of the KeyValuePair, 
 getting the types of the key and the value, and using reflection to get the generic version of the Deserialize method, the ReadGenericBegin method and the ReadGenericEnd method.
@@ -184,7 +184,26 @@ it calls the Deserialize method passing the keyType or the valueType as a generi
 Then it creates the key-value pair object by calling the Activator.CreateInstance method passing the type of the key-value pair, the key and the value as arguments.
 It returns the deserialized key-value pair object.
 
-## Method DeserializeCell from 787 to 868
+## Method DeserializeCell from 787 to 796
+
+private static object DeserializeCell(StreamReader sr, string propName)
+
+## Method T DeserializeIEnumerable from 798 to 868
+
+private static T DeserializeIEnumerable<T>(StreamReader sr, string propName)
+
+## Method DeserializeMultidimensionalArray from 870 to 931
+
+private static Array DeserializeMultidimensionalArray(StreamReader sr, string propName, Type arrayType)
+
+## Method CastListToType from 933 to 938
+
+private static object CastListToType(List<object> enumerable, Type elementType)
+
+## Method DeserializeDictionary from 940 to 1003 
+
+private static T DeserializeDictionary<T>(StreamReader sr, string propName)
+ 
 ***Some definitions***
 ###### Helper method
 > A helper method is a small, reusable piece of code that performs a specific task and can be called from other parts of the program to perform that task. 
