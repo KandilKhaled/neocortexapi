@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NeoCortexApi;
 using NeoCortexApi.Entities;
 using NeoCortexEntities.NeuroVisualizer;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
 namespace UnitTestsProject
 {
-    [TestClass]
+    [TestClass] 
     public partial class HTMSerializationTests
     {
 
@@ -211,7 +211,7 @@ namespace UnitTestsProject
             HtmSerializer htm = new HtmSerializer();
             Cell[] cells = new Cell[2];
             Cell[] cells1;
-            cells[0] = new Cell(12, 14, 16,  new CellActivity());
+            cells[0] = new Cell(12, 14, 16, new CellActivity());
 
             var distSeg1 = new DistalDendrite(cells[0], 1, 2, 2, 1.0, 100);
             cells[0].DistalDendrites.Add(distSeg1);
@@ -219,7 +219,7 @@ namespace UnitTestsProject
             var distSeg2 = new DistalDendrite(cells[0], 44, 24, 34, 1.0, 100);
             cells[0].DistalDendrites.Add(distSeg2);
 
-            Cell preSynapticcell = new Cell(11, 14, 16,  new CellActivity());
+            Cell preSynapticcell = new Cell(11, 14, 16, new CellActivity());
 
             var synapse1 = new Synapse(cells[0], distSeg1.SegmentIndex, 23, 1.0);
             preSynapticcell.ReceptorSynapses.Add(synapse1);
@@ -483,7 +483,7 @@ namespace UnitTestsProject
             int[] inputDims = { 3, 4, 5 };
             int[] columnDims = { 35, 43, 52 };
             HtmConfig cfg = new HtmConfig(inputDims, columnDims);
-            
+
             Connections connections = new Connections(cfg);
 
             Cell cells = new Cell(12, 14, 16, new CellActivity());
@@ -551,7 +551,7 @@ namespace UnitTestsProject
         [DataRow(1111, 22221, 11111, 2221)]
         public void SerializeCellTest(int parentIndx, int colSeq, int cellsPerCol, int cellId)
         {
-            Cell cell = new Cell(12, 14, 16,  new CellActivity());
+            Cell cell = new Cell(12, 14, 16, new CellActivity());
 
             var distSeg1 = new DistalDendrite(cell, 1, 2, 2, 1.0, 100);
             cell.DistalDendrites.Add(distSeg1);
@@ -854,11 +854,11 @@ namespace UnitTestsProject
             //IDistributedDictionary<int, int[]> dict = new();
 
             SparseObjectMatrix<int[]> matrix = new(dimensions, false);
-            for (int i = 0; i < num; i+=10)
+            for (int i = 0; i < num; i += 10)
             {
                 matrix.set(i, new int[] { 1, 2, 3, 4, 5 });
             }
-          
+
             // Serialize 
             using (StreamWriter sw = new StreamWriter("ser.txt"))
             {
