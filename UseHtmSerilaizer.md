@@ -4,7 +4,7 @@
 The purpose of this document is to explain the methods in the Serializer, in order to have a better understanding of how HtmSerializer works.
 
 **Methods**
-	Method SerializeBegin: this method indicates the start of the serialize object by writing a variable called "TypeDelimiter" before and after the serialize object
+**Method SerializeBegin: this method indicates the start of the serialize object by writing a variable called "TypeDelimiter" before and after the serialize object
 
 -Expected intput: a string call typeName that is the object we want to serialize, and an object Streamwriter that will write the text to the stream.
 -Expected output: a stream or file  
@@ -25,7 +25,7 @@ The purpose of this document is to explain the methods in the Serializer, in ord
 ```
 
 
-	Method SerializeEnd: this method indicates the end of the serialize object by writing a variable called "TypeDelimiter" before and after the serialize object
+**Method SerializeEnd: this method indicates the end of the serialize object by writing a variable called "TypeDelimiter" before and after the serialize object
 
 -Expected intput: a string call typeName that is the object we want to serialize, and an object Streamwriter that will write the text to the stream.
 -Expected output: a stream or file  
@@ -42,14 +42,14 @@ public void SerializeEnd(String typeName, StreamWriter sw)
 ```
 
 
-	Method SerializeValue: this method is formatting the properties of a generic class Dictionary before writing them to a stream. 
+**Method SerializeValue: this method is formatting the properties of a generic class Dictionary before writing them to a stream. 
  In c++, a dictionary can be implemented as a map, which is a container class that associates keys with values.
 
 -Expected intput: 
 		1. A Dictionary object that contains the key-value pairs to be serialized
 		2. StreamWriter object named sw that will be used to write the serialized string to an output stream.
 		It is possible to have as an argument instead of the generic class Dictionary a simple variable like a double, int, string, etc. In this case, we will be formatting those arguments passed to the method.
--Espected output: a serialized string representation of the method´s first argument written to the output stream specified by the sw StreamWriter object. The format of the string will be in accordance with the code inside the method.
+-Expected output: a serialized string representation of the method´s first argument written to the output stream specified by the sw StreamWriter object. The format of the string will be in accordance with the code inside the method.
 
 -Example
 ```
@@ -65,3 +65,34 @@ public void SerializeEnd(String typeName, StreamWriter sw)
         }
 ```
 
+
+**Mehtod  DeserializeObject: this method deserialize an object that has been previously serialized.
+
+-Example
+
+```
+public Cell DeserializeCell(StreamReader sr)
+        {
+            while (sr.Peek() >= 0)
+            {
+                string data = sr.ReadLine();
+
+                if (data == ReadBegin(nameof(Cell)))
+                {
+                    Cell cell1 = Cell.Deserialize(sr);
+
+                    DistalDendrite distSegment1 = cell1.DistalDendrites[0];
+
+                    DistalDendrite distSegment2 = cell1.DistalDendrites[1];
+
+                    distSegment1.ParentCell = cell1;
+                    distSegment2.ParentCell = cell1;
+
+                    return cell1;
+                }
+            }
+            return null;
+        }
+```
+-Expected intput: a StreamReader objectcd 
+-Expected output: in the example above the method returns a single Cell object, although it is possible to have another output as an array of Cell object. (Cell[]
