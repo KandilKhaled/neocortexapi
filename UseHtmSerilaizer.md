@@ -48,8 +48,10 @@ public void SerializeEnd(String typeName, StreamWriter sw)
 This method is formatting the properties of a generic class Dictionary before writing them to a stream. Dictionary is a container class that associates keys with values.
 
 -Expected parameters: 
-		1. A Dictionary object that contains the key-value pairs to be serialized
-		2. StreamWriter object named sw that will be used to write the serialized string to an output stream.
+
+1. A Dictionary object that contains the key-value pairs to be serialized
+
+2. StreamWriter object named sw that will be used to write the serialized string to an output stream.
 	It is possible to have as an argument instead of the generic class Dictionary a simple variable like a double, int, string, etc. In this case, we will be formatting those arguments passed to the method.
 -Return value: none
 		
