@@ -72,3 +72,56 @@ and the value is of the type object, which can hold any reference type.
 
 In general, These dictionaries are used to store the hashcodes of the objects that are serialized to keep track of the objects that are already serialized, 
 so that the same object is not serialized multiple times.
+
+Methods with sw.Writer(): 
+	public void SerializeBegin(String typeName, StreamWriter sw) line 50
+	public void SerializeEnd(String typeName, StreamWriter sw) line 108
+	public void SerializeValue(int val, StreamWriter sw) line 125
+	private static void SerializeBegin(string propName, StreamWriter sw, Type type) line 241
+	private static void SerializeEnd(string propName, StreamWriter sw, Type type) line 257
+	public static void SerializeValue(string propertyName, object val, StreamWriter sw) line 305
+	private static void SerializeMultidimensionalArray(object obj, string name, StreamWriter sw) line 370
+	public void SerializeValue(object val, Type type, StreamWriter sw) line 1255
+	public void SerializeValue(double val, StreamWriter sw) line 1382
+	public void SerializeValue(String val, StreamWriter sw) line 1406
+	public void SerializeValue(long val, StreamWriter sw) line 1432
+	public void SerializeValue(bool val, StreamWriter sw) line 1457
+	public void SerializeValue(Array array, StreamWriter sw) line 1490
+	public void SerializeValue(Double[] val, StreamWriter sw) line 1512
+	public void SerializeValue(int[] val, StreamWriter sw) line 1556
+	public void SerializeValue(Cell[] val, StreamWriter sw) line 1593
+	public void SerializeGenericValue<TKey, TValue>(Dictionary<TKey, TValue> keyValues, StreamWriter sw) 1689
+	public void SerializeValue(Dictionary<String, int> keyValues, StreamWriter sw) line 1708
+	public void SerializeValue(Dictionary<int, int> keyValues, StreamWriter sw) line 1742
+	public void SerializeValue(Dictionary<String, int[]> keyValues, StreamWriter sw) line 1774
+	public void SerializeValue(List<DistalDendrite> distSegments, StreamWriter sw) line 1818
+	public void SerializeValue(List<Synapse> value, StreamWriter sw) line 1850
+	public void SerializeValue(List<int> value, StreamWriter sw) line 1883
+	line 1912
+	public void SerializeValue(Dictionary<Cell, List<DistalDendrite>> keyValues, StreamWriter sw) line 1937
+	public void SerializeValue(Dictionary<int, Synapse> keyValues, StreamWriter sw) line 1960
+	public void SerializeValue(ConcurrentDictionary<int, DistalDendrite> keyValues, StreamWriter sw) line 1993
+	
+
+
+
+	
+
+	
+  
+  
+Methods with sw.Read():
+
+Methods with else:
+	public String ReadBegin(string typeName) line 60
+	public static void Reset() line 66
+	public static void Save(string fileName, object obj) line 73
+    public static T Load<T>(string fileName) line 82
+	public static bool TryLoad<T>(string fileName, out T obj) line 91
+	public String ReadEnd(String typeName) line 114
+	private static void SerializeKeyValuePair(string name, object obj, StreamWriter sw) line 137
+	public static void Serialize1(object obj, string name,
+    StreamWriter sw, Dictionary<Type, Action<StreamWriter, string, object>> customSerializers = null) line 157
+	private static void SerializeDictionary(string name, object obj, StreamWriter sw, List<string> ignoreMembers = null) line 212
+	private static string ReadGenericBegin(string propName, Type type = null) line 274
+	private static string ReadGenericEnd(string propName, Type type = null) line 289
