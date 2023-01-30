@@ -1,10 +1,10 @@
-***How to use HtmSerializer***
+#How to use HtmSerializer
 
-**Introduction**
+##Introduction
 The purpose of this document is to explain the methods in the Serializer, in order to have a better understanding of how HtmSerializer works.
 
-**Methods**
-**Method SerializeBegin: this method indicates the start of the serialize object by writing a variable called "TypeDelimiter" before and after the serialize object
+##Methods
+**Method SerializeBegin:** this method indicates the start of the serialize object by writing a variable called "TypeDelimiter" before and after the serialize object
 
 -Expected intput: a string call typeName that is the object we want to serialize, and an object Streamwriter that will write the text to the stream.
 -Expected output: a stream or file  
@@ -25,10 +25,12 @@ The purpose of this document is to explain the methods in the Serializer, in ord
 ```
 
 
-**Method SerializeEnd: this method indicates the end of the serialize object by writing a variable called "TypeDelimiter" before and after the serialize object
+**Method SerializeEnd:** public void SerializeEnd(String typeName, StreamWriter sw)
+
+This method indicates the end of the serialize object by writing a variable called "TypeDelimiter" before and after the serialize object
 
 -Expected intput: a string call typeName that is the object we want to serialize, and an object Streamwriter that will write the text to the stream.
--Expected output: a stream or file  
+-Expected output: nothing (the method is a void)  
 -Example
 ```
 public void SerializeEnd(String typeName, StreamWriter sw)
@@ -41,15 +43,17 @@ public void SerializeEnd(String typeName, StreamWriter sw)
 
 ```
 
+**Method SerializeValue:**  public void SerializeValue(Dictionary<int, int> keyValues, StreamWriter sw)
 
-**Method SerializeValue: this method is formatting the properties of a generic class Dictionary before writing them to a stream. 
- In c++, a dictionary can be implemented as a map, which is a container class that associates keys with values.
+This method is formatting the properties of a generic class Dictionary before writing them to a stream. Dictionary is a container class that associates keys with values.
 
--Expected intput: 
+-Expected parameters: 
 		1. A Dictionary object that contains the key-value pairs to be serialized
 		2. StreamWriter object named sw that will be used to write the serialized string to an output stream.
-		It is possible to have as an argument instead of the generic class Dictionary a simple variable like a double, int, string, etc. In this case, we will be formatting those arguments passed to the method.
--Expected output: a serialized string representation of the method´s first argument written to the output stream specified by the sw StreamWriter object. The format of the string will be in accordance with the code inside the method.
+	It is possible to have as an argument instead of the generic class Dictionary a simple variable like a double, int, string, etc. In this case, we will be formatting those arguments passed to the method.
+-Return value: none
+		
+
 
 -Example
 ```
@@ -66,7 +70,7 @@ public void SerializeEnd(String typeName, StreamWriter sw)
 ```
 
 
-**Mehtod  DeserializeObject: this method deserialize an object that has been previously serialized.
+**Mehtod  DeserializeObject:** this method deserialize an object that has been previously serialized.
 
 -Example
 
@@ -96,3 +100,8 @@ public Cell DeserializeCell(StreamReader sr)
 ```
 -Expected intput: a StreamReader objectcd 
 -Expected output: in the example above the method returns a single Cell object, although it is possible to have another output as an array of Cell object. (Cell[]
+
+
+
+
+A serialized string representation of the method´s first argument written to the output stream specified by the sw StreamWriter object. The format of the string will be in accordance with the code inside the method.
