@@ -4,7 +4,7 @@
     This is a method in C# that deserializes an object of a generic type 'T' from a StreamReader. 
     The method takes in a StreamReader, a property name, an optional list of fields to exclude during deserialization, and an optional action to perform on fields that are excluded during deserialization.
 ```` 
- 1. public static T DeserializeObject<T>(StreamReader sr, string propertyName, List<string> excludeEntries = null,Action<T,string> action = null)
+    public static T DeserializeObject<T>(StreamReader sr, string propertyName, List<string> excludeEntries = null,Action<T,string> action = null)
         {
             var type = typeof(T);
             T obj = default;
@@ -145,7 +145,7 @@
    A StreamReader object "sr" which is used to read a stream of data, usually a file or network stream. The method reads the data from the stream and deserializes it into an object of type "HtmConfig".
    A string "propertyName", which is used as a reference to the property being deserialized. This string is passed along to other methods called within this method such as "DeserializeObject" and "Deserialize".
 ````
-  2. private static object DeserializeHtmConfig(StreamReader sr, string propertyName)
+    private static object DeserializeHtmConfig(StreamReader sr, string propertyName)
   
         {
             var excludeEntries = new List<string> { nameof(HtmConfig.Random) };
@@ -169,7 +169,7 @@
     The input of this code is a StreamReader "sr" and a string "propertyName". The StreamReader reads the content from a stream and the string "propertyName" is the name of the property being deserialized.
     This method appears to be deserializing a single value of a specified generic type "T" from a StreamReader (the StreamReader "sr" and the contents of the stream it is reading from).
 ````
-  3.  private static T DeserializeValue<T>(StreamReader sr, string propertyName)
+    private static T DeserializeValue<T>(StreamReader sr, string propertyName)
         {
             T obj = default;
             while (sr.Peek() > 0)
@@ -208,7 +208,7 @@
     The method takes input in three parameters: the object to be serialized, the type of the object, and the StreamWriter to write the serialized object to.
     The method first checks if the object is a value type (such as an int or a struct) using the IsValueType property.
  ````
- 4. public void SerializeValue(object val, Type type, StreamWriter sw)
+    public void SerializeValue(object val, Type type, StreamWriter sw)
         {
             if (type.IsValueType)
             {
@@ -242,7 +242,7 @@
    This method is a generic method that deserializes a value of type T from a StreamReader.
    We need StreamReader and the value of the ParameterDelimiter for output.
 ````
-  5.  public T DeserializeValue<T>(StreamReader sr)
+    public T DeserializeValue<T>(StreamReader sr)
         {
             Type type = typeof(T);
        if (type.IsValueType)
@@ -276,7 +276,7 @@
   It reads lines of data from the file until it reaches a line that matches the string returned by the "ReadBegin" method with the parameter "nameof(Synapse)".
   It then calls the "Deserialize" method on the Synapse class, passing in the StreamReader.
  ````
- 6. public Synapse DeserializeSynapse(StreamReader sr)
+    public Synapse DeserializeSynapse(StreamReader sr)
         {
             while (sr.Peek() >= 0)
             {
@@ -316,7 +316,7 @@
    If it is, it creates a DistalDendrite object using the  DistalDendrite.
    Deserialize method and sets its ParentCell property.
  ````
-  7. public DistalDendrite DeserializeDistalDendrite(StreamReader sr)
+    public DistalDendrite DeserializeDistalDendrite(StreamReader sr)
         {
             while (sr.Peek() >= 0)
             {
@@ -348,7 +348,7 @@
 
  ## **METHOD 8 (1392-1398): SerializeValue**
  ````
- 8. public void SerializeValue(double val, StreamWriter sw) 
+    public void SerializeValue(double val, StreamWriter sw) 
         {
             sw.Write(ValueDelimiter);
             sw.Write(string.Format(CultureInfo.InvariantCulture, "{0:0.000}", val));
