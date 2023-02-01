@@ -1,4 +1,4 @@
-------------------------------SERIALIZING-DESERIALIZING METHODS (from line 1000 to line 1400)-------------------------------------
+*------------------------------SERIALIZING-DESERIALIZING METHODS (from line 1000 to line 1400)-------------------------------------
 
 *********************************Method 1S (1039-1169) : DeserializeObject **********************************************************
  public static T DeserializeObject<T>(StreamReader sr, string propertyName, List<string> excludeEntries = null,Action<T,string> action = null)
