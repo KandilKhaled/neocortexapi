@@ -4,15 +4,11 @@
 The purpose of this document is to explain the methods in the Serializer, in order to have a better understanding of how HtmSerializer works.
 
 ##Methods
-**Method SerializeBegin:** public void SerializeBegin(String typeName, StreamWriter sw)
+**Method SerializeBegin:** this method indicates the start of the serialize object by writing a variable called "TypeDelimiter" before and after the serialize object
 
-This method indicates the start of the serialize object by writing a variable called "TypeDelimiter" before and after the serialize object
-
--Expected parameters: 
-1. A string called typeName that is the object we want to serialize
-2. An object Streamwriter that will write the text to the stream.
--Return value: none 
--Example:
+-Expected intput: a string call typeName that is the object we want to serialize, and an object Streamwriter that will write the text to the stream.
+-Expected output: a stream or file  
+-Example
 ```
  public void SerializeBegin(String typeName, StreamWriter sw)
         {
@@ -33,12 +29,9 @@ This method indicates the start of the serialize object by writing a variable ca
 
 This method indicates the end of the serialize object by writing a variable called "TypeDelimiter" before and after the serialize object
 
--Expected intput: 
-1. A string call typeName that is the object we want to serialize.
-2. An object Streamwriter that will write the text to the stream.
-
--Return value: none  
--Example:
+-Expected intput: a string call typeName that is the object we want to serialize, and an object Streamwriter that will write the text to the stream.
+-Expected output: nothing (the method is a void)  
+-Example
 ```
 public void SerializeEnd(String typeName, StreamWriter sw)
         {
@@ -56,14 +49,15 @@ This method is formatting the properties of a generic class Dictionary before wr
 
 -Expected parameters: 
 
-1. A Dictionary object that contains the key-value pairs to be serialized.
+1. A Dictionary object that contains the key-value pairs to be serialized
+
 2. StreamWriter object named sw that will be used to write the serialized string to an output stream.
 	It is possible to have as an argument instead of the generic class Dictionary a simple variable like a double, int, string, etc. In this case, we will be formatting those arguments passed to the method.
-
 -Return value: none
 		
 
--Example:
+
+-Example
 ```
  public void SerializeValue(Dictionary<int, int> keyValues, StreamWriter sw)
         {
@@ -78,13 +72,10 @@ This method is formatting the properties of a generic class Dictionary before wr
 ```
 
 
+**Mehtod  DeserializeObject:** this method deserialize an object that has been previously serialized.
 
+-Example
 
-**Mehtod  DeserializeObject:** public Cell DeserializeCell(StreamReader sr)
-
-This method deserialize an object that has been previously serialized.
-
--Example:
 ```
 public Cell DeserializeCell(StreamReader sr)
         {
@@ -109,48 +100,9 @@ public Cell DeserializeCell(StreamReader sr)
             return null;
         }
 ```
--Expected parameters: a StreamReader object
--Return value: in the example above the method returns a single Cell object, although it is possible to have another output as an array of Cell object. (Cell[]
+-Expected intput: a StreamReader objectcd 
+-Expected output: in the example above the method returns a single Cell object, although it is possible to have another output as an array of Cell object. (Cell[]
 
-
-**Mehtod  Serialize:** public static void Serialize(object obj, string name, StreamWriter sw, Type propertyType = null, List<string> ignoreMembers = null)
-
-This is a method for serializing an object to a file using the StreamWriter class.
-
--Expected parameters:
--Expected parameters:
-1. The object to be serialized.
-2. A string representing the name for the object.
-3. A StreamWriter object to write the serialized data to.
-4. Optional parameters for the property type and a list of members to ignore during serialization.
-
--Return value: none
-
-
--Example:
-```
-private static void SerializeDistalDendrite(object obj, string name, StreamWriter sw)
-        {
-            var ignoreMembers = new List<string> { nameof(DistalDendrite.ParentCell) };
-            SerializeObject(obj, name, sw, ignoreMembers);
-
-            var cell = (obj as DistalDendrite).ParentCell;
-
-            if (isCellsSerialized.Contains(cell.Index) == false)
-            {
-                isCellsSerialized.Add(cell.Index);
-                Serialize((obj as DistalDendrite).ParentCell, nameof(DistalDendrite.ParentCell), sw, ignoreMembers: ignoreMembers);
-            }
-        }
-```
-
-**Mehtod  SerializeObject:** public static void SerializeObject(object obj, string name, StreamWriter sw, List ignoreMembers = null)
-
-This is a helper method called by the main Serialize method to serialize the properties and fields of a class object.
-
--Expected parameters:
-
--Return value: none
 
 
 
