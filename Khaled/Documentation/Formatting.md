@@ -1,6 +1,6 @@
-The code is an example of custom serialization, it's a class called HtmSerializer which contains several methods that handle the serialization and deserialization of different types. The methods include:
+# The code is an example of custom serialization, it's a class called HtmSerializer which contains several methods that handle the serialization and deserialization of different types. The methods include:
 
-1.	SerializeBegin(string typeName, StreamWriter sw) - This method is used to write the start marker of the type that is being serialized.
+# 1.	SerializeBegin(string typeName, StreamWriter sw) - This method is used to write the start marker of the type that is being serialized.
 
 
 The expected input of the code is:
@@ -12,9 +12,25 @@ The expected output of the code is:
 
 Writing a string that consists of a type delimiter, the word "BEGIN", the type name in single quotes, and another type delimiter to the stream represented by the StreamWriter object sw.
 
+-Example
+
+``` 
+
+ public void SerializeBegin(String typeName, StreamWriter sw)
+        {
+            //
+            // -- BEGIN ---
+            // typeName
+            sw.WriteLine();
+            sw.Write($"{TypeDelimiter} BEGIN '{typeName}' {TypeDelimiter}");
+            sw.WriteLine();
+
+        }
+		
+```		
 
 
-2.	ReadBegin(string typeName) - This method reads the start marker of the type that is being serialized.
+# 2.	ReadBegin(string typeName) - This method reads the start marker of the type that is being serialized.
 
 The expected input of the code is:
 
@@ -24,6 +40,17 @@ The expected output of the code is:
 
 A string that consists of a type delimiter, the word "BEGIN", the type name in single quotes, and another type delimiter.
 
+-Example
+
+```
+
+public String ReadBegin(string typeName)
+        {
+            string val = ($"{TypeDelimiter} BEGIN '{typeName}' {TypeDelimiter}");
+            return val;
+        }
+
+```
 
 
 3.	SerializeEnd(string typeName, StreamWriter sw) - This method writes the end marker of the type that is being serialized.
@@ -37,6 +64,18 @@ The expected output of the code is:
 
 Writing a string that consists of a type delimiter, the word "END", the type name in single quotes, and another type delimiter to the stream represented by the StreamWriter object sw.
 
+-Example
+
+```
+
+public void SerializeEnd(String typeName, StreamWriter sw)
+        {
+            sw.WriteLine();
+            sw.Write($"{TypeDelimiter} END '{typeName}' {TypeDelimiter}");
+            sw.WriteLine();
+        }
+
+```
 
 
 4.	ReadEnd(string typeName) - This method reads the end marker of the type that is being serialized.
