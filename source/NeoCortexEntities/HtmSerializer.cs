@@ -1528,25 +1528,41 @@ namespace NeoCortexApi.Entities
         /// <summary>
         /// <param name="reader"></param>
         /// <returns>Double[]</returns>
-        public Double[] ReadArrayDouble(string reader)
+
+        public double[] ReadArrayDouble(string reader) // new version test
         {
-            string value = reader.Trim();
-            if (value == LineDelimiter)
+            if (string.IsNullOrWhiteSpace(reader))
                 return null;
-            else
+
+            string[] str = reader.Split(ElementsDelimiter);
+            double[] vs = new double[str.Length];
+            for (int i = 0; i < str.Length; i++)
             {
-                string[] str = reader.Split(ElementsDelimiter);
-                Double[] vs = new double[str.Length - 1];
-                for (int i = 0; i < str.Length - 1; i++)
-                {
-
-                    vs[i] = Convert.ToDouble(str[i].Trim());
-
-                }
-                return vs;
+                if (!double.TryParse(str[i].Trim(), out vs[i]))
+                    throw new FormatException("Unable to parse " + str[i].Trim() + " as a double");
             }
-
+            return vs;
         }
+
+        //public Double[] ReadArrayDouble(string reader)
+        //{
+        //    string value = reader.Trim();
+        //    if (value == LineDelimiter)
+        //        return null;
+        //    else
+        //    {
+        //        string[] str = reader.Split(ElementsDelimiter);
+        //        Double[] vs = new double[str.Length - 1];
+        //        for (int i = 0; i < str.Length - 1; i++)
+        //        {
+
+        //            vs[i] = Convert.ToDouble(str[i].Trim());
+
+        //        }
+        //        return vs;
+        //    }
+
+        //}
 
         /// <summary>
         /// Serialize the array of type Int.
