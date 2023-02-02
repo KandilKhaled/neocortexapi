@@ -103,25 +103,4 @@ Methods with sw.Writer():
 	public void SerializeValue(ConcurrentDictionary<int, DistalDendrite> keyValues, StreamWriter sw) line 1993
 	
 
-
-
-	
-
-	
-  
-  
-Methods with sw.Read():
-
-Methods with else:
-	public String ReadBegin(string typeName) line 60
-	public static void Reset() line 66
-	public static void Save(string fileName, object obj) line 73
-    public static T Load<T>(string fileName) line 82
-	public static bool TryLoad<T>(string fileName, out T obj) line 91
-	public String ReadEnd(String typeName) line 114
-	private static void SerializeKeyValuePair(string name, object obj, StreamWriter sw) line 137
-	public static void Serialize1(object obj, string name,
-    StreamWriter sw, Dictionary<Type, Action<StreamWriter, string, object>> customSerializers = null) line 157
-	private static void SerializeDictionary(string name, object obj, StreamWriter sw, List<string> ignoreMembers = null) line 212
-	private static string ReadGenericBegin(string propName, Type type = null) line 274
-	private static string ReadGenericEnd(string propName, Type type = null) line 289
+sw.Read() this method is not mentionned in the code 
