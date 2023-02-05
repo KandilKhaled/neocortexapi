@@ -1,6 +1,6 @@
 # SERIALIZING-DESERIALIZING METHODS (from line 1000 to line 1400) 
 
-## 	**Method 1 (1039-1169) : DeserializeObject**
+## 	**Method 1 (1039-1169) : T DeserializeObject<T>**
     This is a method in C# that deserializes an object of a generic type 'T' from a StreamReader. 
     The method takes in a StreamReader, a property name, an optional list of fields to exclude during deserialization, and an optional action to perform on fields that are excluded during deserialization.
 ```` 
@@ -165,7 +165,7 @@
     The method then creates a new instance of "ThreadSafeRandom" using the seed and assigns it to the "Random" property of the "HtmConfig" object.
     Finally, the method returns the deserialized "HtmConfig" object.
     Additionally, the method relies on other methods such as "DeserializeObject" and "Deserialize", which are necessary to understand the full functionality of this method.
-## **METHOD 3 (1200-1226): DeserializeValue** 
+## **METHOD 3 (1200-1226): T DeserializeValue<T>** 
     The input of this code is a StreamReader "sr" and a string "propertyName". The StreamReader reads the content from a stream and the string "propertyName" is the name of the property being deserialized.
     This method appears to be deserializing a single value of a specified generic type "T" from a StreamReader (the StreamReader "sr" and the contents of the stream it is reading from).
 ````
