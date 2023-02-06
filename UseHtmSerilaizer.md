@@ -112,6 +112,10 @@ private static void SerializeDistalDendrite(object obj, string name, StreamWrite
 
 
 -Expected parameters:
+1. The object to be serialized.
+2. A string representing the name for the object.
+3. A StreamWriter object to write the serialized data to.
+4. A list of members
 
 -Return value: none
 
