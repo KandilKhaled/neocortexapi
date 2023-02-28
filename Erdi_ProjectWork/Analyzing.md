@@ -1,8 +1,13 @@
 # SERIALIZING-DESERIALIZING METHODS (from line 1000 to line 1400) 
 
-## 	**Method 1 (1039-1169) : T DeserializeObject<T>**
+## **Method 1 (1039-1169) : DeserializeObject**
     This is a method in C# that deserializes an object of a generic type 'T' from a StreamReader. 
-    The method takes in a StreamReader, a property name, an optional list of fields to exclude during deserialization, and an optional action to perform on fields that are excluded during deserialization.
+	
+    -Expected input: The method takes in a StreamReader, a property name, an optional list of fields to exclude during deserialization, and an optional action to perform on fields that are excluded during deserialization.
+	
+	-Expected output: The expected output of this C# method is an object of type T that has been deserialized from a string representation. 
+    If the deserialization process is successful, this method should return the deserialized object with its properties and fields set to the values specified in the input string.
+	
 ```` 
     public static T DeserializeObject<T>(StreamReader sr, string propertyName, List<string> excludeEntries = null,Action<T,string> action = null)
         {
@@ -135,15 +140,21 @@
                return obj;
         }
 ````
+   -Code Explanation:
    The method first checks if the type is an interface or abstract and if it is, it returns the default value of the type. It then creates an instance of the type using Activator.CreateInstance, gets the properties and fields of the type, and reads the StreamReader line by line. 
    It then checks for specific keywords in the line and performs different actions based on the keyword. If the line starts with "Begin", it checks for specific keywords and deserializes different properties or fields accordingly. 
    It also keeps track of the objects deserialized using a hashcode and stores them in a map.
 
 ## **METHOD 2 (1184-1198): DeserializeHtmConfig**
-   This is a C# method that deserializes an object of type "HtmConfig" from a stream reader. 
-   The method takes in two parameters: "sr" which is the stream reader and "propertyName" which is the name of the property, type is string.The method takes two inputs:
+   This is a C# method that deserializes an object of type "HtmConfig" from a stream reader.
+   
+   -Expected inputs:
+   The method takes in two parameters: "sr" which is the stream reader and "propertyName" which is the name of the property, type is string.
    A StreamReader object "sr" which is used to read a stream of data, usually a file or network stream. The method reads the data from the stream and deserializes it into an object of type "HtmConfig".
    A string "propertyName", which is used as a reference to the property being deserialized. This string is passed along to other methods called within this method such as "DeserializeObject" and "Deserialize".
+   
+   -Expected output: This method doesn't have any expected output since it returns an object of type object and its behavior depends on the implementation details of the methods called within it. 
+   
 ````
     private static object DeserializeHtmConfig(StreamReader sr, string propertyName)
   
@@ -161,15 +172,22 @@
             return htmConfig;
        }
 ````
+    -Code Explanation:
     The method creates a new list of strings called "excludeEntries" which contains the name of the property "Random" and uses it to exclude it from the deserialization process.
     The method then creates a new instance of "ThreadSafeRandom" using the seed and assigns it to the "Random" property of the "HtmConfig" object.
     Finally, the method returns the deserialized "HtmConfig" object.
     Additionally, the method relies on other methods such as "DeserializeObject" and "Deserialize", which are necessary to understand the full functionality of this method.
-## **METHOD 3 (1200-1226): T DeserializeValue<T>** 
-    The input of this code is a StreamReader "sr" and a string "propertyName". The StreamReader reads the content from a stream and the string "propertyName" is the name of the property being deserialized.
+	
+## **METHOD 3 (1200-1226): DeserializeValue** 
     This method appears to be deserializing a single value of a specified generic type "T" from a StreamReader (the StreamReader "sr" and the contents of the stream it is reading from).
+    
+	-Expected input: The input of this code is a StreamReader "sr" and a string "propertyName". 
+	The StreamReader reads the content from a stream and the string "propertyName" is the name of the property being deserialized.
+    
+	-Expected output: The output will depend on the specific type of the generic parameter "T" that is passed to the method.
+	
 ````
-    private static T DeserializeValue<T>(StreamReader sr, string propertyName)
+        private static T DeserializeValue<T>(StreamReader sr, string propertyName)
         {
             T obj = default;
             while (sr.Peek() > 0)
@@ -198,15 +216,20 @@
         }
         #endregion
 ````
+    -Code Explanation:
     The method reads lines from the StreamReader until it reaches a line that matches the end marker for the property, and uses the Convert.ChangeType method to convert each line read to the specified type "T" before returning the final converted value.
     A special case is made for strings, where newline characters "\n" are replaced with actual newlines "\n" before being casted to the type T.
     As well as the implementation of the "ReadGenericEnd" and "ReadGenericBegin" methods used within the method. 
-    Additionally, the output will depend on the specific type of the generic parameter "T" that is passed to the method.
-
+    
 ## **METHOD 4 (1265-1284): SerializeValue**
     This code is a method that serializes an object to a text stream using a StreamWriter.
-    The method takes input in three parameters: the object to be serialized, the type of the object, and the StreamWriter to write the serialized object to.
+	
+    -Expected inputs: The method takes input in three parameters: the object to be serialized, the type of the object, and the StreamWriter to write the serialized object to.
     The method first checks if the object is a value type (such as an int or a struct) using the IsValueType property.
+	
+	-Expected output: The output of this code is the serialization of the input object in the form of text written to the input StreamWriter.
+    It does not return anything, it just writes the serialized form of the object to the StreamWriter.
+	
  ````
     public void SerializeValue(object val, Type type, StreamWriter sw)
         {
@@ -232,17 +255,21 @@
             }
         }
 ````
+    -Code Explanation:
     If it is a value type, it writes the value of the object to the StreamWriter surrounded by a delimiter.
     If it is not a value type, it looks for a method called "Serialize" on the object's type and invokes it, passing in the StreamWriter as a parameter.
     If no such method is found, it throws a NotSupportedException.
-    The output of this code is the serialization of the input object in the form of text written to the input StreamWriter.
-    It does not return anything, it just writes the serialized form of the object to the StreamWriter.
-
+    
 ## **METHOD 5 (1286-1306): DeserializeValue**
    This method is a generic method that deserializes a value of type T from a StreamReader.
-   We need StreamReader and the value of the ParameterDelimiter for output.
+   
+   -Expected input: The input of the DeserializeValue method is a StreamReader object named sr. 
+   The method is designed to read from this stream and deserialize the data read into an object of type T. 
+   The type T is a generic type parameter and is specified when calling the method.
+   
+   -Expected output: We need StreamReader and the value of the ParameterDelimiter for output.
 ````
-    public T DeserializeValue<T>(StreamReader sr)
+       public T DeserializeValue<T>(StreamReader sr)
         {
             Type type = typeof(T);
        if (type.IsValueType)
@@ -263,18 +290,21 @@
             }
        }
 ````
+   -Code Explanation:
    If T is a value type, the method reads a line from the StreamReader, trims it, and replaces a specified delimiter with an empty string.
    Then it converts the string to the type T and returns it.
    If T is not a value type, the method uses reflection to look for a method called "Deserialize" on the type T, and if it exists, it invokes that method and returns the result.
    If the "Deserialize" method does not exist, it throws a NotSupportedException.
-   We need StreamReader and the value of the ParameterDelimiter for output.
-
+   
 ## **METHOD 6 (1332-1356): DeserializeSynapse**
   This code is deserializing a Synapse object from a text file using a StreamReader.
-  The input of this code is a StreamReader object that is connected to a text file. 
+  
+  -Expected input: The input of this code is a StreamReader object that is connected to a text file. 
   The text file should contain serialized information about a Synapse object in a specific format that is understood by the "Deserialize" method of the Synapse class and the "ReadBegin" method. 
-  It reads lines of data from the file until it reaches a line that matches the string returned by the "ReadBegin" method with the parameter "nameof(Synapse)".
-  It then calls the "Deserialize" method on the Synapse class, passing in the StreamReader.
+  
+  -Expected output: The output of this code would be an instance of the Synapse class that has been deserialized from a text file using a StreamReader. 
+  If it could not find the string returned by "ReadBegin" method with the parameter "nameof(Synapse)", it would return null.
+  
  ````
     public Synapse DeserializeSynapse(StreamReader sr)
         {
@@ -301,22 +331,24 @@
             return null;
         }
 ````
+    -Code Explanation:
+    It reads lines of data from the file until it reaches a line that matches the string returned by the "ReadBegin" method with the parameter "nameof(Synapse)".
+    It then calls the "Deserialize" method on the Synapse class, passing in the StreamReader.
 	The resulting Synapse object is stored in the "synapseT1" variable. The code then gets the SourceCell property of "synapseT1" and assigns it to "cell1".
 	It also gets the DistalDendrites property of "cell1" at index 0 and 1 and assigns them to "distSegment1" and "distSegment2" respectively.
 	Finally, it sets the ParentCell property of "distSegment1" and "distSegment2" to "cell1" and the SourceCell property of "synapseT1" to "cell1" and returns "synapseT1".
 	If the end of the file is reached, the function returns null.
-    The output of this code would be an instance of the Synapse class that has been deserialized from a text file using a StreamReader. 
-    If it could not find the string returned by "ReadBegin" method with the parameter "nameof(Synapse)", it would return null.
-
+    
 ## **METHOD 7 (1363-1385): DeserializeDistalDendrite**
-   The input of this code is a StreamReader object, which is passed as an argument to the method. 
+   This is a method in C# that deserializes a DistalDendrite object from a StreamReader object.
+   
+   -Expected input: The input of this code is a StreamReader object, which is passed as an argument to the method. 
    The StreamReader object is used to read the data that is used to deserialize the DistalDendrite object. 
-   This is a method in C# that deserializes a DistalDendrite object from a StreamReader object. 
-   The method reads lines of data from the StreamReader and checks if the line of data is the start of a DistalDendrite object. 
-   If it is, it creates a DistalDendrite object using the  DistalDendrite.
-   Deserialize method and sets its ParentCell property.
+   
+   -Expected output: The output of this code is a DistalDendrite object if the marker is found in the stream otherwise it will return null.
+   
  ````
-    public DistalDendrite DeserializeDistalDendrite(StreamReader sr)
+     public DistalDendrite DeserializeDistalDendrite(StreamReader sr)
         {
             while (sr.Peek() >= 0)
             {
@@ -340,13 +372,23 @@
  
         }
 ````
+   -Code Explanation:
+   The method reads lines of data from the StreamReader and checks if the line of data is the start of a DistalDendrite object. 
+   If it is, it creates a DistalDendrite object using the  DistalDendrite.
+   Deserialize method and sets its ParentCell property.
    It then sets the ParentCell property of the first and second DistalDendrite in the ParentCell.DistalDendrites list. Finally, it returns the first DistalDendrite object.
    If no DistalDendrite is found, it returns null.
    This code is a method that appears to deserialize a DistalDendrite object from a StreamReader object, and sets the ParentCell property of the object and its first two DistalDendrites to the same Cell object, and returns the first DistalDendrite object. 
    If the marker string "ReadBegin(nameof(DistalDendrite))" is not found in the stream, the method will return null. 
-   So the output of this code is a DistalDendrite object if the marker is found in the stream otherwise it will return null.
-
- ## **METHOD 8 (1392-1398): SerializeValue**
+  
+## **METHOD 8 (1392-1398): SerializeValue**
+   This is a method that serializes a double value to a StreamWriter.
+   
+   -Expected input: The expected input for this method is a double value (named val) that needs to be serialized (converted into a format that can be stored or transmitted). 
+   Additionally, the method requires a StreamWriter object (named sw) that represents the destination where the serialized value will be written to.
+   
+   -Expected output: The output of this method is the serialized string representation of the val parameter, which is written to the specified StreamWriter object (sw).
+   
  ````
     public void SerializeValue(double val, StreamWriter sw) 
         {
@@ -356,7 +398,7 @@
             sw.Write(ParameterDelimiter);
         }
  ````
-   This is a method that serializes a double value to a StreamWriter.
+   -Code Explanation:
    The method starts by writing a ValueDelimiter to the StreamWriter, then it formats the double value using the CultureInfo.InvariantCulture and a format of "0.000" and writes it to the StreamWriter. 
    After that, it writes another ValueDelimiter and a ParameterDelimiter to the StreamWriter. This method is likely used to write double values to a file or other stream in a specific format.
    The output of this code would be the double value passed as an argument to the method, formatted as a string with three decimal places, preceded by a ValueDelimiter and followed by a ValueDelimiter and a ParameterDelimiter. 
