@@ -1,0 +1,42 @@
+Begin
+Begin Rank
+2
+End Rank
+Begin Dim0
+1
+End Dim0
+Begin Dim1
+2
+End Dim1
+Begin ActiveElement UnitTestsProject.HTMSerializationTests+Cat
+Begin Id
+0
+End Id
+Begin Fur
+False
+End Fur
+Begin Legs
+2
+End Legs
+
+End ActiveElement UnitTestsProject.HTMSerializationTests+Cat
+Begin ActiveIndex
+0,0
+End ActiveIndex
+Begin ActiveElement UnitTestsProject.HTMSerializationTests+Cat
+Begin Id
+1
+End Id
+Begin Fur
+True
+End Fur
+Begin Legs
+3
+End Legs
+
+End ActiveElement UnitTestsProject.HTMSerializationTests+Cat
+Begin ActiveIndex
+0,1
+End ActiveIndex
+
+End

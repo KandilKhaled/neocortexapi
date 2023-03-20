@@ -1,0 +1,27 @@
+Begin
+Begin CollectionItem UnitTestsProject.HTMSerializationTests+Cat
+Begin Id
+0
+End Id
+Begin Fur
+False
+End Fur
+Begin Legs
+2
+End Legs
+
+End CollectionItem UnitTestsProject.HTMSerializationTests+Cat
+Begin CollectionItem UnitTestsProject.HTMSerializationTests+Cat
+Begin Id
+1
+End Id
+Begin Fur
+True
+End Fur
+Begin Legs
+3
+End Legs
+
+End CollectionItem UnitTestsProject.HTMSerializationTests+Cat
+
+End

@@ -1,0 +1,16 @@
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\NeoCortexApi\bin\Debug\netstandard2.1\NeoCortexApi.deps.json
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\NeoCortexApi\bin\Debug\netstandard2.1\NeoCortexApi.dll
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\NeoCortexApi\bin\Debug\netstandard2.1\NeoCortexApi.pdb
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\NeoCortexApi\bin\Debug\netstandard2.1\NeoCortexArrayLib.dll
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\NeoCortexApi\bin\Debug\netstandard2.1\NeoCortexEntities.dll
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\NeoCortexApi\bin\Debug\netstandard2.1\NeoCortexArrayLib.pdb
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\NeoCortexApi\bin\Debug\netstandard2.1\NeoCortexArrayLib.xml
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\NeoCortexApi\bin\Debug\netstandard2.1\NeoCortexEntities.pdb
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\NeoCortexApi\obj\Debug\netstandard2.1\NeoCortexApi.csproj.AssemblyReference.cache
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\NeoCortexApi\obj\Debug\netstandard2.1\NeoCortexApi.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\NeoCortexApi\obj\Debug\netstandard2.1\NeoCortexApi.AssemblyInfoInputs.cache
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\NeoCortexApi\obj\Debug\netstandard2.1\NeoCortexApi.AssemblyInfo.cs
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\NeoCortexApi\obj\Debug\netstandard2.1\NeoCortexApi.csproj.CoreCompileInputs.cache
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\NeoCortexApi\obj\Debug\netstandard2.1\NeoCortexApi.csproj.CopyComplete
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\NeoCortexApi\obj\Debug\netstandard2.1\NeoCortexApi.dll
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\NeoCortexApi\obj\Debug\netstandard2.1\NeoCortexApi.pdb

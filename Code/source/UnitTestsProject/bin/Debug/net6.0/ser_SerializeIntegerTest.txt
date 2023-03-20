@@ -1,0 +1,4 @@
+
+  BEGIN 'Integer'  
+ -2147483647 |
+  END 'Integer'  

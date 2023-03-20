@@ -1,0 +1,351 @@
+Begin
+Begin Id
+0
+End Id
+Begin TemporalMemory
+Begin Id
+1
+End Id
+
+End TemporalMemory
+Begin SpatialPooler
+Begin Id
+2
+End Id
+
+End SpatialPooler
+Begin InputTopology
+Begin Id
+3
+End Id
+Begin dimensions
+Begin ArrayContent
+5
+End ArrayContent
+
+End dimensions
+Begin dimensionMultiples
+Begin ArrayContent
+1
+End ArrayContent
+
+End dimensionMultiples
+Begin isColumnMajor
+False
+End isColumnMajor
+Begin numDimensions
+1
+End numDimensions
+
+End InputTopology
+Begin ColumnTopology
+Begin Id
+4
+End Id
+Begin dimensions
+Begin ArrayContent
+5
+End ArrayContent
+
+End dimensions
+Begin dimensionMultiples
+Begin ArrayContent
+1
+End ArrayContent
+
+End dimensionMultiples
+Begin isColumnMajor
+False
+End isColumnMajor
+Begin numDimensions
+1
+End numDimensions
+
+End ColumnTopology
+Begin NumInputs
+5
+End NumInputs
+Begin NumColumns
+5
+End NumColumns
+Begin PotentialRadius
+5
+End PotentialRadius
+Begin PotentialPct
+0,5
+End PotentialPct
+Begin StimulusThreshold
+0
+End StimulusThreshold
+Begin SynPermBelowStimulusInc
+0,01
+End SynPermBelowStimulusInc
+Begin SynPermInactiveDec
+0,01
+End SynPermInactiveDec
+Begin SynPermActiveInc
+0,1
+End SynPermActiveInc
+Begin SynPermConnected
+0,1
+End SynPermConnected
+Begin ConnectedPermanence
+0,5
+End ConnectedPermanence
+Begin WrapAround
+True
+End WrapAround
+Begin SynPermTrimThreshold
+0,05
+End SynPermTrimThreshold
+Begin SynPermMax
+1
+End SynPermMax
+Begin SynPermMin
+0
+End SynPermMin
+Begin InitialSynapseConnsPct
+0,5
+End InitialSynapseConnsPct
+Begin InputMatrix NeoCortexApi.Entities.SparseBinaryMatrix
+Begin Id
+5
+End Id
+Begin ModuleTopology
+Begin Id
+6
+End Id
+Begin Dimensions
+Begin ArrayContent
+5
+End ArrayContent
+
+End Dimensions
+Begin IsMajorOrdering
+False
+End IsMajorOrdering
+Begin DimensionMultiplies
+Begin ArrayContent
+1
+End ArrayContent
+
+End DimensionMultiplies
+
+End ModuleTopology
+Begin backingArray NeoCortexApi.Entities.InMemoryArray
+Begin Id
+7
+End Id
+Begin dimensions
+Begin ArrayContent
+5
+End ArrayContent
+
+End dimensions
+Begin backingArray System.Int32[]
+Begin ArrayContent
+0,0,0,0,0
+End ArrayContent
+
+End backingArray System.Int32[]
+Begin numOfNodes
+1
+End numOfNodes
+
+End backingArray NeoCortexApi.Entities.InMemoryArray
+Begin trueCounts
+Begin ArrayContent
+0,0,0,0,0
+End ArrayContent
+
+End trueCounts
+
+End InputMatrix NeoCortexApi.Entities.SparseBinaryMatrix
+Begin GlobalInhibition
+False
+End GlobalInhibition
+Begin NumActiveColumnsPerInhArea
+3
+End NumActiveColumnsPerInhArea
+Begin LocalAreaDensity
+-1
+End LocalAreaDensity
+Begin MaxInibitionDensity
+0,5
+End MaxInibitionDensity
+Begin MinPctOverlapDutyCycles
+0,1
+End MinPctOverlapDutyCycles
+Begin MinPctActiveDutyCycles
+0,1
+End MinPctActiveDutyCycles
+Begin PredictedSegmentDecrement
+0,1
+End PredictedSegmentDecrement
+Begin DutyCyclePeriod
+10
+End DutyCyclePeriod
+Begin MaxBoost
+10
+End MaxBoost
+Begin UpdatePeriod
+50
+End UpdatePeriod
+Begin OverlapDutyCycles
+Begin CollectionItem
+0
+End CollectionItem
+Begin CollectionItem
+0
+End CollectionItem
+Begin CollectionItem
+0
+End CollectionItem
+Begin CollectionItem
+0
+End CollectionItem
+Begin CollectionItem
+0
+End CollectionItem
+
+End OverlapDutyCycles
+Begin ActiveDutyCycles
+Begin CollectionItem
+0
+End CollectionItem
+Begin CollectionItem
+0
+End CollectionItem
+Begin CollectionItem
+0
+End CollectionItem
+Begin CollectionItem
+0
+End CollectionItem
+Begin CollectionItem
+0
+End CollectionItem
+
+End ActiveDutyCycles
+Begin MinOverlapDutyCycles
+Begin CollectionItem
+0
+End CollectionItem
+Begin CollectionItem
+0
+End CollectionItem
+Begin CollectionItem
+0
+End CollectionItem
+Begin CollectionItem
+0
+End CollectionItem
+Begin CollectionItem
+0
+End CollectionItem
+
+End MinOverlapDutyCycles
+Begin MinActiveDutyCycles
+Begin CollectionItem
+0
+End CollectionItem
+Begin CollectionItem
+0
+End CollectionItem
+Begin CollectionItem
+0
+End CollectionItem
+Begin CollectionItem
+0
+End CollectionItem
+Begin CollectionItem
+0
+End CollectionItem
+
+End MinActiveDutyCycles
+Begin ColumnDimensions
+Begin ArrayContent
+5
+End ArrayContent
+
+End ColumnDimensions
+Begin CellsPerColumn
+32
+End CellsPerColumn
+Begin InputDimensions
+Begin ArrayContent
+5
+End ArrayContent
+
+End InputDimensions
+Begin MaxNewSynapseCount
+20
+End MaxNewSynapseCount
+Begin MaxSegmentsPerCell
+225
+End MaxSegmentsPerCell
+Begin MaxSynapsesPerSegment
+225
+End MaxSynapsesPerSegment
+Begin PermanenceIncrement
+0,1
+End PermanenceIncrement
+Begin PermanenceDecrement
+0,1
+End PermanenceDecrement
+Begin ColumnModuleTopology
+Begin Id
+8
+End Id
+Begin Dimensions
+Begin ArrayContent
+5
+End ArrayContent
+
+End Dimensions
+Begin IsMajorOrdering
+False
+End IsMajorOrdering
+Begin DimensionMultiplies
+Begin ArrayContent
+1
+End ArrayContent
+
+End DimensionMultiplies
+
+End ColumnModuleTopology
+Begin InputModuleTopology
+Begin ReplaceId
+6
+End ReplaceId
+
+End InputModuleTopology
+Begin ActivationThreshold
+10
+End ActivationThreshold
+Begin LearningRadius
+10
+End LearningRadius
+Begin MinThreshold
+9
+End MinThreshold
+Begin InitialPermanence
+0,21
+End InitialPermanence
+Begin RandomGenSeed
+42
+End RandomGenSeed
+Begin Random NeoCortexApi.ThreadSafeRandom
+Begin Id
+9
+End Id
+Begin seed
+42
+End seed
+Begin counter
+30
+End counter
+
+End Random NeoCortexApi.ThreadSafeRandom
+
+End

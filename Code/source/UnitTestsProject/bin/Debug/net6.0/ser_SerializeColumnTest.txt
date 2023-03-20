@@ -1,0 +1,42 @@
+
+  BEGIN 'Column'  
+ 5 |
+  BEGIN 'SparseBinaryMatrix'  
+ 0,|
+  BEGIN 'HtmModuleTopology'  
+ 1,2,| False | 2,1,|
+  END 'HtmModuleTopology'  
+
+  BEGIN 'InMemoryArray'  
+ 
+00 | 1,2,| 1 |
+  END 'InMemoryArray'  
+
+  END 'SparseBinaryMatrix'  
+
+  BEGIN 'SparseBinaryMatrix'  
+ 0,|
+  BEGIN 'HtmModuleTopology'  
+ 1,2,| False | 2,1,|
+  END 'HtmModuleTopology'  
+
+  BEGIN 'InMemoryArray'  
+ 
+00 | 1,2,| 1 |
+  END 'InMemoryArray'  
+
+  END 'SparseBinaryMatrix'  
+
+  BEGIN 'ProximalDendrite'  
+ 5 | 8.300 | 2 | |
+  END 'ProximalDendrite'  
+ 
+  BEGIN 'Cell'  
+ 10 | 5 |
+  END 'Cell'  
+ 
+  BEGIN 'Cell'  
+ 11 | 5 |
+  END 'Cell'  
+ |
+  END 'Column'  

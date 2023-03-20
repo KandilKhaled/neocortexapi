@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>NeoCortexApi</id>
+    <version>1.1.4</version>
+    <authors>Damir Dobric</authors>
+    <license type="file">license.txt</license>
+    <licenseUrl>https://aka.ms/deprecateLicenseUrl</licenseUrl>
+    <icon>NeoCortexAPI.png</icon>
+    <projectUrl>https://github.com/ddobric/neocortexapi</projectUrl>
+    <description>This package is an implementation of Hierarchical Temporal Memory Cortical Learning Algorithm (HTM CLA) in C#/.NET Core. It includes the Spatial Pooler, Temporal Memory, various encoders and Cortical Network algorithms. Implementation of this library aligns to existing Python and JAVA implementation of HTM. Due to similarities between JAVA and C#, current API of SpatialPooler in C# is very similar to JAVA API. Note, future versions will include some API changes, which more align to the c# coding convence.</description>
+    <releaseNotes>Added method GetPredictedInputValues to the HtmClassifier</releaseNotes>
+    <copyright>Damir Dobric</copyright>
+    <tags>htm, temporal memory, spatial pooler, neocortex</tags>
+    <repository type="git" url="https://github.com/ddobric/neocortexapi" />
+    <dependencies>
+      <group targetFramework=".NETStandard2.1">
+        <dependency id="Microsoft.CSharp" version="4.7.0" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="C:\Users\maria\Desktop\prueba2\neocortexapi\source\NeoCortexApi\bin\Debug\netstandard2.1\NeoCortexApi.pdb" target="lib\netstandard2.1\NeoCortexApi.pdb" />
+    <file src="C:\Users\maria\Desktop\prueba2\neocortexapi\source\NeoCortexArrayLib\bin\Debug\netstandard2.1\NeoCortexArrayLib.pdb" target="lib\netstandard2.1\NeoCortexArrayLib.pdb" />
+    <file src="C:\Users\maria\Desktop\prueba2\neocortexapi\source\NeoCortexEntities\bin\Debug\netstandard2.1\NeoCortexEntities.pdb" target="lib\netstandard2.1\NeoCortexEntities.pdb" />
+  </files>
+</package>

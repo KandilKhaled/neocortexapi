@@ -1,0 +1,57 @@
+Begin
+Begin CollectionItem
+Begin Id
+0
+End Id
+Begin Ordinal
+2
+End Ordinal
+Begin LastUsedIteration
+2
+End LastUsedIteration
+Begin SegmentIndex
+1
+End SegmentIndex
+Begin SynapsePermConnected
+1
+End SynapsePermConnected
+Begin NumInputs
+100
+End NumInputs
+Begin m_Ordinal
+2
+End m_Ordinal
+Begin m_LastUsedIteration
+2
+End m_LastUsedIteration
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+1
+End Id
+Begin Ordinal
+34
+End Ordinal
+Begin LastUsedIteration
+24
+End LastUsedIteration
+Begin SegmentIndex
+44
+End SegmentIndex
+Begin SynapsePermConnected
+1
+End SynapsePermConnected
+Begin NumInputs
+100
+End NumInputs
+Begin m_Ordinal
+34
+End m_Ordinal
+Begin m_LastUsedIteration
+24
+End m_LastUsedIteration
+
+End CollectionItem
+
+End

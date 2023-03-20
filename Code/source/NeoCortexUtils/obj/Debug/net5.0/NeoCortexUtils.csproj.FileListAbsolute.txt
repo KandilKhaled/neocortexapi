@@ -1,0 +1,13 @@
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\NeoCortexUtils\bin\Debug\net5.0\NeoCortexUtils.deps.json
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\NeoCortexUtils\bin\Debug\net5.0\NeoCortexUtils.dll
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\NeoCortexUtils\bin\Debug\net5.0\NeoCortexUtils.pdb
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\NeoCortexUtils\bin\Debug\net5.0\NeoCortexUtils.xml
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\NeoCortexUtils\obj\Debug\net5.0\NeoCortexUtils.csproj.AssemblyReference.cache
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\NeoCortexUtils\obj\Debug\net5.0\NeoCortexUtils.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\NeoCortexUtils\obj\Debug\net5.0\NeoCortexUtils.AssemblyInfoInputs.cache
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\NeoCortexUtils\obj\Debug\net5.0\NeoCortexUtils.AssemblyInfo.cs
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\NeoCortexUtils\obj\Debug\net5.0\NeoCortexUtils.csproj.CoreCompileInputs.cache
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\NeoCortexUtils\obj\Debug\net5.0\NeoCortexUtils.dll
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\NeoCortexUtils\obj\Debug\net5.0\NeoCortexUtils.pdb
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\NeoCortexUtils\obj\Debug\net5.0\ref\NeoCortexUtils.dll
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\NeoCortexUtils\obj\Debug\net5.0\refint\NeoCortexUtils.dll

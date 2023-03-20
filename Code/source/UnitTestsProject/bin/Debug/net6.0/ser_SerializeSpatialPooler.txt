@@ -1,0 +1,8 @@
+
+  BEGIN 'SpatialPooler'  
+  |
+  BEGIN 'HomeostaticPlasticityController'  
+ 0.000 | 5 | 0 | 0 | 0 | | | | False |
+  END 'HomeostaticPlasticityController'  
+
+  END 'SpatialPooler'  

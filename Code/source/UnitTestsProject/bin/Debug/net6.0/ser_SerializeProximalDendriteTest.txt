@@ -1,0 +1,41 @@
+
+  BEGIN 'ProximalDendrite'  
+ 0 | 12.340 | 23 |
+  BEGIN 'Pool'  
+ 1 | 28 | |
+ 3: 
+  BEGIN 'Synapse'  
+ 1 | 23 | 206 | 1.000 | False |
+  BEGIN 'Cell'  
+ 206 | 12 | 
+  BEGIN 'Segment'  
+ 2 | 2 | 2 | 1 | 1.000 | 100 |
+  END 'Segment'  
+,
+  BEGIN 'Segment'  
+ 34 | 24 | 34 | 44 | 1.000 | 100 |
+  END 'Segment'  
+,|
+  END 'Cell'  
+
+  END 'Synapse'  
+,67: 
+  BEGIN 'Synapse'  
+ 44 | 27 | 206 | 1.000 | False |
+  BEGIN 'Cell'  
+ 206 | 12 | 
+  BEGIN 'Segment'  
+ 2 | 2 | 2 | 1 | 1.000 | 100 |
+  END 'Segment'  
+,
+  BEGIN 'Segment'  
+ 34 | 24 | 34 | 44 | 1.000 | 100 |
+  END 'Segment'  
+,|
+  END 'Cell'  
+
+  END 'Synapse'  
+,|
+  END 'Pool'  
+ |
+  END 'ProximalDendrite'  

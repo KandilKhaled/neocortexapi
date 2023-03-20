@@ -1,0 +1,16 @@
+
+  BEGIN 'Segment'  
+ 2 | 2 | 2 | 1 | 1.000 | 100 |
+  BEGIN 'Cell'  
+ 206 | 12 | 
+  BEGIN 'Segment'  
+ 2 | 2 | 2 | 1 | 1.000 | 100 |
+  END 'Segment'  
+,
+  BEGIN 'Segment'  
+ 34 | 24 | 34 | 44 | 1.000 | 100 |
+  END 'Segment'  
+,|
+  END 'Cell'  
+
+  END 'DistalDendrite'  

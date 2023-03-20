@@ -1,0 +1,150 @@
+Begin
+Begin Id
+0
+End Id
+Begin TemporalMemory
+Begin Id
+1
+End Id
+
+End TemporalMemory
+Begin SpatialPooler
+Begin Id
+2
+End Id
+
+End SpatialPooler
+Begin NumInputs
+1
+End NumInputs
+Begin NumColumns
+0
+End NumColumns
+Begin PotentialRadius
+10000
+End PotentialRadius
+Begin PotentialPct
+0,75
+End PotentialPct
+Begin StimulusThreshold
+5
+End StimulusThreshold
+Begin SynPermBelowStimulusInc
+0,01
+End SynPermBelowStimulusInc
+Begin SynPermInactiveDec
+0,008
+End SynPermInactiveDec
+Begin SynPermActiveInc
+0,05
+End SynPermActiveInc
+Begin SynPermConnected
+0,1
+End SynPermConnected
+Begin ConnectedPermanence
+0,5
+End ConnectedPermanence
+Begin WrapAround
+True
+End WrapAround
+Begin SynPermTrimThreshold
+0,05
+End SynPermTrimThreshold
+Begin SynPermMax
+1
+End SynPermMax
+Begin SynPermMin
+0
+End SynPermMin
+Begin InitialSynapseConnsPct
+0,5
+End InitialSynapseConnsPct
+Begin GlobalInhibition
+True
+End GlobalInhibition
+Begin NumActiveColumnsPerInhArea
+50
+End NumActiveColumnsPerInhArea
+Begin LocalAreaDensity
+-1
+End LocalAreaDensity
+Begin MaxInibitionDensity
+0,5
+End MaxInibitionDensity
+Begin MinPctOverlapDutyCycles
+1
+End MinPctOverlapDutyCycles
+Begin MinPctActiveDutyCycles
+0,001
+End MinPctActiveDutyCycles
+Begin PredictedSegmentDecrement
+0,1
+End PredictedSegmentDecrement
+Begin DutyCyclePeriod
+25
+End DutyCyclePeriod
+Begin MaxBoost
+10
+End MaxBoost
+Begin UpdatePeriod
+50
+End UpdatePeriod
+Begin ColumnDimensions
+Begin ArrayContent
+500
+End ArrayContent
+
+End ColumnDimensions
+Begin CellsPerColumn
+20
+End CellsPerColumn
+Begin InputDimensions
+Begin ArrayContent
+10000
+End ArrayContent
+
+End InputDimensions
+Begin MaxNewSynapseCount
+20
+End MaxNewSynapseCount
+Begin MaxSegmentsPerCell
+225
+End MaxSegmentsPerCell
+Begin MaxSynapsesPerSegment
+25
+End MaxSynapsesPerSegment
+Begin PermanenceIncrement
+0,15
+End PermanenceIncrement
+Begin PermanenceDecrement
+0,25
+End PermanenceDecrement
+Begin ActivationThreshold
+15
+End ActivationThreshold
+Begin LearningRadius
+10
+End LearningRadius
+Begin MinThreshold
+9
+End MinThreshold
+Begin InitialPermanence
+0,21
+End InitialPermanence
+Begin RandomGenSeed
+42
+End RandomGenSeed
+Begin Random NeoCortexApi.ThreadSafeRandom
+Begin Id
+3
+End Id
+Begin seed
+42
+End seed
+Begin counter
+0
+End counter
+
+End Random NeoCortexApi.ThreadSafeRandom
+
+End

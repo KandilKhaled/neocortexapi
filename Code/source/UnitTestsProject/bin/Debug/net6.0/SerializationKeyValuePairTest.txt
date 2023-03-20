@@ -1,0 +1,18 @@
+Begin
+Begin Key
+1
+End Key
+Begin Value UnitTestsProject.HTMSerializationTests+Cat
+Begin Id
+0
+End Id
+Begin Fur
+True
+End Fur
+Begin Legs
+4
+End Legs
+
+End Value UnitTestsProject.HTMSerializationTests+Cat
+
+End

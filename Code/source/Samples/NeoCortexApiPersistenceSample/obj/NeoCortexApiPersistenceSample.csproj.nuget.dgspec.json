@@ -1,0 +1,366 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\Samples\\NeoCortexApiPersistenceSample\\NeoCortexApiPersistenceSample.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NeoCortexApi\\NeoCortexApi.csproj": {
+      "version": "1.1.4",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NeoCortexApi\\NeoCortexApi.csproj",
+        "projectName": "NeoCortexApi",
+        "projectPath": "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NeoCortexApi\\NeoCortexApi.csproj",
+        "packagesPath": "C:\\Users\\maria\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NeoCortexApi\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NuGet.Config",
+          "C:\\Users\\maria\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\nuget": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {
+              "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NeoCortexArrayLib\\NeoCortexArrayLib.csproj": {
+                "projectPath": "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NeoCortexArrayLib\\NeoCortexArrayLib.csproj",
+                "privateAssets": "all"
+              },
+              "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NeoCortexEntities\\NeoCortexEntities.csproj": {
+                "projectPath": "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NeoCortexEntities\\NeoCortexEntities.csproj",
+                "privateAssets": "all"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
+          "dependencies": {
+            "Microsoft.CSharp": {
+              "target": "Package",
+              "version": "[4.7.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "NETStandard.Library": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NeoCortexArrayLib\\NeoCortexArrayLib.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NeoCortexArrayLib\\NeoCortexArrayLib.csproj",
+        "projectName": "NeoCortexArrayLib",
+        "projectPath": "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NeoCortexArrayLib\\NeoCortexArrayLib.csproj",
+        "packagesPath": "C:\\Users\\maria\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NeoCortexArrayLib\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NuGet.Config",
+          "C:\\Users\\maria\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\nuget": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "NETStandard.Library": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NeoCortexEntities\\NeoCortexEntities.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NeoCortexEntities\\NeoCortexEntities.csproj",
+        "projectName": "NeoCortexEntities",
+        "projectPath": "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NeoCortexEntities\\NeoCortexEntities.csproj",
+        "packagesPath": "C:\\Users\\maria\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NeoCortexEntities\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NuGet.Config",
+          "C:\\Users\\maria\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\nuget": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {
+              "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NeoCortexArrayLib\\NeoCortexArrayLib.csproj": {
+                "projectPath": "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NeoCortexArrayLib\\NeoCortexArrayLib.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
+          "dependencies": {
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.2, )"
+            },
+            "System.Collections.Concurrent": {
+              "target": "Package",
+              "version": "[4.3.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "NETStandard.Library": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NeoCortexUtils\\NeoCortexUtils.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NeoCortexUtils\\NeoCortexUtils.csproj",
+        "projectName": "NeoCortexUtils",
+        "projectPath": "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NeoCortexUtils\\NeoCortexUtils.csproj",
+        "packagesPath": "C:\\Users\\maria\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NeoCortexUtils\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NuGet.Config",
+          "C:\\Users\\maria\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\nuget": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "GemBox.Spreadsheet": {
+              "target": "Package",
+              "version": "[47.0.1268, )"
+            },
+            "ImageBinarizer": {
+              "target": "Package",
+              "version": "[1.5.6, )"
+            },
+            "System.Drawing.Common": {
+              "target": "Package",
+              "version": "[4.6.0-preview3.19128.7, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\Samples\\NeoCortexApiPersistenceSample\\NeoCortexApiPersistenceSample.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\Samples\\NeoCortexApiPersistenceSample\\NeoCortexApiPersistenceSample.csproj",
+        "projectName": "NeoCortexApiPersistenceSample",
+        "projectPath": "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\Samples\\NeoCortexApiPersistenceSample\\NeoCortexApiPersistenceSample.csproj",
+        "packagesPath": "C:\\Users\\maria\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\Samples\\NeoCortexApiPersistenceSample\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NuGet.Config",
+          "C:\\Users\\maria\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\nuget": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NeoCortexApi\\NeoCortexApi.csproj": {
+                "projectPath": "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NeoCortexApi\\NeoCortexApi.csproj"
+              },
+              "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NeoCortexEntities\\NeoCortexEntities.csproj": {
+                "projectPath": "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NeoCortexEntities\\NeoCortexEntities.csproj"
+              },
+              "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NeoCortexUtils\\NeoCortexUtils.csproj": {
+                "projectPath": "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NeoCortexUtils\\NeoCortexUtils.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+ 
+  BEGIN 'Cell'  
+ 206 | 12 | 
+  BEGIN 'Segment'  
+ 2 | 2 | 2 | 1 | 1.000 | 100 |
+  END 'Segment'  
+,
+  BEGIN 'Segment'  
+ 34 | 24 | 34 | 44 | 1.000 | 100 |
+  END 'Segment'  
+,|
+  END 'Cell'  
+ 
+  BEGIN 'Cell'  
+ 6 | 2 | 
+  BEGIN 'Segment'  
+ 7 | 4 | 7 | 3 | 1.000 | 100 |
+  END 'Segment'  
+,
+  BEGIN 'Segment'  
+ 94 | 34 | 94 | 4 | 1.000 | 100 |
+  END 'Segment'  
+,|
+  END 'Cell'  
+ |

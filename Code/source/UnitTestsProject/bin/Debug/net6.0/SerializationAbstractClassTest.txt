@@ -1,0 +1,12 @@
+Begin bla UnitTestsProject.HTMSerializationTests+Cat
+Begin Id
+0
+End Id
+Begin Fur
+True
+End Fur
+Begin Legs
+4
+End Legs
+
+End bla UnitTestsProject.HTMSerializationTests+Cat

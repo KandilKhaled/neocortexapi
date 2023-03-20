@@ -1,0 +1,1032 @@
+Begin
+Begin Id
+0
+End Id
+Begin ModuleTopology
+Begin Id
+1
+End Id
+Begin Dimensions
+Begin ArrayContent
+5
+End ArrayContent
+
+End Dimensions
+Begin IsMajorOrdering
+False
+End IsMajorOrdering
+Begin DimensionMultiplies
+Begin ArrayContent
+1
+End ArrayContent
+
+End DimensionMultiplies
+
+End ModuleTopology
+Begin m_SparseMap NeoCortexApi.Entities.InMemoryDistributedDictionary`2[[System.Int32,System.Private.CoreLib,Version=6.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[NeoCortexApi.Entities.Column,NeoCortexEntities,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]
+Begin Id
+2
+End Id
+Begin dictList
+Begin CollectionItem
+Begin DictionaryItem
+Begin Key
+0
+End Key
+Begin Value
+Begin Id
+3
+End Id
+Begin ConnectedInputCounterMatrix NeoCortexApi.Entities.SparseBinaryMatrix
+Begin Id
+4
+End Id
+Begin ModuleTopology
+Begin Id
+5
+End Id
+Begin Dimensions
+Begin ArrayContent
+1,5
+End ArrayContent
+
+End Dimensions
+Begin IsMajorOrdering
+False
+End IsMajorOrdering
+Begin DimensionMultiplies
+Begin ArrayContent
+5,1
+End ArrayContent
+
+End DimensionMultiplies
+
+End ModuleTopology
+Begin backingArray NeoCortexApi.Entities.InMemoryArray
+Begin Id
+6
+End Id
+Begin dimensions
+Begin ArrayContent
+1,5
+End ArrayContent
+
+End dimensions
+Begin backingArray System.Int32[,]
+Begin Rank
+2
+End Rank
+Begin Dim0
+1
+End Dim0
+Begin Dim1
+5
+End Dim1
+Begin ActiveElement
+1
+End ActiveElement
+Begin ActiveIndex
+0,1
+End ActiveIndex
+Begin ActiveElement
+1
+End ActiveElement
+Begin ActiveIndex
+0,3
+End ActiveIndex
+
+End backingArray System.Int32[,]
+Begin numOfNodes
+1
+End numOfNodes
+
+End backingArray NeoCortexApi.Entities.InMemoryArray
+Begin trueCounts
+Begin ArrayContent
+2
+End ArrayContent
+
+End trueCounts
+
+End ConnectedInputCounterMatrix NeoCortexApi.Entities.SparseBinaryMatrix
+Begin Index
+0
+End Index
+Begin ProximalDendrite
+Begin Id
+7
+End Id
+Begin RFPool
+Begin Id
+8
+End Id
+Begin NumInputs
+5
+End NumInputs
+Begin m_SynapseConnections
+Begin ArrayContent
+1,3
+End ArrayContent
+
+End m_SynapseConnections
+Begin synapses
+Begin CollectionItem
+Begin Id
+9
+End Id
+Begin SegmentParentCellIndex
+0
+End SegmentParentCellIndex
+Begin SegmentAreaName
+SegmentAreaName
+End SegmentAreaName
+Begin SynapseIndex
+-1
+End SynapseIndex
+Begin InputIndex
+0
+End InputIndex
+Begin Permanence
+0
+End Permanence
+Begin IsDestroyed
+False
+End IsDestroyed
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+10
+End Id
+Begin SegmentParentCellIndex
+0
+End SegmentParentCellIndex
+Begin SegmentAreaName
+SegmentAreaName
+End SegmentAreaName
+Begin SynapseIndex
+0
+End SynapseIndex
+Begin InputIndex
+1
+End InputIndex
+Begin Permanence
+1
+End Permanence
+Begin IsDestroyed
+False
+End IsDestroyed
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+11
+End Id
+Begin SegmentParentCellIndex
+0
+End SegmentParentCellIndex
+Begin SegmentAreaName
+SegmentAreaName
+End SegmentAreaName
+Begin SynapseIndex
+1
+End SynapseIndex
+Begin InputIndex
+3
+End InputIndex
+Begin Permanence
+1
+End Permanence
+Begin IsDestroyed
+False
+End IsDestroyed
+
+End CollectionItem
+
+End synapses
+
+End RFPool
+Begin LastUsedIteration
+-1
+End LastUsedIteration
+Begin SegmentIndex
+0
+End SegmentIndex
+Begin SynapsePermConnected
+0,1
+End SynapsePermConnected
+Begin NumInputs
+5
+End NumInputs
+Begin m_LastUsedIteration
+-1
+End m_LastUsedIteration
+
+End ProximalDendrite
+
+End Value
+
+End DictionaryItem
+Begin DictionaryItem
+Begin Key
+1
+End Key
+Begin Value
+Begin Id
+12
+End Id
+Begin ConnectedInputCounterMatrix NeoCortexApi.Entities.SparseBinaryMatrix
+Begin Id
+13
+End Id
+Begin ModuleTopology
+Begin Id
+14
+End Id
+Begin Dimensions
+Begin ArrayContent
+1,5
+End ArrayContent
+
+End Dimensions
+Begin IsMajorOrdering
+False
+End IsMajorOrdering
+Begin DimensionMultiplies
+Begin ArrayContent
+5,1
+End ArrayContent
+
+End DimensionMultiplies
+
+End ModuleTopology
+Begin backingArray NeoCortexApi.Entities.InMemoryArray
+Begin Id
+15
+End Id
+Begin dimensions
+Begin ArrayContent
+1,5
+End ArrayContent
+
+End dimensions
+Begin backingArray System.Int32[,]
+Begin Rank
+2
+End Rank
+Begin Dim0
+1
+End Dim0
+Begin Dim1
+5
+End Dim1
+Begin ActiveElement
+1
+End ActiveElement
+Begin ActiveIndex
+0,2
+End ActiveIndex
+Begin ActiveElement
+1
+End ActiveElement
+Begin ActiveIndex
+0,4
+End ActiveIndex
+
+End backingArray System.Int32[,]
+Begin numOfNodes
+1
+End numOfNodes
+
+End backingArray NeoCortexApi.Entities.InMemoryArray
+Begin trueCounts
+Begin ArrayContent
+2
+End ArrayContent
+
+End trueCounts
+
+End ConnectedInputCounterMatrix NeoCortexApi.Entities.SparseBinaryMatrix
+Begin Index
+1
+End Index
+Begin ProximalDendrite
+Begin Id
+16
+End Id
+Begin RFPool
+Begin Id
+17
+End Id
+Begin NumInputs
+5
+End NumInputs
+Begin m_SynapseConnections
+Begin ArrayContent
+2,4
+End ArrayContent
+
+End m_SynapseConnections
+Begin synapses
+Begin CollectionItem
+Begin Id
+18
+End Id
+Begin SegmentParentCellIndex
+0
+End SegmentParentCellIndex
+Begin SegmentAreaName
+SegmentAreaName
+End SegmentAreaName
+Begin SynapseIndex
+-1
+End SynapseIndex
+Begin InputIndex
+1
+End InputIndex
+Begin Permanence
+0,05129
+End Permanence
+Begin IsDestroyed
+False
+End IsDestroyed
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+19
+End Id
+Begin SegmentParentCellIndex
+0
+End SegmentParentCellIndex
+Begin SegmentAreaName
+SegmentAreaName
+End SegmentAreaName
+Begin SynapseIndex
+0
+End SynapseIndex
+Begin InputIndex
+2
+End InputIndex
+Begin Permanence
+1
+End Permanence
+Begin IsDestroyed
+False
+End IsDestroyed
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+20
+End Id
+Begin SegmentParentCellIndex
+0
+End SegmentParentCellIndex
+Begin SegmentAreaName
+SegmentAreaName
+End SegmentAreaName
+Begin SynapseIndex
+1
+End SynapseIndex
+Begin InputIndex
+4
+End InputIndex
+Begin Permanence
+1
+End Permanence
+Begin IsDestroyed
+False
+End IsDestroyed
+
+End CollectionItem
+
+End synapses
+
+End RFPool
+Begin LastUsedIteration
+-1
+End LastUsedIteration
+Begin SegmentIndex
+1
+End SegmentIndex
+Begin SynapsePermConnected
+0,1
+End SynapsePermConnected
+Begin NumInputs
+5
+End NumInputs
+Begin m_LastUsedIteration
+-1
+End m_LastUsedIteration
+
+End ProximalDendrite
+
+End Value
+
+End DictionaryItem
+Begin DictionaryItem
+Begin Key
+2
+End Key
+Begin Value
+Begin Id
+21
+End Id
+Begin ConnectedInputCounterMatrix NeoCortexApi.Entities.SparseBinaryMatrix
+Begin Id
+22
+End Id
+Begin ModuleTopology
+Begin Id
+23
+End Id
+Begin Dimensions
+Begin ArrayContent
+1,5
+End ArrayContent
+
+End Dimensions
+Begin IsMajorOrdering
+False
+End IsMajorOrdering
+Begin DimensionMultiplies
+Begin ArrayContent
+5,1
+End ArrayContent
+
+End DimensionMultiplies
+
+End ModuleTopology
+Begin backingArray NeoCortexApi.Entities.InMemoryArray
+Begin Id
+24
+End Id
+Begin dimensions
+Begin ArrayContent
+1,5
+End ArrayContent
+
+End dimensions
+Begin backingArray System.Int32[,]
+Begin Rank
+2
+End Rank
+Begin Dim0
+1
+End Dim0
+Begin Dim1
+5
+End Dim1
+Begin ActiveElement
+1
+End ActiveElement
+Begin ActiveIndex
+0,2
+End ActiveIndex
+
+End backingArray System.Int32[,]
+Begin numOfNodes
+1
+End numOfNodes
+
+End backingArray NeoCortexApi.Entities.InMemoryArray
+Begin trueCounts
+Begin ArrayContent
+1
+End ArrayContent
+
+End trueCounts
+
+End ConnectedInputCounterMatrix NeoCortexApi.Entities.SparseBinaryMatrix
+Begin Index
+2
+End Index
+Begin ProximalDendrite
+Begin Id
+25
+End Id
+Begin RFPool
+Begin Id
+26
+End Id
+Begin NumInputs
+5
+End NumInputs
+Begin m_SynapseConnections
+Begin ArrayContent
+2
+End ArrayContent
+
+End m_SynapseConnections
+Begin synapses
+Begin CollectionItem
+Begin Id
+27
+End Id
+Begin SegmentParentCellIndex
+0
+End SegmentParentCellIndex
+Begin SegmentAreaName
+SegmentAreaName
+End SegmentAreaName
+Begin SynapseIndex
+-1
+End SynapseIndex
+Begin InputIndex
+0
+End InputIndex
+Begin Permanence
+0
+End Permanence
+Begin IsDestroyed
+False
+End IsDestroyed
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+28
+End Id
+Begin SegmentParentCellIndex
+0
+End SegmentParentCellIndex
+Begin SegmentAreaName
+SegmentAreaName
+End SegmentAreaName
+Begin SynapseIndex
+0
+End SynapseIndex
+Begin InputIndex
+2
+End InputIndex
+Begin Permanence
+1
+End Permanence
+Begin IsDestroyed
+False
+End IsDestroyed
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+29
+End Id
+Begin SegmentParentCellIndex
+0
+End SegmentParentCellIndex
+Begin SegmentAreaName
+SegmentAreaName
+End SegmentAreaName
+Begin SynapseIndex
+1
+End SynapseIndex
+Begin InputIndex
+3
+End InputIndex
+Begin Permanence
+0
+End Permanence
+Begin IsDestroyed
+False
+End IsDestroyed
+
+End CollectionItem
+
+End synapses
+
+End RFPool
+Begin LastUsedIteration
+-1
+End LastUsedIteration
+Begin SegmentIndex
+2
+End SegmentIndex
+Begin SynapsePermConnected
+0,1
+End SynapsePermConnected
+Begin NumInputs
+5
+End NumInputs
+Begin m_LastUsedIteration
+-1
+End m_LastUsedIteration
+
+End ProximalDendrite
+
+End Value
+
+End DictionaryItem
+Begin DictionaryItem
+Begin Key
+3
+End Key
+Begin Value
+Begin Id
+30
+End Id
+Begin ConnectedInputCounterMatrix NeoCortexApi.Entities.SparseBinaryMatrix
+Begin Id
+31
+End Id
+Begin ModuleTopology
+Begin Id
+32
+End Id
+Begin Dimensions
+Begin ArrayContent
+1,5
+End ArrayContent
+
+End Dimensions
+Begin IsMajorOrdering
+False
+End IsMajorOrdering
+Begin DimensionMultiplies
+Begin ArrayContent
+5,1
+End ArrayContent
+
+End DimensionMultiplies
+
+End ModuleTopology
+Begin backingArray NeoCortexApi.Entities.InMemoryArray
+Begin Id
+33
+End Id
+Begin dimensions
+Begin ArrayContent
+1,5
+End ArrayContent
+
+End dimensions
+Begin backingArray System.Int32[,]
+Begin Rank
+2
+End Rank
+Begin Dim0
+1
+End Dim0
+Begin Dim1
+5
+End Dim1
+Begin ActiveElement
+1
+End ActiveElement
+Begin ActiveIndex
+0,3
+End ActiveIndex
+Begin ActiveElement
+1
+End ActiveElement
+Begin ActiveIndex
+0,4
+End ActiveIndex
+
+End backingArray System.Int32[,]
+Begin numOfNodes
+1
+End numOfNodes
+
+End backingArray NeoCortexApi.Entities.InMemoryArray
+Begin trueCounts
+Begin ArrayContent
+2
+End ArrayContent
+
+End trueCounts
+
+End ConnectedInputCounterMatrix NeoCortexApi.Entities.SparseBinaryMatrix
+Begin Index
+3
+End Index
+Begin ProximalDendrite
+Begin Id
+34
+End Id
+Begin RFPool
+Begin Id
+35
+End Id
+Begin NumInputs
+5
+End NumInputs
+Begin m_SynapseConnections
+Begin ArrayContent
+3,4
+End ArrayContent
+
+End m_SynapseConnections
+Begin synapses
+Begin CollectionItem
+Begin Id
+36
+End Id
+Begin SegmentParentCellIndex
+0
+End SegmentParentCellIndex
+Begin SegmentAreaName
+SegmentAreaName
+End SegmentAreaName
+Begin SynapseIndex
+-1
+End SynapseIndex
+Begin InputIndex
+1
+End InputIndex
+Begin Permanence
+0,05771
+End Permanence
+Begin IsDestroyed
+False
+End IsDestroyed
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+37
+End Id
+Begin SegmentParentCellIndex
+0
+End SegmentParentCellIndex
+Begin SegmentAreaName
+SegmentAreaName
+End SegmentAreaName
+Begin SynapseIndex
+0
+End SynapseIndex
+Begin InputIndex
+3
+End InputIndex
+Begin Permanence
+1
+End Permanence
+Begin IsDestroyed
+False
+End IsDestroyed
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+38
+End Id
+Begin SegmentParentCellIndex
+0
+End SegmentParentCellIndex
+Begin SegmentAreaName
+SegmentAreaName
+End SegmentAreaName
+Begin SynapseIndex
+1
+End SynapseIndex
+Begin InputIndex
+4
+End InputIndex
+Begin Permanence
+1
+End Permanence
+Begin IsDestroyed
+False
+End IsDestroyed
+
+End CollectionItem
+
+End synapses
+
+End RFPool
+Begin LastUsedIteration
+-1
+End LastUsedIteration
+Begin SegmentIndex
+3
+End SegmentIndex
+Begin SynapsePermConnected
+0,1
+End SynapsePermConnected
+Begin NumInputs
+5
+End NumInputs
+Begin m_LastUsedIteration
+-1
+End m_LastUsedIteration
+
+End ProximalDendrite
+
+End Value
+
+End DictionaryItem
+Begin DictionaryItem
+Begin Key
+4
+End Key
+Begin Value
+Begin Id
+39
+End Id
+Begin ConnectedInputCounterMatrix NeoCortexApi.Entities.SparseBinaryMatrix
+Begin Id
+40
+End Id
+Begin ModuleTopology
+Begin Id
+41
+End Id
+Begin Dimensions
+Begin ArrayContent
+1,5
+End ArrayContent
+
+End Dimensions
+Begin IsMajorOrdering
+False
+End IsMajorOrdering
+Begin DimensionMultiplies
+Begin ArrayContent
+5,1
+End ArrayContent
+
+End DimensionMultiplies
+
+End ModuleTopology
+Begin backingArray NeoCortexApi.Entities.InMemoryArray
+Begin Id
+42
+End Id
+Begin dimensions
+Begin ArrayContent
+1,5
+End ArrayContent
+
+End dimensions
+Begin backingArray System.Int32[,]
+Begin Rank
+2
+End Rank
+Begin Dim0
+1
+End Dim0
+Begin Dim1
+5
+End Dim1
+Begin ActiveElement
+1
+End ActiveElement
+Begin ActiveIndex
+0,2
+End ActiveIndex
+Begin ActiveElement
+1
+End ActiveElement
+Begin ActiveIndex
+0,4
+End ActiveIndex
+
+End backingArray System.Int32[,]
+Begin numOfNodes
+1
+End numOfNodes
+
+End backingArray NeoCortexApi.Entities.InMemoryArray
+Begin trueCounts
+Begin ArrayContent
+2
+End ArrayContent
+
+End trueCounts
+
+End ConnectedInputCounterMatrix NeoCortexApi.Entities.SparseBinaryMatrix
+Begin Index
+4
+End Index
+Begin ProximalDendrite
+Begin Id
+43
+End Id
+Begin RFPool
+Begin Id
+44
+End Id
+Begin NumInputs
+5
+End NumInputs
+Begin m_SynapseConnections
+Begin ArrayContent
+2,4
+End ArrayContent
+
+End m_SynapseConnections
+Begin synapses
+Begin CollectionItem
+Begin Id
+45
+End Id
+Begin SegmentParentCellIndex
+0
+End SegmentParentCellIndex
+Begin SegmentAreaName
+SegmentAreaName
+End SegmentAreaName
+Begin SynapseIndex
+-1
+End SynapseIndex
+Begin InputIndex
+0
+End InputIndex
+Begin Permanence
+0,05399
+End Permanence
+Begin IsDestroyed
+False
+End IsDestroyed
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+46
+End Id
+Begin SegmentParentCellIndex
+0
+End SegmentParentCellIndex
+Begin SegmentAreaName
+SegmentAreaName
+End SegmentAreaName
+Begin SynapseIndex
+0
+End SynapseIndex
+Begin InputIndex
+2
+End InputIndex
+Begin Permanence
+1
+End Permanence
+Begin IsDestroyed
+False
+End IsDestroyed
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+47
+End Id
+Begin SegmentParentCellIndex
+0
+End SegmentParentCellIndex
+Begin SegmentAreaName
+SegmentAreaName
+End SegmentAreaName
+Begin SynapseIndex
+1
+End SynapseIndex
+Begin InputIndex
+4
+End InputIndex
+Begin Permanence
+1
+End Permanence
+Begin IsDestroyed
+False
+End IsDestroyed
+
+End CollectionItem
+
+End synapses
+
+End RFPool
+Begin LastUsedIteration
+-1
+End LastUsedIteration
+Begin SegmentIndex
+4
+End SegmentIndex
+Begin SynapsePermConnected
+0,1
+End SynapsePermConnected
+Begin NumInputs
+5
+End NumInputs
+Begin m_LastUsedIteration
+-1
+End m_LastUsedIteration
+
+End ProximalDendrite
+
+End Value
+
+End DictionaryItem
+
+End CollectionItem
+
+End dictList
+Begin numElements
+5
+End numElements
+Begin currentDictIndex
+-1
+End currentDictIndex
+Begin currentIndex
+-1
+End currentIndex
+
+End m_SparseMap NeoCortexApi.Entities.InMemoryDistributedDictionary`2[[System.Int32,System.Private.CoreLib,Version=6.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[NeoCortexApi.Entities.Column,NeoCortexEntities,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]
+
+End

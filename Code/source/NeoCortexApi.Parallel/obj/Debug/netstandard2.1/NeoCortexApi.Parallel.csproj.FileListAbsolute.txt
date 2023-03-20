@@ -1,0 +1,16 @@
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\NeoCortexApi.Parallel\bin\Debug\netstandard2.1\NeoCortexApi.Parallel.deps.json
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\NeoCortexApi.Parallel\bin\Debug\netstandard2.1\NeoCortexApi.Parallel.dll
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\NeoCortexApi.Parallel\bin\Debug\netstandard2.1\NeoCortexApi.Parallel.pdb
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\NeoCortexApi.Parallel\bin\Debug\netstandard2.1\NeoCortexArrayLib.dll
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\NeoCortexApi.Parallel\bin\Debug\netstandard2.1\NeoCortexEntities.dll
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\NeoCortexApi.Parallel\bin\Debug\netstandard2.1\NeoCortexArrayLib.pdb
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\NeoCortexApi.Parallel\bin\Debug\netstandard2.1\NeoCortexArrayLib.xml
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\NeoCortexApi.Parallel\bin\Debug\netstandard2.1\NeoCortexEntities.pdb
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\NeoCortexApi.Parallel\obj\Debug\netstandard2.1\NeoCortexApi.Parallel.csproj.AssemblyReference.cache
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\NeoCortexApi.Parallel\obj\Debug\netstandard2.1\NeoCortexApi.Parallel.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\NeoCortexApi.Parallel\obj\Debug\netstandard2.1\NeoCortexApi.Parallel.AssemblyInfoInputs.cache
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\NeoCortexApi.Parallel\obj\Debug\netstandard2.1\NeoCortexApi.Parallel.AssemblyInfo.cs
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\NeoCortexApi.Parallel\obj\Debug\netstandard2.1\NeoCortexApi.Parallel.csproj.CoreCompileInputs.cache
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\NeoCortexApi.Parallel\obj\Debug\netstandard2.1\NeoCortexApi.Parallel.csproj.CopyComplete
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\NeoCortexApi.Parallel\obj\Debug\netstandard2.1\NeoCortexApi.Parallel.dll
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\NeoCortexApi.Parallel\obj\Debug\netstandard2.1\NeoCortexApi.Parallel.pdb

@@ -1,0 +1,6 @@
+Begin
+Begin CollectionItem
+bla
+End CollectionItem
+
+End

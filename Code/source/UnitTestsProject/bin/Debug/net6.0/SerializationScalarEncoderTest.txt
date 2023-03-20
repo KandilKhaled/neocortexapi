@@ -1,0 +1,54 @@
+Begin
+Begin Id
+0
+End Id
+Begin IsRealCortexModel
+False
+End IsRealCortexModel
+Begin N
+100
+End N
+Begin NInternal
+86
+End NInternal
+Begin W
+15
+End W
+Begin MinVal
+0
+End MinVal
+Begin MaxVal
+20
+End MaxVal
+Begin Radius
+3,5294117647058822
+End Radius
+Begin Resolution
+0,23529411764705882
+End Resolution
+Begin Periodic
+False
+End Periodic
+Begin ClipInput
+False
+End ClipInput
+Begin Padding
+7
+End Padding
+Begin Range
+20,235294117647058
+End Range
+Begin Name
+scalar
+End Name
+Begin RangeInternal
+20
+End RangeInternal
+Begin HalfWidth
+7
+End HalfWidth
+Begin m_NumOfBits
+0
+End m_NumOfBits
+
+End

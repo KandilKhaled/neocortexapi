@@ -1,0 +1,3639 @@
+Begin
+Begin Id
+0
+End Id
+Begin connections
+Begin Id
+1
+End Id
+Begin SpIterationNum
+0
+End SpIterationNum
+Begin SpIterationLearnNum
+0
+End SpIterationLearnNum
+Begin Memory NeoCortexApi.Entities.SparseObjectMatrix`1[[NeoCortexApi.Entities.Column,NeoCortexEntities,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]
+Begin Id
+2
+End Id
+Begin ModuleTopology
+Begin Id
+3
+End Id
+Begin Dimensions
+Begin ArrayContent
+5
+End ArrayContent
+
+End Dimensions
+Begin IsMajorOrdering
+False
+End IsMajorOrdering
+Begin DimensionMultiplies
+Begin ArrayContent
+1
+End ArrayContent
+
+End DimensionMultiplies
+
+End ModuleTopology
+Begin m_SparseMap NeoCortexApi.Entities.InMemoryDistributedDictionary`2[[System.Int32,System.Private.CoreLib,Version=6.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[NeoCortexApi.Entities.Column,NeoCortexEntities,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]
+Begin Id
+4
+End Id
+Begin dictList
+Begin CollectionItem
+Begin DictionaryItem
+Begin Key
+0
+End Key
+Begin Value
+Begin Id
+5
+End Id
+Begin ConnectedInputCounterMatrix NeoCortexApi.Entities.SparseBinaryMatrix
+Begin Id
+6
+End Id
+Begin ModuleTopology
+Begin Id
+7
+End Id
+Begin Dimensions
+Begin ArrayContent
+1,1
+End ArrayContent
+
+End Dimensions
+Begin IsMajorOrdering
+False
+End IsMajorOrdering
+Begin DimensionMultiplies
+Begin ArrayContent
+1,1
+End ArrayContent
+
+End DimensionMultiplies
+
+End ModuleTopology
+Begin backingArray NeoCortexApi.Entities.InMemoryArray
+Begin Id
+8
+End Id
+Begin dimensions
+Begin ArrayContent
+1,1
+End ArrayContent
+
+End dimensions
+Begin backingArray System.Int32[,]
+Begin Rank
+2
+End Rank
+Begin Dim0
+1
+End Dim0
+Begin Dim1
+1
+End Dim1
+
+End backingArray System.Int32[,]
+Begin numOfNodes
+1
+End numOfNodes
+
+End backingArray NeoCortexApi.Entities.InMemoryArray
+Begin trueCounts
+Begin ArrayContent
+0
+End ArrayContent
+
+End trueCounts
+
+End ConnectedInputCounterMatrix NeoCortexApi.Entities.SparseBinaryMatrix
+Begin Index
+0
+End Index
+Begin ProximalDendrite
+Begin Id
+9
+End Id
+Begin LastUsedIteration
+-1
+End LastUsedIteration
+Begin SegmentIndex
+0
+End SegmentIndex
+Begin SynapsePermConnected
+0,1
+End SynapsePermConnected
+Begin NumInputs
+1
+End NumInputs
+Begin m_LastUsedIteration
+-1
+End m_LastUsedIteration
+
+End ProximalDendrite
+
+End Value
+
+End DictionaryItem
+Begin DictionaryItem
+Begin Key
+1
+End Key
+Begin Value
+Begin Id
+10
+End Id
+Begin ConnectedInputCounterMatrix NeoCortexApi.Entities.SparseBinaryMatrix
+Begin Id
+11
+End Id
+Begin ModuleTopology
+Begin Id
+12
+End Id
+Begin Dimensions
+Begin ArrayContent
+1,1
+End ArrayContent
+
+End Dimensions
+Begin IsMajorOrdering
+False
+End IsMajorOrdering
+Begin DimensionMultiplies
+Begin ArrayContent
+1,1
+End ArrayContent
+
+End DimensionMultiplies
+
+End ModuleTopology
+Begin backingArray NeoCortexApi.Entities.InMemoryArray
+Begin Id
+13
+End Id
+Begin dimensions
+Begin ArrayContent
+1,1
+End ArrayContent
+
+End dimensions
+Begin backingArray System.Int32[,]
+Begin Rank
+2
+End Rank
+Begin Dim0
+1
+End Dim0
+Begin Dim1
+1
+End Dim1
+
+End backingArray System.Int32[,]
+Begin numOfNodes
+1
+End numOfNodes
+
+End backingArray NeoCortexApi.Entities.InMemoryArray
+Begin trueCounts
+Begin ArrayContent
+0
+End ArrayContent
+
+End trueCounts
+
+End ConnectedInputCounterMatrix NeoCortexApi.Entities.SparseBinaryMatrix
+Begin Index
+1
+End Index
+Begin ProximalDendrite
+Begin Id
+14
+End Id
+Begin LastUsedIteration
+-1
+End LastUsedIteration
+Begin SegmentIndex
+1
+End SegmentIndex
+Begin SynapsePermConnected
+0,1
+End SynapsePermConnected
+Begin NumInputs
+1
+End NumInputs
+Begin m_LastUsedIteration
+-1
+End m_LastUsedIteration
+
+End ProximalDendrite
+
+End Value
+
+End DictionaryItem
+Begin DictionaryItem
+Begin Key
+2
+End Key
+Begin Value
+Begin Id
+15
+End Id
+Begin ConnectedInputCounterMatrix NeoCortexApi.Entities.SparseBinaryMatrix
+Begin Id
+16
+End Id
+Begin ModuleTopology
+Begin Id
+17
+End Id
+Begin Dimensions
+Begin ArrayContent
+1,1
+End ArrayContent
+
+End Dimensions
+Begin IsMajorOrdering
+False
+End IsMajorOrdering
+Begin DimensionMultiplies
+Begin ArrayContent
+1,1
+End ArrayContent
+
+End DimensionMultiplies
+
+End ModuleTopology
+Begin backingArray NeoCortexApi.Entities.InMemoryArray
+Begin Id
+18
+End Id
+Begin dimensions
+Begin ArrayContent
+1,1
+End ArrayContent
+
+End dimensions
+Begin backingArray System.Int32[,]
+Begin Rank
+2
+End Rank
+Begin Dim0
+1
+End Dim0
+Begin Dim1
+1
+End Dim1
+
+End backingArray System.Int32[,]
+Begin numOfNodes
+1
+End numOfNodes
+
+End backingArray NeoCortexApi.Entities.InMemoryArray
+Begin trueCounts
+Begin ArrayContent
+0
+End ArrayContent
+
+End trueCounts
+
+End ConnectedInputCounterMatrix NeoCortexApi.Entities.SparseBinaryMatrix
+Begin Index
+2
+End Index
+Begin ProximalDendrite
+Begin Id
+19
+End Id
+Begin LastUsedIteration
+-1
+End LastUsedIteration
+Begin SegmentIndex
+2
+End SegmentIndex
+Begin SynapsePermConnected
+0,1
+End SynapsePermConnected
+Begin NumInputs
+1
+End NumInputs
+Begin m_LastUsedIteration
+-1
+End m_LastUsedIteration
+
+End ProximalDendrite
+
+End Value
+
+End DictionaryItem
+Begin DictionaryItem
+Begin Key
+3
+End Key
+Begin Value
+Begin Id
+20
+End Id
+Begin ConnectedInputCounterMatrix NeoCortexApi.Entities.SparseBinaryMatrix
+Begin Id
+21
+End Id
+Begin ModuleTopology
+Begin Id
+22
+End Id
+Begin Dimensions
+Begin ArrayContent
+1,1
+End ArrayContent
+
+End Dimensions
+Begin IsMajorOrdering
+False
+End IsMajorOrdering
+Begin DimensionMultiplies
+Begin ArrayContent
+1,1
+End ArrayContent
+
+End DimensionMultiplies
+
+End ModuleTopology
+Begin backingArray NeoCortexApi.Entities.InMemoryArray
+Begin Id
+23
+End Id
+Begin dimensions
+Begin ArrayContent
+1,1
+End ArrayContent
+
+End dimensions
+Begin backingArray System.Int32[,]
+Begin Rank
+2
+End Rank
+Begin Dim0
+1
+End Dim0
+Begin Dim1
+1
+End Dim1
+
+End backingArray System.Int32[,]
+Begin numOfNodes
+1
+End numOfNodes
+
+End backingArray NeoCortexApi.Entities.InMemoryArray
+Begin trueCounts
+Begin ArrayContent
+0
+End ArrayContent
+
+End trueCounts
+
+End ConnectedInputCounterMatrix NeoCortexApi.Entities.SparseBinaryMatrix
+Begin Index
+3
+End Index
+Begin ProximalDendrite
+Begin Id
+24
+End Id
+Begin LastUsedIteration
+-1
+End LastUsedIteration
+Begin SegmentIndex
+3
+End SegmentIndex
+Begin SynapsePermConnected
+0,1
+End SynapsePermConnected
+Begin NumInputs
+1
+End NumInputs
+Begin m_LastUsedIteration
+-1
+End m_LastUsedIteration
+
+End ProximalDendrite
+
+End Value
+
+End DictionaryItem
+Begin DictionaryItem
+Begin Key
+4
+End Key
+Begin Value
+Begin Id
+25
+End Id
+Begin ConnectedInputCounterMatrix NeoCortexApi.Entities.SparseBinaryMatrix
+Begin Id
+26
+End Id
+Begin ModuleTopology
+Begin Id
+27
+End Id
+Begin Dimensions
+Begin ArrayContent
+1,1
+End ArrayContent
+
+End Dimensions
+Begin IsMajorOrdering
+False
+End IsMajorOrdering
+Begin DimensionMultiplies
+Begin ArrayContent
+1,1
+End ArrayContent
+
+End DimensionMultiplies
+
+End ModuleTopology
+Begin backingArray NeoCortexApi.Entities.InMemoryArray
+Begin Id
+28
+End Id
+Begin dimensions
+Begin ArrayContent
+1,1
+End ArrayContent
+
+End dimensions
+Begin backingArray System.Int32[,]
+Begin Rank
+2
+End Rank
+Begin Dim0
+1
+End Dim0
+Begin Dim1
+1
+End Dim1
+
+End backingArray System.Int32[,]
+Begin numOfNodes
+1
+End numOfNodes
+
+End backingArray NeoCortexApi.Entities.InMemoryArray
+Begin trueCounts
+Begin ArrayContent
+0
+End ArrayContent
+
+End trueCounts
+
+End ConnectedInputCounterMatrix NeoCortexApi.Entities.SparseBinaryMatrix
+Begin Index
+4
+End Index
+Begin ProximalDendrite
+Begin Id
+29
+End Id
+Begin LastUsedIteration
+-1
+End LastUsedIteration
+Begin SegmentIndex
+4
+End SegmentIndex
+Begin SynapsePermConnected
+0,1
+End SynapsePermConnected
+Begin NumInputs
+1
+End NumInputs
+Begin m_LastUsedIteration
+-1
+End m_LastUsedIteration
+
+End ProximalDendrite
+
+End Value
+
+End DictionaryItem
+
+End CollectionItem
+
+End dictList
+Begin numElements
+5
+End numElements
+Begin currentDictIndex
+-1
+End currentDictIndex
+Begin currentIndex
+-1
+End currentIndex
+
+End m_SparseMap NeoCortexApi.Entities.InMemoryDistributedDictionary`2[[System.Int32,System.Private.CoreLib,Version=6.0.0.0,Culture=neutral,PublicKeyToken=7cec85d7bea7798e],[NeoCortexApi.Entities.Column,NeoCortexEntities,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]
+
+End Memory NeoCortexApi.Entities.SparseObjectMatrix`1[[NeoCortexApi.Entities.Column,NeoCortexEntities,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null]]
+Begin HtmConfig
+Begin Id
+30
+End Id
+Begin TemporalMemory
+Begin Id
+31
+End Id
+
+End TemporalMemory
+Begin SpatialPooler
+Begin Id
+32
+End Id
+
+End SpatialPooler
+Begin NumInputs
+1
+End NumInputs
+Begin NumColumns
+5
+End NumColumns
+Begin PotentialRadius
+5
+End PotentialRadius
+Begin PotentialPct
+0,5
+End PotentialPct
+Begin StimulusThreshold
+0
+End StimulusThreshold
+Begin SynPermBelowStimulusInc
+0,01
+End SynPermBelowStimulusInc
+Begin SynPermInactiveDec
+0,01
+End SynPermInactiveDec
+Begin SynPermActiveInc
+0,1
+End SynPermActiveInc
+Begin SynPermConnected
+0,1
+End SynPermConnected
+Begin ConnectedPermanence
+0,5
+End ConnectedPermanence
+Begin WrapAround
+True
+End WrapAround
+Begin SynPermTrimThreshold
+0,05
+End SynPermTrimThreshold
+Begin SynPermMax
+1
+End SynPermMax
+Begin SynPermMin
+0
+End SynPermMin
+Begin InitialSynapseConnsPct
+0,5
+End InitialSynapseConnsPct
+Begin GlobalInhibition
+False
+End GlobalInhibition
+Begin NumActiveColumnsPerInhArea
+3
+End NumActiveColumnsPerInhArea
+Begin LocalAreaDensity
+-1
+End LocalAreaDensity
+Begin MaxInibitionDensity
+0,5
+End MaxInibitionDensity
+Begin MinPctOverlapDutyCycles
+0,1
+End MinPctOverlapDutyCycles
+Begin MinPctActiveDutyCycles
+0,1
+End MinPctActiveDutyCycles
+Begin PredictedSegmentDecrement
+0,1
+End PredictedSegmentDecrement
+Begin DutyCyclePeriod
+10
+End DutyCyclePeriod
+Begin MaxBoost
+10
+End MaxBoost
+Begin UpdatePeriod
+50
+End UpdatePeriod
+Begin ColumnDimensions
+Begin ArrayContent
+5
+End ArrayContent
+
+End ColumnDimensions
+Begin CellsPerColumn
+32
+End CellsPerColumn
+Begin InputDimensions
+Begin ArrayContent
+5
+End ArrayContent
+
+End InputDimensions
+Begin MaxNewSynapseCount
+20
+End MaxNewSynapseCount
+Begin MaxSegmentsPerCell
+225
+End MaxSegmentsPerCell
+Begin MaxSynapsesPerSegment
+225
+End MaxSynapsesPerSegment
+Begin PermanenceIncrement
+0,1
+End PermanenceIncrement
+Begin PermanenceDecrement
+0,1
+End PermanenceDecrement
+Begin ColumnModuleTopology
+Begin ReplaceId
+3
+End ReplaceId
+
+End ColumnModuleTopology
+Begin ActivationThreshold
+10
+End ActivationThreshold
+Begin LearningRadius
+10
+End LearningRadius
+Begin MinThreshold
+9
+End MinThreshold
+Begin InitialPermanence
+0,21
+End InitialPermanence
+Begin RandomGenSeed
+42
+End RandomGenSeed
+Begin Random NeoCortexApi.ThreadSafeRandom
+Begin Id
+33
+End Id
+Begin seed
+42
+End seed
+Begin counter
+0
+End counter
+
+End Random NeoCortexApi.ThreadSafeRandom
+
+End HtmConfig
+Begin ActiveSegments
+
+End ActiveSegments
+Begin MatchingSegments
+
+End MatchingSegments
+Begin version
+1
+End version
+Begin m_TMIteration
+0
+End m_TMIteration
+Begin m_NextFlatIdx
+0
+End m_NextFlatIdx
+Begin m_NextSegmentOrdinal
+0
+End m_NextSegmentOrdinal
+Begin m_NextSynapseOrdinal
+0
+End m_NextSynapseOrdinal
+Begin m_NumSynapses
+0
+End m_NumSynapses
+Begin m_FreeFlatIdxs
+Begin ArrayContent
+
+End ArrayContent
+
+End m_FreeFlatIdxs
+Begin cellsList
+Begin CollectionItem
+Begin Id
+34
+End Id
+Begin Index
+0
+End Index
+Begin ParentColumnIndex
+0
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+35
+End Id
+Begin Index
+1
+End Index
+Begin ParentColumnIndex
+0
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+36
+End Id
+Begin Index
+2
+End Index
+Begin ParentColumnIndex
+0
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+37
+End Id
+Begin Index
+3
+End Index
+Begin ParentColumnIndex
+0
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+38
+End Id
+Begin Index
+4
+End Index
+Begin ParentColumnIndex
+0
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+39
+End Id
+Begin Index
+5
+End Index
+Begin ParentColumnIndex
+0
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+40
+End Id
+Begin Index
+6
+End Index
+Begin ParentColumnIndex
+0
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+41
+End Id
+Begin Index
+7
+End Index
+Begin ParentColumnIndex
+0
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+42
+End Id
+Begin Index
+8
+End Index
+Begin ParentColumnIndex
+0
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+43
+End Id
+Begin Index
+9
+End Index
+Begin ParentColumnIndex
+0
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+44
+End Id
+Begin Index
+10
+End Index
+Begin ParentColumnIndex
+0
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+45
+End Id
+Begin Index
+11
+End Index
+Begin ParentColumnIndex
+0
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+46
+End Id
+Begin Index
+12
+End Index
+Begin ParentColumnIndex
+0
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+47
+End Id
+Begin Index
+13
+End Index
+Begin ParentColumnIndex
+0
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+48
+End Id
+Begin Index
+14
+End Index
+Begin ParentColumnIndex
+0
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+49
+End Id
+Begin Index
+15
+End Index
+Begin ParentColumnIndex
+0
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+50
+End Id
+Begin Index
+16
+End Index
+Begin ParentColumnIndex
+0
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+51
+End Id
+Begin Index
+17
+End Index
+Begin ParentColumnIndex
+0
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+52
+End Id
+Begin Index
+18
+End Index
+Begin ParentColumnIndex
+0
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+53
+End Id
+Begin Index
+19
+End Index
+Begin ParentColumnIndex
+0
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+54
+End Id
+Begin Index
+20
+End Index
+Begin ParentColumnIndex
+0
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+55
+End Id
+Begin Index
+21
+End Index
+Begin ParentColumnIndex
+0
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+56
+End Id
+Begin Index
+22
+End Index
+Begin ParentColumnIndex
+0
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+57
+End Id
+Begin Index
+23
+End Index
+Begin ParentColumnIndex
+0
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+58
+End Id
+Begin Index
+24
+End Index
+Begin ParentColumnIndex
+0
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+59
+End Id
+Begin Index
+25
+End Index
+Begin ParentColumnIndex
+0
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+60
+End Id
+Begin Index
+26
+End Index
+Begin ParentColumnIndex
+0
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+61
+End Id
+Begin Index
+27
+End Index
+Begin ParentColumnIndex
+0
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+62
+End Id
+Begin Index
+28
+End Index
+Begin ParentColumnIndex
+0
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+63
+End Id
+Begin Index
+29
+End Index
+Begin ParentColumnIndex
+0
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+64
+End Id
+Begin Index
+30
+End Index
+Begin ParentColumnIndex
+0
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+65
+End Id
+Begin Index
+31
+End Index
+Begin ParentColumnIndex
+0
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+66
+End Id
+Begin Index
+32
+End Index
+Begin ParentColumnIndex
+1
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+67
+End Id
+Begin Index
+33
+End Index
+Begin ParentColumnIndex
+1
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+68
+End Id
+Begin Index
+34
+End Index
+Begin ParentColumnIndex
+1
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+69
+End Id
+Begin Index
+35
+End Index
+Begin ParentColumnIndex
+1
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+70
+End Id
+Begin Index
+36
+End Index
+Begin ParentColumnIndex
+1
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+71
+End Id
+Begin Index
+37
+End Index
+Begin ParentColumnIndex
+1
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+72
+End Id
+Begin Index
+38
+End Index
+Begin ParentColumnIndex
+1
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+73
+End Id
+Begin Index
+39
+End Index
+Begin ParentColumnIndex
+1
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+74
+End Id
+Begin Index
+40
+End Index
+Begin ParentColumnIndex
+1
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+75
+End Id
+Begin Index
+41
+End Index
+Begin ParentColumnIndex
+1
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+76
+End Id
+Begin Index
+42
+End Index
+Begin ParentColumnIndex
+1
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+77
+End Id
+Begin Index
+43
+End Index
+Begin ParentColumnIndex
+1
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+78
+End Id
+Begin Index
+44
+End Index
+Begin ParentColumnIndex
+1
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+79
+End Id
+Begin Index
+45
+End Index
+Begin ParentColumnIndex
+1
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+80
+End Id
+Begin Index
+46
+End Index
+Begin ParentColumnIndex
+1
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+81
+End Id
+Begin Index
+47
+End Index
+Begin ParentColumnIndex
+1
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+82
+End Id
+Begin Index
+48
+End Index
+Begin ParentColumnIndex
+1
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+83
+End Id
+Begin Index
+49
+End Index
+Begin ParentColumnIndex
+1
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+84
+End Id
+Begin Index
+50
+End Index
+Begin ParentColumnIndex
+1
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+85
+End Id
+Begin Index
+51
+End Index
+Begin ParentColumnIndex
+1
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+86
+End Id
+Begin Index
+52
+End Index
+Begin ParentColumnIndex
+1
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+87
+End Id
+Begin Index
+53
+End Index
+Begin ParentColumnIndex
+1
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+88
+End Id
+Begin Index
+54
+End Index
+Begin ParentColumnIndex
+1
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+89
+End Id
+Begin Index
+55
+End Index
+Begin ParentColumnIndex
+1
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+90
+End Id
+Begin Index
+56
+End Index
+Begin ParentColumnIndex
+1
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+91
+End Id
+Begin Index
+57
+End Index
+Begin ParentColumnIndex
+1
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+92
+End Id
+Begin Index
+58
+End Index
+Begin ParentColumnIndex
+1
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+93
+End Id
+Begin Index
+59
+End Index
+Begin ParentColumnIndex
+1
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+94
+End Id
+Begin Index
+60
+End Index
+Begin ParentColumnIndex
+1
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+95
+End Id
+Begin Index
+61
+End Index
+Begin ParentColumnIndex
+1
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+96
+End Id
+Begin Index
+62
+End Index
+Begin ParentColumnIndex
+1
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+97
+End Id
+Begin Index
+63
+End Index
+Begin ParentColumnIndex
+1
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+98
+End Id
+Begin Index
+64
+End Index
+Begin ParentColumnIndex
+2
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+99
+End Id
+Begin Index
+65
+End Index
+Begin ParentColumnIndex
+2
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+100
+End Id
+Begin Index
+66
+End Index
+Begin ParentColumnIndex
+2
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+101
+End Id
+Begin Index
+67
+End Index
+Begin ParentColumnIndex
+2
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+102
+End Id
+Begin Index
+68
+End Index
+Begin ParentColumnIndex
+2
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+103
+End Id
+Begin Index
+69
+End Index
+Begin ParentColumnIndex
+2
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+104
+End Id
+Begin Index
+70
+End Index
+Begin ParentColumnIndex
+2
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+105
+End Id
+Begin Index
+71
+End Index
+Begin ParentColumnIndex
+2
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+106
+End Id
+Begin Index
+72
+End Index
+Begin ParentColumnIndex
+2
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+107
+End Id
+Begin Index
+73
+End Index
+Begin ParentColumnIndex
+2
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+108
+End Id
+Begin Index
+74
+End Index
+Begin ParentColumnIndex
+2
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+109
+End Id
+Begin Index
+75
+End Index
+Begin ParentColumnIndex
+2
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+110
+End Id
+Begin Index
+76
+End Index
+Begin ParentColumnIndex
+2
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+111
+End Id
+Begin Index
+77
+End Index
+Begin ParentColumnIndex
+2
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+112
+End Id
+Begin Index
+78
+End Index
+Begin ParentColumnIndex
+2
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+113
+End Id
+Begin Index
+79
+End Index
+Begin ParentColumnIndex
+2
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+114
+End Id
+Begin Index
+80
+End Index
+Begin ParentColumnIndex
+2
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+115
+End Id
+Begin Index
+81
+End Index
+Begin ParentColumnIndex
+2
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+116
+End Id
+Begin Index
+82
+End Index
+Begin ParentColumnIndex
+2
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+117
+End Id
+Begin Index
+83
+End Index
+Begin ParentColumnIndex
+2
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+118
+End Id
+Begin Index
+84
+End Index
+Begin ParentColumnIndex
+2
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+119
+End Id
+Begin Index
+85
+End Index
+Begin ParentColumnIndex
+2
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+120
+End Id
+Begin Index
+86
+End Index
+Begin ParentColumnIndex
+2
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+121
+End Id
+Begin Index
+87
+End Index
+Begin ParentColumnIndex
+2
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+122
+End Id
+Begin Index
+88
+End Index
+Begin ParentColumnIndex
+2
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+123
+End Id
+Begin Index
+89
+End Index
+Begin ParentColumnIndex
+2
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+124
+End Id
+Begin Index
+90
+End Index
+Begin ParentColumnIndex
+2
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+125
+End Id
+Begin Index
+91
+End Index
+Begin ParentColumnIndex
+2
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+126
+End Id
+Begin Index
+92
+End Index
+Begin ParentColumnIndex
+2
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+127
+End Id
+Begin Index
+93
+End Index
+Begin ParentColumnIndex
+2
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+128
+End Id
+Begin Index
+94
+End Index
+Begin ParentColumnIndex
+2
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+129
+End Id
+Begin Index
+95
+End Index
+Begin ParentColumnIndex
+2
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+130
+End Id
+Begin Index
+96
+End Index
+Begin ParentColumnIndex
+3
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+131
+End Id
+Begin Index
+97
+End Index
+Begin ParentColumnIndex
+3
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+132
+End Id
+Begin Index
+98
+End Index
+Begin ParentColumnIndex
+3
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+133
+End Id
+Begin Index
+99
+End Index
+Begin ParentColumnIndex
+3
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+134
+End Id
+Begin Index
+100
+End Index
+Begin ParentColumnIndex
+3
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+135
+End Id
+Begin Index
+101
+End Index
+Begin ParentColumnIndex
+3
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+136
+End Id
+Begin Index
+102
+End Index
+Begin ParentColumnIndex
+3
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+137
+End Id
+Begin Index
+103
+End Index
+Begin ParentColumnIndex
+3
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+138
+End Id
+Begin Index
+104
+End Index
+Begin ParentColumnIndex
+3
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+139
+End Id
+Begin Index
+105
+End Index
+Begin ParentColumnIndex
+3
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+140
+End Id
+Begin Index
+106
+End Index
+Begin ParentColumnIndex
+3
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+141
+End Id
+Begin Index
+107
+End Index
+Begin ParentColumnIndex
+3
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+142
+End Id
+Begin Index
+108
+End Index
+Begin ParentColumnIndex
+3
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+143
+End Id
+Begin Index
+109
+End Index
+Begin ParentColumnIndex
+3
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+144
+End Id
+Begin Index
+110
+End Index
+Begin ParentColumnIndex
+3
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+145
+End Id
+Begin Index
+111
+End Index
+Begin ParentColumnIndex
+3
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+146
+End Id
+Begin Index
+112
+End Index
+Begin ParentColumnIndex
+3
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+147
+End Id
+Begin Index
+113
+End Index
+Begin ParentColumnIndex
+3
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+148
+End Id
+Begin Index
+114
+End Index
+Begin ParentColumnIndex
+3
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+149
+End Id
+Begin Index
+115
+End Index
+Begin ParentColumnIndex
+3
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+150
+End Id
+Begin Index
+116
+End Index
+Begin ParentColumnIndex
+3
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+151
+End Id
+Begin Index
+117
+End Index
+Begin ParentColumnIndex
+3
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+152
+End Id
+Begin Index
+118
+End Index
+Begin ParentColumnIndex
+3
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+153
+End Id
+Begin Index
+119
+End Index
+Begin ParentColumnIndex
+3
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+154
+End Id
+Begin Index
+120
+End Index
+Begin ParentColumnIndex
+3
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+155
+End Id
+Begin Index
+121
+End Index
+Begin ParentColumnIndex
+3
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+156
+End Id
+Begin Index
+122
+End Index
+Begin ParentColumnIndex
+3
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+157
+End Id
+Begin Index
+123
+End Index
+Begin ParentColumnIndex
+3
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+158
+End Id
+Begin Index
+124
+End Index
+Begin ParentColumnIndex
+3
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+159
+End Id
+Begin Index
+125
+End Index
+Begin ParentColumnIndex
+3
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+160
+End Id
+Begin Index
+126
+End Index
+Begin ParentColumnIndex
+3
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+161
+End Id
+Begin Index
+127
+End Index
+Begin ParentColumnIndex
+3
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+162
+End Id
+Begin Index
+128
+End Index
+Begin ParentColumnIndex
+4
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+163
+End Id
+Begin Index
+129
+End Index
+Begin ParentColumnIndex
+4
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+164
+End Id
+Begin Index
+130
+End Index
+Begin ParentColumnIndex
+4
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+165
+End Id
+Begin Index
+131
+End Index
+Begin ParentColumnIndex
+4
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+166
+End Id
+Begin Index
+132
+End Index
+Begin ParentColumnIndex
+4
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+167
+End Id
+Begin Index
+133
+End Index
+Begin ParentColumnIndex
+4
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+168
+End Id
+Begin Index
+134
+End Index
+Begin ParentColumnIndex
+4
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+169
+End Id
+Begin Index
+135
+End Index
+Begin ParentColumnIndex
+4
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+170
+End Id
+Begin Index
+136
+End Index
+Begin ParentColumnIndex
+4
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+171
+End Id
+Begin Index
+137
+End Index
+Begin ParentColumnIndex
+4
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+172
+End Id
+Begin Index
+138
+End Index
+Begin ParentColumnIndex
+4
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+173
+End Id
+Begin Index
+139
+End Index
+Begin ParentColumnIndex
+4
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+174
+End Id
+Begin Index
+140
+End Index
+Begin ParentColumnIndex
+4
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+175
+End Id
+Begin Index
+141
+End Index
+Begin ParentColumnIndex
+4
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+176
+End Id
+Begin Index
+142
+End Index
+Begin ParentColumnIndex
+4
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+177
+End Id
+Begin Index
+143
+End Index
+Begin ParentColumnIndex
+4
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+178
+End Id
+Begin Index
+144
+End Index
+Begin ParentColumnIndex
+4
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+179
+End Id
+Begin Index
+145
+End Index
+Begin ParentColumnIndex
+4
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+180
+End Id
+Begin Index
+146
+End Index
+Begin ParentColumnIndex
+4
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+181
+End Id
+Begin Index
+147
+End Index
+Begin ParentColumnIndex
+4
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+182
+End Id
+Begin Index
+148
+End Index
+Begin ParentColumnIndex
+4
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+183
+End Id
+Begin Index
+149
+End Index
+Begin ParentColumnIndex
+4
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+184
+End Id
+Begin Index
+150
+End Index
+Begin ParentColumnIndex
+4
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+185
+End Id
+Begin Index
+151
+End Index
+Begin ParentColumnIndex
+4
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+186
+End Id
+Begin Index
+152
+End Index
+Begin ParentColumnIndex
+4
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+187
+End Id
+Begin Index
+153
+End Index
+Begin ParentColumnIndex
+4
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+188
+End Id
+Begin Index
+154
+End Index
+Begin ParentColumnIndex
+4
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+189
+End Id
+Begin Index
+155
+End Index
+Begin ParentColumnIndex
+4
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+190
+End Id
+Begin Index
+156
+End Index
+Begin ParentColumnIndex
+4
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+191
+End Id
+Begin Index
+157
+End Index
+Begin ParentColumnIndex
+4
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+192
+End Id
+Begin Index
+158
+End Index
+Begin ParentColumnIndex
+4
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+Begin CollectionItem
+Begin Id
+193
+End Id
+Begin Index
+159
+End Index
+Begin ParentColumnIndex
+4
+End ParentColumnIndex
+Begin DistalDendrites
+
+End DistalDendrites
+Begin ApicalDendrites
+
+End ApicalDendrites
+
+End CollectionItem
+
+End cellsList
+Begin synapsesList
+
+End synapsesList
+Begin activeCellIds
+Begin ArrayContent
+
+End ArrayContent
+
+End activeCellIds
+Begin winnerCellIds
+Begin ArrayContent
+
+End ArrayContent
+
+End winnerCellIds
+Begin predictiveCellIds
+Begin ArrayContent
+
+End ArrayContent
+
+End predictiveCellIds
+
+End connections
+Begin indxOfLastHighestSegment
+-1
+End indxOfLastHighestSegment
+
+End

@@ -1,0 +1,11 @@
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\NeoCortexArrayLib\bin\Debug\netstandard2.1\NeoCortexArrayLib.deps.json
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\NeoCortexArrayLib\bin\Debug\netstandard2.1\NeoCortexArrayLib.dll
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\NeoCortexArrayLib\bin\Debug\netstandard2.1\NeoCortexArrayLib.pdb
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\NeoCortexArrayLib\bin\Debug\netstandard2.1\NeoCortexArrayLib.xml
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\NeoCortexArrayLib\obj\Debug\netstandard2.1\NeoCortexArrayLib.csproj.AssemblyReference.cache
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\NeoCortexArrayLib\obj\Debug\netstandard2.1\NeoCortexArrayLib.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\NeoCortexArrayLib\obj\Debug\netstandard2.1\NeoCortexArrayLib.AssemblyInfoInputs.cache
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\NeoCortexArrayLib\obj\Debug\netstandard2.1\NeoCortexArrayLib.AssemblyInfo.cs
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\NeoCortexArrayLib\obj\Debug\netstandard2.1\NeoCortexArrayLib.csproj.CoreCompileInputs.cache
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\NeoCortexArrayLib\obj\Debug\netstandard2.1\NeoCortexArrayLib.dll
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\NeoCortexArrayLib\obj\Debug\netstandard2.1\NeoCortexArrayLib.pdb

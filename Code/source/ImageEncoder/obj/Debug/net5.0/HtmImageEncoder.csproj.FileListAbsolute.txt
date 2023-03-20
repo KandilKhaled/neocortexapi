@@ -1,0 +1,12 @@
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\ImageEncoder\bin\Debug\net5.0\HtmImageEncoder.deps.json
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\ImageEncoder\bin\Debug\net5.0\HtmImageEncoder.dll
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\ImageEncoder\bin\Debug\net5.0\HtmImageEncoder.pdb
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\ImageEncoder\obj\Debug\net5.0\HtmImageEncoder.csproj.AssemblyReference.cache
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\ImageEncoder\obj\Debug\net5.0\HtmImageEncoder.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\ImageEncoder\obj\Debug\net5.0\HtmImageEncoder.AssemblyInfoInputs.cache
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\ImageEncoder\obj\Debug\net5.0\HtmImageEncoder.AssemblyInfo.cs
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\ImageEncoder\obj\Debug\net5.0\HtmImageEncoder.csproj.CoreCompileInputs.cache
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\ImageEncoder\obj\Debug\net5.0\HtmImageEncoder.dll
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\ImageEncoder\obj\Debug\net5.0\HtmImageEncoder.pdb
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\ImageEncoder\obj\Debug\net5.0\ref\HtmImageEncoder.dll
+C:\Users\maria\Desktop\prueba2\neocortexapi\source\ImageEncoder\bin\Debug\net5.0\ref\HtmImageEncoder.dll

@@ -1,0 +1,24 @@
+Begin
+Begin Id
+0
+End Id
+Begin _impl System.Random+XoshiroImpl
+Begin Id
+1
+End Id
+Begin _s0
+11794924182340194709
+End _s0
+Begin _s1
+1134939318179319480
+End _s1
+Begin _s2
+7211938908057485810
+End _s2
+Begin _s3
+8317236931998505172
+End _s3
+
+End _impl System.Random+XoshiroImpl
+
+End

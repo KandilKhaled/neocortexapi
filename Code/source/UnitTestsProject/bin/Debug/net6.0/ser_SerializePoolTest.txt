@@ -1,0 +1,37 @@
+
+  BEGIN 'Pool'  
+ 0 | 34 | |
+ 3: 
+  BEGIN 'Synapse'  
+ 1 | 23 | 206 | 1.000 | False |
+  BEGIN 'Cell'  
+ 206 | 12 | 
+  BEGIN 'Segment'  
+ 3 | 2 | 3 | 1 | 1.000 | 100 |
+  END 'Segment'  
+,
+  BEGIN 'Segment'  
+ 4 | 24 | 4 | 44 | 1.000 | 100 |
+  END 'Segment'  
+,|
+  END 'Cell'  
+
+  END 'Synapse'  
+,67: 
+  BEGIN 'Synapse'  
+ 44 | 27 | 206 | 1.000 | False |
+  BEGIN 'Cell'  
+ 206 | 12 | 
+  BEGIN 'Segment'  
+ 3 | 2 | 3 | 1 | 1.000 | 100 |
+  END 'Segment'  
+,
+  BEGIN 'Segment'  
+ 4 | 24 | 4 | 44 | 1.000 | 100 |
+  END 'Segment'  
+,|
+  END 'Cell'  
+
+  END 'Synapse'  
+,|
+  END 'Pool'  
