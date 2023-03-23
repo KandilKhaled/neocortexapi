@@ -1312,7 +1312,7 @@ namespace NeoCortexApi.Entities
             }
             else 
             {
-                /*
+                
 
                 int number;
                 NumberFormatInfo provider= new NumberFormatInfo();
@@ -1324,10 +1324,10 @@ namespace NeoCortexApi.Entities
                 }
                 else
                 {
-                */
-                   read = Double.Parse(reader, NumberStyles.Float, CultureInfo.InvariantCulture);
-                    //double d = Convert.ToDouble(reader, provider);
-                    //return Convert.ToInt32(d);
+                
+                   //read = Double.Parse(reader, NumberStyles.Float, CultureInfo.InvariantCulture);
+                    double d = Convert.ToDouble(reader, provider);
+                    return Convert.ToInt32(d);
                 }
                
             }

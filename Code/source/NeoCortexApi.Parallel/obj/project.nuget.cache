@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "wsxM/4hhF7r8PisqEyGS+NxKVERoieu+fZBb70U96pEnWThMRZgb8IBItCCRWoxtZxV+ytnxHQVU3WlXTqZpcQ==",
+  "dgSpecHash": "KwbUlST2lLrVPKpXmnDnuucyfdqYqyI9CrtWa95Ca7fkl3Wd+b3P74/xdCEWfeo9CAOR3sKLrSnVMbL36vP9uA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NeoCortexApi.Parallel\\NeoCortexApi.Parallel.csproj",
+  "projectFilePath": "C:\\Users\\maria\\Desktop\\Software_Project\\neocortexapi\\Code\\source\\NeoCortexApi.Parallel\\NeoCortexApi.Parallel.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\maria\\.nuget\\packages\\dotnetactors\\1.0.3\\dotnetactors.1.0.3.nupkg.sha512",
     "C:\\Users\\maria\\.nuget\\packages\\imagebinarizer\\1.0.0\\imagebinarizer.1.0.0.nupkg.sha512",

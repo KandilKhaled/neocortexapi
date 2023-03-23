@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "pIYE9WGUkDUJXHwcZrCVuVR468YPJTSvgN6dSZYRuqeU8vnqmvds4vjHuLOJNQKqlQeRfkoz1B3p8Sz6MjVzRA==",
+  "dgSpecHash": "X1m5ylyO/NWNT8YKYYAt8AKS/RWfZh1F/Pwo8Wfysv6UuaKJ0CVjB0mrYPJ3y0GSnmyrwE+M01Em4zZs9Gpang==",
   "success": true,
-  "projectFilePath": "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NeoCortexApi\\NeoCortexApi.csproj",
+  "projectFilePath": "C:\\Users\\maria\\Desktop\\Software_Project\\neocortexapi\\Code\\source\\NeoCortexApi\\NeoCortexApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\maria\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\maria\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",

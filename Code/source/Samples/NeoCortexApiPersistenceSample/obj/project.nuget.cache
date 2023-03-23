@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ahcGlH1alwGCF72leSyyBvpex6dl3kbBXlB1t6TjVrff60/PGxYUKuWkjWrbZqCL8fXDOgk+rUtQqHIaHLUR2g==",
+  "dgSpecHash": "CklaOS7h1c64oKWWCdGJ6E518vfS/cu5krTMl/ZQ8kIxFigZTDxvZLpUe4yP+sFRDpQg4v/FZg5rCUqNciClyg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\Samples\\NeoCortexApiPersistenceSample\\NeoCortexApiPersistenceSample.csproj",
+  "projectFilePath": "C:\\Users\\maria\\Desktop\\Software_Project\\neocortexapi\\Code\\source\\Samples\\NeoCortexApiPersistenceSample\\NeoCortexApiPersistenceSample.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\maria\\.nuget\\packages\\gembox.spreadsheet\\47.0.1268\\gembox.spreadsheet.47.0.1268.nupkg.sha512",
     "C:\\Users\\maria\\.nuget\\packages\\imagebinarizer\\1.5.6\\imagebinarizer.1.5.6.nupkg.sha512",

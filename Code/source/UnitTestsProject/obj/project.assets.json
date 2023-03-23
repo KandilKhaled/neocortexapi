@@ -10083,17 +10083,17 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\UnitTestsProject\\UnitTestsProject.csproj",
+      "projectUniqueName": "C:\\Users\\maria\\Desktop\\Software_Project\\neocortexapi\\Code\\source\\UnitTestsProject\\UnitTestsProject.csproj",
       "projectName": "UnitTestsProject",
-      "projectPath": "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\UnitTestsProject\\UnitTestsProject.csproj",
+      "projectPath": "C:\\Users\\maria\\Desktop\\Software_Project\\neocortexapi\\Code\\source\\UnitTestsProject\\UnitTestsProject.csproj",
       "packagesPath": "C:\\Users\\maria\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\UnitTestsProject\\obj\\",
+      "outputPath": "C:\\Users\\maria\\Desktop\\Software_Project\\neocortexapi\\Code\\source\\UnitTestsProject\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NuGet.Config",
+        "C:\\Users\\maria\\Desktop\\Software_Project\\neocortexapi\\Code\\source\\NuGet.Config",
         "C:\\Users\\maria\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -10103,30 +10103,30 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\nuget": {},
+        "C:\\Users\\maria\\Desktop\\Software_Project\\neocortexapi\\Code\\source\\nuget": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NeoCortexApi.Parallel\\NeoCortexApi.Parallel.csproj": {
-              "projectPath": "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NeoCortexApi.Parallel\\NeoCortexApi.Parallel.csproj"
+            "C:\\Users\\maria\\Desktop\\Software_Project\\neocortexapi\\Code\\source\\NeoCortexApi.Parallel\\NeoCortexApi.Parallel.csproj": {
+              "projectPath": "C:\\Users\\maria\\Desktop\\Software_Project\\neocortexapi\\Code\\source\\NeoCortexApi.Parallel\\NeoCortexApi.Parallel.csproj"
             },
-            "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NeoCortexApi\\NeoCortexApi.csproj": {
-              "projectPath": "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NeoCortexApi\\NeoCortexApi.csproj"
+            "C:\\Users\\maria\\Desktop\\Software_Project\\neocortexapi\\Code\\source\\NeoCortexApi\\NeoCortexApi.csproj": {
+              "projectPath": "C:\\Users\\maria\\Desktop\\Software_Project\\neocortexapi\\Code\\source\\NeoCortexApi\\NeoCortexApi.csproj"
             },
-            "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NeoCortexArrayLib\\NeoCortexArrayLib.csproj": {
-              "projectPath": "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NeoCortexArrayLib\\NeoCortexArrayLib.csproj"
+            "C:\\Users\\maria\\Desktop\\Software_Project\\neocortexapi\\Code\\source\\NeoCortexArrayLib\\NeoCortexArrayLib.csproj": {
+              "projectPath": "C:\\Users\\maria\\Desktop\\Software_Project\\neocortexapi\\Code\\source\\NeoCortexArrayLib\\NeoCortexArrayLib.csproj"
             },
-            "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NeoCortexEntities\\NeoCortexEntities.csproj": {
-              "projectPath": "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NeoCortexEntities\\NeoCortexEntities.csproj"
+            "C:\\Users\\maria\\Desktop\\Software_Project\\neocortexapi\\Code\\source\\NeoCortexEntities\\NeoCortexEntities.csproj": {
+              "projectPath": "C:\\Users\\maria\\Desktop\\Software_Project\\neocortexapi\\Code\\source\\NeoCortexEntities\\NeoCortexEntities.csproj"
             },
-            "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NeoCortexUtils\\NeoCortexUtils.csproj": {
-              "projectPath": "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NeoCortexUtils\\NeoCortexUtils.csproj"
+            "C:\\Users\\maria\\Desktop\\Software_Project\\neocortexapi\\Code\\source\\NeoCortexUtils\\NeoCortexUtils.csproj": {
+              "projectPath": "C:\\Users\\maria\\Desktop\\Software_Project\\neocortexapi\\Code\\source\\NeoCortexUtils\\NeoCortexUtils.csproj"
             },
-            "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\WebSocketNeuroVisualizer\\WebSocketNeuroVisualizer.csproj": {
-              "projectPath": "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\WebSocketNeuroVisualizer\\WebSocketNeuroVisualizer.csproj"
+            "C:\\Users\\maria\\Desktop\\Software_Project\\neocortexapi\\Code\\source\\WebSocketNeuroVisualizer\\WebSocketNeuroVisualizer.csproj": {
+              "projectPath": "C:\\Users\\maria\\Desktop\\Software_Project\\neocortexapi\\Code\\source\\WebSocketNeuroVisualizer\\WebSocketNeuroVisualizer.csproj"
             }
           }
         }

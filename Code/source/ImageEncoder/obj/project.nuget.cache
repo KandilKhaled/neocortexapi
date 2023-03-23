@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "aARTR9v2Y6rUCZXj0kjtO08khJzt1X+FFmu4R8Lz3iEeGDitZj67NNEOsEJH8+aEmm5371oY/UqZCZflFCY5Gw==",
+  "dgSpecHash": "3lHzQ3HtXpQki4ausge7DmEG1ejF8eqqWnODBQBlYVtHRjc+Va0rgxRenjfZL9Uv5dw6CecTlZfB7Vsa1zxiNw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\ImageEncoder\\HtmImageEncoder.csproj",
+  "projectFilePath": "C:\\Users\\maria\\Desktop\\Software_Project\\neocortexapi\\Code\\source\\ImageEncoder\\HtmImageEncoder.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\maria\\.nuget\\packages\\imagebinarizer\\1.5.6\\imagebinarizer.1.5.6.nupkg.sha512",
     "C:\\Users\\maria\\.nuget\\packages\\learningapi\\1.2.3\\learningapi.1.2.3.nupkg.sha512",

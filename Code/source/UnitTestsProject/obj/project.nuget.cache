@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "CCUkhh0S9DaKessYF+aoPqgETh7U2IMkNGlv2Kclkn7n2zny6W0yy9EcdyvYtnhWaQHcNq9rj7LbuNo/+iMOog==",
+  "dgSpecHash": "meIHn8R9KR6DnDc5QqggMjfjiKXcz25X8OWMOp8uhhOvc1yncKzR7j5rkWxjKvec5M+Lgi6xB3VwXVMxhXshew==",
   "success": true,
-  "projectFilePath": "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\UnitTestsProject\\UnitTestsProject.csproj",
+  "projectFilePath": "C:\\Users\\maria\\Desktop\\Software_Project\\neocortexapi\\Code\\source\\UnitTestsProject\\UnitTestsProject.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\maria\\.nuget\\packages\\coverlet.collector\\3.1.0\\coverlet.collector.3.1.0.nupkg.sha512",
     "C:\\Users\\maria\\.nuget\\packages\\dotnetactors\\1.0.3\\dotnetactors.1.0.3.nupkg.sha512",

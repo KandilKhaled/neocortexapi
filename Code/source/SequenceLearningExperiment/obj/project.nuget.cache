@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "2EqNN6IpL8W0BkvnwJcp1pZMWeaiokat60jsG1I1fEVt15hGXaOYIZ36KvIU8DGD1vpoULtW7f5SAApqkQmUOA==",
+  "dgSpecHash": "qtYJRNpAS/7vUacUxDmK2P96jc5IPKh4sYA8O5fTb97Wrp5ZWFi8yyrtjgdvV+DKaQ6DrfrLd3Pp+TOM/lLHDQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\SequenceLearningExperiment\\SequenceLearningExperiment.csproj",
+  "projectFilePath": "C:\\Users\\maria\\Desktop\\Software_Project\\neocortexapi\\Code\\source\\SequenceLearningExperiment\\SequenceLearningExperiment.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\maria\\.nuget\\packages\\dotnetactors\\1.0.3\\dotnetactors.1.0.3.nupkg.sha512",
     "C:\\Users\\maria\\.nuget\\packages\\imagebinarizer\\1.0.0\\imagebinarizer.1.0.0.nupkg.sha512",

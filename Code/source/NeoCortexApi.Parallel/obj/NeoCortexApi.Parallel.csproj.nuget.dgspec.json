@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NeoCortexApi.Parallel\\NeoCortexApi.Parallel.csproj": {}
+    "C:\\Users\\maria\\Desktop\\Software_Project\\neocortexapi\\Code\\source\\NeoCortexApi.Parallel\\NeoCortexApi.Parallel.csproj": {}
   },
   "projects": {
-    "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NeoCortexApi.Parallel\\NeoCortexApi.Parallel.csproj": {
+    "C:\\Users\\maria\\Desktop\\Software_Project\\neocortexapi\\Code\\source\\NeoCortexApi.Parallel\\NeoCortexApi.Parallel.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NeoCortexApi.Parallel\\NeoCortexApi.Parallel.csproj",
+        "projectUniqueName": "C:\\Users\\maria\\Desktop\\Software_Project\\neocortexapi\\Code\\source\\NeoCortexApi.Parallel\\NeoCortexApi.Parallel.csproj",
         "projectName": "NeoCortexApi.Parallel",
-        "projectPath": "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NeoCortexApi.Parallel\\NeoCortexApi.Parallel.csproj",
+        "projectPath": "C:\\Users\\maria\\Desktop\\Software_Project\\neocortexapi\\Code\\source\\NeoCortexApi.Parallel\\NeoCortexApi.Parallel.csproj",
         "packagesPath": "C:\\Users\\maria\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NeoCortexApi.Parallel\\obj\\",
+        "outputPath": "C:\\Users\\maria\\Desktop\\Software_Project\\neocortexapi\\Code\\source\\NeoCortexApi.Parallel\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NuGet.Config",
+          "C:\\Users\\maria\\Desktop\\Software_Project\\neocortexapi\\Code\\source\\NuGet.Config",
           "C:\\Users\\maria\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -27,18 +27,18 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\nuget": {},
+          "C:\\Users\\maria\\Desktop\\Software_Project\\neocortexapi\\Code\\source\\nuget": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netstandard2.1": {
             "targetAlias": "netstandard2.1",
             "projectReferences": {
-              "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NeoCortexArrayLib\\NeoCortexArrayLib.csproj": {
-                "projectPath": "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NeoCortexArrayLib\\NeoCortexArrayLib.csproj"
+              "C:\\Users\\maria\\Desktop\\Software_Project\\neocortexapi\\Code\\source\\NeoCortexArrayLib\\NeoCortexArrayLib.csproj": {
+                "projectPath": "C:\\Users\\maria\\Desktop\\Software_Project\\neocortexapi\\Code\\source\\NeoCortexArrayLib\\NeoCortexArrayLib.csproj"
               },
-              "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NeoCortexEntities\\NeoCortexEntities.csproj": {
-                "projectPath": "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NeoCortexEntities\\NeoCortexEntities.csproj"
+              "C:\\Users\\maria\\Desktop\\Software_Project\\neocortexapi\\Code\\source\\NeoCortexEntities\\NeoCortexEntities.csproj": {
+                "projectPath": "C:\\Users\\maria\\Desktop\\Software_Project\\neocortexapi\\Code\\source\\NeoCortexEntities\\NeoCortexEntities.csproj"
               }
             }
           }
@@ -86,20 +86,20 @@
         }
       }
     },
-    "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NeoCortexArrayLib\\NeoCortexArrayLib.csproj": {
+    "C:\\Users\\maria\\Desktop\\Software_Project\\neocortexapi\\Code\\source\\NeoCortexArrayLib\\NeoCortexArrayLib.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NeoCortexArrayLib\\NeoCortexArrayLib.csproj",
+        "projectUniqueName": "C:\\Users\\maria\\Desktop\\Software_Project\\neocortexapi\\Code\\source\\NeoCortexArrayLib\\NeoCortexArrayLib.csproj",
         "projectName": "NeoCortexArrayLib",
-        "projectPath": "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NeoCortexArrayLib\\NeoCortexArrayLib.csproj",
+        "projectPath": "C:\\Users\\maria\\Desktop\\Software_Project\\neocortexapi\\Code\\source\\NeoCortexArrayLib\\NeoCortexArrayLib.csproj",
         "packagesPath": "C:\\Users\\maria\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NeoCortexArrayLib\\obj\\",
+        "outputPath": "C:\\Users\\maria\\Desktop\\Software_Project\\neocortexapi\\Code\\source\\NeoCortexArrayLib\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NuGet.Config",
+          "C:\\Users\\maria\\Desktop\\Software_Project\\neocortexapi\\Code\\source\\NuGet.Config",
           "C:\\Users\\maria\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -109,7 +109,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\nuget": {},
+          "C:\\Users\\maria\\Desktop\\Software_Project\\neocortexapi\\Code\\source\\nuget": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -147,20 +147,20 @@
         }
       }
     },
-    "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NeoCortexEntities\\NeoCortexEntities.csproj": {
+    "C:\\Users\\maria\\Desktop\\Software_Project\\neocortexapi\\Code\\source\\NeoCortexEntities\\NeoCortexEntities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NeoCortexEntities\\NeoCortexEntities.csproj",
+        "projectUniqueName": "C:\\Users\\maria\\Desktop\\Software_Project\\neocortexapi\\Code\\source\\NeoCortexEntities\\NeoCortexEntities.csproj",
         "projectName": "NeoCortexEntities",
-        "projectPath": "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NeoCortexEntities\\NeoCortexEntities.csproj",
+        "projectPath": "C:\\Users\\maria\\Desktop\\Software_Project\\neocortexapi\\Code\\source\\NeoCortexEntities\\NeoCortexEntities.csproj",
         "packagesPath": "C:\\Users\\maria\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NeoCortexEntities\\obj\\",
+        "outputPath": "C:\\Users\\maria\\Desktop\\Software_Project\\neocortexapi\\Code\\source\\NeoCortexEntities\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NuGet.Config",
+          "C:\\Users\\maria\\Desktop\\Software_Project\\neocortexapi\\Code\\source\\NuGet.Config",
           "C:\\Users\\maria\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -170,15 +170,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\nuget": {},
+          "C:\\Users\\maria\\Desktop\\Software_Project\\neocortexapi\\Code\\source\\nuget": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netstandard2.1": {
             "targetAlias": "netstandard2.1",
             "projectReferences": {
-              "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NeoCortexArrayLib\\NeoCortexArrayLib.csproj": {
-                "projectPath": "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NeoCortexArrayLib\\NeoCortexArrayLib.csproj"
+              "C:\\Users\\maria\\Desktop\\Software_Project\\neocortexapi\\Code\\source\\NeoCortexArrayLib\\NeoCortexArrayLib.csproj": {
+                "projectPath": "C:\\Users\\maria\\Desktop\\Software_Project\\neocortexapi\\Code\\source\\NeoCortexArrayLib\\NeoCortexArrayLib.csproj"
               }
             }
           }

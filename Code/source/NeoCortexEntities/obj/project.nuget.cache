@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "mpVWs1D9UmSos+OTxBtNsORnZXWkdEFeaZ9VMfp9vsyFEadbA90ltpkFkJ9yTDe2vEnYv0JUTZOmfjGXU7Q9rQ==",
+  "dgSpecHash": "fy3tj5ZMkjZj6Tyga7U0d8hkcoftC9c+LI7FEu6FQDvX2rz1RklrYu0vfWLHrJJ/oshpAnsx6q2HyMJfJXoDmA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NeoCortexEntities\\NeoCortexEntities.csproj",
+  "projectFilePath": "C:\\Users\\maria\\Desktop\\Software_Project\\neocortexapi\\Code\\source\\NeoCortexEntities\\NeoCortexEntities.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\maria\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\maria\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",

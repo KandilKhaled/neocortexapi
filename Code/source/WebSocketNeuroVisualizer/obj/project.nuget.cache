@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "mlgpqS9OBrvQlzOfnG+giV0z7gpBTOQ6KZLH4P82tZyF9fJtVcovMeIZrVNbsG/eP6WXPR8g8PKhJc1ifzXaBA==",
+  "dgSpecHash": "V6/SrNBngJb1KNeudhKS/1c4RF7OJvPWr6yeEt0we1wLOnse5BVMUtAWrvw9A3R4EHOpJA/C2dIUpp2izBNLcg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\WebSocketNeuroVisualizer\\WebSocketNeuroVisualizer.csproj",
+  "projectFilePath": "C:\\Users\\maria\\Desktop\\Software_Project\\neocortexapi\\Code\\source\\WebSocketNeuroVisualizer\\WebSocketNeuroVisualizer.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\maria\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\maria\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",

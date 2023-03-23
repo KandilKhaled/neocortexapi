@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>HtmImageEncoder</id>
+    <version>1.0.1</version>
+    <authors>Toan Thanh Truong, Damir Dobric</authors>
+    <license type="file">license.txt</license>
+    <licenseUrl>https://aka.ms/deprecateLicenseUrl</licenseUrl>
+    <projectUrl>https://github.com/ddobric/neocortexapi/tree/ImageBinarizerEncoder/source/ImageEncoder</projectUrl>
+    <description>Package that extends NeocortexApi to work with images through ImageEncoder. It encodes the image to to the SDR.</description>
+    <repository url="https://github.com/ddobric/neocortexapi/tree/ImageBinarizerEncoder" />
+    <dependencies>
+      <group targetFramework="net5.0">
+        <dependency id="ImageBinarizer" version="1.5.6" exclude="Build,Analyzers" />
+        <dependency id="NeoCortexApi" version="1.1.2" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="C:\Users\maria\Desktop\prueba2\neocortexapi\source\ImageEncoder\bin\Debug\net5.0\HtmImageEncoder.dll" target="lib\net5.0\HtmImageEncoder.dll" />
+    <file src="C:\Users\maria\Desktop\prueba2\neocortexapi\license.txt" target="license.txt" />
+  </files>
+</package>

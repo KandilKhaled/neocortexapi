@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "inaMd/LkfLn+KrAJNnwQ+Oxqmkf97RNQRYcGvWmdeTWyiuHIxJ2FPNBV1mcQpXm8Lea3DwmkR8Y57qsY6v+7yA==",
+  "dgSpecHash": "DYLJSCzRsfmi6iWEsJ4/YW428LHT4VrP6AenZ6vLOgIcebE/2edNiqXn959N8XIX1K7BK+A9U7sBnwcqOAgOLg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\maria\\Desktop\\prueba2\\neocortexapi\\source\\NeoCortexArrayLib\\NeoCortexArrayLib.csproj",
+  "projectFilePath": "C:\\Users\\maria\\Desktop\\Software_Project\\neocortexapi\\Code\\source\\NeoCortexArrayLib\\NeoCortexArrayLib.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
