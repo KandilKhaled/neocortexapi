@@ -18,6 +18,7 @@
   <ItemGroup>
     <PackageReference Include="GemBox.Spreadsheet" Version="47.0.1268" />
     <PackageReference Include="ImageBinarizer" Version="1.5.6" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.4.1" />
     <PackageReference Include="System.Drawing.Common" Version="4.6.0-preview3.19128.7" />
   </ItemGroup>
 
