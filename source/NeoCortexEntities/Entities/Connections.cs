@@ -1398,16 +1398,16 @@ namespace NeoCortexApi.Entities
             ser.SerializeBegin(nameof(Connections), writer);
 
             ser.SerializeValue(this.version, writer);
-            ser.SerializeValue(this.SpIterationNum, writer);
-            ser.SerializeValue(this.SpIterationLearnNum, writer);
+            ser.SerializeValue<int>(this.SpIterationNum, writer);
+            ser.SerializeValue<int>(this.SpIterationLearnNum, writer);
             ser.SerializeValue(this.m_TMIteration, writer);
             ser.SerializeValue(this.m_BoostedmOverlaps, writer);
             ser.SerializeValue(this.m_Overlaps, writer);
             ser.SerializeValue(this.m_TieBreaker, writer);
             ser.SerializeValue(this.m_BoostFactors, writer);
-            ser.SerializeValue(this.m_NextFlatIdx, writer);
-            ser.SerializeValue(this.m_NextSegmentOrdinal, writer);
-            ser.SerializeValue(this.m_NextSynapseOrdinal, writer);
+            ser.SerializeValue<int>(this.m_NextFlatIdx, writer);
+            ser.SerializeValue<int>(this.m_NextSegmentOrdinal, writer);
+            ser.SerializeValue<int>(this.m_NextSynapseOrdinal, writer);
             ser.SerializeValue(this.m_NumSynapses, writer);
             ser.SerializeValue(this.m_FreeFlatIdxs, writer);
             ser.SerializeValue(this.TieBreaker, writer);

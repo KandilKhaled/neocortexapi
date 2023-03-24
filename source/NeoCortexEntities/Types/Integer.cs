@@ -71,7 +71,7 @@ namespace NeoCortexApi.Entities
 
             ser.SerializeBegin(nameof(Integer), writer);
             
-            ser.SerializeValue(this.Value,writer);
+            ser.SerializeValue<int>(this.Value,writer);
 
             ser.SerializeEnd(nameof(Integer), writer);
         }

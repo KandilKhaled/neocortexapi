@@ -444,7 +444,7 @@ namespace NeoCortexApi.Entities
             ser.SerializeBegin(nameof(Column), writer);
 
             //ser.SerializeValue(this.CellId, writer);
-            ser.SerializeValue(this.Index, writer);
+            ser.SerializeValue<int>(this.Index, writer);
 
 
             if (this.connectedInputCounter != null)

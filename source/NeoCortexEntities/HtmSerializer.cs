@@ -150,9 +150,9 @@ namespace NeoCortexApi.Entities
 
 
 
-        /*
-         
 
+
+        /*
         /// <summary>
         /// Serialize the property of type Int.
         /// </summary>
@@ -165,7 +165,7 @@ namespace NeoCortexApi.Entities
             sw.Write(ValueDelimiter);
             sw.Write(ParameterDelimiter);
         }
-
+        
         /// <summary>
         /// Serialize the property of type Double.
         /// </summary>

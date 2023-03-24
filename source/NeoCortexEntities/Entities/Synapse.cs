@@ -258,9 +258,9 @@ namespace NeoCortexApi.Entities
 
             ser.SerializeBegin(nameof(Synapse), writer);
 
-            ser.SerializeValue(this.SegmentIndex, writer);
-            ser.SerializeValue(this.SynapseIndex, writer);
-            ser.SerializeValue(this.InputIndex, writer);
+            ser.SerializeValue<int>(this.SegmentIndex, writer);
+            ser.SerializeValue<int>(this.SynapseIndex, writer);
+            ser.SerializeValue<int>(this.InputIndex, writer);
             ser.SerializeValue(this.Permanence, writer);
             ser.SerializeValue(this.IsDestroyed, writer);
 
@@ -288,9 +288,9 @@ namespace NeoCortexApi.Entities
 
             ser.SerializeBegin(nameof(Synapse), writer);
 
-            ser.SerializeValue(this.SegmentIndex, writer);
-            ser.SerializeValue(this.SynapseIndex, writer);
-            ser.SerializeValue(this.InputIndex, writer);
+            ser.SerializeValue<int>(this.SegmentIndex, writer);
+            ser.SerializeValue<int>(this.SynapseIndex, writer);
+            ser.SerializeValue<int>(this.InputIndex, writer);
             ser.SerializeValue(this.Permanence, writer);
             ser.SerializeValue(this.IsDestroyed, writer);
 

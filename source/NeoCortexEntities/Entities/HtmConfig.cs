@@ -616,10 +616,10 @@ namespace NeoCortexApi.Entities
             ser.SerializeValue(this.SynPermConnected, writer);
             //Spatial Pooler Variables
             //ser.SerializeValue(this.InhibitionRadius, writer);
-            ser.SerializeValue(-1, writer);
-            ser.SerializeValue(this.NumInputs, writer);
-            ser.SerializeValue(this.NumColumns, writer);
-            ser.SerializeValue(this.PotentialRadius, writer);
+            ser.SerializeValue<int>(-1, writer);
+            ser.SerializeValue<int>(this.NumInputs, writer);
+            ser.SerializeValue<int>(this.NumColumns, writer);
+            ser.SerializeValue<int>(this.PotentialRadius, writer);
             ser.SerializeValue(this.PotentialPct, writer);
             ser.SerializeValue(this.StimulusThreshold, writer);
             ser.SerializeValue(this.SynPermBelowStimulusInc, writer);
@@ -638,31 +638,31 @@ namespace NeoCortexApi.Entities
             ser.SerializeValue(this.MinPctOverlapDutyCycles, writer);
             ser.SerializeValue(this.MinPctActiveDutyCycles, writer);
             ser.SerializeValue(this.PredictedSegmentDecrement, writer);
-            ser.SerializeValue(this.DutyCyclePeriod, writer);
+            ser.SerializeValue<int>(this.DutyCyclePeriod, writer);
             ser.SerializeValue(this.MaxBoost, writer);
 
-            ser.SerializeValue(this.UpdatePeriod, writer);
+            ser.SerializeValue<int>(this.UpdatePeriod, writer);
             ser.SerializeValue(this.OverlapDutyCycles, writer);
             ser.SerializeValue(this.ActiveDutyCycles, writer);
             ser.SerializeValue(this.MinOverlapDutyCycles, writer);
             ser.SerializeValue(this.MinActiveDutyCycles, writer);
             //TemporalMemoryVariables
             ser.SerializeValue(this.ColumnDimensions, writer);
-            ser.SerializeValue(this.CellsPerColumn, writer);
+            ser.SerializeValue<int>(this.CellsPerColumn, writer);
             ser.SerializeValue(this.InputDimensions, writer);
-            ser.SerializeValue(this.MaxNewSynapseCount, writer);
-            ser.SerializeValue(this.MaxSegmentsPerCell, writer);
-            ser.SerializeValue(this.MaxSynapsesPerSegment, writer);
+            ser.SerializeValue<int>(this.MaxNewSynapseCount, writer);
+            ser.SerializeValue<int>(this.MaxSegmentsPerCell, writer);
+            ser.SerializeValue<int>(this.MaxSynapsesPerSegment, writer);
             ser.SerializeValue(this.PermanenceIncrement, writer);
             ser.SerializeValue(this.PermanenceDecrement, writer);
-            ser.SerializeValue(this.ActivationThreshold, writer);
-            ser.SerializeValue(this.LearningRadius, writer);
-            ser.SerializeValue(this.MinThreshold, writer);
+            ser.SerializeValue<int>(this.ActivationThreshold, writer);
+            ser.SerializeValue<int>(this.LearningRadius, writer);
+            ser.SerializeValue<int>(this.MinThreshold, writer);
             ser.SerializeValue(this.InitialPermanence, writer);
             ser.SerializeValue(this.ConnectedPermanence, writer);
-            ser.SerializeValue(this.RandomGenSeed, writer);
+            ser.SerializeValue<int>(this.RandomGenSeed, writer);
             ser.SerializeValue(this.Name, writer);
-            ser.SerializeValue(this.RandomGenSeed, writer);
+            ser.SerializeValue<int>(this.RandomGenSeed, writer);
 
             //if (this.memory != null)
             //{
