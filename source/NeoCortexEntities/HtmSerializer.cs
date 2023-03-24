@@ -1539,8 +1539,9 @@ namespace NeoCortexApi.Entities
                 Double[] vs = new double[str.Length - 1];
                 for (int i = 0; i < str.Length - 1; i++)
                 {
-
-                    vs[i] = Convert.ToDouble(str[i].Trim());
+                    //Indicating that the decimal values used are in the format point not coma
+                    vs[i]= Double.Parse(str[i], NumberStyles.Float, CultureInfo.InvariantCulture);
+                    //vs[i] = Convert.ToDouble(str[i].Trim());
 
                 }
                 return vs;
