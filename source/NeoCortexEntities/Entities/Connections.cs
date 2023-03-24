@@ -1402,7 +1402,7 @@ namespace NeoCortexApi.Entities
             ser.SerializeValue<int>(this.SpIterationLearnNum, writer);
             ser.SerializeValue<long>(this.m_TMIteration, writer);
             ser.SerializeValue(this.m_BoostedmOverlaps, writer);
-            ser.SerializeValue(this.m_Overlaps, writer);
+            ser.SerializeValue<int[]>(this.m_Overlaps, writer);
             ser.SerializeValue(this.m_TieBreaker, writer);
             ser.SerializeValue(this.m_BoostFactors, writer);
             ser.SerializeValue<int>(this.m_NextFlatIdx, writer);
@@ -1412,7 +1412,7 @@ namespace NeoCortexApi.Entities
             ser.SerializeValue(this.m_FreeFlatIdxs, writer);
             ser.SerializeValue(this.TieBreaker, writer);
             ser.SerializeValue(this.BoostedOverlaps, writer);
-            ser.SerializeValue(this.Overlaps, writer);
+            ser.SerializeValue<int[]>(this.Overlaps, writer);
             ser.SerializeValue(this.BoostFactors, writer);
             ser.SerializeValue(this.m_ActiveSegments, writer);
             ser.SerializeValue(this.m_MatchingSegments, writer);

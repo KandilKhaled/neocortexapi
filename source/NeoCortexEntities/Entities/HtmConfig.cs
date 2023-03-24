@@ -647,9 +647,9 @@ namespace NeoCortexApi.Entities
             ser.SerializeValue(this.MinOverlapDutyCycles, writer);
             ser.SerializeValue(this.MinActiveDutyCycles, writer);
             //TemporalMemoryVariables
-            ser.SerializeValue(this.ColumnDimensions, writer);
+            ser.SerializeValue<int[]>(this.ColumnDimensions, writer);
             ser.SerializeValue<int>(this.CellsPerColumn, writer);
-            ser.SerializeValue(this.InputDimensions, writer);
+            ser.SerializeValue<int[]>(this.InputDimensions, writer);
             ser.SerializeValue<int>(this.MaxNewSynapseCount, writer);
             ser.SerializeValue<int>(this.MaxSegmentsPerCell, writer);
             ser.SerializeValue<int>(this.MaxSynapsesPerSegment, writer);

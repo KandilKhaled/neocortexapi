@@ -163,7 +163,7 @@ namespace UnitTestsProject
                     vs[i] = i;
                 }
 
-                htm.SerializeValue(vs, sw);
+                htm.SerializeValue<int[]>(vs, sw);
 
                 htm.SerializeEnd("UnitTest", sw);
             }

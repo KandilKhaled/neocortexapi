@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
@@ -121,31 +122,72 @@ namespace NeoCortexApi.Entities
        
 
         public void SerializeValue<T>(T val, StreamWriter sw) 
-        {
-            sw.Write(ValueDelimiter);
-            if (val is int)
+        {          
+             if (val is Cell[])
+                {
+                    sw.Write(ValueDelimiter);
+
+                    Cell[] cellArray = val as Cell[];
+
+                    if (cellArray != null)
+                    {
+                        foreach (Cell cell in cellArray)
+                        {
+                            cell.SerializeT(sw);
+                            sw.Write(ValueDelimiter);
+                        }
+                    }
+                    sw.Write(ParameterDelimiter);
+                }
+            else
             {
-                sw.Write(val.ToString());
-            }
-            else if (val is double)
-            {
-                sw.Write(string.Format(CultureInfo.InvariantCulture, "{0:0.000}", val));
-            }
-            else if (val is string)
-            {
-                sw.Write(val);
-            }
-            else if (val is long)
-            {
-                sw.Write(val.ToString());
-            }
-            else if (val is bool)
-            {
-                String value = (bool)(object)val ? "True" : "False";
-                sw.Write(value);
-            }
-            sw.Write(ValueDelimiter);
-            sw.Write(ParameterDelimiter);
+                sw.Write(ValueDelimiter);
+                if (val is int)
+                {
+                    sw.Write(val.ToString());
+                    sw.Write(ValueDelimiter);
+                }
+                else if (val is double)
+                {
+                    sw.Write(string.Format(CultureInfo.InvariantCulture, "{0:0.000}", val));
+                    sw.Write(ValueDelimiter);
+                }
+                else if (val is string)
+                {
+                    sw.Write(val);
+                    sw.Write(ValueDelimiter);
+                }
+                else if (val is long)
+                {
+                    sw.Write(val.ToString());
+                    sw.Write(ValueDelimiter);
+                }
+                else if (val is bool)
+                {
+                    String value = (bool)(object)val ? "True" : "False";
+                    sw.Write(ValueDelimiter);
+                    sw.Write(value);
+                }
+                else if (val is int[])
+                {
+                  int[] arr = (int[])(object)val;
+                  foreach (int i in arr)
+                  {
+                     sw.Write(i.ToString());
+                     sw.Write(ElementsDelimiter);
+                  }
+                }
+                else if (val is double[])
+                {
+                  double[] arr = (double[])(object)val;
+                  foreach (double d in arr)
+                  {
+                            sw.Write(string.Format(CultureInfo.InvariantCulture, "{0:0.000}", d));
+                            sw.Write(ElementsDelimiter);
+                  }
+                }
+            }           
+                sw.Write(ParameterDelimiter);                    
         }
 
 
