@@ -1304,29 +1304,15 @@ namespace NeoCortexApi.Entities
         public int ReadIntValue(String reader)
         {
             reader = reader.Trim();
-            if (string.IsNullOrEmpty(reader))
+            int val;
+            if (int.TryParse(reader, out val))
             {
-                Debug.WriteLine(reader);
-                return 0;
+                return val;
             }
             else
             {
-                int number;
-                NumberFormatInfo provider = new NumberFormatInfo();
-                provider.NumberDecimalSeparator = ".";
-                bool isINT = int.TryParse(reader, out number);
-                if (isINT)
-                {
-                    return Convert.ToInt32(reader);
-                }
-                else
-                {
-                    double d= Convert.ToDouble(reader);
-                    return Convert.ToInt32(d);
-                }
-                
+                return 0;
             }
-               
 
         }
 
@@ -1410,9 +1396,19 @@ namespace NeoCortexApi.Entities
         public Double ReadDoubleValue(String reader)
         {
             reader = reader.Trim();
-            Double val = Convert.ToDouble(reader);
-            return val;
+
+            double val;
+            if (Double.TryParse(reader, out val))
+            {
+                return val;
+            }
+            else
+            {
+                return 0;
+            }
         }
+        
+        
 
         /// <summary>
         /// Serialize the property of type String.
@@ -1497,10 +1493,16 @@ namespace NeoCortexApi.Entities
         /// <returns>Bool</returns>
         public Random ReadRandomValue(String reader)
         {
-            int val = Convert.ToInt16(reader);
-            Random rnd = new ThreadSafeRandom(val);
-            return rnd;
-
+            int seed;
+            if (int.TryParse(reader, out seed))
+            {
+                Random random = new Random(seed);
+                return random;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public void SerializeValue(Array array, StreamWriter sw)
