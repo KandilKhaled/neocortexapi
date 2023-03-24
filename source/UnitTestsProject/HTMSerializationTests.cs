@@ -107,7 +107,7 @@ namespace UnitTestsProject
                     vs[i] = i;
                 }
 
-                htm.SerializeValue(vs, sw);
+                htm.SerializeValue<double[]>(vs, sw);
 
                 htm.SerializeEnd("UnitTest", sw);
             }
@@ -244,7 +244,7 @@ namespace UnitTestsProject
             preSynapticcell.ReceptorSynapses.Add(synapse2);
             using (StreamWriter sw = new StreamWriter($"ser_{nameof(SerializeArrayCell)}.txt"))
             {
-                htm.SerializeValue(cells, sw);
+                htm.SerializeValue<Cell[]>(cells, sw);
             }
             using (StreamReader sr = new StreamReader($"ser_{nameof(SerializeArrayCell)}.txt"))
             {

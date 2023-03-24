@@ -335,6 +335,33 @@ namespace NeoCortexApi.Entities
            }
        }
 
+        /// <summary>
+        /// Serialize the dictionary with key:string and value:int.
+        /// </summary>
+        /// <param name="keyValues"></param>
+        /// <param name="sw"></param>
+        public void SerializeValue(Dictionary<String, int> keyValues, StreamWriter sw)
+        {
+            sw.Write(ValueDelimiter);
+            foreach (KeyValuePair<string, int> i in keyValues)
+            {
+                sw.Write(i.Key + KeyValueDelimiter + i.Value.ToString());
+                sw.Write(ElementsDelimiter);
+            }
+            sw.Write(ParameterDelimiter);
+        }
+
+        public void SerializeValue(Dictionary<String, int> keyValues, StreamWriter sw)
+        {
+            sw.Write(ValueDelimiter);
+            foreach (KeyValuePair<string, int> i in keyValues)
+            {
+                sw.Write(i.Key + KeyValueDelimiter + i.Value.ToString());
+                sw.Write(ElementsDelimiter);
+            }
+            sw.Write(ParameterDelimiter);
+        }
+
       */
 
 
@@ -1617,10 +1644,9 @@ namespace NeoCortexApi.Entities
                 return 0;
             }
         }
-        
-        
 
-        /// <summary>
+        /*
+         * /// <summary>
         /// Serialize the property of type String.
         /// </summary>
         /// <param name="val"></param>
@@ -1632,6 +1658,9 @@ namespace NeoCortexApi.Entities
             sw.Write(ValueDelimiter);
             sw.Write(ParameterDelimiter);
         }
+         */
+
+
         /// <summary>
         /// Read the property of type String.
         /// </summary>
@@ -1646,7 +1675,9 @@ namespace NeoCortexApi.Entities
                 return reader;
         }
 
-        /// <summary>
+
+        /*
+         * /// <summary>
         /// Serialize the property of type Long.
         /// </summary>
         /// <param name="val"></param>
@@ -1658,6 +1689,8 @@ namespace NeoCortexApi.Entities
             sw.Write(ValueDelimiter);
             sw.Write(ParameterDelimiter);
         }
+         */
+
         /// <summary>
         /// Read the property of type Long.
         /// </summary>
@@ -1735,7 +1768,8 @@ namespace NeoCortexApi.Entities
             sw.Write(ParameterDelimiter);
         }
 
-        /// <summary>
+        /*
+         * /// <summary>
         /// Serialize the array of type Double.
         /// </summary>
         /// <param name="val"></param>
@@ -1754,6 +1788,8 @@ namespace NeoCortexApi.Entities
             sw.Write(ParameterDelimiter);
 
         }
+         */
+
         /// <summary>
         /// Read the array of type Double
         /// <summary>
@@ -1779,8 +1815,8 @@ namespace NeoCortexApi.Entities
             }
 
         }
-
-        /// <summary>
+        /*
+         *  /// <summary>
         /// Serialize the array of type Int.
         /// </summary>
         /// <param name="val"></param>
@@ -1799,6 +1835,8 @@ namespace NeoCortexApi.Entities
             sw.Write(ParameterDelimiter);
 
         }
+         */
+
         /// <summary>
         /// Read the array of type Int.
         /// <summary>
@@ -1817,7 +1855,8 @@ namespace NeoCortexApi.Entities
             return vs;
         }
 
-        /// <summary>
+        /*
+         /// <summary>
         /// Serialize the array of cells.
         /// </summary>
         /// <param name="val"></param>
@@ -1835,6 +1874,8 @@ namespace NeoCortexApi.Entities
             }
             sw.Write(ParameterDelimiter);
         }
+         */
+
 
         /// <summary>
         /// Deserialize the array of cells.

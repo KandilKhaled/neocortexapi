@@ -461,7 +461,7 @@ namespace NeoCortexApi.Entities
             {
                 this.ProximalDendrite.Serialize(writer);
             }
-            ser.SerializeValue(this.Cells, writer);
+            ser.SerializeValue<Cell[]>(this.Cells, writer);
             ser.SerializeEnd(nameof(Column), writer);
         }
         public static Column Deserialize(StreamReader sr)

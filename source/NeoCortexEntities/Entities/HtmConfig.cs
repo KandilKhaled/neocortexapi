@@ -642,10 +642,10 @@ namespace NeoCortexApi.Entities
             ser.SerializeValue<double>(this.MaxBoost, writer);
 
             ser.SerializeValue<int>(this.UpdatePeriod, writer);
-            ser.SerializeValue(this.OverlapDutyCycles, writer);
-            ser.SerializeValue(this.ActiveDutyCycles, writer);
-            ser.SerializeValue(this.MinOverlapDutyCycles, writer);
-            ser.SerializeValue(this.MinActiveDutyCycles, writer);
+            ser.SerializeValue<double[]>(this.OverlapDutyCycles, writer);
+            ser.SerializeValue<double[]>(this.ActiveDutyCycles, writer);
+            ser.SerializeValue<double[]>(this.MinOverlapDutyCycles, writer);
+            ser.SerializeValue<double[]>(this.MinActiveDutyCycles, writer);
             //TemporalMemoryVariables
             ser.SerializeValue<int[]>(this.ColumnDimensions, writer);
             ser.SerializeValue<int>(this.CellsPerColumn, writer);
