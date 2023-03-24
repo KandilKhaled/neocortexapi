@@ -480,7 +480,7 @@ namespace NeoCortexApi
             ser.SerializeValue(this.m_NumOfStableCyclesForInput, writer);
             ser.SerializeValue(this.m_NumOfActiveColsForInput, writer);
             ser.SerializeValue(this.m_InOutMap, writer);
-            ser.SerializeValue(this.m_IsStable, writer);
+            ser.SerializeValue<bool>(this.m_IsStable, writer);
 
             if (this.m_HtmMemory != null)
             {

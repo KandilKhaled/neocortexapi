@@ -460,7 +460,7 @@ namespace NeoCortexApi.Entities
                     {
                         // Create Element with syntax Key__Value
                         var writeValue = item.Key.ToString() + "__" + item.Value.ToString();
-                        ser.SerializeValue(writeValue, writer);
+                        ser.SerializeValue<string>(writeValue, writer);
                     }
                     else
                         throw new NotSupportedException();

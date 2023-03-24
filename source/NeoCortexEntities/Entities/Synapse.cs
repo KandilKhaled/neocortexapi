@@ -262,7 +262,7 @@ namespace NeoCortexApi.Entities
             ser.SerializeValue<int>(this.SynapseIndex, writer);
             ser.SerializeValue<int>(this.InputIndex, writer);
             ser.SerializeValue<double>(this.Permanence, writer);
-            ser.SerializeValue(this.IsDestroyed, writer);
+            ser.SerializeValue<bool>    (this.IsDestroyed, writer);
 
             //if (this.boxedIndex != null)
             //{
@@ -292,7 +292,7 @@ namespace NeoCortexApi.Entities
             ser.SerializeValue<int>(this.SynapseIndex, writer);
             ser.SerializeValue<int>(this.InputIndex, writer);
             ser.SerializeValue<double>(this.Permanence, writer);
-            ser.SerializeValue(this.IsDestroyed, writer);
+            ser.SerializeValue<bool>(this.IsDestroyed, writer);
 
             //if (this.boxedIndex != null)
             //{

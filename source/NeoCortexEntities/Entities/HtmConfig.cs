@@ -626,8 +626,8 @@ namespace NeoCortexApi.Entities
             ser.SerializeValue<double>(this.SynPermInactiveDec, writer);
             ser.SerializeValue<double>(this.SynPermActiveInc, writer);
             ser.SerializeValue<double>(this.SynPermConnected, writer);
-            ser.SerializeValue(this.WrapAround, writer);
-            ser.SerializeValue(this.GlobalInhibition, writer);
+            ser.SerializeValue<bool>(this.WrapAround, writer);
+            ser.SerializeValue<bool>(this.GlobalInhibition, writer);
             ser.SerializeValue<double>(this.LocalAreaDensity, writer);
             ser.SerializeValue<double>(this.SynPermTrimThreshold, writer);
             ser.SerializeValue<double>(this.SynPermMax, writer);
@@ -661,7 +661,7 @@ namespace NeoCortexApi.Entities
             ser.SerializeValue<double>(this.InitialPermanence, writer);
             ser.SerializeValue<double>(this.ConnectedPermanence, writer);
             ser.SerializeValue<int>(this.RandomGenSeed, writer);
-            ser.SerializeValue(this.Name, writer);
+            ser.SerializeValue<string>(this.Name, writer);
             ser.SerializeValue<int>(this.RandomGenSeed, writer);
 
             //if (this.memory != null)

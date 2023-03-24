@@ -120,7 +120,7 @@ namespace NeoCortexApi.Entities
 
             ser.SerializeValue(this.dimensions, writer);
             ser.SerializeValue(this.dimensionMultiples, writer);
-            ser.SerializeValue(this.isColumnMajor, writer);
+            ser.SerializeValue<bool>(this.isColumnMajor, writer);
             ser.SerializeValue<int>(this.numDimensions, writer);
 
             ser.SerializeEnd(nameof(Topology), writer);

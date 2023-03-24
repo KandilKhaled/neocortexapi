@@ -120,26 +120,26 @@ namespace NeoCortexApi.Entities
 
        
 
-        public void SerializeValue<T>(T val, StreamWriter sw) where T : struct, IFormattable, IConvertible
+        public void SerializeValue<T>(T val, StreamWriter sw) 
         {
             sw.Write(ValueDelimiter);
-            if (typeof(T) == typeof(int))
+            if (val is int)
             {
                 sw.Write(val.ToString());
             }
-            else if (typeof(T) == typeof(double) || typeof(T) == typeof(float) || typeof(T) == typeof(decimal))
+            else if (val is double)
             {
                 sw.Write(string.Format(CultureInfo.InvariantCulture, "{0:0.000}", val));
             }
-            else if (typeof(T) == typeof(string))
+            else if (val is string)
             {
                 sw.Write(val);
             }
-            else if (typeof(T) == typeof(long))
+            else if (val is long)
             {
                 sw.Write(val.ToString());
             }
-            else if (typeof(T) == typeof(bool))
+            else if (val is bool)
             {
                 String value = (bool)(object)val ? "True" : "False";
                 sw.Write(value);
@@ -149,37 +149,7 @@ namespace NeoCortexApi.Entities
         }
 
 
-
-
-
         /*
-        /// <summary>
-        /// Serialize the property of type Int.
-        /// </summary>
-        /// <param name="val"></param>
-        /// <param name="sw"></param> 
-        public void SerializeValue(int val, StreamWriter sw)
-        {
-            sw.Write(ValueDelimiter);
-            sw.Write(val.ToString());
-            sw.Write(ValueDelimiter);
-            sw.Write(ParameterDelimiter);
-        }
-        
-       
-        
-        /// <summary>
-        /// Serialize the property of type Double.
-        /// </summary>
-        /// <param name="val"></param>
-        /// <param name="sw"></param>
-        public void SerializeValue(double val, StreamWriter sw)
-        {
-            sw.Write(ValueDelimiter);
-            sw.Write(string.Format(CultureInfo.InvariantCulture, "{0:0.000}", val));
-            sw.Write(ValueDelimiter);
-            sw.Write(ParameterDelimiter);
-        }
         
        /// <summary>
        /// Serialize the property of type String.
@@ -1658,7 +1628,8 @@ namespace NeoCortexApi.Entities
             return val;
 
         }
-
+        /*
+         
         /// <summary>
         /// Serialize the Bool.
         /// </summary>
@@ -1672,6 +1643,8 @@ namespace NeoCortexApi.Entities
             sw.Write(ValueDelimiter);
             sw.Write(ParameterDelimiter);
         }
+        */
+
         /// <summary>
         /// Read the property of type Long.
         /// </summary>
