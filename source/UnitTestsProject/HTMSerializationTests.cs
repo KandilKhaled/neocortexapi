@@ -551,7 +551,7 @@ namespace UnitTestsProject
         [DataRow(1111, 22221, 11111, 2221)]
         public void SerializeCellTest(int parentIndx, int colSeq, int cellsPerCol, int cellId)
         {
-            Cell cell = new Cell(12, 14, 16, new CellActivity());
+            Cell cell = new Cell(0, 14, 16, new CellActivity());
 
             var distSeg1 = new DistalDendrite(cell, 1, 2, 2, 1.0, 100);
             cell.DistalDendrites.Add(distSeg1);

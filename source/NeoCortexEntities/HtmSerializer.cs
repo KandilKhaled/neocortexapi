@@ -1310,7 +1310,23 @@ namespace NeoCortexApi.Entities
                 return 0;
             }
             else
-                return Convert.ToInt32(reader);
+            {
+                int number;
+                NumberFormatInfo provider = new NumberFormatInfo();
+                provider.NumberDecimalSeparator = ".";
+                bool isINT = int.TryParse(reader, out number);
+                if (isINT)
+                {
+                    return Convert.ToInt32(reader);
+                }
+                else
+                {
+                    double d= Convert.ToDouble(reader);
+                    return Convert.ToInt32(d);
+                }
+                
+            }
+               
 
         }
 

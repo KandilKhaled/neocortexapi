@@ -285,12 +285,12 @@ namespace NeoCortexApi.Entities
                                     distal.SegmentIndex = ser.ReadIntValue(str[i]);
                                     break;
                                 }
-                            case 5:
+                            case 4:
                                 {
                                     distal.SynapsePermConnected = ser.ReadDoubleValue(str[i]);
                                     break;
                                 }
-                            case 4:
+                            case 5:
                                 {
                                     distal.NumInputs = ser.ReadIntValue(str[i]);
                                     break;
