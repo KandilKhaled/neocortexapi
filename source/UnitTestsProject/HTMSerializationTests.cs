@@ -24,7 +24,7 @@ namespace UnitTestsProject
                 htm.SerializeBegin("UnitTest", sw);
 
                 htm.SerializeValue<int>(15, sw);
-                htm.SerializeValue(12.34, sw);
+                htm.SerializeValue<double>(12.34, sw);
                 htm.SerializeValue<int>(12345678, sw);
                 htm.SerializeValue("Hello", sw);
                 htm.SerializeValue(true, sw);

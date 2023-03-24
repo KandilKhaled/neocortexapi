@@ -166,10 +166,10 @@ namespace NeoCortexApi.Entities
 
             //ser.SerializeValue(this.m_LastUsedIteration, writer);
             ser.SerializeValue<int>(this.m_Ordinal, writer);
-            ser.SerializeValue(this.LastUsedIteration, writer);
+            ser.SerializeValue<double>(this.LastUsedIteration, writer);
             ser.SerializeValue<int>(this.Ordinal, writer);
             ser.SerializeValue<int>(this.SegmentIndex, writer);
-            ser.SerializeValue(this.SynapsePermConnected, writer);
+            ser.SerializeValue<double>(this.SynapsePermConnected, writer);
             ser.SerializeValue<int>(this.NumInputs, writer);
 
             //if (this.boxedIndex != null)
@@ -201,10 +201,10 @@ namespace NeoCortexApi.Entities
 
             //ser.SerializeValue(this.LastUsedIteration, writer);
             ser.SerializeValue<int>(this.m_Ordinal, writer);
-            ser.SerializeValue(this.LastUsedIteration, writer);
+            ser.SerializeValue<double>(this.LastUsedIteration, writer);
             ser.SerializeValue<int>(this.Ordinal, writer);
             ser.SerializeValue<int>(this.SegmentIndex, writer);
-            ser.SerializeValue(this.SynapsePermConnected, writer);
+            ser.SerializeValue<double>(this.SynapsePermConnected, writer);
             ser.SerializeValue<int>(this.NumInputs, writer);
 
 

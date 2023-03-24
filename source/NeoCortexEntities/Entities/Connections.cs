@@ -1397,7 +1397,7 @@ namespace NeoCortexApi.Entities
 
             ser.SerializeBegin(nameof(Connections), writer);
 
-            ser.SerializeValue(this.version, writer);
+            ser.SerializeValue<double>(this.version, writer);
             ser.SerializeValue<int>(this.SpIterationNum, writer);
             ser.SerializeValue<int>(this.SpIterationLearnNum, writer);
             ser.SerializeValue(this.m_TMIteration, writer);

@@ -472,7 +472,7 @@ namespace NeoCortexApi
 
             ser.SerializeBegin(nameof(HomeostaticPlasticityController), writer);
 
-            ser.SerializeValue(this.m_RequiredSimilarityThreshold, writer);
+            ser.SerializeValue<double>(this.m_RequiredSimilarityThreshold, writer);
             ser.SerializeValue<int>(this.m_MaxPreviousElements, writer);
             ser.SerializeValue<int>(this.m_Cycle, writer);
             ser.SerializeValue<int>(this.m_MinCycles, writer);
