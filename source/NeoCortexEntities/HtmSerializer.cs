@@ -117,6 +117,42 @@ namespace NeoCortexApi.Entities
             return val;
         }
 
+
+       
+
+        public void SerializeValue<T>(T val, StreamWriter sw) where T : struct, IFormattable, IConvertible
+        {
+            sw.Write(ValueDelimiter);
+            if (typeof(T) == typeof(int))
+            {
+                sw.Write(val.ToString());
+            }
+            else if (typeof(T) == typeof(double) || typeof(T) == typeof(float) || typeof(T) == typeof(decimal))
+            {
+                sw.Write(string.Format(CultureInfo.InvariantCulture, "{0:0.000}", val));
+            }
+            else if (typeof(T) == typeof(string))
+            {
+                sw.Write(val);
+            }
+            else if (typeof(T) == typeof(long))
+            {
+                sw.Write(val.ToString());
+            }
+            else if (typeof(T) == typeof(bool))
+            {
+                String value = (bool)(object)val ? "True" : "False";
+                sw.Write(value);
+            }
+            sw.Write(ValueDelimiter);
+            sw.Write(ParameterDelimiter);
+        }
+
+
+
+        /*
+         
+
         /// <summary>
         /// Serialize the property of type Int.
         /// </summary>
@@ -130,10 +166,168 @@ namespace NeoCortexApi.Entities
             sw.Write(ParameterDelimiter);
         }
 
+        /// <summary>
+        /// Serialize the property of type Double.
+        /// </summary>
+        /// <param name="val"></param>
+        /// <param name="sw"></param>
+        public void SerializeValue(double val, StreamWriter sw)
+        {
+            sw.Write(ValueDelimiter);
+            sw.Write(string.Format(CultureInfo.InvariantCulture, "{0:0.000}", val));
+            sw.Write(ValueDelimiter);
+            sw.Write(ParameterDelimiter);
+        }
+
+        /// <summary>
+        /// Serialize the property of type String.
+        /// </summary>
+        /// <param name="val"></param>
+        /// <param name="sw"></param>
+        public void SerializeValue(String val, StreamWriter sw)
+        {
+            sw.Write(ValueDelimiter);
+            sw.Write(val);
+            sw.Write(ValueDelimiter);
+            sw.Write(ParameterDelimiter);
+        }
+
+        /// <summary>
+        /// Serialize the property of type Long.
+        /// </summary>
+        /// <param name="val"></param>
+        /// <param name="sw"></param>
+        public void SerializeValue(long val, StreamWriter sw)
+        {
+            sw.Write(ValueDelimiter);
+            sw.Write(val.ToString());
+            sw.Write(ValueDelimiter);
+            sw.Write(ParameterDelimiter);
+        }
+
+        /// <summary>
+        /// Serialize the Bool.
+        /// </summary>
+        /// <param name="val"></param>
+        /// <param name="sw"></param>
+        public void SerializeValue(bool val, StreamWriter sw)
+        {
+            sw.Write(ValueDelimiter);
+            String value = val.ToBoolean(CultureInfo.InvariantCulture) ? "True" : "False";
+            sw.Write(value);
+            sw.Write(ValueDelimiter);
+            sw.Write(ParameterDelimiter);
+        }
+
+        /// <summary>
+        /// Serialize the array of type array.
+        /// </summary>
+        /// <param name="val"></param>
+        /// <param name="sw"></param>
+        public void SerializeValue(Array array, StreamWriter sw)
+        {
+            sw.Write(ValueDelimiter);
+            sw.WriteLine();
+
+            for (int i = 0; i < array.GetLength(0); i++)
+            {
+                for (int j = 0; j < array.GetLength(1); j++)
+                {
+                    sw.Write(array.GetValue(i, j));
+                }
+            }
+
+            sw.Write(ValueDelimiter);
+            sw.Write(ParameterDelimiter);
+        }
+
+        /// <summary>
+        /// Serialize the array of type Double.
+        /// </summary>
+        /// <param name="val"></param>
+        /// <param name="sw"></param>
+        public void SerializeValue(Double[] val, StreamWriter sw)
+        {
+            sw.Write(ValueDelimiter);
+            if (val != null)
+            {
+                foreach (Double i in val)
+                {
+                    sw.Write(string.Format(CultureInfo.InvariantCulture, "{0:0.000}", i));
+                    sw.Write(ElementsDelimiter);
+                }
+            }
+            sw.Write(ParameterDelimiter);
+
+        }
+
+        /// <summary>
+        /// Serialize the array of type Int.
+        /// </summary>
+        /// <param name="val"></param>
+        /// <param name="sw"></param>
+        public void SerializeValue(int[] val, StreamWriter sw)
+        {
+            sw.Write(ValueDelimiter);
+            if (val != null)
+            {
+                foreach (int i in val)
+                {
+                    sw.Write(i.ToString());
+                    sw.Write(ElementsDelimiter);
+                }
+            }
+            sw.Write(ParameterDelimiter);
+
+        }
+
+        /// <summary>
+        /// Serialize the array of cells.
+        /// </summary>
+        /// <param name="val"></param>
+        /// <param name="sw"></param>
+        public void SerializeValue(Cell[] val, StreamWriter sw)
+        {
+            sw.Write(ValueDelimiter);
+            if (val != null)
+            {
+                foreach (Cell cell in val)
+                {
+                    cell.SerializeT(sw);
+                    sw.Write(ValueDelimiter);
+                }
+            }
+            sw.Write(ParameterDelimiter);
+        }
+
+        public void SerializeValue(object val, Type type, StreamWriter sw)
+        {
+            if (type.IsValueType)
+            {
+                sw.Write(ValueDelimiter);
+                sw.Write(val.ToString());
+                sw.Write(ValueDelimiter);
+                sw.Write(ParameterDelimiter);
+            }
+            else
+            {
+                var method = type.GetMethod("Serialize", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
+                if (method != null)
+                {
+                    method.Invoke(val, new object[] { sw });
+                }
+                else
+                    throw new NotSupportedException($"No serialization implemented on the type {type}!");
+            }
+        }
+
+       */
+
+
         #region NewImplementation
         #region Serialization
 
-        
+
         private static void SerializeKeyValuePair(string name, object obj, StreamWriter sw)
         {
             var type = obj.GetType();
