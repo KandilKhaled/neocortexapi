@@ -24,6 +24,7 @@
   <ItemGroup>
     <PackageReference Include="DotNetActors" Version="1.0.3" />
     <PackageReference Include="ImageBinarizer" Version="1.0.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.4.1" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
     
   </ItemGroup>
