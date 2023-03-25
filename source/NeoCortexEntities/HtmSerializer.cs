@@ -25,11 +25,11 @@ namespace NeoCortexApi.Entities
         String ReadBegin(string typeName);
         String ReadEnd(String typeName);
 
-        // write functions
+        // Write functions
         void SerializeEnd(String typeName, StreamWriter sw);
         void serializeBegin(String typeName, StreamWriter sw);
-        void SerializeValue(int val, StreamWriter sw);
 
+        public void SerializeValue<T>(T val, StreamWriter sw);
     }
 
     public class HtmSerializationFormatter : IHtmSerializationFormatter
@@ -37,6 +37,7 @@ namespace NeoCortexApi.Entities
         public const char TypeDelimiter = ' ';
         public const char ParameterDelimiter = '|';
         public string ValueDelimiter = " ";
+        public const char ElementsDelimiter = ',';
 
         public string ReadBegin(string typeName)
         {
@@ -66,13 +67,105 @@ namespace NeoCortexApi.Entities
             sw.WriteLine();
         }
 
-        public void SerializeValue(int val, StreamWriter sw)
+        public void SerializeValue<T>(T val, StreamWriter sw)
+        {
+            if (val is Cell[])
+            {
+                SerializeCellArray((Cell[])(object)val, sw);
+            }
+            else if (val.GetType().IsArray && val.GetType().GetElementType().IsValueType)
+            {
+                SerializeValue((Array)(object)val, sw);
+            }
+            else if (val is int || val is double || val is string || val is long || val is bool)  
+            {
+                sw.Write(ValueDelimiter);
+                if (val is int)
+                {
+                    sw.Write(val.ToString());
+                    sw.Write(ValueDelimiter);
+                }
+                else if (val is double)
+                {
+                    sw.Write(string.Format(CultureInfo.InvariantCulture, "{0:0.000}", val));
+                    sw.Write(ValueDelimiter);
+                }
+                else if (val is string)
+                {
+                    sw.Write(val);
+                    sw.Write(ValueDelimiter);
+                }
+                else if (val is long)
+                {
+                    sw.Write(val.ToString());
+                    sw.Write(ValueDelimiter);
+                }
+                else if (val is bool)
+                {
+                    String value = (bool)(object)val ? "True" : "False";
+                    sw.Write(ValueDelimiter);
+                    sw.Write(value);
+                }
+                else if (val is int[])
+                {
+                    int[] arr = (int[])(object)val;
+                    foreach (int i in arr)
+                    {
+                        sw.Write(i.ToString());
+                        sw.Write(ElementsDelimiter);
+                    }
+                }
+                else if (val is double[])
+                {
+                    double[] arr = (double[])(object)val;
+                    foreach (double d in arr)
+                    {
+                        sw.Write(string.Format(CultureInfo.InvariantCulture, "{0:0.000}", d));
+                        sw.Write(ElementsDelimiter);
+                    }
+                }
+                sw.Write(ParameterDelimiter);
+            }
+            else
+            {
+                throw new NotSupportedException($"Serialization of type {val.GetType()} is not supported!");
+            }
+                
+        }
+
+       
+        public void SerializeCellArray(Cell[] cellArray, StreamWriter sw)
         {
             sw.Write(ValueDelimiter);
-            sw.Write(val.ToString());
+
+            if (cellArray != null)
+            {
+                foreach (Cell cell in cellArray)
+                {
+                    cell.SerializeT(sw);
+                    sw.Write(ValueDelimiter);
+                }
+            }
+            sw.Write(ParameterDelimiter);
+        }
+
+        public void SerializeValue(Array array, StreamWriter sw)
+        {
+            sw.Write(ValueDelimiter);
+            sw.WriteLine();
+
+            for (int i = 0; i < array.GetLength(0); i++)
+            {
+                for (int j = 0; j < array.GetLength(1); j++)
+                {
+                    sw.Write(array.GetValue(i, j));
+                }
+            }
             sw.Write(ValueDelimiter);
             sw.Write(ParameterDelimiter);
         }
+
+
     }
     public class HtmSerializer
     {
@@ -171,119 +264,26 @@ namespace NeoCortexApi.Entities
         }
 
 
-       
 
-        public void SerializeValue<T>(T val, StreamWriter sw) 
-        {          
-             if (val is Cell[])
-                {
-                    sw.Write(ValueDelimiter);
-
-                    Cell[] cellArray = val as Cell[];
-
-                    if (cellArray != null)
-                    {
-                        foreach (Cell cell in cellArray)
-                        {
-                            cell.SerializeT(sw);
-                            sw.Write(ValueDelimiter);
-                        }
-                    }
-                    sw.Write(ParameterDelimiter);
-                }
-            else
-            {
-                sw.Write(ValueDelimiter);
-                if (val is int)
-                {
-                    sw.Write(val.ToString());
-                    sw.Write(ValueDelimiter);
-                }
-                else if (val is double)
-                {
-                    sw.Write(string.Format(CultureInfo.InvariantCulture, "{0:0.000}", val));
-                    sw.Write(ValueDelimiter);
-                }
-                else if (val is string)
-                {
-                    sw.Write(val);
-                    sw.Write(ValueDelimiter);
-                }
-                else if (val is long)
-                {
-                    sw.Write(val.ToString());
-                    sw.Write(ValueDelimiter);
-                }
-                else if (val is bool)
-                {
-                    String value = (bool)(object)val ? "True" : "False";
-                    sw.Write(ValueDelimiter);
-                    sw.Write(value);
-                }
-                else if (val is int[])
-                {
-                  int[] arr = (int[])(object)val;
-                  foreach (int i in arr)
-                  {
-                     sw.Write(i.ToString());
-                     sw.Write(ElementsDelimiter);
-                  }
-                }
-                else if (val is double[])
-                {
-                  double[] arr = (double[])(object)val;
-                  foreach (double d in arr)
-                  {
-                            sw.Write(string.Format(CultureInfo.InvariantCulture, "{0:0.000}", d));
-                            sw.Write(ElementsDelimiter);
-                  }
-                }
-            }           
-                sw.Write(ParameterDelimiter);                    
+        /// <summary>
+        /// Serialize the value regardless of the type
+        /// </summary>
+        /// <param name="val"></param>
+        /// <param name="sw"></param>
+        public void SerializeValue<T>(T val, StreamWriter sw)
+        {
+            formatter.SerializeValue(val, sw);
         }
 
 
-        /*
         
-       /// <summary>
-       /// Serialize the property of type String.
-       /// </summary>
-       /// <param name="val"></param>
-       /// <param name="sw"></param>
-       public void SerializeValue(String val, StreamWriter sw)
-       {
-           sw.Write(ValueDelimiter);
-           sw.Write(val);
-           sw.Write(ValueDelimiter);
-           sw.Write(ParameterDelimiter);
-       }
+        
 
-       /// <summary>
-       /// Serialize the property of type Long.
-       /// </summary>
-       /// <param name="val"></param>
-       /// <param name="sw"></param>
-       public void SerializeValue(long val, StreamWriter sw)
-       {
-           sw.Write(ValueDelimiter);
-           sw.Write(val.ToString());
-           sw.Write(ValueDelimiter);
-           sw.Write(ParameterDelimiter);
-       }
+        /*
+       
+      
 
-       /// <summary>
-       /// Serialize the Bool.
-       /// </summary>
-       /// <param name="val"></param>
-       /// <param name="sw"></param>
-       public void SerializeValue(bool val, StreamWriter sw)
-       {
-           sw.Write(ValueDelimiter);
-           String value = val.ToBoolean(CultureInfo.InvariantCulture) ? "True" : "False";
-           sw.Write(value);
-           sw.Write(ValueDelimiter);
-           sw.Write(ParameterDelimiter);
-       }
+      
 
        /// <summary>
        /// Serialize the array of type array.
@@ -307,85 +307,12 @@ namespace NeoCortexApi.Entities
            sw.Write(ParameterDelimiter);
        }
 
-       /// <summary>
-       /// Serialize the array of type Double.
-       /// </summary>
-       /// <param name="val"></param>
-       /// <param name="sw"></param>
-       public void SerializeValue(Double[] val, StreamWriter sw)
-       {
-           sw.Write(ValueDelimiter);
-           if (val != null)
-           {
-               foreach (Double i in val)
-               {
-                   sw.Write(string.Format(CultureInfo.InvariantCulture, "{0:0.000}", i));
-                   sw.Write(ElementsDelimiter);
-               }
-           }
-           sw.Write(ParameterDelimiter);
+       
 
-       }
+       
 
-       /// <summary>
-       /// Serialize the array of type Int.
-       /// </summary>
-       /// <param name="val"></param>
-       /// <param name="sw"></param>
-       public void SerializeValue(int[] val, StreamWriter sw)
-       {
-           sw.Write(ValueDelimiter);
-           if (val != null)
-           {
-               foreach (int i in val)
-               {
-                   sw.Write(i.ToString());
-                   sw.Write(ElementsDelimiter);
-               }
-           }
-           sw.Write(ParameterDelimiter);
 
-       }
-
-       /// <summary>
-       /// Serialize the array of cells.
-       /// </summary>
-       /// <param name="val"></param>
-       /// <param name="sw"></param>
-       public void SerializeValue(Cell[] val, StreamWriter sw)
-       {
-           sw.Write(ValueDelimiter);
-           if (val != null)
-           {
-               foreach (Cell cell in val)
-               {
-                   cell.SerializeT(sw);
-                   sw.Write(ValueDelimiter);
-               }
-           }
-           sw.Write(ParameterDelimiter);
-       }
-
-       public void SerializeValue(object val, Type type, StreamWriter sw)
-       {
-           if (type.IsValueType)
-           {
-               sw.Write(ValueDelimiter);
-               sw.Write(val.ToString());
-               sw.Write(ValueDelimiter);
-               sw.Write(ParameterDelimiter);
-           }
-           else
-           {
-               var method = type.GetMethod("Serialize", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
-               if (method != null)
-               {
-                   method.Invoke(val, new object[] { sw });
-               }
-               else
-                   throw new NotSupportedException($"No serialization implemented on the type {type}!");
-           }
-       }
+       
 
         /// <summary>
         /// Serialize the dictionary with key:string and value:int.
