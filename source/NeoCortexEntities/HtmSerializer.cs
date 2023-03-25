@@ -1301,9 +1301,10 @@ namespace NeoCortexApi.Entities
         /// </summary>
         /// <param name="reader"></param>
         /// <returns>Int</returns>
-        public int ReadIntValue(String reader)
+        public int ReadIntValue(string reader)
         {
             reader = reader.Trim();
+
             if (string.IsNullOrEmpty(reader))
             {
                 Debug.WriteLine(reader);
@@ -1313,6 +1314,7 @@ namespace NeoCortexApi.Entities
                 return Convert.ToInt32(reader);
 
         }
+        
 
         /// <summary>
         /// Deserializes from text file to DistalDendrite

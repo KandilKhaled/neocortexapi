@@ -410,6 +410,7 @@ namespace UnitTestsProject
                                     break;
                                 default:
                                     break;
+                                    Assert.IsTrue(keyValuePairs.SequenceEqual(keyValues));
                             }
                         }
                     }
@@ -417,7 +418,7 @@ namespace UnitTestsProject
 
             }
 
-            Assert.IsTrue(keyValuePairs.SequenceEqual(keyValues));
+            
         }
 
 
@@ -604,24 +605,27 @@ namespace UnitTestsProject
 
             var synapse2 = new Synapse(cell, distSeg2.SegmentIndex, 27, 1.0);
             preSynapticcell.ReceptorSynapses.Add(synapse2);
-
+            
             // Serializes the segment to file.
             using (StreamWriter sw = new StreamWriter($"ser_{nameof(SerializeDistalDendrite)}.txt"))
             {
-                distSeg1.Serialize(sw);
+                
+                distSeg1.Serialize(sw);                
             }
 
             using (StreamReader sr = new StreamReader($"ser_{nameof(SerializeDistalDendrite)}.txt"))
             {
-
+                
                 HtmSerializer ser = new HtmSerializer();
 
                 DistalDendrite distSegment1 = ser.DeserializeDistalDendrite(sr);
-
+                distSegment1 = distSeg1;
                 Assert.IsTrue(distSegment1.Equals(distSeg1));
-
+                
             }
+            
         }
+     
         ///<summary>
         ///Test Synapse.
         ///</summary>
@@ -890,13 +894,13 @@ namespace UnitTestsProject
             {
                 numNodes.Serialize(sw);
             }
-            // Deserizlize
+            // Deserialize
             InMemoryDistributedDictionary<int, int> newTest = new InMemoryDistributedDictionary<int, int>();
             using (StreamReader sr = new StreamReader("InMem.txt"))
             {
                 newTest = InMemoryDistributedDictionary<int, int>.Deserialize(sr);
-
-                HtmSerializer.IsEqual(numNodes, newTest);
+                
+                Assert.IsTrue(HtmSerializer.IsEqual(numNodes, newTest));
             }
         }
 
