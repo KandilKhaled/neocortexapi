@@ -179,7 +179,7 @@ namespace NeoCortexApi.Entities
             ser.SerializeValue<int>(this.ParentColumnIndex, writer);
 
             if (this.DistalDendrites != null && this.DistalDendrites.Count > 0)
-                ser.SerializeValue(this.DistalDendrites, writer);
+                ser.SerializeValue<List<DistalDendrite>>(this.DistalDendrites, writer);
 
             if (this.ReceptorSynapses != null && this.ReceptorSynapses.Count > 0)
                 ser.SerializeValue< List<Synapse>>(this.ReceptorSynapses, writer);

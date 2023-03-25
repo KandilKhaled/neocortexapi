@@ -269,7 +269,7 @@ namespace NeoCortexApi.Entities
             ser.SerializeValue<int>(this.size, writer);
             ser.SerializeValue<int>(this.NumInputs, writer);
             ser.SerializeValue<List<int>>(this.m_SynapseConnections, writer);
-            ser.SerializeValue(this.m_SynapsesBySourceIndex, writer);
+            ser.SerializeValue<int, Synapse>(this.m_SynapsesBySourceIndex, writer);
 
             ser.SerializeEnd(nameof(Pool), writer);
 

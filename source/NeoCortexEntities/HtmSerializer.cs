@@ -84,6 +84,12 @@ namespace NeoCortexApi.Entities
                 //Call the SerializeValue method for List<Synapse>
                 SerializeSynapseList(val as List<Synapse>, sw);
             }
+            // Check if the value is a List<DistalDendrite>
+            else if (val is List<DistalDendrite>)
+            {
+                //Call the SerializeValue method for List<DistalDendrite>
+                SerializeDistalDendriteList(val as List<DistalDendrite>, sw);
+            }
             // Check if the value is an array
             else if (val.GetType().IsArray && val.GetType().GetElementType().IsValueType)
             {
@@ -147,13 +153,15 @@ namespace NeoCortexApi.Entities
             // If none of the above conditions are true, throw a NotSupportedException
             else
             {
+                // Serialize the value to the stream
+                //SerializeValue("", val, sw);
                 throw new NotSupportedException($"Serialization of type {val.GetType()} is not supported!");
             }
                 
         }
 
-        
 
+        // Serialize the array of Cell
         public void SerializeCellArray(Cell[] cellArray, StreamWriter sw)
         {
             sw.Write(ValueDelimiter);
@@ -169,12 +177,28 @@ namespace NeoCortexApi.Entities
             sw.Write(ParameterDelimiter);
         }
 
+        // Serialize the List of Synapse
         public void SerializeSynapseList(List<Synapse> value, StreamWriter sw)
         {
             sw.Write(ValueDelimiter);
             if (value != null)
             {
                 foreach (Synapse val in value)
+                {
+                    val.SerializeT(sw);
+                    sw.Write(ElementsDelimiter);
+                }
+            }
+            sw.Write(ParameterDelimiter);
+        }
+
+        // Serialize the List of DistalDendrite
+        public void SerializeDistalDendriteList(List<DistalDendrite> distSegments, StreamWriter sw)
+        {
+            sw.Write(ValueDelimiter);
+            if (distSegments != null)
+            {
+                foreach (DistalDendrite val in distSegments)
                 {
                     val.SerializeT(sw);
                     sw.Write(ElementsDelimiter);
@@ -212,6 +236,131 @@ namespace NeoCortexApi.Entities
             }
             sw.Write(ParameterDelimiter);
         }
+
+        /*
+         * 
+         * THIS ARE THE SERIALIZEVALUE THAT ARE STATIC METHODS THE ONES IMPLEMENTED BEFORE ARE NOT
+         public static void SerializeValue(string propertyName, object val, StreamWriter sw)
+        {
+
+            var content = val.ToString();
+
+            if (val.GetType() == typeof(string))
+            {
+                content = content.Replace("\n", "\\n");
+            }
+
+            sw.Write(content);
+        }
+
+        private static void SerializeKeyValuePair(string name, object obj, StreamWriter sw)
+        {
+            var type = obj.GetType();
+            var keyType = type.GetGenericArguments()[0];
+            var valueType = type.GetGenericArguments()[1];
+
+            var keyField = GetFields(type).FirstOrDefault(f => f.Name == "key");
+            if (keyField != null)
+            {
+                var key = keyField.GetValue(obj);
+                Serialize(key, "Key", sw, keyType);
+            }
+            var valueField = GetFields(type).FirstOrDefault(f => f.Name == "value");
+            if (valueField != null)
+            {
+                var value = valueField.GetValue(obj);
+                Serialize(value, "Value", sw, valueType);
+            }
+        }
+
+        private static void SerializeMultidimensionalArray(object obj, string name, StreamWriter sw)
+        {
+            var array = obj as Array;
+
+            //if (array.Rank > 2)
+            //    throw new NotSupportedException("Serialize does not support array with rank greater than 2!");
+
+            SerializeBegin(nameof(Array.Rank), sw, null);
+            SerializeValue(nameof(Array.Rank), array.Rank, sw);
+            SerializeEnd(nameof(Array.Rank), sw, null);
+
+            var dimensions = new List<int>();
+
+            for (int i = 0; i < array.Rank; i++)
+            {
+                SerializeBegin($"Dim{i}", sw, null);
+                var dimensionLength = array.GetLength(i);
+                dimensions.Add(dimensionLength);
+                SerializeValue("", dimensionLength, sw);
+                SerializeEnd($"Dim{i}", sw, null);
+            }
+
+            var elementType = array.GetType().GetElementType();
+            var defaultValue = GetDefault(elementType);
+
+            var totalElement = 1;
+            foreach (var dim in dimensions)
+            {
+                totalElement *= dim;
+            }
+            for (int i = 0; i < totalElement; i++)
+            {
+                var indexes = GetIndexesFromFlatIndex(i, dimensions);
+                var value = array.GetValue(indexes);
+                if (value.Equals(defaultValue) == false)
+                {
+                    Serialize(value, "ActiveElement", sw, elementType);
+                    var indexesString = string.Join(',', indexes);
+                    Serialize(indexesString, "ActiveIndex", sw);
+                }
+            }
+
+            //for (int i = 0; i < array.GetLength(0); i++)
+            //{
+            //    for (int j = 0; j < array.GetLength(1); j++)
+            //    {
+            //        var value = array.GetValue(i, j);
+            //        if (value.Equals(defaultValue) == false)
+            //        {
+            //            var index = new int[] { i, j };
+            //            Serialize(value, "ActiveElement", sw, elementType);
+            //            Serialize(index, "ActiveIndex", sw, elementType);
+            //        }
+            //    }
+            //}
+        }
+
+        private static void SerializeDistalDendrite(object obj, string name, StreamWriter sw)
+        {
+            var ignoreMembers = new List<string> { nameof(DistalDendrite.ParentCell) };
+            SerializeObject(obj, name, sw, ignoreMembers);
+
+            var cell = (obj as DistalDendrite).ParentCell;
+
+            if (isCellsSerialized.Contains(cell.Index) == false)
+            {
+                isCellsSerialized.Add(cell.Index);
+                Serialize((obj as DistalDendrite).ParentCell, nameof(DistalDendrite.ParentCell), sw, ignoreMembers: ignoreMembers);
+            }
+        }
+
+        private static void SerializeHtmConfig(object obj, string name, StreamWriter sw)
+        {
+            var excludeEntries = new List<string> { nameof(HtmConfig.Random) };
+            SerializeObject(obj, name, sw, excludeEntries);
+
+            var htmConfig = obj as HtmConfig;
+            Serialize(htmConfig.RandomGenSeed, nameof(HtmConfig.Random), sw);
+
+        }
+
+        private static void SerializeHomeostaticPlasticityController(object obj, string name, StreamWriter sw)
+        {
+            var excludeEntries = new List<string> { "m_OnStabilityStatusChanged" };
+            SerializeObject(obj, name, sw, excludeEntries);
+        }
+         */
+
 
         public void SerializeValue<TKey, TValue>(Dictionary<TKey, TValue> dictionary, StreamWriter sw)
         {
@@ -2147,7 +2296,8 @@ namespace NeoCortexApi.Entities
             return keyValues;
         }
 
-        /// <summary>
+        /*
+         * /// <summary>
         /// Serialize the List of DistalDendrite.
         /// </summary>
         public void SerializeValue(List<DistalDendrite> distSegments, StreamWriter sw)
@@ -2163,6 +2313,10 @@ namespace NeoCortexApi.Entities
             }
             sw.Write(ParameterDelimiter);
         }
+         
+         */
+
+
         /// <summary>
         /// Read the List of DistalDendrite.
         /// </summary>
