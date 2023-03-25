@@ -23,11 +23,11 @@ namespace UnitTestsProject
             {
                 htm.SerializeBegin("UnitTest", sw);
 
-                htm.SerializeValue(15, sw);
-                htm.SerializeValue(12.34, sw);
-                htm.SerializeValue(12345678, sw);
-                htm.SerializeValue("Hello", sw);
-                htm.SerializeValue(true, sw);
+                htm.SerializeValue<int>(15, sw);
+                htm.SerializeValue<double>(12.34, sw);
+                htm.SerializeValue<int>(12345678, sw);
+                htm.SerializeValue<string>("Hello", sw);
+                htm.SerializeValue<bool>(true, sw);
                 htm.SerializeEnd("UnitTest", sw);
             }
 
@@ -107,7 +107,7 @@ namespace UnitTestsProject
                     vs[i] = i;
                 }
 
-                htm.SerializeValue(vs, sw);
+                htm.SerializeValue<double[]>(vs, sw);
 
                 htm.SerializeEnd("UnitTest", sw);
             }
@@ -163,7 +163,7 @@ namespace UnitTestsProject
                     vs[i] = i;
                 }
 
-                htm.SerializeValue(vs, sw);
+                htm.SerializeValue<int[]>(vs, sw);
 
                 htm.SerializeEnd("UnitTest", sw);
             }
@@ -244,7 +244,7 @@ namespace UnitTestsProject
             preSynapticcell.ReceptorSynapses.Add(synapse2);
             using (StreamWriter sw = new StreamWriter($"ser_{nameof(SerializeArrayCell)}.txt"))
             {
-                htm.SerializeValue(cells, sw);
+                htm.SerializeValue<Cell[]>(cells, sw);
             }
             using (StreamReader sr = new StreamReader($"ser_{nameof(SerializeArrayCell)}.txt"))
             {
@@ -551,7 +551,7 @@ namespace UnitTestsProject
         [DataRow(1111, 22221, 11111, 2221)]
         public void SerializeCellTest(int parentIndx, int colSeq, int cellsPerCol, int cellId)
         {
-            Cell cell = new Cell(12, 14, 16, new CellActivity());
+            Cell cell = new Cell(0, 14, 16, new CellActivity());
 
             var distSeg1 = new DistalDendrite(cell, 1, 2, 2, 1.0, 100);
             cell.DistalDendrites.Add(distSeg1);

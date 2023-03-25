@@ -444,7 +444,7 @@ namespace NeoCortexApi.Entities
             ser.SerializeBegin(nameof(Column), writer);
 
             //ser.SerializeValue(this.CellId, writer);
-            ser.SerializeValue(this.Index, writer);
+            ser.SerializeValue<int>(this.Index, writer);
 
 
             if (this.connectedInputCounter != null)
@@ -461,7 +461,7 @@ namespace NeoCortexApi.Entities
             {
                 this.ProximalDendrite.Serialize(writer);
             }
-            ser.SerializeValue(this.Cells, writer);
+            ser.SerializeValue<Cell[]>(this.Cells, writer);
             ser.SerializeEnd(nameof(Column), writer);
         }
         public static Column Deserialize(StreamReader sr)

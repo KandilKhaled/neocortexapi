@@ -174,9 +174,9 @@ namespace NeoCortexApi.Entities
 
             ser.SerializeBegin(nameof(Cell), writer);
 
-            ser.SerializeValue(this.Index, writer);
+            ser.SerializeValue<int>(this.Index, writer);
             //ser.SerializeValue(this.CellId, writer);
-            ser.SerializeValue(this.ParentColumnIndex, writer);
+            ser.SerializeValue<int>(this.ParentColumnIndex, writer);
 
             if (this.DistalDendrites != null && this.DistalDendrites.Count > 0)
                 ser.SerializeValue(this.DistalDendrites, writer);
@@ -202,13 +202,17 @@ namespace NeoCortexApi.Entities
                 }
                 else if (data == ser.ReadBegin(nameof(Segment)))
                 {
-                    //cell.DistalDendrites.Add(DistalDendrite.Deserialize(sr));
+                    cell.DistalDendrites.Add(DistalDendrite.Deserialize(sr));
                 }
                 else if (data == ser.ReadBegin(nameof(Synapse)))
                 {
                     return cell;
                 }
                 else if (data == ser.ReadEnd(nameof(Cell)))
+                {
+                    break;
+                }
+                else if (data == ser.ReadEnd(nameof(Segment)))
                 {
                     break;
                 }

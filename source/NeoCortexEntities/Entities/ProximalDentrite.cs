@@ -198,9 +198,9 @@ namespace NeoCortexApi.Entities
 
             ser.SerializeBegin(nameof(ProximalDendrite), writer);
 
-            ser.SerializeValue(this.SegmentIndex, writer);
-            ser.SerializeValue(this.SynapsePermConnected, writer);
-            ser.SerializeValue(this.NumInputs, writer);
+            ser.SerializeValue<int>(this.SegmentIndex, writer);
+            ser.SerializeValue<double>(this.SynapsePermConnected, writer);
+            ser.SerializeValue<int>(this.NumInputs, writer);
 
             if (this.RFPool != null)
             {

@@ -170,7 +170,7 @@ namespace UnitTestsProject
             var empty2 = (NeoCortexApi.Utility.GroupBy2<object>.Slot<Pair<object, List<object>>>)NeoCortexApi.Utility.GroupBy2<object>.Slot<Pair<object, List<object>>>.Empty();
 
             var slot2 = NeoCortexApi.Utility.GroupBy2<object>.Slot<object>.Of(7);
-           // Assert.AreNotEqual(empty1, slot2);
+			// Assert.AreNotEqual(empty1, slot2);
 
             Assert.AreEqual(empty1, empty2);
         }

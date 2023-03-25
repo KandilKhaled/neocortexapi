@@ -434,11 +434,11 @@ namespace NeoCortexApi.Entities
             ser.SerializeBegin(nameof(InMemoryDistributedDictionary<TKey, TValue>), writer);
 
             // index 0
-            ser.SerializeValue(this.numElements, writer);
+            ser.SerializeValue<int>(this.numElements, writer);
             // index 1
-            ser.SerializeValue(this.currentDictIndex, writer);
+            ser.SerializeValue<int>(this.currentDictIndex, writer);
             // index 2
-            ser.SerializeValue(this.currentIndex, writer);
+            ser.SerializeValue<int>(this.currentIndex, writer);
             // index 3 
             //ser.SerializeValue(this.dictCount, writer);
 
@@ -452,7 +452,7 @@ namespace NeoCortexApi.Entities
             // looping through dictionaries in dictList
             foreach (var dict in dictList)
             {
-                ser.SerializeValue(dictCnt, writer);
+                ser.SerializeValue<int>(dictCnt, writer);
 
                 foreach (var item in dict)
                 {
@@ -460,7 +460,7 @@ namespace NeoCortexApi.Entities
                     {
                         // Create Element with syntax Key__Value
                         var writeValue = item.Key.ToString() + "__" + item.Value.ToString();
-                        ser.SerializeValue(writeValue, writer);
+                        ser.SerializeValue<string>(writeValue, writer);
                     }
                     else
                         throw new NotSupportedException();

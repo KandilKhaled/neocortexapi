@@ -69,9 +69,9 @@ namespace NeoCortexApi.Entities
 
             ser.SerializeBegin(nameof(HtmModuleTopology), writer);
 
-            ser.SerializeValue(this.Dimensions, writer);
-            ser.SerializeValue(this.IsMajorOrdering, writer);
-            ser.SerializeValue(this.DimensionMultiplies, writer);
+            ser.SerializeValue<int[]>(this.Dimensions, writer);
+            ser.SerializeValue<bool>(this.IsMajorOrdering, writer);
+            ser.SerializeValue<int[]>(this.DimensionMultiplies, writer);
             //this.NumDimensions --- It is not serialised since it returns only length of dimensions.
 
             ser.SerializeEnd(nameof(HtmModuleTopology), writer);

@@ -1351,7 +1351,7 @@ namespace NeoCortexApi
 
             ser.SerializeBegin(nameof(SpatialPooler), writer);
 
-            ser.SerializeValue(this.Name, writer);
+            ser.SerializeValue<string>(this.Name, writer);
 
             if (this.m_HomeoPlastAct != null)
             {

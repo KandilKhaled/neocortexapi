@@ -165,12 +165,12 @@ namespace NeoCortexApi.Entities
             ser.SerializeBegin(nameof(Segment), writer);
 
             //ser.SerializeValue(this.m_LastUsedIteration, writer);
-            ser.SerializeValue(this.m_Ordinal, writer);
-            ser.SerializeValue(this.LastUsedIteration, writer);
-            ser.SerializeValue(this.Ordinal, writer);
-            ser.SerializeValue(this.SegmentIndex, writer);
-            ser.SerializeValue(this.SynapsePermConnected, writer);
-            ser.SerializeValue(this.NumInputs, writer);
+            ser.SerializeValue<int>(this.m_Ordinal, writer);
+            ser.SerializeValue<double>(this.LastUsedIteration, writer);
+            ser.SerializeValue<int>(this.Ordinal, writer);
+            ser.SerializeValue<int>(this.SegmentIndex, writer);
+            ser.SerializeValue<double>(this.SynapsePermConnected, writer);
+            ser.SerializeValue<int>(this.NumInputs, writer);
 
             //if (this.boxedIndex != null)
             //{
@@ -200,12 +200,12 @@ namespace NeoCortexApi.Entities
             ser.SerializeBegin(nameof(Segment), writer);
 
             //ser.SerializeValue(this.LastUsedIteration, writer);
-            ser.SerializeValue(this.m_Ordinal, writer);
-            ser.SerializeValue(this.LastUsedIteration, writer);
-            ser.SerializeValue(this.Ordinal, writer);
-            ser.SerializeValue(this.SegmentIndex, writer);
-            ser.SerializeValue(this.SynapsePermConnected, writer);
-            ser.SerializeValue(this.NumInputs, writer);
+            ser.SerializeValue<int>(this.m_Ordinal, writer);
+            ser.SerializeValue<double>(this.LastUsedIteration, writer);
+            ser.SerializeValue<int>(this.Ordinal, writer);
+            ser.SerializeValue<int>(this.SegmentIndex, writer);
+            ser.SerializeValue<double>(this.SynapsePermConnected, writer);
+            ser.SerializeValue<int>(this.NumInputs, writer);
 
 
             //if (this.boxedIndex != null)
@@ -285,12 +285,12 @@ namespace NeoCortexApi.Entities
                                     distal.SegmentIndex = ser.ReadIntValue(str[i]);
                                     break;
                                 }
-                            case 5:
+                            case 4:
                                 {
                                     distal.SynapsePermConnected = ser.ReadDoubleValue(str[i]);
                                     break;
                                 }
-                            case 4:
+                            case 5:
                                 {
                                     distal.NumInputs = ser.ReadIntValue(str[i]);
                                     break;
