@@ -267,7 +267,7 @@ namespace UnitTestsProject
             {
                 htm.SerializeBegin("UnitTest", sw);
 
-                htm.SerializeValue(keyValues, sw);
+                htm.SerializeValue<string, int>(keyValues, sw);
 
                 htm.SerializeEnd("UnitTest", sw);
             }
@@ -322,7 +322,7 @@ namespace UnitTestsProject
             {
                 htm.SerializeBegin("UnitTest", sw);
 
-                htm.SerializeValue(keyValues, sw);
+                htm.SerializeValue<int, int>(keyValues, sw);
 
                 htm.SerializeEnd("UnitTest", sw);
             }
@@ -379,7 +379,7 @@ namespace UnitTestsProject
             {
                 htm.SerializeBegin("UnitTest", sw);
 
-                htm.SerializeValue(keyValues, sw);
+                htm.SerializeValue<string, int[]>(keyValues, sw);
 
                 htm.SerializeEnd("UnitTest", sw);
             }
@@ -410,14 +410,13 @@ namespace UnitTestsProject
                                     break;
                                 default:
                                     break;
+                            Assert.IsTrue(keyValuePairs.SequenceEqual(keyValues));
                             }
                         }
                     }
                 }
 
-            }
-
-            Assert.IsTrue(keyValuePairs.SequenceEqual(keyValues));
+            }         
         }
 
 

@@ -477,9 +477,9 @@ namespace NeoCortexApi
             ser.SerializeValue<int>(this.m_Cycle, writer);
             ser.SerializeValue<int>(this.m_MinCycles, writer);
             ser.SerializeValue<int>(this.m_RequiredNumOfStableCycles, writer);
-            ser.SerializeValue(this.m_NumOfStableCyclesForInput, writer);
-            ser.SerializeValue(this.m_NumOfActiveColsForInput, writer);
-            ser.SerializeValue(this.m_InOutMap, writer);
+            ser.SerializeValue<string, int>(this.m_NumOfStableCyclesForInput, writer);
+            ser.SerializeValue<string, int[]>(this.m_NumOfActiveColsForInput, writer);
+            ser.SerializeValue<string, int[]>(this.m_InOutMap, writer);
             ser.SerializeValue<bool>(this.m_IsStable, writer);
 
             if (this.m_HtmMemory != null)

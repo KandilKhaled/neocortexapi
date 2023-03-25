@@ -182,7 +182,7 @@ namespace NeoCortexApi.Entities
                 ser.SerializeValue(this.DistalDendrites, writer);
 
             if (this.ReceptorSynapses != null && this.ReceptorSynapses.Count > 0)
-                ser.SerializeValue(this.ReceptorSynapses, writer);
+                ser.SerializeValue< List<Synapse>>(this.ReceptorSynapses, writer);
 
             ser.SerializeEnd(nameof(Cell), writer);
         }
