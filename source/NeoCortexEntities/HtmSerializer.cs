@@ -199,7 +199,7 @@ namespace NeoCortexApi.Entities
             sw.Write(ParameterDelimiter);
         }
 
-        public void SerializeValue(List<int> value, StreamWriter sw)
+        private void SerializeValue(List<int> value, StreamWriter sw)
         {
             sw.Write(ValueDelimiter);
             if (value != null)
@@ -218,14 +218,63 @@ namespace NeoCortexApi.Entities
             sw.Write(ValueDelimiter);
             foreach (KeyValuePair<TKey, TValue> pair in dictionary)
             {
-                sw.Write(pair.Key.ToString() + KeyValueDelimiter + pair.Value.ToString());
+                if (pair.Value is int[] intArray)
+                {
+                    SerializeIntArray(pair.Key.ToString(), intArray, sw);
+                }
+                else if (pair.Value is Synapse synapse)
+                {
+                    SerializeSynapse(pair.Key.ToString(), synapse, sw);
+                }
+                else if (dictionary is ConcurrentDictionary<int, DistalDendrite> dendriteDict)
+                {
+                    SerializeDistalDendriteDictionary(dendriteDict, sw);
+                }
+                else
+                {
+                    sw.Write(pair.Key.ToString() + KeyValueDelimiter + pair.Value.ToString());
+                    sw.Write(ElementsDelimiter);
+                }               
+            }
+            sw.Write(ParameterDelimiter);
+        }
+
+        //Serialize the dictionary with key:string and value:int[].
+        private void SerializeIntArray(string key, int[] values, StreamWriter sw)
+        {
+            sw.Write(key + KeyValueDelimiter);
+
+            foreach (int val in values)
+            {
+                sw.Write(val.ToString());
+                sw.Write(ValueDelimiter);
+            }
+
+            sw.Write(ElementsDelimiter);
+        }
+
+        //Serialize the dictionary with key:int and value:Synapse.
+        private void SerializeSynapse(string key, Synapse synapse, StreamWriter sw)
+        {
+            sw.Write(key + KeyValueDelimiter);
+            synapse.Serialize(sw);
+            sw.Write(ElementsDelimiter);
+        }
+
+        // Serialize the Concurrentdictionary with key:int and value:DistalDendrite.
+        private void SerializeDistalDendriteDictionary(ConcurrentDictionary<int, DistalDendrite> keyValues, StreamWriter sw)
+        {
+            sw.WriteLine();
+            sw.Write(ValueDelimiter);
+            foreach (var i in keyValues)
+            {
+                sw.Write(i.Key.ToString() + KeyValueDelimiter);
+                i.Value.Serialize(sw);
                 sw.Write(ElementsDelimiter);
             }
             sw.Write(ParameterDelimiter);
         }
 
-
-       
 
     }
     public class HtmSerializer
@@ -2055,7 +2104,8 @@ namespace NeoCortexApi.Entities
         // 
         //strt: test :2 , / test2 :3 , 
         // 
-        public void SerializeValue(Dictionary<String, int[]> keyValues, StreamWriter sw)
+        /*
+         * public void SerializeValue(Dictionary<String, int[]> keyValues, StreamWriter sw)
         {
             sw.Write(ValueDelimiter);
             foreach (KeyValuePair<string, int[]> i in keyValues)
@@ -2071,6 +2121,8 @@ namespace NeoCortexApi.Entities
             }
             sw.Write(ParameterDelimiter);
         }
+         */
+
         ///<summary>
         ///Read the dictionary with key:String and value:int[].
         ///</summary>
@@ -2244,7 +2296,8 @@ namespace NeoCortexApi.Entities
             sw.Write(ParameterDelimiter);
         }
 
-        /// <summary>
+        /*
+         * /// <summary>
         /// Serialize the dictionary with key:int and value:Synapse.
         /// </summary>
         /// <param name="keyValues"></param>
@@ -2261,6 +2314,8 @@ namespace NeoCortexApi.Entities
             }
             sw.Write(ParameterDelimiter);
         }
+         */
+
 
         /// <summary>
         /// Read the dictionary with key:int and value:Synapse.
@@ -2277,7 +2332,8 @@ namespace NeoCortexApi.Entities
             return Convert.ToInt32(val);
         }
 
-        /// <summary>
+        /*
+         * /// <summary>
         /// Serialize the Concurrentdictionary with key:int and value:DistalDendrite.
         /// </summary>
         /// <param name="keyValues"></param>
@@ -2294,6 +2350,8 @@ namespace NeoCortexApi.Entities
             }
             sw.Write(ParameterDelimiter);
         }
+         */
+
 
 
         public static bool IsEqual(object obj1, object obj2)
