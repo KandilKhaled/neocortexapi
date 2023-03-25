@@ -1409,15 +1409,15 @@ namespace NeoCortexApi.Entities
             ser.SerializeValue<int>(this.m_NextSegmentOrdinal, writer);
             ser.SerializeValue<int>(this.m_NextSynapseOrdinal, writer);
             ser.SerializeValue<long>(this.m_NumSynapses, writer);
-            ser.SerializeValue(this.m_FreeFlatIdxs, writer);
+            ser.SerializeValue<List<int>>(this.m_FreeFlatIdxs, writer);
             ser.SerializeValue<double[]>(this.TieBreaker, writer);
             ser.SerializeValue<double[]>(this.BoostedOverlaps, writer);
             ser.SerializeValue<int[]>(this.Overlaps, writer);
             ser.SerializeValue<double[]>(this.BoostFactors, writer);
-            ser.SerializeValue(this.m_ActiveSegments, writer);
-            ser.SerializeValue(this.m_MatchingSegments, writer);
-            ser.SerializeValue(this.ActiveSegments, writer);
-            ser.SerializeValue(this.MatchingSegments, writer);
+            ser.SerializeValue<List<DistalDendrite>>(this.m_ActiveSegments, writer);
+            ser.SerializeValue<List<DistalDendrite>>(this.m_MatchingSegments, writer);
+            ser.SerializeValue<List<DistalDendrite>>(this.ActiveSegments, writer);
+            ser.SerializeValue<List<DistalDendrite>>(this.MatchingSegments, writer);
             ser.SerializeValue(this.m_SegmentForFlatIdx, writer);
             //ser.SerializeValue(this.Cells, writer);
             if (this.ActiveCells != null)
