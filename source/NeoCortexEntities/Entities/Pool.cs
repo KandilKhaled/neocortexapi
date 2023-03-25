@@ -262,7 +262,7 @@ namespace NeoCortexApi.Entities
         #region Serialization
         public void Serialize(StreamWriter writer)
         {
-            HtmSerializer ser = new HtmSerializer();
+            HtmSerializer ser = new HtmSerializer(new HtmSerializationFormatter());
 
             ser.SerializeBegin(nameof(Pool), writer);
 
@@ -279,7 +279,7 @@ namespace NeoCortexApi.Entities
         {
             Pool pool = new Pool();
 
-            HtmSerializer ser = new HtmSerializer();
+            HtmSerializer ser = new HtmSerializer(new HtmSerializationFormatter());
 
             while (sr.Peek() >= 0)
             {

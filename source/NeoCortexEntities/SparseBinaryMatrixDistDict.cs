@@ -318,7 +318,7 @@ namespace NeoCortexApi.Entities
         #region Serialization
         public override void Serialize(StreamWriter writer)
         {
-            HtmSerializer ser = new HtmSerializer();
+            HtmSerializer ser = new HtmSerializer(new HtmSerializationFormatter());
 
             ser.SerializeBegin(nameof(SparseBinaryMatrix), writer);
 
@@ -335,7 +335,7 @@ namespace NeoCortexApi.Entities
         public static SparseBinaryMatrix Deserialize(StreamReader sr)
         {
             SparseBinaryMatrix sparse = new SparseBinaryMatrix();
-            HtmSerializer ser = new HtmSerializer();
+            HtmSerializer ser = new HtmSerializer(new HtmSerializationFormatter());
 
             while (sr.Peek() >= 0)
             {

@@ -114,7 +114,7 @@ namespace NeoCortexApi.Entities
         #region Serialization
         public void Serialize(StreamWriter writer)
         {
-            HtmSerializer ser = new HtmSerializer();
+            HtmSerializer ser = new HtmSerializer(new HtmSerializationFormatter());
 
             ser.SerializeBegin(nameof(Topology), writer);
 
@@ -129,7 +129,7 @@ namespace NeoCortexApi.Entities
         public static Topology Deserialize(StreamReader sr)
         {
             Topology topology = new Topology();
-            HtmSerializer ser = new HtmSerializer();
+            HtmSerializer ser = new HtmSerializer(new HtmSerializationFormatter());
 
             while (sr.Peek() >= 0)
             {

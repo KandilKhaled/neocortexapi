@@ -260,7 +260,7 @@ namespace NeoCortexApi.Entities
 
         public override void Serialize(StreamWriter writer)
         {
-            HtmSerializer ser = new HtmSerializer();
+            HtmSerializer ser = new HtmSerializer(new HtmSerializationFormatter());
 
             ser.SerializeBegin(nameof(SparseObjectMatrix<T>), writer);
 
@@ -280,7 +280,7 @@ namespace NeoCortexApi.Entities
         {
             SparseObjectMatrix<T> sparse = new SparseObjectMatrix<T>();
 
-            HtmSerializer ser = new HtmSerializer();
+            HtmSerializer ser = new HtmSerializer(new HtmSerializationFormatter());
 
             while (sr.Peek() >= 0)
             {

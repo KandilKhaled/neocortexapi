@@ -313,7 +313,7 @@ namespace NeoCortexApi.Types
         #region Serialization
         public void Serialize(StreamWriter writer)
         {
-            HtmSerializer ser = new HtmSerializer();
+            HtmSerializer ser = new HtmSerializer(new HtmSerializationFormatter());
 
             ser.SerializeBegin(nameof(LinkedHashSet<T>), writer);
 

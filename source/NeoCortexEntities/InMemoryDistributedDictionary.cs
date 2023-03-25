@@ -429,7 +429,7 @@ namespace NeoCortexApi.Entities
 
         public void Serialize(StreamWriter writer)
         {
-            HtmSerializer ser = new HtmSerializer();
+            HtmSerializer ser = new HtmSerializer(new HtmSerializationFormatter());
 
             ser.SerializeBegin(nameof(InMemoryDistributedDictionary<TKey, TValue>), writer);
 
@@ -476,7 +476,7 @@ namespace NeoCortexApi.Entities
         {
             InMemoryDistributedDictionary<int, int> newDict = new InMemoryDistributedDictionary<int, int>();
 
-            HtmSerializer ser = new HtmSerializer();
+            HtmSerializer ser = new HtmSerializer(new HtmSerializationFormatter());
             bool isDictListRead = false;
             while (sr.Peek() >= 0)
             {

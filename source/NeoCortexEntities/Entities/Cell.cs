@@ -170,7 +170,7 @@ namespace NeoCortexApi.Entities
         /// <param name="writer"></param>
         public void SerializeT(StreamWriter writer)
         {
-            HtmSerializer ser = new HtmSerializer();
+            HtmSerializer ser = new HtmSerializer(new HtmSerializationFormatter());
 
             ser.SerializeBegin(nameof(Cell), writer);
 
@@ -191,7 +191,7 @@ namespace NeoCortexApi.Entities
         {
             Cell cell = new Cell();
 
-            HtmSerializer ser = new HtmSerializer();
+            HtmSerializer ser = new HtmSerializer(new HtmSerializationFormatter());
 
             while (sr.Peek() >= 0)
             {

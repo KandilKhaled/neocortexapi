@@ -17,7 +17,7 @@ namespace UnitTestsProject
         [TestCategory("Serialization")]
         public void SerializeValueTest()
         {
-            HtmSerializer htm = new HtmSerializer();
+            HtmSerializer htm = new HtmSerializer(new HtmSerializationFormatter());
 
             using (StreamWriter sw = new StreamWriter("ser.txt"))
             {
@@ -95,7 +95,7 @@ namespace UnitTestsProject
         [TestCategory("Serialization")]
         public void SerializeArrayDouble()
         {
-            HtmSerializer htm = new HtmSerializer();
+            HtmSerializer htm = new HtmSerializer(new HtmSerializationFormatter());
             Double[] vs = new Double[10];
             Double[] vs1 = new Double[10];
             using (StreamWriter sw = new StreamWriter($"ser_{nameof(SerializeArrayDouble)}.txt"))
@@ -151,7 +151,7 @@ namespace UnitTestsProject
         [TestCategory("Serialization")]
         public void SerializeArrayInt()
         {
-            HtmSerializer htm = new HtmSerializer();
+            HtmSerializer htm = new HtmSerializer(new HtmSerializationFormatter());
             int[] vs = new int[10];
             int[] vs1 = new int[10];
             using (StreamWriter sw = new StreamWriter($"ser_{nameof(SerializeArrayInt)}.txt"))
@@ -208,7 +208,7 @@ namespace UnitTestsProject
         [TestCategory("Serialization")]
         public void SerializeArrayCell()
         {
-            HtmSerializer htm = new HtmSerializer();
+            HtmSerializer htm = new HtmSerializer(new HtmSerializationFormatter());
             Cell[] cells = new Cell[2];
             Cell[] cells1;
             cells[0] = new Cell(12, 14, 16, new CellActivity());
@@ -257,7 +257,7 @@ namespace UnitTestsProject
         [TestCategory("Serialization")]
         public void SerializeDictionaryStringint()
         {
-            HtmSerializer htm = new HtmSerializer();
+            HtmSerializer htm = new HtmSerializer(new HtmSerializationFormatter());
             Dictionary<String, int> keyValues = new Dictionary<string, int>();
             keyValues.Add("Hello", 1);
             keyValues.Add("Welcome", 2);
@@ -312,7 +312,7 @@ namespace UnitTestsProject
         [TestCategory("Serialization")]
         public void SerializeDictionaryIntint()
         {
-            HtmSerializer htm = new HtmSerializer();
+            HtmSerializer htm = new HtmSerializer(new HtmSerializationFormatter());
             Dictionary<int, int> keyValues = new Dictionary<int, int>();
             keyValues.Add(23, 1);
             keyValues.Add(24, 2);
@@ -367,7 +367,7 @@ namespace UnitTestsProject
         [TestCategory("Serialization")]
         public void SerializeDictionarystringintA()
         {
-            HtmSerializer htm = new HtmSerializer();
+            HtmSerializer htm = new HtmSerializer(new HtmSerializationFormatter());
             Dictionary<String, int[]> keyValues = new Dictionary<String, int[]>
             {
                 { "Hello", new int[] { 1, 2, 3 } },
@@ -574,7 +574,7 @@ namespace UnitTestsProject
 
             using (StreamReader sr = new StreamReader($"ser_{nameof(SerializeCellTest)}.txt"))
             {
-                HtmSerializer ser = new HtmSerializer();
+                HtmSerializer ser = new HtmSerializer(new HtmSerializationFormatter());
 
                 Cell cell1 = ser.DeserializeCell(sr);
 
@@ -614,7 +614,7 @@ namespace UnitTestsProject
             using (StreamReader sr = new StreamReader($"ser_{nameof(SerializeDistalDendrite)}.txt"))
             {
 
-                HtmSerializer ser = new HtmSerializer();
+                HtmSerializer ser = new HtmSerializer(new HtmSerializationFormatter());
 
                 DistalDendrite distSegment1 = ser.DeserializeDistalDendrite(sr);
 
@@ -655,7 +655,7 @@ namespace UnitTestsProject
 
             using (StreamReader sr = new StreamReader($"ser_{nameof(SerializeSynapseTest)}.txt"))
             {
-                HtmSerializer ser = new HtmSerializer();
+                HtmSerializer ser = new HtmSerializer(new HtmSerializationFormatter());
 
                 Synapse synapseT1 = ser.DeserializeSynapse(sr);
 

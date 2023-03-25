@@ -27,14 +27,15 @@ namespace UnitTestsProject
         public void TestInit()
         {
             fileName = $"{TestContext.TestName}.txt";
-            HtmSerializer.Reset();
+            HtmSerializer ser = new HtmSerializer(new HtmSerializationFormatter());
+            ser.Reset();
         }
 
         [TestMethod]
         [TestCategory("prod")]
         public void SerializationCellArrayTest()
         {
-            HtmSerializer serializer = new HtmSerializer();
+            HtmSerializer serializer = new HtmSerializer(new HtmSerializationFormatter());
 
             Cell[] cells = new Cell[2];
             cells[0] = new Cell(12, 14, 16, new CellActivity());
@@ -132,9 +133,10 @@ namespace UnitTestsProject
             //        Assert.IsTrue(dd[i].Equals(d[i]));
             //    }
             //}
-            HtmSerializer.Save(fileName, dd);
+            HtmSerializer ser = new HtmSerializer(new HtmSerializationFormatter());
+            ser.Save(fileName, dd);
 
-            var d = HtmSerializer.Load<DistalDendrite[]>(fileName);
+            var d = ser.Load<DistalDendrite[]>(fileName);
             for (int i = 0; i < dd.Length; i++)
             {
                 Assert.IsTrue(dd[i].Equals(d[i]));
@@ -145,7 +147,7 @@ namespace UnitTestsProject
         [TestMethod]
         public void Test3_1()
         {
-            HtmSerializer serializer = new HtmSerializer();
+            HtmSerializer serializer = new HtmSerializer(new HtmSerializationFormatter());
 
             DistalDendrite[] dd = new DistalDendrite[2];
             dd[0] = new DistalDendrite(null, 1, 2, 2, 1.0, 100);
@@ -154,7 +156,7 @@ namespace UnitTestsProject
 
             using (StreamWriter sw = new StreamWriter(fileName))
             {
-                HtmSerializer.Serialize1(dd, null, sw, new Dictionary<Type, Action<StreamWriter, string, object>>
+                serializer.Serialize1(dd, null, sw, new Dictionary<Type, Action<StreamWriter, string, object>>
                 {
                     {
                         typeof(DistalDendrite), (sw, name, obj) => DistalDendrite.Serialize1(sw, obj, null)
@@ -177,7 +179,7 @@ namespace UnitTestsProject
         //[TestCategory("prod")]
         public void SerializationAbitraryTypeTest()
         {
-            HtmSerializer serializer = new HtmSerializer();
+            HtmSerializer serializer = new HtmSerializer(new HtmSerializationFormatter());
 
             Dictionary<string, Bla> dict = new Dictionary<string, Bla>
             {

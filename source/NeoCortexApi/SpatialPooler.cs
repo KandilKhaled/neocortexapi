@@ -1347,7 +1347,7 @@ namespace NeoCortexApi
 
         public void Serialize(StreamWriter writer)
         {
-            HtmSerializer ser = new HtmSerializer();
+            HtmSerializer ser = new HtmSerializer(new HtmSerializationFormatter());
 
             ser.SerializeBegin(nameof(SpatialPooler), writer);
 
@@ -1370,7 +1370,7 @@ namespace NeoCortexApi
         {
             SpatialPooler sp = new SpatialPooler();
 
-            HtmSerializer ser = new HtmSerializer();
+            HtmSerializer ser = new HtmSerializer(new HtmSerializationFormatter());
 
             while (sr.Peek() >= 0)
             {

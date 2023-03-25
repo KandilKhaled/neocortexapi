@@ -16,12 +16,69 @@ namespace NeoCortexApi.Entities
     /// <summary>
     /// Serialization class used for serialization and deserialization of primitive types.
     /// </summary>
+    /// 
+    public interface IHtmSerializationFormatter
+    {
+
+        // Read functions 
+        String ReadBegin(string typeName);
+        String ReadEnd(String typeName);
+
+        // write functions
+        void SerializeEnd(String typeName, StreamWriter sw);
+        void serializeBegin(String typeName, StreamWriter sw);
+        void SerializeValue(int val, StreamWriter sw);
+
+    }
+
+    public class HtmSerializationFormatter : IHtmSerializationFormatter
+    {
+        public const char TypeDelimiter = ' ';
+        public const char ParameterDelimiter = '|';
+        public string ValueDelimiter = " ";
+
+        public string ReadBegin(string typeName)
+        {
+            string val = ($"{TypeDelimiter} BEGIN '{typeName}' {TypeDelimiter}");
+            return val;
+        }
+
+        public string ReadEnd(string typeName)
+        {
+            string val = ($"{TypeDelimiter} END '{typeName}' {TypeDelimiter}");
+            return val;
+        }
+
+        public void serializeBegin(string typeName, StreamWriter sw)
+        {
+            // -- BEGIN ---
+            // typeName
+            sw.WriteLine();
+            sw.Write($"{TypeDelimiter} BEGIN '{typeName}' {TypeDelimiter}");
+            sw.WriteLine();
+        }
+
+        public void SerializeEnd(string typeName, StreamWriter sw)
+        {
+            sw.WriteLine();
+            sw.Write($"{TypeDelimiter} END '{typeName}' {TypeDelimiter}");
+            sw.WriteLine();
+        }
+
+        public void SerializeValue(int val, StreamWriter sw)
+        {
+            sw.Write(ValueDelimiter);
+            sw.Write(val.ToString());
+            sw.Write(ValueDelimiter);
+            sw.Write(ParameterDelimiter);
+        }
+    }
     public class HtmSerializer
     {
         private static int Id = 0;
         private static Dictionary<object, int> SerializedHashCodes = new Dictionary<object, int>();
         private static Dictionary<int, object> MapObjectHashCode = new Dictionary<int, object>();
-
+        private IHtmSerializationFormatter formatter;
         //SP
         public string tab = "\t";
 
@@ -42,6 +99,11 @@ namespace NeoCortexApi.Entities
         private const string cIdString = "Id";
         private static List<int> isCellsSerialized = new List<int>();
 
+        public HtmSerializer(IHtmSerializationFormatter formatter)
+        {
+            this.formatter = formatter;
+        }
+
         /// <summary>
         /// Serializes the begin marker of the type.
         /// </summary>
@@ -49,28 +111,21 @@ namespace NeoCortexApi.Entities
         /// <param name="sw"></param>
         public void SerializeBegin(String typeName, StreamWriter sw)
         {
-            //
-            // -- BEGIN ---
-            // typeName
-            sw.WriteLine();
-            sw.Write($"{TypeDelimiter} BEGIN '{typeName}' {TypeDelimiter}");
-            sw.WriteLine();
-
+            formatter.serializeBegin(typeName, sw);
         }
         public String ReadBegin(string typeName)
         {
-            string val = ($"{TypeDelimiter} BEGIN '{typeName}' {TypeDelimiter}");
-            return val;
+           return formatter.ReadBegin(typeName);
         }
 
-        public static void Reset()
+        public void Reset()
         {
             SerializedHashCodes.Clear();
             MapObjectHashCode.Clear();
             Id = 0;
         }
 
-        public static void Save(string fileName, object obj)
+        public void Save(string fileName, object obj)
         {
             Reset();
             using (var writer = new StreamWriter(fileName))
@@ -79,7 +134,7 @@ namespace NeoCortexApi.Entities
             }
         }
 
-        public static T Load<T>(string fileName)
+        public T Load<T>(string fileName)
         {
             Reset();
             using (var reader = new StreamReader(fileName))
@@ -88,7 +143,7 @@ namespace NeoCortexApi.Entities
             }
         }
 
-        public static bool TryLoad<T>(string fileName, out T obj)
+        public bool TryLoad<T>(string fileName, out T obj)
         {
             if (File.Exists(fileName) == false)
             {
@@ -107,14 +162,11 @@ namespace NeoCortexApi.Entities
         /// <param name="sw"></param>
         public void SerializeEnd(String typeName, StreamWriter sw)
         {
-            sw.WriteLine();
-            sw.Write($"{TypeDelimiter} END '{typeName}' {TypeDelimiter}");
-            sw.WriteLine();
+           formatter.SerializeEnd(typeName, sw);
         }
         public String ReadEnd(String typeName)
         {
-            string val = ($"{TypeDelimiter} END '{typeName}' {TypeDelimiter}");
-            return val;
+            return formatter.ReadEnd(typeName);
         }
 
         /// <summary>
@@ -124,10 +176,7 @@ namespace NeoCortexApi.Entities
         /// <param name="sw"></param> 
         public void SerializeValue(int val, StreamWriter sw)
         {
-            sw.Write(ValueDelimiter);
-            sw.Write(val.ToString());
-            sw.Write(ValueDelimiter);
-            sw.Write(ParameterDelimiter);
+            formatter.SerializeValue(val, sw);
         }
 
         #region NewImplementation
@@ -154,7 +203,7 @@ namespace NeoCortexApi.Entities
             }
         }
 
-        public static void Serialize1(object obj, string name,
+        public void Serialize1(object obj, string name,
             StreamWriter sw, Dictionary<Type, Action<StreamWriter, string, object>> customSerializers = null)
         {
             if (obj == null)
@@ -672,6 +721,7 @@ namespace NeoCortexApi.Entities
         public static T Deserialize<T>(StreamReader sr, string propName = null)
         {
             T obj = default;
+
             var type = typeof(T);
 
             if (type.GetInterfaces().FirstOrDefault(i => i.FullName.Equals(typeof(ISerializable).FullName)) != null)
@@ -809,6 +859,7 @@ namespace NeoCortexApi.Entities
 
 
             Type elementType;
+
             string convertMethodName;
 
             if (type.IsGenericType)
@@ -1771,6 +1822,12 @@ namespace NeoCortexApi.Entities
         /// </summary>
         /// <param name="keyValues"></param>
         /// <param name="sw"></param>
+        /// 
+
+        // ["test":2, "test2": 3]
+        // 
+        //strt: test :2 , / test2 :3 , 
+        // 
         public void SerializeValue(Dictionary<String, int[]> keyValues, StreamWriter sw)
         {
             sw.Write(ValueDelimiter);

@@ -608,7 +608,7 @@ namespace NeoCortexApi.Entities
         #region Serialization
         public void Serialize(StreamWriter writer)
         {
-            HtmSerializer ser = new HtmSerializer();
+            HtmSerializer ser = new HtmSerializer(new HtmSerializationFormatter());
 
             ser.SerializeBegin(nameof(HtmConfig), writer);
 
@@ -703,7 +703,7 @@ namespace NeoCortexApi.Entities
         public static HtmConfig Deserialize(StreamReader sr)
         {
             HtmConfig htmConfig = new HtmConfig();
-            HtmSerializer ser = new HtmSerializer();
+            HtmSerializer ser = new HtmSerializer(new HtmSerializationFormatter());
 
             while (sr.Peek() >= 0)
             {

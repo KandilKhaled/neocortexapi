@@ -439,7 +439,7 @@ namespace NeoCortexApi.Entities
         }
         public void Serialize(StreamWriter writer)
         {
-            HtmSerializer ser = new HtmSerializer();
+            HtmSerializer ser = new HtmSerializer(new HtmSerializationFormatter());
 
             ser.SerializeBegin(nameof(Column), writer);
 
@@ -468,7 +468,7 @@ namespace NeoCortexApi.Entities
         {
             Column column = new Column();
 
-            HtmSerializer ser = new HtmSerializer();
+            HtmSerializer ser = new HtmSerializer(new HtmSerializationFormatter());
 
 
             while (!sr.EndOfStream)

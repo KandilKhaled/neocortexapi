@@ -174,7 +174,7 @@ namespace UnitTestsProject
 
 
             // if stable 
-            //  HtmSerializer ser = new HtmSerializer();
+            //  HtmSerializer ser = new HtmSerializer(new HtmSerializationFormatter());
             // ser.Serialize(sp, "sp.json");
 
             //  var sp2 = HtmSerializer.Load("sp.json");

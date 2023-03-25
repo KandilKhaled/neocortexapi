@@ -468,7 +468,7 @@ namespace NeoCortexApi
         #region Serialization
         public void Serialize(StreamWriter writer)
         {
-            HtmSerializer ser = new HtmSerializer();
+            HtmSerializer ser = new HtmSerializer(new HtmSerializationFormatter());
 
             ser.SerializeBegin(nameof(HomeostaticPlasticityController), writer);
 
@@ -495,7 +495,7 @@ namespace NeoCortexApi
         {
             HomeostaticPlasticityController ctrl = new HomeostaticPlasticityController();
 
-            HtmSerializer ser = new HtmSerializer();
+            HtmSerializer ser = new HtmSerializer(new HtmSerializationFormatter());
 
             while (sr.Peek() >= 0)
             {

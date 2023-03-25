@@ -1393,7 +1393,7 @@ namespace NeoCortexApi.Entities
         #region Serialization
         public void Serialize(StreamWriter writer)
         {
-            HtmSerializer ser = new HtmSerializer();
+            HtmSerializer ser = new HtmSerializer(new HtmSerializationFormatter());
 
             ser.SerializeBegin(nameof(Connections), writer);
 
@@ -1457,7 +1457,7 @@ namespace NeoCortexApi.Entities
         public static Connections Deserialize(StreamReader sr)
         {
             Connections mem = new Connections();
-            HtmSerializer ser = new HtmSerializer();
+            HtmSerializer ser = new HtmSerializer(new HtmSerializationFormatter());
 
             while (sr.Peek() >= 0)
             {
