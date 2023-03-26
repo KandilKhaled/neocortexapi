@@ -24,14 +24,22 @@ namespace NeoCortexApi.Entities
 
         // Read functions 
         String ReadBegin(string typeName);
+        public string ReadGenericBegin(string propName, Type type = null);
         String ReadEnd(String typeName);
+        public string ReadGenericEnd(string propName, Type type = null);
+        
 
         // Write functions
         void SerializeEnd(String typeName, StreamWriter sw);
+        public void SerializeEnd(string propName, StreamWriter sw, Type type);
+        
         void serializeBegin(String typeName, StreamWriter sw);
+        public void SerializeBegin(string propName, StreamWriter sw, Type type);
 
         public void SerializeValue<T>(T val, StreamWriter sw);
         public void SerializeValue<TKey, TValue>(Dictionary<TKey, TValue> dictionary, StreamWriter sw);
+
+        //public T Deserialize<T>(StreamReader sr, string propName = null);
     }
 
     public class HtmSerializationFormatter : IHtmSerializationFormatter
@@ -48,10 +56,40 @@ namespace NeoCortexApi.Entities
             return val;
         }
 
+        public string ReadGenericBegin(string propName, Type type = null)
+        {
+            var listString = new List<string> { "Begin" };
+            if (string.IsNullOrEmpty(propName) == false)
+            {
+                listString.Add(propName);
+            }
+            if (type != null)
+            {
+                listString.Add(type.FullName.Replace(" ", ""));
+            }
+
+            return String.Join(' ', listString);
+        }
+
         public string ReadEnd(string typeName)
         {
             string val = ($"{TypeDelimiter} END '{typeName}' {TypeDelimiter}");
             return val;
+        }
+
+        public string ReadGenericEnd(string propName, Type type = null)
+        {
+            var listString = new List<string> { "End" };
+            if (string.IsNullOrEmpty(propName) == false)
+            {
+                listString.Add(propName);
+            }
+            if (type != null)
+            {
+                listString.Add(type.FullName.Replace(" ", ""));
+            }
+
+            return String.Join(' ', listString);
         }
 
         public void serializeBegin(string typeName, StreamWriter sw)
@@ -62,7 +100,21 @@ namespace NeoCortexApi.Entities
             sw.Write($"{TypeDelimiter} BEGIN '{typeName}' {TypeDelimiter}");
             sw.WriteLine();
         }
+        public void SerializeBegin(string propName, StreamWriter sw, Type type)
+        {
+            var listString = new List<string> { "Begin" };
 
+            if (string.IsNullOrEmpty(propName) == false)
+            {
+                listString.Add(propName);
+            }
+            if (type != null)
+            {
+                listString.Add(type.FullName.Replace(" ", ""));
+            }
+
+            sw.WriteLine(String.Join(' ', listString));
+        }
         public void SerializeEnd(string typeName, StreamWriter sw)
         {
             sw.WriteLine();
@@ -70,6 +122,22 @@ namespace NeoCortexApi.Entities
             sw.WriteLine();
         }
 
+        public void SerializeEnd(string propName, StreamWriter sw, Type type)
+        {
+            sw.WriteLine();
+            var listString = new List<string> { "End" };
+
+            if (string.IsNullOrEmpty(propName) == false)
+            {
+                listString.Add(propName);
+            }
+            if (type != null)
+            {
+                listString.Add(type.FullName.Replace(" ", ""));
+            }
+
+            sw.WriteLine(String.Join(' ', listString));
+        }
         public void SerializeValue<T>(T val, StreamWriter sw)
         {
             // Check if the value is an array of cells
@@ -237,131 +305,6 @@ namespace NeoCortexApi.Entities
             sw.Write(ParameterDelimiter);
         }
 
-        /*
-         * 
-         * THIS ARE THE SERIALIZEVALUE THAT ARE STATIC METHODS THE ONES IMPLEMENTED BEFORE ARE NOT
-         public static void SerializeValue(string propertyName, object val, StreamWriter sw)
-        {
-
-            var content = val.ToString();
-
-            if (val.GetType() == typeof(string))
-            {
-                content = content.Replace("\n", "\\n");
-            }
-
-            sw.Write(content);
-        }
-
-        private static void SerializeKeyValuePair(string name, object obj, StreamWriter sw)
-        {
-            var type = obj.GetType();
-            var keyType = type.GetGenericArguments()[0];
-            var valueType = type.GetGenericArguments()[1];
-
-            var keyField = GetFields(type).FirstOrDefault(f => f.Name == "key");
-            if (keyField != null)
-            {
-                var key = keyField.GetValue(obj);
-                Serialize(key, "Key", sw, keyType);
-            }
-            var valueField = GetFields(type).FirstOrDefault(f => f.Name == "value");
-            if (valueField != null)
-            {
-                var value = valueField.GetValue(obj);
-                Serialize(value, "Value", sw, valueType);
-            }
-        }
-
-        private static void SerializeMultidimensionalArray(object obj, string name, StreamWriter sw)
-        {
-            var array = obj as Array;
-
-            //if (array.Rank > 2)
-            //    throw new NotSupportedException("Serialize does not support array with rank greater than 2!");
-
-            SerializeBegin(nameof(Array.Rank), sw, null);
-            SerializeValue(nameof(Array.Rank), array.Rank, sw);
-            SerializeEnd(nameof(Array.Rank), sw, null);
-
-            var dimensions = new List<int>();
-
-            for (int i = 0; i < array.Rank; i++)
-            {
-                SerializeBegin($"Dim{i}", sw, null);
-                var dimensionLength = array.GetLength(i);
-                dimensions.Add(dimensionLength);
-                SerializeValue("", dimensionLength, sw);
-                SerializeEnd($"Dim{i}", sw, null);
-            }
-
-            var elementType = array.GetType().GetElementType();
-            var defaultValue = GetDefault(elementType);
-
-            var totalElement = 1;
-            foreach (var dim in dimensions)
-            {
-                totalElement *= dim;
-            }
-            for (int i = 0; i < totalElement; i++)
-            {
-                var indexes = GetIndexesFromFlatIndex(i, dimensions);
-                var value = array.GetValue(indexes);
-                if (value.Equals(defaultValue) == false)
-                {
-                    Serialize(value, "ActiveElement", sw, elementType);
-                    var indexesString = string.Join(',', indexes);
-                    Serialize(indexesString, "ActiveIndex", sw);
-                }
-            }
-
-            //for (int i = 0; i < array.GetLength(0); i++)
-            //{
-            //    for (int j = 0; j < array.GetLength(1); j++)
-            //    {
-            //        var value = array.GetValue(i, j);
-            //        if (value.Equals(defaultValue) == false)
-            //        {
-            //            var index = new int[] { i, j };
-            //            Serialize(value, "ActiveElement", sw, elementType);
-            //            Serialize(index, "ActiveIndex", sw, elementType);
-            //        }
-            //    }
-            //}
-        }
-
-        private static void SerializeDistalDendrite(object obj, string name, StreamWriter sw)
-        {
-            var ignoreMembers = new List<string> { nameof(DistalDendrite.ParentCell) };
-            SerializeObject(obj, name, sw, ignoreMembers);
-
-            var cell = (obj as DistalDendrite).ParentCell;
-
-            if (isCellsSerialized.Contains(cell.Index) == false)
-            {
-                isCellsSerialized.Add(cell.Index);
-                Serialize((obj as DistalDendrite).ParentCell, nameof(DistalDendrite.ParentCell), sw, ignoreMembers: ignoreMembers);
-            }
-        }
-
-        private static void SerializeHtmConfig(object obj, string name, StreamWriter sw)
-        {
-            var excludeEntries = new List<string> { nameof(HtmConfig.Random) };
-            SerializeObject(obj, name, sw, excludeEntries);
-
-            var htmConfig = obj as HtmConfig;
-            Serialize(htmConfig.RandomGenSeed, nameof(HtmConfig.Random), sw);
-
-        }
-
-        private static void SerializeHomeostaticPlasticityController(object obj, string name, StreamWriter sw)
-        {
-            var excludeEntries = new List<string> { "m_OnStabilityStatusChanged" };
-            SerializeObject(obj, name, sw, excludeEntries);
-        }
-         */
-
-
         public void SerializeValue<TKey, TValue>(Dictionary<TKey, TValue> dictionary, StreamWriter sw)
         {
             sw.Write(ValueDelimiter);
@@ -424,6 +367,332 @@ namespace NeoCortexApi.Entities
             sw.Write(ParameterDelimiter);
         }
 
+        /*
+         * public T Deserialize<T>(StreamReader sr, string propName = null)
+        {
+            T obj = default;
+
+            var type = typeof(T);
+
+            if (type.GetInterfaces().FirstOrDefault(i => i.FullName.Equals(typeof(ISerializable).FullName)) != null)
+            {
+                var methods = type.GetMethods().ToList();
+                if (type.BaseType != null)
+                {
+                    methods.AddRange(type.BaseType.GetMethods());
+                }
+
+                var deserializeMethod = methods.FirstOrDefault(m => m.Name == nameof(ISerializable.Deserialize) && m.IsStatic && m.GetParameters().Length == 2);
+                if (deserializeMethod == null)
+                    throw new NotImplementedException($"Deserialize method is not implemented in the target type {type.Name}");
+
+                obj = (T)deserializeMethod.MakeGenericMethod(type).Invoke(null, new object[] { sr, propName });
+                return obj;
+            }
+
+            if (IsValueType(type))
+            {
+                // deserialize value
+                obj = DeserializeValue<T>(sr, propName);
+            }
+            else if (IsDictionary(type))
+            {
+                // deserialize dictionary
+                obj = DeserializeDictionary<T>(sr, propName);
+            }
+            else if (IsList(type))
+            {
+                // deserialize list
+                obj = DeserializeIEnumerable<T>(sr, propName);
+            }
+            else
+            {
+                if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(KeyValuePair<,>))
+                {
+                    obj = DeserializeKeyValuePair<T>(sr, propName);
+                }
+                else
+                    // deserialize object
+                    obj = DeserializeObject<T>(sr, propName);
+            }
+
+            return obj;
+        }
+
+        private T DeserializeKeyValuePair<T>(StreamReader sr, string propName)
+        {
+            T keyValuePair = default;
+            var type = typeof(T);
+            object key = null;
+            object value = null;
+
+            var keyType = type.GetGenericArguments()[0];
+            var valueType = type.GetGenericArguments()[1];
+            var beginKey = typeof(HtmSerializer).GetMethod(nameof(HtmSerializer.ReadGenericBegin), BindingFlags.NonPublic | BindingFlags.Static);
+            var beginValue = typeof(HtmSerializer).GetMethod(nameof(HtmSerializer.ReadGenericBegin), BindingFlags.NonPublic | BindingFlags.Static);
+
+            var deserializeMethod = typeof(HtmSerializer).GetMethod(nameof(HtmSerializer.Deserialize));
+
+
+            //var content = sr.ReadLine().Trim();
+            //if (content.StartsWith((string)beginKey.Invoke(null, new object[] { "Key", default(Type) })))
+            //{
+            //    var specifiedType = GetSpecifiedTypeOrDefault(content, keyType);
+            //    key = deserializeMethod.MakeGenericMethod(specifiedType).Invoke(null, new object[] { sr, "Key" });
+            //}
+            //content = sr.ReadLine().Trim();
+            //if (content.StartsWith((string)beginValue.Invoke(null, new object[] { "Value", default(Type) })))
+            //{
+            //    var specifiedType = GetSpecifiedTypeOrDefault(content, valueType);
+            //    value = deserializeMethod.MakeGenericMethod(specifiedType).Invoke(null, new object[] { sr, "Value" });
+            //}
+            //var keyValuePair = (T)Activator.CreateInstance(type, new[] { key, value });
+            //var key = deserializeMethod.MakeGenericMethod(keyType).Invoke(null, new object[] { sr, "key" });
+            //content = sr.ReadLine();
+            //var value = deserializeMethod.MakeGenericMethod(valueType).Invoke(null, new object[] { sr, "value" });
+
+            while (sr.Peek() > 0)
+            {
+                var content = sr.ReadLine().Trim();
+
+                if (content == ReadGenericEnd(propName))
+                {
+                    break;
+                }
+                if (content.StartsWith((string)beginKey.Invoke(null, new object[] { "Key", default(Type) })))
+                {
+                    var specifiedType = GetSpecifiedTypeOrDefault(content, keyType);
+                    key = deserializeMethod.MakeGenericMethod(specifiedType).Invoke(null, new object[] { sr, "Key" });
+                }
+                else if (content.StartsWith((string)beginValue.Invoke(null, new object[] { "Value", default(Type) })))
+                {
+                    var specifiedType = GetSpecifiedTypeOrDefault(content, valueType);
+                    value = deserializeMethod.MakeGenericMethod(specifiedType).Invoke(null, new object[] { sr, "Value" });
+                }
+
+                if (key != null && value != null)
+                {
+                    keyValuePair = (T)Activator.CreateInstance(type, new[] { key, value });
+                }
+                if (string.IsNullOrEmpty(content) || content == ReadGenericBegin(propName))
+                {
+                    continue;
+                }
+            }
+
+            return keyValuePair;
+
+        }
+
+        private T DeserializeDictionary<T>(StreamReader sr, string propName)
+        {
+            T obj = (T)Activator.CreateInstance(typeof(T));
+            var type = typeof(T);
+            object key = null;
+            object value = null;
+            var keyType = type.GetGenericArguments()[0];
+            var valueType = type.GetGenericArguments()[1];
+
+            var beginKey = typeof(HtmSerializer).GetMethod(nameof(HtmSerializer.ReadGenericBegin), BindingFlags.NonPublic | BindingFlags.Static);
+            var beginValue = typeof(HtmSerializer).GetMethod(nameof(HtmSerializer.ReadGenericBegin), BindingFlags.NonPublic | BindingFlags.Static);
+            var beginKeyValuePair = typeof(HtmSerializer).GetMethod(nameof(HtmSerializer.ReadGenericBegin), BindingFlags.NonPublic | BindingFlags.Static);
+            var endKeyValuePair = typeof(HtmSerializer).GetMethod(nameof(HtmSerializer.ReadGenericEnd), BindingFlags.NonPublic | BindingFlags.Static);
+
+            var deserializeMethod = typeof(HtmSerializer).GetMethod(nameof(HtmSerializer.Deserialize));
+            //var deserializeValueMethod = typeof(HtmSerializer2).GetMethod(nameof(HtmSerializer2.Deserialize)).MakeGenericMethod(typeValue);
+            while (sr.Peek() > 0)
+            {
+                var content = sr.ReadLine().Trim();
+
+                if (content == ReadGenericEnd(propName))
+                {
+                    break;
+                }
+                if (string.IsNullOrEmpty(content) || content == (string)beginKeyValuePair.Invoke(null, new object[] { "DictionaryItem", default(Type) }))
+                {
+                    continue;
+                }
+                if (content == (string)endKeyValuePair.Invoke(null, new object[] { "DictionaryItem", default(Type) }))
+                {
+                    key = null;
+                    value = null;
+                    continue;
+                }
+                if (content.StartsWith((string)beginKey.Invoke(null, new object[] { "Key", default(Type) })))
+                {
+                    var specifiedType = GetSpecifiedTypeOrDefault(content, keyType);
+                    key = deserializeMethod.MakeGenericMethod(specifiedType).Invoke(null, new object[] { sr, "Key" });
+                }
+                else if (content.StartsWith((string)beginValue.Invoke(null, new object[] { "Value", default(Type) })))
+                {
+                    var specifiedType = GetSpecifiedTypeOrDefault(content, valueType);
+                    value = deserializeMethod.MakeGenericMethod(specifiedType).Invoke(null, new object[] { sr, "Value" });
+                }
+
+                if (key != null && value != null)
+                {
+                    if (type.GetGenericTypeDefinition().IsAssignableFrom(typeof(Dictionary<,>)))
+                    {
+                        var tryAddMethod = typeof(Dictionary<,>).MakeGenericType(keyType, valueType).GetMethod("TryAdd");
+                        tryAddMethod.Invoke(obj, new object[] { key, value });
+                    }
+                    else
+                    {
+                        var addMethod = typeof(IDictionary<,>).MakeGenericType(keyType, valueType).GetMethod("Add");
+                        addMethod.Invoke(obj, new object[] { key, value });
+                    }
+
+                    //Debug.WriteLine($"Try add {key}, {value} to {propName ?? type.Name}");
+                }
+            }
+
+            return obj;
+        }
+
+        private object DeserializeCell(StreamReader sr, string propName)
+        {
+            var cell = DeserializeObject<Cell>(sr, propName);
+
+            foreach (var distalDentrite in cell.DistalDendrites)
+            {
+                distalDentrite.ParentCell = cell;
+            }
+            return cell;
+        }
+
+        private T DeserializeIEnumerable<T>(StreamReader sr, string propName)
+        {
+            var type = typeof(T);
+            T obj = default;
+            if (type.IsArray && type.GetArrayRank() > 1)
+            {
+                var array = DeserializeMultidimensionalArray(sr, propName, type);
+                return (T)(object)array;
+            }
+
+            List<object> enumerable = new List<object>();
+
+
+            Type elementType;
+
+            string convertMethodName;
+
+            if (type.IsGenericType)
+            {
+                elementType = type.GetGenericArguments()[0];
+                if (IsSet(type))
+                {
+                    convertMethodName = nameof(System.Linq.Enumerable.ToHashSet);
+                }
+                else
+                {
+                    convertMethodName = nameof(System.Linq.Enumerable.ToList);
+                }
+            }
+            else
+            {
+                elementType = type.GetElementType();
+                convertMethodName = nameof(System.Linq.Enumerable.ToArray);
+            }
+
+            Type specifiedType = elementType;
+            while (sr.Peek() > 0)
+            {
+                var content = sr.ReadLine().Trim();
+                if (content == ReadGenericEnd(propName) || content == ReadGenericEnd(propName, type))
+                {
+                    break;
+                }
+                if (string.IsNullOrEmpty(content) || content == ReadGenericBegin(propName))
+                {
+                    continue;
+                }
+
+                if (elementType == typeof(int))
+                {
+                    var arrayStringContent = Deserialize<string>(sr, "ArrayContent");
+                    if (string.IsNullOrEmpty(arrayStringContent) == false)
+                        enumerable = arrayStringContent.Split(',').Select(i => (object)int.Parse(i)).ToList();
+                }
+                else if (content.StartsWith(ReadGenericBegin("CollectionItem")))
+                {
+                    specifiedType = GetSpecifiedTypeOrDefault(content, elementType);
+                    var deserializeMethod = typeof(HtmSerializer).GetMethod(nameof(HtmSerializer.Deserialize)).MakeGenericMethod(specifiedType);
+
+                    var item = deserializeMethod.Invoke(null, new object[] { sr, "CollectionItem" });
+
+                    enumerable.Add(item);
+                    //Debug.WriteLine($"Add {item.ToString()} to {propName ?? type.Name}");
+                }
+            }
+            object enumerableCast = CastListToType(enumerable, elementType);
+
+            var convertMethod = typeof(Enumerable).GetMethods().FirstOrDefault(m => m.Name == convertMethodName)?.MakeGenericMethod(elementType);
+            obj = (T)convertMethod?.Invoke(null, new object[] { enumerableCast });
+
+            return obj;
+        }
+
+        private Array DeserializeMultidimensionalArray(StreamReader sr, string propName, Type arrayType)
+        {
+            Array array = default;
+            var elementType = arrayType.GetElementType();
+
+            var dimList = new List<int>();
+            if (sr.Peek() > 0)
+            {
+                sr.ReadLine();
+                var rank = Deserialize<int>(sr, nameof(Array.Rank));
+                for (int i = 0; i < rank; i++)
+                {
+                    sr.ReadLine();
+                    var dim = Deserialize<int>(sr, $"Dim{i}");
+                    dimList.Add(dim);
+                }
+
+                array = Array.CreateInstance(elementType, dimList.ToArray());
+            }
+
+            var readBeginMethod = typeof(HtmSerializer).GetMethod(nameof(HtmSerializer.ReadGenericBegin), BindingFlags.NonPublic | BindingFlags.Static);
+            object activeElement = default;
+            int[] activeIndex = default;
+            while (sr.Peek() > 0)
+            {
+                var content = sr.ReadLine();
+                var deserializeMethod = typeof(HtmSerializer).GetMethod(nameof(HtmSerializer.Deserialize));
+
+                if (content == ReadGenericEnd(propName) || content == ReadGenericEnd(propName, arrayType))
+                {
+                    break;
+                }
+                if (string.IsNullOrEmpty(content) || content == ReadGenericBegin(propName) || content == ReadGenericBegin(propName, arrayType))
+                {
+                    continue;
+                }
+                if (content.StartsWith((string)readBeginMethod.Invoke(null, new object[] { "ActiveElement", default(Type) })))
+                {
+                    var specifiedType = GetSpecifiedTypeOrDefault(content, elementType);
+                    activeElement = deserializeMethod.MakeGenericMethod(specifiedType).Invoke(null, new object[] { sr, "ActiveElement" });
+                }
+                else if (content.StartsWith((string)readBeginMethod.Invoke(null, new object[] { "ActiveIndex", default(Type) })))
+                {
+                    var activeIndexString = Deserialize<string>(sr, "ActiveIndex");
+                    activeIndex = activeIndexString.Split(',').Select(i => int.Parse(i)).ToArray();
+                }
+                //var activeElement = deserializeMethod.Invoke(null, new object[] { sr, "ActiveElement" });
+                //var activeIndexString = Deserialize<string>(sr, "ActiveIndex");
+                //var activeIndex = activeIndexString.Split(',').Select(i => int.Parse(i)).ToArray();
+
+                if (activeElement != default && activeIndex != default)
+                {
+                    array.SetValue(activeElement, activeIndex);
+                    activeElement = default;
+                    activeIndex = default;
+                }
+            }
+             return array;
+        }
+         */
 
     }
     public class HtmSerializer
@@ -466,10 +735,26 @@ namespace NeoCortexApi.Entities
         {
             formatter.serializeBegin(typeName, sw);
         }
+
+        public void SerializeBegin(string propName, StreamWriter sw, Type type)
+        {
+            formatter.SerializeBegin(propName, sw, type);
+        }
+
+
         public String ReadBegin(string typeName)
         {
            return formatter.ReadBegin(typeName);
         }
+        public string ReadGenericBegin(string propName, Type type = null)
+        {
+            return formatter.ReadGenericBegin(propName,type);
+        }
+
+        
+
+
+
 
         public void Reset()
         {
@@ -517,11 +802,19 @@ namespace NeoCortexApi.Entities
         {
            formatter.SerializeEnd(typeName, sw);
         }
+        public void SerializeEnd(string propName, StreamWriter sw, Type type)
+        {
+           formatter.SerializeEnd(propName, sw, type); 
+        }
+
         public String ReadEnd(String typeName)
         {
             return formatter.ReadEnd(typeName);
         }
-
+        public string ReadGenericEnd(string propName, Type type = null)
+        {
+            return formatter.ReadGenericEnd(propName, type);
+        }
 
 
         /// <summary>
@@ -548,12 +841,24 @@ namespace NeoCortexApi.Entities
         }
 
 
-        
-       
-      
-        
 
-        
+
+
+        /// <summary>
+        /// Serialize the dictionary without especifying the type of Key and Value
+        /// </summary>
+        /// <param name="propName"
+        /// <param name="sr"
+
+        /*
+         * public T Deserialize<T>(StreamReader sr, string propName = null)
+        {
+            formatter.Deserialize<T>(sr, propName);
+           
+        }
+
+         */
+
 
         #region NewImplementation
         #region Serialization
@@ -662,70 +967,6 @@ namespace NeoCortexApi.Entities
                 }
             }
         }
-
-        private void SerializeBegin(string propName, StreamWriter sw, Type type)
-        {
-            var listString = new List<string> { "Begin" };
-
-            if (string.IsNullOrEmpty(propName) == false)
-            {
-                listString.Add(propName);
-            }
-            if (type != null)
-            {
-                listString.Add(type.FullName.Replace(" ", ""));
-            }
-
-            sw.WriteLine(String.Join(' ', listString));
-        }
-
-        private void SerializeEnd(string propName, StreamWriter sw, Type type)
-        {
-            sw.WriteLine();
-            var listString = new List<string> { "End" };
-
-            if (string.IsNullOrEmpty(propName) == false)
-            {
-                listString.Add(propName);
-            }
-            if (type != null)
-            {
-                listString.Add(type.FullName.Replace(" ", ""));
-            }
-
-            sw.WriteLine(String.Join(' ', listString));
-        }
-
-        private string ReadGenericBegin(string propName, Type type = null)
-        {
-            var listString = new List<string> { "Begin" };
-            if (string.IsNullOrEmpty(propName) == false)
-            {
-                listString.Add(propName);
-            }
-            if (type != null)
-            {
-                listString.Add(type.FullName.Replace(" ", ""));
-            }
-
-            return String.Join(' ', listString);
-        }
-
-        private string ReadGenericEnd(string propName, Type type = null)
-        {
-            var listString = new List<string> { "End" };
-            if (string.IsNullOrEmpty(propName) == false)
-            {
-                listString.Add(propName);
-            }
-            if (type != null)
-            {
-                listString.Add(type.FullName.Replace(" ", ""));
-            }
-
-            return String.Join(' ', listString);
-        }
-
 
         public void SerializeValue(string propertyName, object val, StreamWriter sw)
         {
@@ -1805,21 +2046,7 @@ namespace NeoCortexApi.Entities
             }
             return null;
         }
-        /*
-        /// <summary>
-        /// Serialize the property of type Double.
-        /// </summary>
-        /// <param name="val"></param>
-        /// <param name="sw"></param>
-        public void SerializeValue(double val, StreamWriter sw)
-        {
-            sw.Write(ValueDelimiter);
-            sw.Write(string.Format(CultureInfo.InvariantCulture, "{0:0.000}", val));
-            sw.Write(ValueDelimiter);
-            sw.Write(ParameterDelimiter);
-        }
-        */
-
+        
         /// <summary>
         /// Read the property of type Double.
         /// </summary>
@@ -1839,22 +2066,7 @@ namespace NeoCortexApi.Entities
                 return 0;
             }
         }
-
-        /*
-         * /// <summary>
-        /// Serialize the property of type String.
-        /// </summary>
-        /// <param name="val"></param>
-        /// <param name="sw"></param>
-        public void SerializeValue(String val, StreamWriter sw)
-        {
-            sw.Write(ValueDelimiter);
-            sw.Write(val);
-            sw.Write(ValueDelimiter);
-            sw.Write(ParameterDelimiter);
-        }
-         */
-
+        
 
         /// <summary>
         /// Read the property of type String.
@@ -1870,22 +2082,7 @@ namespace NeoCortexApi.Entities
                 return reader;
         }
 
-
-        /*
-         * /// <summary>
-        /// Serialize the property of type Long.
-        /// </summary>
-        /// <param name="val"></param>
-        /// <param name="sw"></param>
-        public void SerializeValue(long val, StreamWriter sw)
-        {
-            sw.Write(ValueDelimiter);
-            sw.Write(val.ToString());
-            sw.Write(ValueDelimiter);
-            sw.Write(ParameterDelimiter);
-        }
-         */
-
+       
         /// <summary>
         /// Read the property of type Long.
         /// </summary>
@@ -1899,22 +2096,6 @@ namespace NeoCortexApi.Entities
             return val;
 
         }
-        /*
-         
-        /// <summary>
-        /// Serialize the Bool.
-        /// </summary>
-        /// <param name="val"></param>
-        /// <param name="sw"></param>
-        public void SerializeValue(bool val, StreamWriter sw)
-        {
-            sw.Write(ValueDelimiter);
-            String value = val ? "True" : "False";
-            sw.Write(value);
-            sw.Write(ValueDelimiter);
-            sw.Write(ParameterDelimiter);
-        }
-        */
 
         /// <summary>
         /// Read the property of type Long.
@@ -1946,49 +2127,7 @@ namespace NeoCortexApi.Entities
                 return null;
             }
         }
-
-        /*
-         * public void SerializeValue(Array array, StreamWriter sw)
-        {
-            sw.Write(ValueDelimiter);
-            sw.WriteLine();
-
-            for (int i = 0; i < array.GetLength(0); i++)
-            {
-                for (int j = 0; j < array.GetLength(1); j++)
-                {
-                    sw.Write(array.GetValue(i, j));
-                }
-            }
-
-            sw.Write(ValueDelimiter);
-            sw.Write(ParameterDelimiter);
-        }
-         */
-
-
-        /*
-         * /// <summary>
-        /// Serialize the array of type Double.
-        /// </summary>
-        /// <param name="val"></param>
-        /// <param name="sw"></param>
-        public void SerializeValue(Double[] val, StreamWriter sw)
-        {
-            sw.Write(ValueDelimiter);
-            if (val != null)
-            {
-                foreach (Double i in val)
-                {
-                    sw.Write(string.Format(CultureInfo.InvariantCulture, "{0:0.000}", i));
-                    sw.Write(ElementsDelimiter);
-                }
-            }
-            sw.Write(ParameterDelimiter);
-
-        }
-         */
-
+       
         /// <summary>
         /// Read the array of type Double
         /// <summary>
@@ -2012,28 +2151,7 @@ namespace NeoCortexApi.Entities
             }
 
         }
-        /*
-         *  /// <summary>
-        /// Serialize the array of type Int.
-        /// </summary>
-        /// <param name="val"></param>
-        /// <param name="sw"></param>
-        public void SerializeValue(int[] val, StreamWriter sw)
-        {
-            sw.Write(ValueDelimiter);
-            if (val != null)
-            {
-                foreach (int i in val)
-                {
-                    sw.Write(i.ToString());
-                    sw.Write(ElementsDelimiter);
-                }
-            }
-            sw.Write(ParameterDelimiter);
-
-        }
-         */
-
+       
         /// <summary>
         /// Read the array of type Int.
         /// <summary>
@@ -2051,28 +2169,6 @@ namespace NeoCortexApi.Entities
             }
             return vs;
         }
-
-        /*
-         /// <summary>
-        /// Serialize the array of cells.
-        /// </summary>
-        /// <param name="val"></param>
-        /// <param name="sw"></param>
-        public void SerializeValue(Cell[] val, StreamWriter sw)
-        {
-            sw.Write(ValueDelimiter);
-            if (val != null)
-            {
-                foreach (Cell cell in val)
-                {
-                    cell.SerializeT(sw);
-                    sw.Write(ValueDelimiter);
-                }
-            }
-            sw.Write(ParameterDelimiter);
-        }
-         */
-
 
         /// <summary>
         /// Deserialize the array of cells.
@@ -2150,45 +2246,7 @@ namespace NeoCortexApi.Entities
             return null;
         }
 
-
-        /// <summary>
-        /// Serialize the dictionary with key:string and value:int.
-        /// </summary>
-        /// <param name="keyValues"></param>
-        /// <param name="sw"></param>
-        public void SerializeGenericValue<TKey, TValue>(Dictionary<TKey, TValue> keyValues, StreamWriter sw)
-        {
-            sw.Write(ValueDelimiter);
-            foreach (KeyValuePair<TKey, TValue> i in keyValues)
-            {
-                //TODO..
-                //sw.Write(i.Key + KeyValueDelimiter + i.Value.ToString());
-                // sw.Write(ElementsDelimiter);
-            }
-            sw.Write(ParameterDelimiter);
-        }
-
-
-        /*
-         * /// <summary>
-        /// Serialize the dictionary with key:string and value:int.
-        /// </summary>
-        /// <param name="keyValues"></param>
-        /// <param name="sw"></param>
-        public void SerializeValue(Dictionary<String, int> keyValues, StreamWriter sw)
-        {
-            sw.Write(ValueDelimiter);
-            foreach (KeyValuePair<string, int> i in keyValues)
-            {
-                sw.Write(i.Key + KeyValueDelimiter + i.Value.ToString());
-                sw.Write(ElementsDelimiter);
-            }
-            sw.Write(ParameterDelimiter);
-        }
-         */
-
-
-
+        
         /// <summary>
         /// Read the dictionary with key:string and value:int.
         /// <summary>
@@ -2206,23 +2264,6 @@ namespace NeoCortexApi.Entities
 
             return keyValues;
         }
-        /*
-         * /// <summary>
-        /// Serialize the dictionary with key:int and value:int.
-        /// </summary>
-        /// <param name="keyValues"></param>
-        /// <param name="sw"></param>
-        public void SerializeValue(Dictionary<int, int> keyValues, StreamWriter sw)
-        {
-            sw.Write(ValueDelimiter);
-            foreach (KeyValuePair<int, int> i in keyValues)
-            {
-                sw.Write(i.Key.ToString() + KeyValueDelimiter + i.Value.ToString());
-                sw.Write(ElementsDelimiter);
-            }
-            sw.Write(ParameterDelimiter);
-        }
-         */
 
         /// <summary>
         /// Read the dictionary with key:int and value:int.
@@ -2252,24 +2293,6 @@ namespace NeoCortexApi.Entities
         // 
         //strt: test :2 , / test2 :3 , 
         // 
-        /*
-         * public void SerializeValue(Dictionary<String, int[]> keyValues, StreamWriter sw)
-        {
-            sw.Write(ValueDelimiter);
-            foreach (KeyValuePair<string, int[]> i in keyValues)
-            {
-                sw.Write(i.Key + KeyValueDelimiter);
-                foreach (int val in i.Value)
-                {
-                    sw.Write(val.ToString());
-                    sw.Write(ValueDelimiter);
-                }
-
-                sw.Write(ElementsDelimiter);
-            }
-            sw.Write(ParameterDelimiter);
-        }
-         */
 
         ///<summary>
         ///Read the dictionary with key:String and value:int[].
@@ -2296,26 +2319,6 @@ namespace NeoCortexApi.Entities
             return keyValues;
         }
 
-        /*
-         * /// <summary>
-        /// Serialize the List of DistalDendrite.
-        /// </summary>
-        public void SerializeValue(List<DistalDendrite> distSegments, StreamWriter sw)
-        {
-            sw.Write(ValueDelimiter);
-            if (distSegments != null)
-            {
-                foreach (DistalDendrite val in distSegments)
-                {
-                    val.SerializeT(sw);
-                    sw.Write(ElementsDelimiter);
-                }
-            }
-            sw.Write(ParameterDelimiter);
-        }
-         
-         */
-
 
         /// <summary>
         /// Read the List of DistalDendrite.
@@ -2334,26 +2337,6 @@ namespace NeoCortexApi.Entities
         //    return keyValues;
         //}
 
-
-        /*
-         * ///// <summary>
-        ///// Serialize the List of Synapse.
-        ///// </summary>
-        public void SerializeValue(List<Synapse> value, StreamWriter sw)
-        {
-            sw.Write(ValueDelimiter);
-            if (value != null)
-            {
-                foreach (Synapse val in value)
-                {
-                    val.SerializeT(sw);
-                    sw.Write(ElementsDelimiter);
-                }
-            }
-            sw.Write(ParameterDelimiter);
-        }
-         */
-
         /// <summary>
         /// Read the List of Synapse.
         /// </summary>
@@ -2371,25 +2354,7 @@ namespace NeoCortexApi.Entities
         //    return keyValues;
         //}
 
-        /*
-         * /// <summary>
-        /// Serialize the List of Integers.
-        /// </summary>
-        public void SerializeValue(List<int> value, StreamWriter sw)
-        {
-            sw.Write(ValueDelimiter);
-            if (value != null)
-            {
-                foreach (int val in value)
-                {
-                    sw.Write(val.ToString());
-                    sw.Write(ElementsDelimiter);
-                }
-            }
-            sw.Write(ParameterDelimiter);
-        }
-         */
-
+       
         /// <summary>
         /// Read the List of Integers.
         /// </summary>
@@ -2449,27 +2414,6 @@ namespace NeoCortexApi.Entities
             sw.Write(ParameterDelimiter);
         }
 
-        /*
-         * /// <summary>
-        /// Serialize the dictionary with key:int and value:Synapse.
-        /// </summary>
-        /// <param name="keyValues"></param>
-        /// <param name="sw"></param>
-        public void SerializeValue(Dictionary<int, Synapse> keyValues, StreamWriter sw)
-        {
-            sw.WriteLine();
-            sw.Write(ValueDelimiter);
-            foreach (KeyValuePair<int, Synapse> i in keyValues)
-            {
-                sw.Write(i.Key.ToString() + KeyValueDelimiter);
-                i.Value.Serialize(sw);
-                sw.Write(ElementsDelimiter);
-            }
-            sw.Write(ParameterDelimiter);
-        }
-         */
-
-
         /// <summary>
         /// Read the dictionary with key:int and value:Synapse.
         /// </summary>
@@ -2484,28 +2428,6 @@ namespace NeoCortexApi.Entities
             }
             return Convert.ToInt32(val);
         }
-
-        /*
-         * /// <summary>
-        /// Serialize the Concurrentdictionary with key:int and value:DistalDendrite.
-        /// </summary>
-        /// <param name="keyValues"></param>
-        /// <param name="sw"></param>
-        public void SerializeValue(ConcurrentDictionary<int, DistalDendrite> keyValues, StreamWriter sw)
-        {
-            sw.WriteLine();
-            sw.Write(ValueDelimiter);
-            foreach (var i in keyValues)
-            {
-                sw.Write(i.Key.ToString() + KeyValueDelimiter);
-                i.Value.Serialize(sw);
-                sw.Write(ElementsDelimiter);
-            }
-            sw.Write(ParameterDelimiter);
-        }
-         */
-
-
 
         public  bool IsEqual(object obj1, object obj2)
         {
@@ -2609,3 +2531,494 @@ namespace NeoCortexApi.Entities
     }
 
 }
+
+
+//ORGINAL CODE
+/*
+         * 
+         * THIS ARE THE SERIALIZEVALUE THAT ARE STATIC METHODS THE ONES IMPLEMENTED BEFORE ARE NOT
+         public static void SerializeValue(string propertyName, object val, StreamWriter sw)
+        {
+
+            var content = val.ToString();
+
+            if (val.GetType() == typeof(string))
+            {
+                content = content.Replace("\n", "\\n");
+            }
+
+            sw.Write(content);
+        }
+
+        private static void SerializeKeyValuePair(string name, object obj, StreamWriter sw)
+        {
+            var type = obj.GetType();
+            var keyType = type.GetGenericArguments()[0];
+            var valueType = type.GetGenericArguments()[1];
+
+            var keyField = GetFields(type).FirstOrDefault(f => f.Name == "key");
+            if (keyField != null)
+            {
+                var key = keyField.GetValue(obj);
+                Serialize(key, "Key", sw, keyType);
+            }
+            var valueField = GetFields(type).FirstOrDefault(f => f.Name == "value");
+            if (valueField != null)
+            {
+                var value = valueField.GetValue(obj);
+                Serialize(value, "Value", sw, valueType);
+            }
+        }
+
+        private static void SerializeMultidimensionalArray(object obj, string name, StreamWriter sw)
+        {
+            var array = obj as Array;
+
+            //if (array.Rank > 2)
+            //    throw new NotSupportedException("Serialize does not support array with rank greater than 2!");
+
+            SerializeBegin(nameof(Array.Rank), sw, null);
+            SerializeValue(nameof(Array.Rank), array.Rank, sw);
+            SerializeEnd(nameof(Array.Rank), sw, null);
+
+            var dimensions = new List<int>();
+
+            for (int i = 0; i < array.Rank; i++)
+            {
+                SerializeBegin($"Dim{i}", sw, null);
+                var dimensionLength = array.GetLength(i);
+                dimensions.Add(dimensionLength);
+                SerializeValue("", dimensionLength, sw);
+                SerializeEnd($"Dim{i}", sw, null);
+            }
+
+            var elementType = array.GetType().GetElementType();
+            var defaultValue = GetDefault(elementType);
+
+            var totalElement = 1;
+            foreach (var dim in dimensions)
+            {
+                totalElement *= dim;
+            }
+            for (int i = 0; i < totalElement; i++)
+            {
+                var indexes = GetIndexesFromFlatIndex(i, dimensions);
+                var value = array.GetValue(indexes);
+                if (value.Equals(defaultValue) == false)
+                {
+                    Serialize(value, "ActiveElement", sw, elementType);
+                    var indexesString = string.Join(',', indexes);
+                    Serialize(indexesString, "ActiveIndex", sw);
+                }
+            }
+
+            //for (int i = 0; i < array.GetLength(0); i++)
+            //{
+            //    for (int j = 0; j < array.GetLength(1); j++)
+            //    {
+            //        var value = array.GetValue(i, j);
+            //        if (value.Equals(defaultValue) == false)
+            //        {
+            //            var index = new int[] { i, j };
+            //            Serialize(value, "ActiveElement", sw, elementType);
+            //            Serialize(index, "ActiveIndex", sw, elementType);
+            //        }
+            //    }
+            //}
+        }
+
+        private static void SerializeDistalDendrite(object obj, string name, StreamWriter sw)
+        {
+            var ignoreMembers = new List<string> { nameof(DistalDendrite.ParentCell) };
+            SerializeObject(obj, name, sw, ignoreMembers);
+
+            var cell = (obj as DistalDendrite).ParentCell;
+
+            if (isCellsSerialized.Contains(cell.Index) == false)
+            {
+                isCellsSerialized.Add(cell.Index);
+                Serialize((obj as DistalDendrite).ParentCell, nameof(DistalDendrite.ParentCell), sw, ignoreMembers: ignoreMembers);
+            }
+        }
+
+        private static void SerializeHtmConfig(object obj, string name, StreamWriter sw)
+        {
+            var excludeEntries = new List<string> { nameof(HtmConfig.Random) };
+            SerializeObject(obj, name, sw, excludeEntries);
+
+            var htmConfig = obj as HtmConfig;
+            Serialize(htmConfig.RandomGenSeed, nameof(HtmConfig.Random), sw);
+
+        }
+
+        private static void SerializeHomeostaticPlasticityController(object obj, string name, StreamWriter sw)
+        {
+            var excludeEntries = new List<string> { "m_OnStabilityStatusChanged" };
+            SerializeObject(obj, name, sw, excludeEntries);
+        }
+         */
+
+/*
+         * private void SerializeBegin(string propName, StreamWriter sw, Type type)
+        {
+            var listString = new List<string> { "Begin" };
+
+            if (string.IsNullOrEmpty(propName) == false)
+            {
+                listString.Add(propName);
+            }
+            if (type != null)
+            {
+                listString.Add(type.FullName.Replace(" ", ""));
+            }
+
+            sw.WriteLine(String.Join(' ', listString));
+        }
+
+        private void SerializeEnd(string propName, StreamWriter sw, Type type)
+        {
+            sw.WriteLine();
+            var listString = new List<string> { "End" };
+
+            if (string.IsNullOrEmpty(propName) == false)
+            {
+                listString.Add(propName);
+            }
+            if (type != null)
+            {
+                listString.Add(type.FullName.Replace(" ", ""));
+            }
+
+            sw.WriteLine(String.Join(' ', listString));
+        }
+         */
+
+
+
+
+/*
+ * private string ReadGenericBegin(string propName, Type type = null)
+{
+    var listString = new List<string> { "Begin" };
+    if (string.IsNullOrEmpty(propName) == false)
+    {
+        listString.Add(propName);
+    }
+    if (type != null)
+    {
+        listString.Add(type.FullName.Replace(" ", ""));
+    }
+
+    return String.Join(' ', listString);
+}
+
+
+private string ReadGenericEnd(string propName, Type type = null)
+{
+    var listString = new List<string> { "End" };
+    if (string.IsNullOrEmpty(propName) == false)
+    {
+        listString.Add(propName);
+    }
+    if (type != null)
+    {
+        listString.Add(type.FullName.Replace(" ", ""));
+    }
+
+    return String.Join(' ', listString);
+}
+ */
+
+/*
+               /// <summary>
+               /// Serialize the property of type Double.
+               /// </summary>
+               /// <param name="val"></param>
+               /// <param name="sw"></param>
+               public void SerializeValue(double val, StreamWriter sw)
+               {
+                   sw.Write(ValueDelimiter);
+                   sw.Write(string.Format(CultureInfo.InvariantCulture, "{0:0.000}", val));
+                   sw.Write(ValueDelimiter);
+                   sw.Write(ParameterDelimiter);
+               }
+               */
+
+/*
+ * /// <summary>
+/// Serialize the property of type String.
+/// </summary>
+/// <param name="val"></param>
+/// <param name="sw"></param>
+public void SerializeValue(String val, StreamWriter sw)
+{
+    sw.Write(ValueDelimiter);
+    sw.Write(val);
+    sw.Write(ValueDelimiter);
+    sw.Write(ParameterDelimiter);
+}
+ */
+
+/*
+ * /// <summary>
+/// Serialize the property of type Long.
+/// </summary>
+/// <param name="val"></param>
+/// <param name="sw"></param>
+public void SerializeValue(long val, StreamWriter sw)
+{
+    sw.Write(ValueDelimiter);
+    sw.Write(val.ToString());
+    sw.Write(ValueDelimiter);
+    sw.Write(ParameterDelimiter);
+}
+ */
+/*
+
+/// <summary>
+/// Serialize the Bool.
+/// </summary>
+/// <param name="val"></param>
+/// <param name="sw"></param>
+public void SerializeValue(bool val, StreamWriter sw)
+{
+    sw.Write(ValueDelimiter);
+    String value = val ? "True" : "False";
+    sw.Write(value);
+    sw.Write(ValueDelimiter);
+    sw.Write(ParameterDelimiter);
+}
+*/
+/*
+ * public void SerializeValue(Array array, StreamWriter sw)
+{
+    sw.Write(ValueDelimiter);
+    sw.WriteLine();
+
+    for (int i = 0; i < array.GetLength(0); i++)
+    {
+        for (int j = 0; j < array.GetLength(1); j++)
+        {
+            sw.Write(array.GetValue(i, j));
+        }
+    }
+
+    sw.Write(ValueDelimiter);
+    sw.Write(ParameterDelimiter);
+}
+ */
+
+
+/*
+ * /// <summary>
+/// Serialize the array of type Double.
+/// </summary>
+/// <param name="val"></param>
+/// <param name="sw"></param>
+public void SerializeValue(Double[] val, StreamWriter sw)
+{
+    sw.Write(ValueDelimiter);
+    if (val != null)
+    {
+        foreach (Double i in val)
+        {
+            sw.Write(string.Format(CultureInfo.InvariantCulture, "{0:0.000}", i));
+            sw.Write(ElementsDelimiter);
+        }
+    }
+    sw.Write(ParameterDelimiter);
+
+}
+ */
+/*
+        *  /// <summary>
+       /// Serialize the array of type Int.
+       /// </summary>
+       /// <param name="val"></param>
+       /// <param name="sw"></param>
+       public void SerializeValue(int[] val, StreamWriter sw)
+       {
+           sw.Write(ValueDelimiter);
+           if (val != null)
+           {
+               foreach (int i in val)
+               {
+                   sw.Write(i.ToString());
+                   sw.Write(ElementsDelimiter);
+               }
+           }
+           sw.Write(ParameterDelimiter);
+
+       }
+        */
+/*
+ /// <summary>
+/// Serialize the array of cells.
+/// </summary>
+/// <param name="val"></param>
+/// <param name="sw"></param>
+public void SerializeValue(Cell[] val, StreamWriter sw)
+{
+    sw.Write(ValueDelimiter);
+    if (val != null)
+    {
+        foreach (Cell cell in val)
+        {
+            cell.SerializeT(sw);
+            sw.Write(ValueDelimiter);
+        }
+    }
+    sw.Write(ParameterDelimiter);
+}
+ */
+/*
+      * /// <summary>
+     /// Serialize the dictionary with key:string and value:int.
+     /// </summary>
+     /// <param name="keyValues"></param>
+     /// <param name="sw"></param>
+     public void SerializeValue(Dictionary<String, int> keyValues, StreamWriter sw)
+     {
+         sw.Write(ValueDelimiter);
+         foreach (KeyValuePair<string, int> i in keyValues)
+         {
+             sw.Write(i.Key + KeyValueDelimiter + i.Value.ToString());
+             sw.Write(ElementsDelimiter);
+         }
+         sw.Write(ParameterDelimiter);
+     }
+      */
+
+
+/*
+ * /// <summary>
+/// Serialize the dictionary with key:int and value:int.
+/// </summary>
+/// <param name="keyValues"></param>
+/// <param name="sw"></param>
+public void SerializeValue(Dictionary<int, int> keyValues, StreamWriter sw)
+{
+    sw.Write(ValueDelimiter);
+    foreach (KeyValuePair<int, int> i in keyValues)
+    {
+        sw.Write(i.Key.ToString() + KeyValueDelimiter + i.Value.ToString());
+        sw.Write(ElementsDelimiter);
+    }
+    sw.Write(ParameterDelimiter);
+}
+ */
+
+/*
+ * public void SerializeValue(Dictionary<String, int[]> keyValues, StreamWriter sw)
+{
+    sw.Write(ValueDelimiter);
+    foreach (KeyValuePair<string, int[]> i in keyValues)
+    {
+        sw.Write(i.Key + KeyValueDelimiter);
+        foreach (int val in i.Value)
+        {
+            sw.Write(val.ToString());
+            sw.Write(ValueDelimiter);
+        }
+
+        sw.Write(ElementsDelimiter);
+    }
+    sw.Write(ParameterDelimiter);
+}
+ */
+/*
+ * /// <summary>
+/// Serialize the List of DistalDendrite.
+/// </summary>
+public void SerializeValue(List<DistalDendrite> distSegments, StreamWriter sw)
+{
+    sw.Write(ValueDelimiter);
+    if (distSegments != null)
+    {
+        foreach (DistalDendrite val in distSegments)
+        {
+            val.SerializeT(sw);
+            sw.Write(ElementsDelimiter);
+        }
+    }
+    sw.Write(ParameterDelimiter);
+}
+
+ */
+/*
+ * ///// <summary>
+///// Serialize the List of Synapse.
+///// </summary>
+public void SerializeValue(List<Synapse> value, StreamWriter sw)
+{
+    sw.Write(ValueDelimiter);
+    if (value != null)
+    {
+        foreach (Synapse val in value)
+        {
+            val.SerializeT(sw);
+            sw.Write(ElementsDelimiter);
+        }
+    }
+    sw.Write(ParameterDelimiter);
+}
+ */
+
+/*
+ * /// <summary>
+/// Serialize the List of Integers.
+/// </summary>
+public void SerializeValue(List<int> value, StreamWriter sw)
+{
+    sw.Write(ValueDelimiter);
+    if (value != null)
+    {
+        foreach (int val in value)
+        {
+            sw.Write(val.ToString());
+            sw.Write(ElementsDelimiter);
+        }
+    }
+    sw.Write(ParameterDelimiter);
+}
+ */
+
+/*
+ * /// <summary>
+/// Serialize the dictionary with key:int and value:Synapse.
+/// </summary>
+/// <param name="keyValues"></param>
+/// <param name="sw"></param>
+public void SerializeValue(Dictionary<int, Synapse> keyValues, StreamWriter sw)
+{
+    sw.WriteLine();
+    sw.Write(ValueDelimiter);
+    foreach (KeyValuePair<int, Synapse> i in keyValues)
+    {
+        sw.Write(i.Key.ToString() + KeyValueDelimiter);
+        i.Value.Serialize(sw);
+        sw.Write(ElementsDelimiter);
+    }
+    sw.Write(ParameterDelimiter);
+}
+ */
+
+/*
+         * /// <summary>
+        /// Serialize the Concurrentdictionary with key:int and value:DistalDendrite.
+        /// </summary>
+        /// <param name="keyValues"></param>
+        /// <param name="sw"></param>
+        public void SerializeValue(ConcurrentDictionary<int, DistalDendrite> keyValues, StreamWriter sw)
+        {
+            sw.WriteLine();
+            sw.Write(ValueDelimiter);
+            foreach (var i in keyValues)
+            {
+                sw.Write(i.Key.ToString() + KeyValueDelimiter);
+                i.Value.Serialize(sw);
+                sw.Write(ElementsDelimiter);
+            }
+            sw.Write(ParameterDelimiter);
+        }
+         */
