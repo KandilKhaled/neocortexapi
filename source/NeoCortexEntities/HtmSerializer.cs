@@ -39,6 +39,7 @@ namespace NeoCortexApi.Entities
         public void SerializeValue<T>(T val, StreamWriter sw);
         public void SerializeValue<TKey, TValue>(Dictionary<TKey, TValue> dictionary, StreamWriter sw);
 
+        public void Serialize(object obj, string name, StreamWriter sw, Type propertyType = null, List<string> ignoreMembers = null);
         //public T Deserialize<T>(StreamReader sr, string propName = null);
     }
 
@@ -365,6 +366,319 @@ namespace NeoCortexApi.Entities
                 sw.Write(ElementsDelimiter);
             }
             sw.Write(ParameterDelimiter);
+        }
+
+        public void Serialize(object obj, string name, StreamWriter sw, Type propertyType = null, List<string> ignoreMembers = null)
+        {
+            if (obj == null)
+            {
+                return;
+            }
+            if (name == nameof(DistalDendrite.ParentCell))
+            {
+
+            }
+            var type = obj.GetType();
+
+            bool isSerializeWithType = propertyType != null && (propertyType.IsInterface || propertyType.IsAbstract || propertyType != type);
+
+            SerializeBegin(name, sw, isSerializeWithType ? type : null);
+
+            var objHashCode = obj.GetHashCode();
+
+
+            if (type.GetInterfaces().FirstOrDefault(i => i.FullName.Equals(typeof(ISerializable).FullName)) != null)
+            {
+                if (SerializedHashCodes.TryGetValue(obj, out int serializedId))
+                {
+                    Serialize(serializedId, HtmSerializer.cReplaceId, sw);
+                }
+                else
+                {
+                    Serialize(HtmSerializer.Id, HtmSerializer.cIdString, sw);
+                    HtmSerializer.SerializedHashCodes.Add(obj, HtmSerializer.Id++);
+                    (obj as ISerializable).Serialize(obj, name, sw);
+                }
+            }
+            else if (type.IsPrimitive || type == typeof(string))
+            {
+                SerializeValue(name, obj, sw);
+            }
+            else if (IsDictionary(type))
+            {
+                SerializeDictionary(name, obj, sw, ignoreMembers);
+            }
+            else if (IsList(type))
+            {
+                SerializeIEnumerable(name, obj, sw, ignoreMembers);
+            }
+            else if (type.IsValueType && type.IsGenericType && type.GetGenericTypeDefinition() == typeof(KeyValuePair<,>))
+            {
+                SerializeKeyValuePair(name, obj, sw);
+            }
+            else if (type.IsClass)
+            {
+                if (SerializedHashCodes.TryGetValue(obj, out int serializedId))
+                {
+                    Serialize(serializedId, HtmSerializer.cReplaceId, sw);
+                }
+                else
+                {
+                    Serialize(HtmSerializer.Id, HtmSerializer.cIdString, sw);
+                    HtmSerializer.SerializedHashCodes.Add(obj, HtmSerializer.Id++);
+                    SerializeObject(obj, name, sw, ignoreMembers);
+                }
+            }
+
+            SerializeEnd(name, sw, isSerializeWithType ? type : null);
+        }
+
+        public void SerializeObject(object obj, string name, StreamWriter sw, List<string> ignoreMembers = null)
+        {
+            if (obj == null)
+                return;
+            var type = obj.GetType();
+
+            List<PropertyInfo> properties = GetProperties(type);
+            foreach (var property in properties)
+            {
+                if (ignoreMembers != null && ignoreMembers.Contains(property.Name) || property.CanWrite == false)
+                {
+                    continue;
+                }
+                if (property.CanRead && property.Name != "Item" && property.PropertyType != typeof(object))
+                {
+                    object value;
+                    try
+                    {
+                        value = property.GetValue(obj, null);
+                    }
+                    catch (Exception)
+                    {
+                        Console.WriteLine($"**Warning: Type {type.Name} does not implement property {property.Name}");
+                        continue;
+                    }
+
+                    Serialize(value, property.Name, sw, property.PropertyType, ignoreMembers: ignoreMembers);
+                }
+            }
+
+            List<FieldInfo> fields = GetFields(type);
+            foreach (var field in fields)
+            {
+                if (ignoreMembers != null && ignoreMembers.Contains(field.Name))
+                {
+                    continue;
+                }
+
+                object value;
+                try
+                {
+                    value = field.GetValue(obj);
+                }
+                catch (NotImplementedException)
+                {
+                    Console.WriteLine($"**Warning: Type {type.Name} does not implement field {field.Name}");
+                    continue;
+                }
+
+                Serialize(value, field.Name, sw, field.FieldType, ignoreMembers: ignoreMembers);
+                //Serialize(value, property.Name, sw, property.PropertyType, ignoreMembers: ignoreMembers);
+                //var value = field.GetValue(obj);
+            }
+        }
+
+        private void SerializeKeyValuePair(string name, object obj, StreamWriter sw)
+        {
+            var type = obj.GetType();
+            var keyType = type.GetGenericArguments()[0];
+            var valueType = type.GetGenericArguments()[1];
+
+            var keyField = GetFields(type).FirstOrDefault(f => f.Name == "key");
+            if (keyField != null)
+            {
+                var key = keyField.GetValue(obj);
+                Serialize(key, "Key", sw, keyType);
+            }
+            var valueField = GetFields(type).FirstOrDefault(f => f.Name == "value");
+            if (valueField != null)
+            {
+                var value = valueField.GetValue(obj);
+                Serialize(value, "Value", sw, valueType);
+            }
+        }
+
+        private void SerializeDictionary(string name, object obj, StreamWriter sw, List<string> ignoreMembers = null)
+        {
+            var type = obj.GetType();
+            if (type.IsGenericType)
+            {
+                var keyType = type.GetGenericArguments()[0];
+                var valueType = type.GetGenericArguments()[1];
+
+                if (keyType != typeof(string))
+                {
+
+                }
+
+                var enumerable = ((IEnumerable)obj);
+
+                foreach (var item in enumerable)
+                {
+                    var properties = item.GetType().GetProperties();
+                    SerializeBegin("DictionaryItem", sw, null);
+                    foreach (var property in properties)
+                    {
+                        var value = property.GetValue(item, null);
+                        Serialize(value, property.Name, sw, property.PropertyType, ignoreMembers: ignoreMembers);
+                    }
+                    SerializeEnd("DictionaryItem", sw, null);
+                }
+            }
+        }
+
+        public void SerializeValue(string propertyName, object val, StreamWriter sw)
+        {
+
+            var content = val.ToString();
+
+            if (val.GetType() == typeof(string))
+            {
+                content = content.Replace("\n", "\\n");
+            }
+
+            sw.Write(content);
+        }
+
+
+        private void SerializeIEnumerable(string propertyName, object obj, StreamWriter sw, List<string> ignoreMembers = null)
+        {
+            var type = obj.GetType();
+            if (IsMultiDimensionalArray(obj))
+            {
+                SerializeMultidimensionalArray(obj, propertyName, sw);
+                return;
+            }
+
+            var enumerable = ((IEnumerable)obj);
+
+            if (type.GetElementType() == typeof(int) || (type.IsGenericType && type.GetGenericArguments()[0] == typeof(int)))
+            {
+                StringBuilder sb = new StringBuilder();
+                foreach (var item in enumerable)
+                {
+                    sb.Append(item.ToString());
+                    sb.Append(',');
+                }
+                string arrayStringContent = sb.ToString().TrimEnd(',');
+
+                Serialize(arrayStringContent, "ArrayContent", sw);
+                return;
+            }
+
+            var elementType = default(Type);
+            if (type.IsGenericType)
+            {
+                elementType = type.GetGenericArguments()[0];
+            }
+            else
+            {
+                elementType = type.GetElementType();
+            }
+
+            foreach (var item in enumerable)
+            {
+                Serialize(item, "CollectionItem", sw, elementType, ignoreMembers: ignoreMembers);
+            }
+        }
+
+        private bool IsMultiDimensionalArray(object obj)
+        {
+            var array = obj as Array;
+            if (array == null)
+                return false;
+            if (array.Rank > 1)
+                return true;
+            return false;
+        }
+
+        private void SerializeMultidimensionalArray(object obj, string name, StreamWriter sw)
+        {
+            var array = obj as Array;
+
+            //if (array.Rank > 2)
+            //    throw new NotSupportedException("Serialize does not support array with rank greater than 2!");
+
+            SerializeBegin(nameof(Array.Rank), sw, null);
+            SerializeValue(nameof(Array.Rank), array.Rank, sw);
+            SerializeEnd(nameof(Array.Rank), sw, null);
+
+            var dimensions = new List<int>();
+
+            for (int i = 0; i < array.Rank; i++)
+            {
+                SerializeBegin($"Dim{i}", sw, null);
+                var dimensionLength = array.GetLength(i);
+                dimensions.Add(dimensionLength);
+                SerializeValue("", dimensionLength, sw);
+                SerializeEnd($"Dim{i}", sw, null);
+            }
+
+            var elementType = array.GetType().GetElementType();
+            var defaultValue = GetDefault(elementType);
+
+            var totalElement = 1;
+            foreach (var dim in dimensions)
+            {
+                totalElement *= dim;
+            }
+            for (int i = 0; i < totalElement; i++)
+            {
+                var indexes = GetIndexesFromFlatIndex(i, dimensions);
+                var value = array.GetValue(indexes);
+                if (value.Equals(defaultValue) == false)
+                {
+                    Serialize(value, "ActiveElement", sw, elementType);
+                    var indexesString = string.Join(',', indexes);
+                    Serialize(indexesString, "ActiveIndex", sw);
+                }
+            }
+
+            //for (int i = 0; i < array.GetLength(0); i++)
+            //{
+            //    for (int j = 0; j < array.GetLength(1); j++)
+            //    {
+            //        var value = array.GetValue(i, j);
+            //        if (value.Equals(defaultValue) == false)
+            //        {
+            //            var index = new int[] { i, j };
+            //            Serialize(value, "ActiveElement", sw, elementType);
+            //            Serialize(index, "ActiveIndex", sw, elementType);
+            //        }
+            //    }
+            //}
+        }
+
+        private List<FieldInfo> GetFields(Type type)
+        {
+            var fields = type.GetFields(BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic).Where(f => f.GetCustomAttribute<CompilerGeneratedAttribute>() == null).ToList();
+            if (type.BaseType != null)
+            {
+                fields.AddRange(type.BaseType.GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic).Where(f => f.GetCustomAttribute<CompilerGeneratedAttribute>() == null));
+            }
+
+            return fields;
+        }
+
+        private List<PropertyInfo> GetProperties(Type type)
+        {
+            var properties = type.GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic).ToList();
+            //if (type.BaseType != null)
+            //{
+            //    properties.AddRange(type.BaseType.GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic));
+            //}
+
+            return properties;
         }
 
         /*
@@ -697,7 +1011,7 @@ namespace NeoCortexApi.Entities
     }
     public class HtmSerializer
     {
-        private static int Id = 0;
+        public static int Id = 0;
         private static Dictionary<object, int> SerializedHashCodes = new Dictionary<object, int>();
         private static Dictionary<int, object> MapObjectHashCode = new Dictionary<int, object>();
         private IHtmSerializationFormatter formatter;
@@ -717,9 +1031,9 @@ namespace NeoCortexApi.Entities
         public static string KeyValueDelimiter = ": ";
 
         public const char ElementsDelimiter = ',';
-        private const string cReplaceId = "ReplaceId";
-        private const string cIdString = "Id";
-        private static List<int> isCellsSerialized = new List<int>();
+        public const string cReplaceId = "ReplaceId";
+        public const string cIdString = "Id";
+        public static List<int> isCellsSerialized = new List<int>();
 
         public HtmSerializer(IHtmSerializationFormatter formatter)
         {
@@ -841,7 +1155,10 @@ namespace NeoCortexApi.Entities
         }
 
 
-
+        public void Serialize(object obj, string name, StreamWriter sw, Type propertyType = null, List<string> ignoreMembers = null)
+        {
+            formatter.Serialize(obj, name, sw, propertyType, ignoreMembers);
+        }
 
 
         /// <summary>
