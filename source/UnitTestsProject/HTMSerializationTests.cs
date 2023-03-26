@@ -848,6 +848,8 @@ namespace UnitTestsProject
         {
             // Create SparseObjectMatrix
             // either by dicrect creation or running experiment
+            HtmSerializer ser = new HtmSerializer(new HtmSerializationFormatter());
+
             int[] dimensions = { 10, 10 };
 
             //IDistributedDictionary<int, int[]> dict = new();
@@ -869,7 +871,7 @@ namespace UnitTestsProject
             {
                 matrixNew = SparseObjectMatrix<int[]>.Deserialize(sr);
 
-                HtmSerializer.IsEqual(matrix, matrixNew);
+                ser.IsEqual(matrix, matrixNew);
             }
         }
         #endregion
@@ -884,6 +886,8 @@ namespace UnitTestsProject
             numNodes.Add(531, 26);
             numNodes.Add(1536, 26);
             numNodes.Add(1529, 26);
+            HtmSerializer ser = new HtmSerializer(new HtmSerializationFormatter());
+
             // Serialize 
             using (StreamWriter sw = new StreamWriter("InMem.txt"))
             {
@@ -894,8 +898,7 @@ namespace UnitTestsProject
             using (StreamReader sr = new StreamReader("InMem.txt"))
             {
                 newTest = InMemoryDistributedDictionary<int, int>.Deserialize(sr);
-
-                HtmSerializer.IsEqual(numNodes, newTest);
+                ser.IsEqual(numNodes, newTest);
             }
         }
 
@@ -905,6 +908,7 @@ namespace UnitTestsProject
             // Create SParse BinarySparseMatrix
             // either by dicrect creation or running experiment
             int[] dimensions = { 100, 100 };
+            HtmSerializer ser = new HtmSerializer(new HtmSerializationFormatter());
 
             //IDistributedDictionary<int, int[]> dict = new();
 
@@ -921,7 +925,7 @@ namespace UnitTestsProject
             {
                 newBinary = SparseBinaryMatrix.Deserialize(sr);
 
-                HtmSerializer.IsEqual(binaryMatrix, newBinary);
+                ser.IsEqual(binaryMatrix, newBinary);
             }
         }
 

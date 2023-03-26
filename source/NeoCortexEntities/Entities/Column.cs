@@ -527,6 +527,8 @@ namespace NeoCortexApi.Entities
 
         public void Serialize(object obj, string name, StreamWriter sw)
         {
+            HtmSerializer ser = new HtmSerializer(new HtmSerializationFormatter());
+
             var column = obj as Column;
             if (column != null)
             {
@@ -536,13 +538,15 @@ namespace NeoCortexApi.Entities
                     nameof(Column.Cells),
                     nameof(Column.m_Hashcode)
                 };
-                HtmSerializer.SerializeObject(column, name, sw, ignoreMembers);
+                ser.SerializeObject(column, name, sw, ignoreMembers);
             }
         }
 
         public static object Deserialize<T>(StreamReader sr, string name)
         {
-            return HtmSerializer.DeserializeObject<Column>(sr, name);
+            HtmSerializer ser = new HtmSerializer(new HtmSerializationFormatter());
+
+            return ser.DeserializeObject<Column>(sr, name);
         }
     }
 }

@@ -588,9 +588,11 @@ namespace NeoCortexApi
 
             if (obj is HomeostaticPlasticityController controller)
             {
-                HtmSerializer.SerializeObject(obj, name, sw, excludeEntries);
+                HtmSerializer ser = new HtmSerializer(new HtmSerializationFormatter());
+
+                ser.SerializeObject(obj, name, sw, excludeEntries);
                 var convertInOutMap = controller.m_InOutMap.ToDictionary(kv => kv.Key, kv => new KeyValuePair<int, int[]>(kv.Value.Length, ArrayUtils.IndexesWithNonZeros(kv.Value)));
-                HtmSerializer.Serialize(convertInOutMap, "convertInOutMap", sw);
+                ser.Serialize(convertInOutMap, "convertInOutMap", sw);
             }
 
 
@@ -599,14 +601,15 @@ namespace NeoCortexApi
         public static object Deserialize<T>(StreamReader sr, string name)
         {
             var excludeEntries = new List<string> { "convertInOutMap" };
+            HtmSerializer ser = new HtmSerializer(new HtmSerializationFormatter());
 
-            var controller = HtmSerializer.DeserializeObject<T>(sr, name, excludeEntries, (obj, propName) =>
+            var controller = ser.DeserializeObject<T>(sr, name, excludeEntries, (obj, propName) =>
             {
                 if (obj is HomeostaticPlasticityController hpc)
                 {
                     if (propName == "convertInOutMap")
                     {
-                        var convertInOutMap = HtmSerializer.Deserialize<Dictionary<string, KeyValuePair<int, int[]>>>(sr, propName);
+                        var convertInOutMap = ser.Deserialize<Dictionary<string, KeyValuePair<int, int[]>>>(sr, propName);
 
                         Dictionary<string, int[]> inOutMap = new Dictionary<string, int[]>();
                         foreach (var map in convertInOutMap)

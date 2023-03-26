@@ -1001,18 +1001,23 @@ namespace NeoCortexApi.Entities
 
         public void Serialize(object obj, string name, StreamWriter sw)
         {
+
+            HtmSerializer ser = new HtmSerializer(new HtmSerializationFormatter());
+
             var excludeMembers = new List<string>
             {
                 nameof(HtmConfig.inputMatrix),
                 nameof(HtmConfig.synPermActiveInc),
                 nameof(HtmConfig.synPermConnected)
             };
-            HtmSerializer.SerializeObject(obj, name, sw, excludeMembers);
+            ser.SerializeObject(obj, name, sw, excludeMembers);
         }
 
         public static object Deserialize<T>(StreamReader sr, string name)
         {
-            var htmConfig = HtmSerializer.DeserializeObject<HtmConfig>(sr, name);
+            HtmSerializer ser = new HtmSerializer(new HtmSerializationFormatter());
+
+            var htmConfig = ser.DeserializeObject<HtmConfig>(sr, name);
             return htmConfig;
         }
         #endregion

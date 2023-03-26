@@ -376,19 +376,23 @@ namespace NeoCortexApi.Entities
 
         public void Serialize(object obj, string name, StreamWriter sw)
         {
+            HtmSerializer ser = new HtmSerializer(new HtmSerializationFormatter());
+
             if (obj is Synapse synapse)
             {
                 var ignoreMembers = new List<string>
                 {
                     //nameof(Synapse.SourceCell),
                 };
-                HtmSerializer.SerializeObject(synapse, name, sw, ignoreMembers);
+                ser.SerializeObject(synapse, name, sw, ignoreMembers);
             }
         }
 
         public static object Deserialize<T>(StreamReader sr, string name)
         {
-            return HtmSerializer.DeserializeObject<T>(sr, name);
+            HtmSerializer ser = new HtmSerializer(new HtmSerializationFormatter());
+
+            return ser.DeserializeObject<T>(sr, name);
         }
         #endregion
     }

@@ -326,7 +326,9 @@ namespace NeoCortexApi.Entities
 
         public void Serialize(object obj, string name, StreamWriter sw)
         {
-            HtmSerializer.SerializeObject(obj, name, sw);
+            HtmSerializer ser = new HtmSerializer(new HtmSerializationFormatter());
+
+            ser.SerializeObject(obj, name, sw);
 
             //var matrixColumns = obj as SparseObjectMatrix<Column>;
             //if (matrixColumns != null)
@@ -357,11 +359,13 @@ namespace NeoCortexApi.Entities
 
         public static object Deserialize<TItem>(StreamReader sr, string name)
         {
+            HtmSerializer ser = new HtmSerializer(new HtmSerializationFormatter());
+
             var ignoreMembers = new List<string>
             {
                 //"synapsesList"
             };
-            var matrix = HtmSerializer.DeserializeObject<SparseObjectMatrix<T>>(sr, name, ignoreMembers, (m, propName) =>
+            var matrix = ser.DeserializeObject<SparseObjectMatrix<T>>(sr, name, ignoreMembers, (m, propName) =>
             {
                 //var matrixColumns = m as SparseObjectMatrix<Column>;
                 //if (matrixColumns == null)

@@ -566,19 +566,23 @@ namespace NeoCortexApi.Entities
 
         public void Serialize(object obj, string name, StreamWriter sw)
         {
-            HtmSerializer.SerializeObject(obj, name, sw, new List<string> { "Item" });
-            return;
-            HtmSerializer.Serialize(this.numElements, "numElements", sw);
-            HtmSerializer.Serialize(this.currentDictIndex, "currentDictIndex", sw);
-            HtmSerializer.Serialize(this.currentIndex, "currentIndex", sw);
-            HtmSerializer.Serialize(this.htmConfig, "htmConfig", sw);
+            HtmSerializer ser = new HtmSerializer(new HtmSerializationFormatter());
 
-            HtmSerializer.Serialize(this.dictList, "dictList", sw);
+            ser.SerializeObject(obj, name, sw, new List<string> { "Item" });
+            return;
+            ser.Serialize(this.numElements, "numElements", sw);
+            ser.Serialize(this.currentDictIndex, "currentDictIndex", sw);
+            ser.Serialize(this.currentIndex, "currentIndex", sw);
+            ser.Serialize(this.htmConfig, "htmConfig", sw);
+
+            ser.Serialize(this.dictList, "dictList", sw);
         }
 
         public static object Deserialize<T>(StreamReader sr, string propName)
         {
-            return HtmSerializer.DeserializeObject<InMemoryDistributedDictionary<TKey, TValue>>(sr, propName);
+            HtmSerializer ser = new HtmSerializer(new HtmSerializationFormatter());
+
+            return ser.DeserializeObject<InMemoryDistributedDictionary<TKey, TValue>>(sr, propName);
             int numElements = 0;
             int currentDictIndex = 0;
             int currentIndex = 0;
@@ -599,23 +603,23 @@ namespace NeoCortexApi.Entities
 
                 if (content.Contains("numElements"))
                 {
-                    numElements = HtmSerializer.Deserialize<int>(sr, "numElements");
+                    numElements = ser.Deserialize<int>(sr, "numElements");
                 }
                 else if (content.Contains("currentDictIndex"))
                 {
-                    currentDictIndex = HtmSerializer.Deserialize<int>(sr, "currentDictIndex");
+                    currentDictIndex = ser.Deserialize<int>(sr, "currentDictIndex");
                 }
                 else if (content.Contains("currentIndex"))
                 {
-                    currentIndex = HtmSerializer.Deserialize<int>(sr, "currentIndex");
+                    currentIndex = ser.Deserialize<int>(sr, "currentIndex");
                 }
                 else if (content.Contains("htmConfig"))
                 {
-                    htmConfig = HtmSerializer.Deserialize<HtmConfig>(sr, "htmConfig");
+                    htmConfig = ser.Deserialize<HtmConfig>(sr, "htmConfig");
                 }
                 else if (content.Contains("dictList"))
                 {
-                    dictList = HtmSerializer.Deserialize<Dictionary<TKey, TValue>[]>(sr, "dictList");
+                    dictList = ser.Deserialize<Dictionary<TKey, TValue>[]>(sr, "dictList");
                 }
             }
             var inMemDict = new InMemoryDistributedDictionary<TKey, TValue>();

@@ -334,6 +334,8 @@ namespace NeoCortexApi.Entities
 
         public void Serialize(object obj, string name, StreamWriter sw)
         {
+            HtmSerializer ser = new HtmSerializer(new HtmSerializationFormatter());
+
             var ignoreMembers = new List<string>
             {
                 nameof(Pool.size),
@@ -342,20 +344,22 @@ namespace NeoCortexApi.Entities
             if (obj is Pool pool)
             {
 
-                HtmSerializer.SerializeObject(obj, name, sw, ignoreMembers);
+                ser.SerializeObject(obj, name, sw, ignoreMembers);
 
                 var synapses = pool.m_SynapsesBySourceIndex.Values.ToList();
-                HtmSerializer.Serialize(synapses, "synapses", sw, null, ignoreMembers: new List<string> { nameof(Synapse.SegmentIndex) });
+                ser.Serialize(synapses, "synapses", sw, null, ignoreMembers: new List<string> { nameof(Synapse.SegmentIndex) });
             }
         }
 
         public static object Deserialize<T>(StreamReader sr, string name)
         {
-            return HtmSerializer.DeserializeObject<Pool>(sr, name, new List<string> { "synapses" }, (pool, propName) =>
+            HtmSerializer ser = new HtmSerializer(new HtmSerializationFormatter());
+
+            return ser.DeserializeObject<Pool>(sr, name, new List<string> { "synapses" }, (pool, propName) =>
             {
                 if (propName == "synapses")
                 {
-                    var synapses = HtmSerializer.Deserialize<List<Synapse>>(sr, propName);
+                    var synapses = ser.Deserialize<List<Synapse>>(sr, propName);
                     pool.m_SynapsesBySourceIndex = synapses.ToDictionary(s => s.InputIndex);
                     pool.size = synapses.Count;
                 }

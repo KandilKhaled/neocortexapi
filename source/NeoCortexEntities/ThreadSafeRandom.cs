@@ -87,9 +87,11 @@ namespace NeoCortexApi
 
         public void Serialize(object obj, string name, StreamWriter sw)
         {
+            HtmSerializer ser = new HtmSerializer(new HtmSerializationFormatter());
+
             var random = obj as ThreadSafeRandom;
-            HtmSerializer.Serialize(random.seed, nameof(ThreadSafeRandom.seed), sw);
-            HtmSerializer.Serialize(random.counter, nameof(ThreadSafeRandom.counter), sw);
+            ser.Serialize(random.seed, nameof(ThreadSafeRandom.seed), sw);
+            ser.Serialize(random.counter, nameof(ThreadSafeRandom.counter), sw);
         }
 
         public static object Deserialize<T>(StreamReader sr, string name)
@@ -98,6 +100,7 @@ namespace NeoCortexApi
                 return null;
             int seed = default;
             int counter = default;
+            HtmSerializer ser = new HtmSerializer(new HtmSerializationFormatter());
 
             while (sr.Peek() > 0)
             {
@@ -112,12 +115,12 @@ namespace NeoCortexApi
                 }
                 if (content.Contains(nameof(ThreadSafeRandom.seed)))
                 {
-                    seed = HtmSerializer.Deserialize<int>(sr, nameof(ThreadSafeRandom.seed));
+                    seed = ser.Deserialize<int>(sr, nameof(ThreadSafeRandom.seed));
 
                 }
                 if (content.Contains(nameof(ThreadSafeRandom.counter)))
                 {
-                    counter = HtmSerializer.Deserialize<int>(sr, nameof(ThreadSafeRandom.counter));
+                    counter = ser.Deserialize<int>(sr, nameof(ThreadSafeRandom.counter));
 
                 }
             }

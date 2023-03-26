@@ -250,12 +250,14 @@ namespace NeoCortexApi.Entities
 
         public void Serialize(object obj, string name, StreamWriter sw)
         {
+            HtmSerializer ser = new HtmSerializer(new HtmSerializationFormatter());
+
             var ignoreMembers = new List<string> 
             { 
                 nameof(Cell.ReceptorSynapses),
                 nameof(m_Hashcode)
             };
-            HtmSerializer.SerializeObject(obj, name, sw, ignoreMembers);
+            ser.SerializeObject(obj, name, sw, ignoreMembers);
             //var cell = obj as Cell;
             //if (cell != null)
             //{
@@ -265,9 +267,10 @@ namespace NeoCortexApi.Entities
         }
         public static object Deserialize<T>(StreamReader sr, string name)
         {
+            HtmSerializer ser = new HtmSerializer(new HtmSerializationFormatter());
             if (typeof(T) != typeof(Cell))
                 return null;
-            var cell = HtmSerializer.DeserializeObject<Cell>(sr, name);
+            var cell = ser.DeserializeObject<Cell>(sr, name);
 
             //foreach (var distalDentrite in cell.DistalDendrites)
             //{
