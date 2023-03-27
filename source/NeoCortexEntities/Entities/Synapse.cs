@@ -382,13 +382,14 @@ namespace NeoCortexApi.Entities
                 {
                     //nameof(Synapse.SourceCell),
                 };
-                HtmSerializer.SerializeObject(synapse, name, sw, ignoreMembers);
+                HtmSerializer serializer = new HtmSerializer(new HtmSerializationFormatter());
+                serializer.SerializeObject(synapse, name, sw, ignoreMembers);
             }
         }
 
         public static object Deserialize<T>(StreamReader sr, string name)
         {
-            return HtmSerializer.DeserializeObject<T>(sr, name);
+            return HtmSerializer.DeserializeObject<T>(sr, name, new HtmSerializationFormatter());
         }
         #endregion
     }

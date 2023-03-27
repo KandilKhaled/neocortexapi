@@ -49,7 +49,7 @@ namespace NeoCortexApi.Entities
 
         private double synPermActiveInc;
         private double synPermConnected;
-        
+
         private ISparseMatrix<int> inputMatrix;
 
         public TemporalMemoryConfig TemporalMemory { get; set; } = new TemporalMemoryConfig();
@@ -1007,12 +1007,13 @@ namespace NeoCortexApi.Entities
                 nameof(HtmConfig.synPermActiveInc),
                 nameof(HtmConfig.synPermConnected)
             };
-            HtmSerializer.SerializeObject(obj, name, sw, excludeMembers);
+            HtmSerializer serialize = new HtmSerializer(new HtmSerializationFormatter());
+            serialize.SerializeObject(obj, name, sw, excludeMembers);
         }
 
         public static object Deserialize<T>(StreamReader sr, string name)
         {
-            var htmConfig = HtmSerializer.DeserializeObject<HtmConfig>(sr, name);
+            var htmConfig = HtmSerializer.DeserializeObject<HtmConfig>(sr, name, new HtmSerializationFormatter());
             return htmConfig;
         }
         #endregion

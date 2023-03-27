@@ -58,7 +58,7 @@ namespace NeoCortexApi
             Column colZero = matrix.GetObject(0);
             for (int i = 0; i < numColumns; i++)
             {
-                Column column = colZero == null ? 
+                Column column = colZero == null ?
                     new Column(cellsPerColumn, i, this.connections.HtmConfig.SynPermConnected, this.connections.HtmConfig.NumInputs) : matrix.GetObject(i);
 
                 for (int j = 0; j < cellsPerColumn; j++)
@@ -899,7 +899,8 @@ namespace NeoCortexApi
             {
                 //nameof(TemporalMemory.connections)
             };
-            HtmSerializer.SerializeObject(obj, name, sw, ignoreMembers);  
+            HtmSerializer serializer = new HtmSerializer(new HtmSerializationFormatter());
+            serializer.SerializeObject(obj, name, sw, ignoreMembers);
         }
 
         public static object Deserialize<T>(StreamReader sr, string name)

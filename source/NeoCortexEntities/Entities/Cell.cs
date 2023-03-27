@@ -82,7 +82,7 @@ namespace NeoCortexApi.Entities
             //this.CellId = cellId;
         }
 
-      
+
         /// <summary>
         /// Gets the hashcode of the cell.
         /// </summary>
@@ -94,7 +94,7 @@ namespace NeoCortexApi.Entities
             result = prime * result + ParentColumnIndex;
             result = prime * result + Index;
 
-            return result;        
+            return result;
         }
 
         /// <summary>
@@ -250,12 +250,13 @@ namespace NeoCortexApi.Entities
 
         public void Serialize(object obj, string name, StreamWriter sw)
         {
-            var ignoreMembers = new List<string> 
-            { 
+            var ignoreMembers = new List<string>
+            {
                 nameof(Cell.ReceptorSynapses),
                 nameof(m_Hashcode)
             };
-            HtmSerializer.SerializeObject(obj, name, sw, ignoreMembers);
+            HtmSerializer serialize = new HtmSerializer(new HtmSerializationFormatter());
+            serialize.SerializeObject(obj, name, sw, ignoreMembers);
             //var cell = obj as Cell;
             //if (cell != null)
             //{
@@ -267,7 +268,7 @@ namespace NeoCortexApi.Entities
         {
             if (typeof(T) != typeof(Cell))
                 return null;
-            var cell = HtmSerializer.DeserializeObject<Cell>(sr, name);
+            var cell = HtmSerializer.DeserializeObject<Cell>(sr, name, new HtmSerializationFormatter());
 
             //foreach (var distalDentrite in cell.DistalDendrites)
             //{

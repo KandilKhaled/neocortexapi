@@ -88,8 +88,10 @@ namespace NeoCortexApi
         public void Serialize(object obj, string name, StreamWriter sw)
         {
             var random = obj as ThreadSafeRandom;
-            HtmSerializer.Serialize(random.seed, nameof(ThreadSafeRandom.seed), sw);
-            HtmSerializer.Serialize(random.counter, nameof(ThreadSafeRandom.counter), sw);
+            HtmSerializer serialize = new HtmSerializer(new HtmSerializationFormatter());
+
+            serialize.Serialize(random.seed, nameof(ThreadSafeRandom.seed), sw);
+            serialize.Serialize(random.counter, nameof(ThreadSafeRandom.counter), sw);
         }
 
         public static object Deserialize<T>(StreamReader sr, string name)

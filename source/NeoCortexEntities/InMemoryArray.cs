@@ -327,14 +327,16 @@ namespace NeoCortexApi.Entities
 
         public void Serialize(object obj, string name, StreamWriter sw)
         {
-            var ignoreMembers = new List<string> 
-            { 
+            var ignoreMembers = new List<string>
+            {
                 "Item",
                 //nameof(Dimensions),
                 //nameof(IDistributedArray.Count),
                 //nameof(Rank)
             };
-            HtmSerializer.SerializeObject(obj, name, sw, ignoreMembers);
+            HtmSerializer serialize = new HtmSerializer(new HtmSerializationFormatter());
+
+            serialize.SerializeObject(obj, name, sw, ignoreMembers);
         }
 
         public static object Deserialize<T>(StreamReader sr, string name)

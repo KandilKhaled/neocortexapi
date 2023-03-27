@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace UnitTestsProject
 {
-    [TestClass] 
+    [TestClass]
     public partial class HTMSerializationTests
     {
 
@@ -400,6 +400,7 @@ namespace UnitTestsProject
                     }
                     else
                     {
+
                         string[] str = data.Split(HtmSerializer.ParameterDelimiter);
                         for (int i = 0; i < str.Length; i++)
                         {
@@ -657,7 +658,7 @@ namespace UnitTestsProject
             {
                 HtmSerializer ser = new HtmSerializer(new HtmSerializationFormatter());
 
-                Synapse synapseT1 = ser.DeserializeSynapse(sr);
+                Synapse synapseT1 = ser.DeserializeSynapse(sr, new HtmSerializationFormatter());
 
                 Assert.IsTrue(synapse1.Equals(synapseT1));
             }
@@ -866,10 +867,10 @@ namespace UnitTestsProject
             }
             // Deserizlize
             SparseObjectMatrix<int[]> matrixNew = new();
+
             using (StreamReader sr = new StreamReader("ser.txt"))
             {
                 matrixNew = SparseObjectMatrix<int[]>.Deserialize(sr);
-
                 HtmSerializer.IsEqual(matrix, matrixNew);
             }
         }
@@ -895,7 +896,6 @@ namespace UnitTestsProject
             using (StreamReader sr = new StreamReader("InMem.txt"))
             {
                 newTest = InMemoryDistributedDictionary<int, int>.Deserialize(sr);
-
                 HtmSerializer.IsEqual(numNodes, newTest);
             }
         }

@@ -283,12 +283,14 @@ namespace NeoCortexApi.Entities
             {
                 nameof(Segment.Synapses)
             };
-            HtmSerializer.SerializeObject(obj, name, sw, ignoreMembers);
+
+            HtmSerializer serialize = new HtmSerializer(new HtmSerializationFormatter());
+            serialize.SerializeObject(obj, name, sw, ignoreMembers);
         }
 
         public static object Deserialize<T>(StreamReader sr, string name)
         {
-            var proximal = HtmSerializer.DeserializeObject<ProximalDendrite>(sr, name);
+            var proximal = HtmSerializer.DeserializeObject<ProximalDendrite>(sr, name, new HtmSerializationFormatter());
             if (proximal.RFPool != null)
             {
                 proximal.Synapses = proximal.RFPool?.m_SynapsesBySourceIndex.Select(kv => kv.Value).ToList();

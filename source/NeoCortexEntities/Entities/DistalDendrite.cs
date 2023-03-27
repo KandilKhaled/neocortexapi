@@ -14,10 +14,10 @@ namespace NeoCortexApi.Entities
     /// </summary>
     public class DistalDendrite : Segment, IComparable<Segment>, IEquatable<Segment>, ISerializable
     {
-     
+
         private int m_Ordinal = -1;
 
-       
+
         /// <summary>
         /// The seqence number of the segment. Specifies the order of the segment of the <see cref="Connections"/> instance.
         /// </summary>
@@ -47,7 +47,7 @@ namespace NeoCortexApi.Entities
         public DistalDendrite(Cell parentCell, int flatIdx, long lastUsedIteration, int ordinal, double synapsePermConnected, int numInputs) : base(flatIdx, lastUsedIteration, synapsePermConnected, numInputs)
         {
             this.ParentCell = parentCell;
-            this.m_Ordinal = ordinal;   
+            this.m_Ordinal = ordinal;
         }
 
 
@@ -312,13 +312,14 @@ namespace NeoCortexApi.Entities
 
         public static void Serialize1(StreamWriter sw, object obj, string propName)
         {
-            HtmSerializer.SerializeObject(obj, propName, sw, new List<string>{nameof(Segment.ParentCell)});
+            HtmSerializer serialize = new HtmSerializer(new HtmSerializationFormatter());
+            serialize.SerializeObject(obj, propName, sw, new List<string> { nameof(Segment.ParentCell) });
         }
 
         public static Segment Deserialize1(StreamReader sr, string propName)
         {
 
-            var result = HtmSerializer.DeserializeObject<Segment>(sr, propName);
+            var result = HtmSerializer.DeserializeObject<Segment>(sr, propName, new HtmSerializationFormatter());
             return result;
         }
 
@@ -326,12 +327,13 @@ namespace NeoCortexApi.Entities
 
         public void Serialize(object obj, string name, StreamWriter sw)
         {
-            var ignoreMembers = new List<string> 
+            var ignoreMembers = new List<string>
             { 
                 //nameof(DistalDendrite.ParentCell),
                 nameof(Segment.Synapses)
             };
-            HtmSerializer.SerializeObject(obj, name, sw, ignoreMembers);
+            HtmSerializer serialize = new HtmSerializer(new HtmSerializationFormatter());
+            serialize.SerializeObject(obj, name, sw, ignoreMembers);
             //var synapses = this.Synapses.Select(s => new Synapse() { SynapseIndex = s.SynapseIndex });
             //HtmSerializer2.Serialize(synapses, nameof(Segment.Synapses), sw);
 
@@ -346,7 +348,7 @@ namespace NeoCortexApi.Entities
 
         public static object Deserialize<T>(StreamReader sr, string name)
         {
-            var distal = HtmSerializer.DeserializeObject<T>(sr, name);
+            var distal = HtmSerializer.DeserializeObject<T>(sr, name, new HtmSerializationFormatter());
             return distal;
         }
     }

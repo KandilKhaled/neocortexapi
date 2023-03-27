@@ -1618,24 +1618,26 @@ namespace NeoCortexApi.Entities
 
                     //nameof(Connections.Cells)
                 };
-                HtmSerializer.SerializeObject(connections, name, sw, ignoreMembers);
+                HtmSerializer serializer = new HtmSerializer(new HtmSerializationFormatter());
+
+                serializer.SerializeObject(connections, name, sw, ignoreMembers);
                 var cells = connections.GetColumns().SelectMany(c => c.Cells).ToList();
-                HtmSerializer.Serialize(cells, "cellsList", sw);
+                serializer.Serialize(cells, "cellsList", sw);
 
                 var ddSynapses = cells.SelectMany(c => c.DistalDendrites).SelectMany(dd => dd.Synapses).ToList();
                 var cellSynapses = cells.SelectMany(c => c.ReceptorSynapses).ToList();
                 var synapses = ddSynapses.Union(cellSynapses).ToList();
 
-                HtmSerializer.Serialize(synapses, "synapsesList", sw);
+                serializer.Serialize(synapses, "synapsesList", sw);
 
                 var activeCellIds = connections.ActiveCells.Select(c => c.Index).ToList();
-                HtmSerializer.Serialize(activeCellIds, "activeCellIds", sw);
+                serializer.Serialize(activeCellIds, "activeCellIds", sw);
 
                 var winnerCellIds = connections.WinnerCells.Select(c => c.Index).ToList();
-                HtmSerializer.Serialize(winnerCellIds, "winnerCellIds", sw);
+                serializer.Serialize(winnerCellIds, "winnerCellIds", sw);
 
                 var predictiveCellIds = connections.m_PredictiveCells.Select(c => c.Index).ToList();
-                HtmSerializer.Serialize(predictiveCellIds, "predictiveCellIds", sw);
+                serializer.Serialize(predictiveCellIds, "predictiveCellIds", sw);
             }
         }
 
@@ -1650,15 +1652,15 @@ namespace NeoCortexApi.Entities
                 "predictiveCellIds"
             };
             var cells = new List<Cell>();
-            var conn = HtmSerializer.DeserializeObject<Connections>(sr, name, ignoreMembers, (conn, propName) =>
+            var conn = HtmSerializer.DeserializeObject<Connections>(sr, name, new HtmSerializationFormatter(),ignoreMembers, (conn, propName) =>
             {
                 if (propName == "cellsList")
                 {
-                    cells = HtmSerializer.Deserialize<List<Cell>>(sr, "cellsList");
+                    cells = HtmSerializer.Deserialize<List<Cell>>(sr, new HtmSerializationFormatter(), "cellsList");
                 }
                 else if (propName == "activeCellIds")
                 {
-                    var activeCellIds = HtmSerializer.Deserialize<List<int>>(sr, "activeCellIds");
+                    var activeCellIds = HtmSerializer.Deserialize<List<int>>(sr, new HtmSerializationFormatter(), "activeCellIds");
                     foreach (var cellId in activeCellIds)
                     {
                         var cell = cells.FirstOrDefault(c => c.Index == cellId);
@@ -1668,7 +1670,7 @@ namespace NeoCortexApi.Entities
                 }
                 else if (propName == "winnerCellIds")
                 {
-                    var winnerCellIds = HtmSerializer.Deserialize<List<int>>(sr, "winnerCellIds");
+                    var winnerCellIds = HtmSerializer.Deserialize<List<int>>(sr, new HtmSerializationFormatter(), "winnerCellIds");
                     foreach (var cellId in winnerCellIds)
                     {
                         var cell = cells.FirstOrDefault(c => c.Index == cellId);
@@ -1678,7 +1680,7 @@ namespace NeoCortexApi.Entities
                 }
                 else if (propName == "predictiveCellIds")
                 {
-                    var predictiveCellIds = HtmSerializer.Deserialize<List<int>>(sr, "predictiveCellIds");
+                    var predictiveCellIds = HtmSerializer.Deserialize<List<int>>(sr, new HtmSerializationFormatter(), "predictiveCellIds");
                     foreach (var cellId in predictiveCellIds)
                     {
                         var cell = cells.FirstOrDefault(c => c.Index == cellId);
@@ -1688,7 +1690,7 @@ namespace NeoCortexApi.Entities
                 }
                 else if (propName == "synapsesList")
                 {
-                    var synapses = HtmSerializer.Deserialize<List<Synapse>>(sr, "synapsesList");
+                    var synapses = HtmSerializer.Deserialize<List<Synapse>>(sr, new HtmSerializationFormatter(), "synapsesList");
                     foreach (var synapse in synapses)
                     {
                         synapse.SourceCell = cells.FirstOrDefault(c => c.Index == synapse.InputIndex);

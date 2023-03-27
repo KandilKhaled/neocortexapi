@@ -536,13 +536,15 @@ namespace NeoCortexApi.Entities
                     nameof(Column.Cells),
                     nameof(Column.m_Hashcode)
                 };
-                HtmSerializer.SerializeObject(column, name, sw, ignoreMembers);
+                HtmSerializer serializer = new HtmSerializer(new HtmSerializationFormatter());
+
+                serializer.SerializeObject(column, name, sw, ignoreMembers);
             }
         }
 
         public static object Deserialize<T>(StreamReader sr, string name)
         {
-            return HtmSerializer.DeserializeObject<Column>(sr, name);
+            return HtmSerializer.DeserializeObject<Column>(sr, name, new HtmSerializationFormatter());
         }
     }
 }

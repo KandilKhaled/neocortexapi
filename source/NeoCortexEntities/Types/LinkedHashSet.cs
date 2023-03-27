@@ -12,10 +12,10 @@ namespace NeoCortexApi.Types
     //[Serializable]
     public class LinkedHashSet<T> : ISet<T>, ISerializable
     {
-       // [field: NonSerializedAttribute()]
+        // [field: NonSerializedAttribute()]
         private IDictionary<T, LinkedListNode<T>> dict;
 
-       // [field: NonSerializedAttribute()]
+        // [field: NonSerializedAttribute()]
         private LinkedList<T> list;
 
         public LinkedHashSet(int initialCapacity)
@@ -325,7 +325,8 @@ namespace NeoCortexApi.Types
 
         public void Serialize(object obj, string name, StreamWriter sw)
         {
-            HtmSerializer.Serialize(this.list, null, sw);
+            HtmSerializer serialize = new HtmSerializer(new HtmSerializationFormatter());
+            serialize.Serialize(this.list, null, sw);
         }
 
         public static object Deserialize<T1>(StreamReader sr, string name)

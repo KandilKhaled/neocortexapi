@@ -566,14 +566,16 @@ namespace NeoCortexApi.Entities
 
         public void Serialize(object obj, string name, StreamWriter sw)
         {
-            HtmSerializer.SerializeObject(obj, name, sw, new List<string> { "Item" });
-            return;
-            HtmSerializer.Serialize(this.numElements, "numElements", sw);
-            HtmSerializer.Serialize(this.currentDictIndex, "currentDictIndex", sw);
-            HtmSerializer.Serialize(this.currentIndex, "currentIndex", sw);
-            HtmSerializer.Serialize(this.htmConfig, "htmConfig", sw);
+            HtmSerializer serialize = new HtmSerializer(new HtmSerializationFormatter());
 
-            HtmSerializer.Serialize(this.dictList, "dictList", sw);
+            serialize.SerializeObject(obj, name, sw, new List<string> { "Item" });
+            return;
+            serialize.Serialize(this.numElements, "numElements", sw);
+            serialize.Serialize(this.currentDictIndex, "currentDictIndex", sw);
+            serialize.Serialize(this.currentIndex, "currentIndex", sw);
+            serialize.Serialize(this.htmConfig, "htmConfig", sw);
+
+            serialize.Serialize(this.dictList, "dictList", sw);
         }
 
         public static object Deserialize<T>(StreamReader sr, string propName)

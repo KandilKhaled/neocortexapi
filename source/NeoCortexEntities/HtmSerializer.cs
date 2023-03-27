@@ -30,6 +30,10 @@ namespace NeoCortexApi.Entities
         void serializeBegin(String typeName, StreamWriter sw);
         void SerializeValue(int val, StreamWriter sw);
 
+        String readStreamReader(StreamReader sr);
+        int streamReaderPeek(StreamReader sr);
+
+
     }
 
     public class HtmSerializationFormatter : IHtmSerializationFormatter
@@ -48,6 +52,11 @@ namespace NeoCortexApi.Entities
         {
             string val = ($"{TypeDelimiter} END '{typeName}' {TypeDelimiter}");
             return val;
+        }
+
+        public String readStreamReader(StreamReader sr)
+        {
+            return sr.ReadLine();
         }
 
         public void serializeBegin(string typeName, StreamWriter sw)
@@ -72,6 +81,11 @@ namespace NeoCortexApi.Entities
             sw.Write(val.ToString());
             sw.Write(ValueDelimiter);
             sw.Write(ParameterDelimiter);
+        }
+
+        public int streamReaderPeek(StreamReader sr)
+        {
+            return sr.Peek();
         }
     }
     public class HtmSerializer
@@ -116,7 +130,7 @@ namespace NeoCortexApi.Entities
         }
         public String ReadBegin(string typeName)
         {
-           return formatter.ReadBegin(typeName);
+            return formatter.ReadBegin(typeName);
         }
 
         public void Reset()
@@ -140,7 +154,7 @@ namespace NeoCortexApi.Entities
             Reset();
             using (var reader = new StreamReader(fileName))
             {
-                return Deserialize<T>(reader);
+                return Deserialize<T>(reader, formatter);
             }
         }
 
@@ -163,7 +177,7 @@ namespace NeoCortexApi.Entities
         /// <param name="sw"></param>
         public void SerializeEnd(String typeName, StreamWriter sw)
         {
-           formatter.SerializeEnd(typeName, sw);
+            formatter.SerializeEnd(typeName, sw);
         }
         public String ReadEnd(String typeName)
         {
@@ -171,26 +185,26 @@ namespace NeoCortexApi.Entities
         }
 
 
-       
 
-        public void SerializeValue<T>(T val, StreamWriter sw) 
-        {          
-             if (val is Cell[])
+
+        public void SerializeValue<T>(T val, StreamWriter sw)
+        {
+            if (val is Cell[])
+            {
+                sw.Write(ValueDelimiter);
+
+                Cell[] cellArray = val as Cell[];
+
+                if (cellArray != null)
                 {
-                    sw.Write(ValueDelimiter);
-
-                    Cell[] cellArray = val as Cell[];
-
-                    if (cellArray != null)
+                    foreach (Cell cell in cellArray)
                     {
-                        foreach (Cell cell in cellArray)
-                        {
-                            cell.SerializeT(sw);
-                            sw.Write(ValueDelimiter);
-                        }
+                        cell.SerializeT(sw);
+                        sw.Write(ValueDelimiter);
                     }
-                    sw.Write(ParameterDelimiter);
                 }
+                sw.Write(ParameterDelimiter);
+            }
             else
             {
                 sw.Write(ValueDelimiter);
@@ -222,24 +236,24 @@ namespace NeoCortexApi.Entities
                 }
                 else if (val is int[])
                 {
-                  int[] arr = (int[])(object)val;
-                  foreach (int i in arr)
-                  {
-                     sw.Write(i.ToString());
-                     sw.Write(ElementsDelimiter);
-                  }
+                    int[] arr = (int[])(object)val;
+                    foreach (int i in arr)
+                    {
+                        sw.Write(i.ToString());
+                        sw.Write(ElementsDelimiter);
+                    }
                 }
                 else if (val is double[])
                 {
-                  double[] arr = (double[])(object)val;
-                  foreach (double d in arr)
-                  {
-                            sw.Write(string.Format(CultureInfo.InvariantCulture, "{0:0.000}", d));
-                            sw.Write(ElementsDelimiter);
-                  }
+                    double[] arr = (double[])(object)val;
+                    foreach (double d in arr)
+                    {
+                        sw.Write(string.Format(CultureInfo.InvariantCulture, "{0:0.000}", d));
+                        sw.Write(ElementsDelimiter);
+                    }
                 }
-            }           
-                sw.Write(ParameterDelimiter);                    
+            }
+            sw.Write(ParameterDelimiter);
         }
 
 
@@ -421,7 +435,7 @@ namespace NeoCortexApi.Entities
         #region Serialization
 
 
-        private static void SerializeKeyValuePair(string name, object obj, StreamWriter sw)
+        private void SerializeKeyValuePair(string name, object obj, StreamWriter sw)
         {
             var type = obj.GetType();
             var keyType = type.GetGenericArguments()[0];
@@ -496,7 +510,7 @@ namespace NeoCortexApi.Entities
 
         }
 
-        private static void SerializeDictionary(string name, object obj, StreamWriter sw, List<string> ignoreMembers = null)
+        private void SerializeDictionary(string name, object obj, StreamWriter sw, List<string> ignoreMembers = null)
         {
             var type = obj.GetType();
             if (type.IsGenericType)
@@ -525,7 +539,7 @@ namespace NeoCortexApi.Entities
             }
         }
 
-        private static void SerializeBegin(string propName, StreamWriter sw, Type type)
+        private void SerializeBegin(string propName, StreamWriter sw, Type type)
         {
             var listString = new List<string> { "Begin" };
 
@@ -541,7 +555,7 @@ namespace NeoCortexApi.Entities
             sw.WriteLine(String.Join(' ', listString));
         }
 
-        private static void SerializeEnd(string propName, StreamWriter sw, Type type)
+        private void SerializeEnd(string propName, StreamWriter sw, Type type)
         {
             sw.WriteLine();
             var listString = new List<string> { "End" };
@@ -589,7 +603,7 @@ namespace NeoCortexApi.Entities
         }
 
 
-        public static void SerializeValue(string propertyName, object val, StreamWriter sw)
+        public void SerializeValue(string propertyName, object val, StreamWriter sw)
         {
 
             var content = val.ToString();
@@ -602,8 +616,8 @@ namespace NeoCortexApi.Entities
             sw.Write(content);
         }
 
- 
-        private static void SerializeIEnumerable(string propertyName, object obj, StreamWriter sw, List<string> ignoreMembers = null)
+
+        private void SerializeIEnumerable(string propertyName, object obj, StreamWriter sw, List<string> ignoreMembers = null)
         {
             var type = obj.GetType();
             if (IsMultiDimensionalArray(obj))
@@ -644,7 +658,7 @@ namespace NeoCortexApi.Entities
             }
         }
 
-        private static bool IsMultiDimensionalArray(object obj)
+        private bool IsMultiDimensionalArray(object obj)
         {
             var array = obj as Array;
             if (array == null)
@@ -654,7 +668,7 @@ namespace NeoCortexApi.Entities
             return false;
         }
 
-        private static void SerializeMultidimensionalArray(object obj, string name, StreamWriter sw)
+        private void SerializeMultidimensionalArray(object obj, string name, StreamWriter sw)
         {
             var array = obj as Array;
 
@@ -711,7 +725,7 @@ namespace NeoCortexApi.Entities
             //}
         }
 
-        public static List<string> IterateMultiDimArray(Array array)
+        public List<string> IterateMultiDimArray(Array array)
         {
             var result = new List<string>();
             var dimensions = new List<int>();
@@ -740,7 +754,7 @@ namespace NeoCortexApi.Entities
             return result;
         }
 
-        private static int[] GetIndexesFromFlatIndex(int flatIndex, List<int> dimensions)
+        private int[] GetIndexesFromFlatIndex(int flatIndex, List<int> dimensions)
         {
             var result = new List<int>();
             var reversedDims = dimensions.Reverse<int>().ToList();
@@ -753,7 +767,7 @@ namespace NeoCortexApi.Entities
             return result.ToArray();
         }
 
-        public static object GetDefault(Type type)
+        public object GetDefault(Type type)
         {
             if (type.IsValueType)
             {
@@ -771,7 +785,7 @@ namespace NeoCortexApi.Entities
         /// <param name="sw"></param>
         /// <param name="propertyType"></param>
         /// <param name="ignoreMembers"></param>
-        public static void Serialize(object obj, string name, StreamWriter sw, Type propertyType = null, List<string> ignoreMembers = null)
+        public void Serialize(object obj, string name, StreamWriter sw, Type propertyType = null, List<string> ignoreMembers = null)
         {
             if (obj == null)
             {
@@ -836,9 +850,9 @@ namespace NeoCortexApi.Entities
             SerializeEnd(name, sw, isSerializeWithType ? type : null);
         }
 
-        
 
-        public static void SerializeObject(object obj, string name, StreamWriter sw, List<string> ignoreMembers = null)
+
+        public void SerializeObject(object obj, string name, StreamWriter sw, List<string> ignoreMembers = null)
         {
             if (obj == null)
                 return;
@@ -893,6 +907,7 @@ namespace NeoCortexApi.Entities
             }
         }
 
+        /// static for now
         private static List<FieldInfo> GetFields(Type type)
         {
             var fields = type.GetFields(BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic).Where(f => f.GetCustomAttribute<CompilerGeneratedAttribute>() == null).ToList();
@@ -904,7 +919,7 @@ namespace NeoCortexApi.Entities
             return fields;
         }
 
-        private static List<PropertyInfo> GetProperties(Type type)
+        private List<PropertyInfo> GetProperties(Type type)
         {
             var properties = type.GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic).ToList();
             //if (type.BaseType != null)
@@ -915,7 +930,7 @@ namespace NeoCortexApi.Entities
             return properties;
         }
 
-        private static void SerializeDistalDendrite(object obj, string name, StreamWriter sw)
+        private void SerializeDistalDendrite(object obj, string name, StreamWriter sw)
         {
             var ignoreMembers = new List<string> { nameof(DistalDendrite.ParentCell) };
             SerializeObject(obj, name, sw, ignoreMembers);
@@ -929,7 +944,7 @@ namespace NeoCortexApi.Entities
             }
         }
 
-        private static void SerializeHtmConfig(object obj, string name, StreamWriter sw)
+        private void SerializeHtmConfig(object obj, string name, StreamWriter sw)
         {
             var excludeEntries = new List<string> { nameof(HtmConfig.Random) };
             SerializeObject(obj, name, sw, excludeEntries);
@@ -939,7 +954,7 @@ namespace NeoCortexApi.Entities
 
         }
 
-        private static void SerializeHomeostaticPlasticityController(object obj, string name, StreamWriter sw)
+        private void SerializeHomeostaticPlasticityController(object obj, string name, StreamWriter sw)
         {
             var excludeEntries = new List<string> { "m_OnStabilityStatusChanged" };
             SerializeObject(obj, name, sw, excludeEntries);
@@ -956,7 +971,7 @@ namespace NeoCortexApi.Entities
         //    return obj;
         //}
 
-        public static T Deserialize<T>(StreamReader sr, string propName = null)
+        public static T Deserialize<T>(StreamReader sr, HtmSerializationFormatter formatter, string propName = null)
         {
             T obj = default;
 
@@ -981,33 +996,33 @@ namespace NeoCortexApi.Entities
             if (IsValueType(type))
             {
                 // deserialize value
-                obj = DeserializeValue<T>(sr, propName);
+                obj = DeserializeValue<T>(sr, propName, formatter);
             }
             else if (IsDictionary(type))
             {
                 // deserialize dictionary
-                obj = DeserializeDictionary<T>(sr, propName);
+                obj = DeserializeDictionary<T>(sr, propName, new HtmSerializationFormatter());
             }
             else if (IsList(type))
             {
                 // deserialize list
-                obj = DeserializeIEnumerable<T>(sr, propName);
+                obj = DeserializeIEnumerable<T>(sr, propName, new HtmSerializationFormatter());
             }
             else
             {
                 if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(KeyValuePair<,>))
                 {
-                    obj = DeserializeKeyValuePair<T>(sr, propName);
+                    obj = DeserializeKeyValuePair<T>(sr, propName, new HtmSerializationFormatter());
                 }
                 else
                     // deserialize object
-                    obj = DeserializeObject<T>(sr, propName);
+                    obj = DeserializeObject<T>(sr, propName, new HtmSerializationFormatter());
             }
 
             return obj;
         }
 
-        private static T DeserializeKeyValuePair<T>(StreamReader sr, string propName)
+        private static T DeserializeKeyValuePair<T>(StreamReader sr, string propName, HtmSerializationFormatter formatter)
         {
             T keyValuePair = default;
             var type = typeof(T);
@@ -1039,9 +1054,9 @@ namespace NeoCortexApi.Entities
             //content = sr.ReadLine();
             //var value = deserializeMethod.MakeGenericMethod(valueType).Invoke(null, new object[] { sr, "value" });
 
-            while (sr.Peek() > 0)
+            while (formatter.streamReaderPeek(sr) > 0)
             {
-                var content = sr.ReadLine().Trim();
+                var content = formatter.readStreamReader(sr).Trim();
 
                 if (content == ReadGenericEnd(propName))
                 {
@@ -1083,13 +1098,13 @@ namespace NeoCortexApi.Entities
             return cell;
         }
 
-        private static T DeserializeIEnumerable<T>(StreamReader sr, string propName)
+        private static T DeserializeIEnumerable<T>(StreamReader sr, string propName, HtmSerializationFormatter formatter)
         {
             var type = typeof(T);
             T obj = default;
             if (type.IsArray && type.GetArrayRank() > 1)
             {
-                var array = DeserializeMultidimensionalArray(sr, propName, type);
+                var array = DeserializeMultidimensionalArray(sr, propName, type, formatter);
                 return (T)(object)array;
             }
 
@@ -1119,7 +1134,7 @@ namespace NeoCortexApi.Entities
             }
 
             Type specifiedType = elementType;
-            while (sr.Peek() > 0)
+            while (formatter.readStreamReader(sr) > 0)
             {
                 var content = sr.ReadLine().Trim();
                 if (content == ReadGenericEnd(propName) || content == ReadGenericEnd(propName, type))
@@ -1156,13 +1171,13 @@ namespace NeoCortexApi.Entities
             return obj;
         }
 
-        private static Array DeserializeMultidimensionalArray(StreamReader sr, string propName, Type arrayType)
+        private static Array DeserializeMultidimensionalArray(StreamReader sr, string propName, Type arrayType, HtmSerializationFormatter formatter)
         {
             Array array = default;
             var elementType = arrayType.GetElementType();
 
             var dimList = new List<int>();
-            if (sr.Peek() > 0)
+            if (formatter.streamReaderPeek(sr) > 0)
             {
                 sr.ReadLine();
                 var rank = Deserialize<int>(sr, nameof(Array.Rank));
@@ -1179,7 +1194,7 @@ namespace NeoCortexApi.Entities
             var readBeginMethod = typeof(HtmSerializer).GetMethod(nameof(HtmSerializer.ReadGenericBegin), BindingFlags.NonPublic | BindingFlags.Static);
             object activeElement = default;
             int[] activeIndex = default;
-            while (sr.Peek() > 0)
+            while (formatter.streamReaderPeek(sr) > 0)
             {
                 var content = sr.ReadLine();
                 var deserializeMethod = typeof(HtmSerializer).GetMethod(nameof(HtmSerializer.Deserialize));
@@ -1226,7 +1241,7 @@ namespace NeoCortexApi.Entities
             return enumerableCast;
         }
 
-        private static T DeserializeDictionary<T>(StreamReader sr, string propName)
+        private static T DeserializeDictionary<T>(StreamReader sr, string propName, HtmSerializationFormatter formatter)
         {
             T obj = (T)Activator.CreateInstance(typeof(T));
             var type = typeof(T);
@@ -1242,7 +1257,7 @@ namespace NeoCortexApi.Entities
 
             var deserializeMethod = typeof(HtmSerializer).GetMethod(nameof(HtmSerializer.Deserialize));
             //var deserializeValueMethod = typeof(HtmSerializer2).GetMethod(nameof(HtmSerializer2.Deserialize)).MakeGenericMethod(typeValue);
-            while (sr.Peek() > 0)
+            while (formatter.streamReaderPeek(sr) > 0)
             {
                 var content = sr.ReadLine().Trim();
 
@@ -1315,7 +1330,7 @@ namespace NeoCortexApi.Entities
         /// <param name="excludeEntries">Fields or Properties that are skipped (action<> or func<,> type) or deserialized using <paramref name="action"/></param>
         /// <param name="action">Method that deserialize special fields/properties</param>
         /// <returns></returns>
-        public static T DeserializeObject<T>(StreamReader sr, string propertyName, List<string> excludeEntries = null, Action<T, string> action = null)
+        public static T DeserializeObject<T>(StreamReader sr, string propertyName, HtmSerializationFormatter formatter, List<string> excludeEntries = null, Action<T, string> action = null)
         {
             var type = typeof(T);
             T obj = default;
@@ -1327,9 +1342,9 @@ namespace NeoCortexApi.Entities
 
             obj = (T)Activator.CreateInstance(type);
 
-            var properties = GetProperties(type);
+            var properties = type.GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic).ToList();
             var fields = GetFields(type);
-            while (sr.Peek() > 0)
+            while (formatter.readStreamReader(sr) > 0)
             {
 
                 var content = sr.ReadLine().Trim();
@@ -1476,10 +1491,10 @@ namespace NeoCortexApi.Entities
 
         }
 
-        private static T DeserializeValue<T>(StreamReader sr, string propertyName)
+        private static T DeserializeValue<T>(StreamReader sr, string propertyName, HtmSerializationFormatter formatter)
         {
             T obj = default;
-            while (sr.Peek() > 0)
+            while (formatter.readStreamReader(sr) > 0)
             {
                 var content = sr.ReadLine().Trim();
 
@@ -1610,9 +1625,9 @@ namespace NeoCortexApi.Entities
         /// </summary>
         /// <param name="sr"></param>
         /// <returns>DistalDendrite</returns>
-        public Synapse DeserializeSynapse(StreamReader sr)
+        public Synapse DeserializeSynapse(StreamReader sr, HtmSerializationFormatter formatter)
         {
-            while (sr.Peek() >= 0)
+            while (formatter.readStreamReader(sr) >= 0)
             {
                 string data = sr.ReadLine();
 
@@ -1641,9 +1656,9 @@ namespace NeoCortexApi.Entities
         /// </summary>
         /// <param name="sr"></param>
         /// <returns>DistalDendrite</returns>
-        public DistalDendrite DeserializeDistalDendrite(StreamReader sr)
+        public DistalDendrite DeserializeDistalDendrite(StreamReader sr, HtmSerializationFormatter formatter)
         {
-            while (sr.Peek() >= 0)
+            while (formatter.readStreamReader(sr) >= 0)
             {
                 string data = sr.ReadLine();
 
@@ -1861,7 +1876,7 @@ namespace NeoCortexApi.Entities
                 for (int i = 0; i < str.Length - 1; i++)
                 {
                     //Indicating that the decimal values used are in the format point not coma
-                    vs[i]= Double.Parse(str[i], NumberStyles.Float, CultureInfo.InvariantCulture);
+                    vs[i] = Double.Parse(str[i], NumberStyles.Float, CultureInfo.InvariantCulture);
                     //vs[i] = Convert.ToDouble(str[i].Trim());
 
                 }
@@ -1984,9 +1999,9 @@ namespace NeoCortexApi.Entities
         /// </summary>
         /// <param name="sr"></param>
         /// <returns>Cell</returns>
-        public Cell DeserializeCell(StreamReader sr)
+        public Cell DeserializeCell(StreamReader sr, HtmSerializationFormatter formatter)
         {
-            while (sr.Peek() >= 0)
+            while (formatter.streamReaderPeek(sr) >= 0)
             {
                 string data = sr.ReadLine();
 
