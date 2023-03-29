@@ -274,7 +274,7 @@ namespace NeoCortexApi.Entities
 
             ser.SerializeBegin(nameof(InMemoryArray), writer);
 
-            ser.SerializeValue(this.backingArray, writer);
+            ser.SerializeValue<Array>(this.backingArray, writer);
             ser.SerializeValue<int[]>(this.dimensions, writer);
             ser.SerializeValue<int>(this.numOfNodes, writer);
 

@@ -184,7 +184,7 @@ namespace NeoCortexApi.Entities
             //}
 
             if (this.Synapses != null && this.Synapses.Count > 0)
-                ser.SerializeValue(this.Synapses, writer);
+                ser.SerializeValue< List<Synapse>>(this.Synapses, writer);
 
             ser.SerializeEnd(nameof(Segment), writer);
         }
@@ -219,7 +219,7 @@ namespace NeoCortexApi.Entities
             }
 
             if (this.Synapses != null && this.Synapses.Count > 0)
-                ser.SerializeValue(this.Synapses, writer);
+                ser.SerializeValue<List<Synapse>>(this.Synapses, writer);
 
             ser.SerializeEnd(nameof(DistalDendrite), writer);
         }

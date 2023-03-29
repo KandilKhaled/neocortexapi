@@ -211,7 +211,7 @@ namespace NeoCortexApi.Entities
             //{
             //    this.boxedIndex.Serialize(writer);
             //}
-            ser.SerializeValue(this.Synapses, writer);
+            ser.SerializeValue<List<Synapse>>(this.Synapses, writer);
 
             ser.SerializeEnd(nameof(ProximalDendrite), writer);
         }
