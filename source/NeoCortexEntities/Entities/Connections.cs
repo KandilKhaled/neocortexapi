@@ -1595,6 +1595,8 @@ namespace NeoCortexApi.Entities
 
         public void Serialize(object obj, string name, StreamWriter sw)
         {
+            HtmSerializer serializer = new HtmSerializer(new HtmSerializationFormatter());
+
             if (obj is Connections connections)
             {
 
@@ -1618,24 +1620,24 @@ namespace NeoCortexApi.Entities
 
                     //nameof(Connections.Cells)
                 };
-                HtmSerializer.SerializeObject(connections, name, sw, ignoreMembers);
+                serializer.SerializeObject(connections, name, sw, ignoreMembers);
                 var cells = connections.GetColumns().SelectMany(c => c.Cells).ToList();
-                HtmSerializer.Serialize(cells, "cellsList", sw);
+                serializer.Serialize(cells, "cellsList", sw);
 
                 var ddSynapses = cells.SelectMany(c => c.DistalDendrites).SelectMany(dd => dd.Synapses).ToList();
                 var cellSynapses = cells.SelectMany(c => c.ReceptorSynapses).ToList();
                 var synapses = ddSynapses.Union(cellSynapses).ToList();
 
-                HtmSerializer.Serialize(synapses, "synapsesList", sw);
+                serializer.Serialize(synapses, "synapsesList", sw);
 
                 var activeCellIds = connections.ActiveCells.Select(c => c.Index).ToList();
-                HtmSerializer.Serialize(activeCellIds, "activeCellIds", sw);
+                serializer.Serialize(activeCellIds, "activeCellIds", sw);
 
                 var winnerCellIds = connections.WinnerCells.Select(c => c.Index).ToList();
-                HtmSerializer.Serialize(winnerCellIds, "winnerCellIds", sw);
+                serializer.Serialize(winnerCellIds, "winnerCellIds", sw);
 
                 var predictiveCellIds = connections.m_PredictiveCells.Select(c => c.Index).ToList();
-                HtmSerializer.Serialize(predictiveCellIds, "predictiveCellIds", sw);
+                serializer.Serialize(predictiveCellIds, "predictiveCellIds", sw);
             }
         }
 

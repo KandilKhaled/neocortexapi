@@ -341,11 +341,12 @@ namespace NeoCortexApi.Entities
             };
             if (obj is Pool pool)
             {
+                HtmSerializer serializer = new HtmSerializer(new HtmSerializationFormatter());
 
-                HtmSerializer.SerializeObject(obj, name, sw, ignoreMembers);
+                serializer.SerializeObject(obj, name, sw, ignoreMembers);
 
                 var synapses = pool.m_SynapsesBySourceIndex.Values.ToList();
-                HtmSerializer.Serialize(synapses, "synapses", sw, null, ignoreMembers: new List<string> { nameof(Synapse.SegmentIndex) });
+                serializer.Serialize(synapses, "synapses", sw, null, ignoreMembers: new List<string> { nameof(Synapse.SegmentIndex) });
             }
         }
 

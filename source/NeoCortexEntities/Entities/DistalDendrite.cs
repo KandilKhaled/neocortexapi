@@ -312,7 +312,8 @@ namespace NeoCortexApi.Entities
 
         public static void Serialize1(StreamWriter sw, object obj, string propName)
         {
-            HtmSerializer.SerializeObject(obj, propName, sw, new List<string>{nameof(Segment.ParentCell)});
+            HtmSerializer serializer = new HtmSerializer(new HtmSerializationFormatter());
+            serializer.SerializeObject(obj, propName, sw, new List<string>{nameof(Segment.ParentCell)});
         }
 
         public static Segment Deserialize1(StreamReader sr, string propName)
@@ -331,7 +332,8 @@ namespace NeoCortexApi.Entities
                 //nameof(DistalDendrite.ParentCell),
                 nameof(Segment.Synapses)
             };
-            HtmSerializer.SerializeObject(obj, name, sw, ignoreMembers);
+            HtmSerializer serializer = new HtmSerializer(new HtmSerializationFormatter());
+            serializer.SerializeObject(obj, name, sw, ignoreMembers);
             //var synapses = this.Synapses.Select(s => new Synapse() { SynapseIndex = s.SynapseIndex });
             //HtmSerializer2.Serialize(synapses, nameof(Segment.Synapses), sw);
 

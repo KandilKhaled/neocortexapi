@@ -1434,7 +1434,8 @@ namespace NeoCortexApi
 
         public void Serialize(object obj, string name, StreamWriter sw)
         {
-            HtmSerializer.SerializeObject(obj, name, sw);
+            HtmSerializer serializer = new HtmSerializer(new HtmSerializationFormatter());
+            serializer.SerializeObject(obj, name, sw);
         }
 
         public static object Deserialize<T>(StreamReader sr, string propName)

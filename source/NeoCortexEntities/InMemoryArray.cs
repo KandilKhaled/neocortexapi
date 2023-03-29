@@ -334,12 +334,14 @@ namespace NeoCortexApi.Entities
                 //nameof(IDistributedArray.Count),
                 //nameof(Rank)
             };
-            HtmSerializer.SerializeObject(obj, name, sw, ignoreMembers);
+            HtmSerializer serializer = new HtmSerializer(new HtmSerializationFormatter());
+            serializer.SerializeObject(obj, name, sw, ignoreMembers);
         }
 
         public static object Deserialize<T>(StreamReader sr, string name)
         {
             var ignoreMembers = new List<string> { /*"Item"*/ };
+
             return HtmSerializer.DeserializeObject<T>(sr, name, ignoreMembers);
         }
         #endregion

@@ -421,7 +421,7 @@ namespace NeoCortexApi.Entities
         #region Serialization
 
 
-        private static void SerializeKeyValuePair(string name, object obj, StreamWriter sw)
+        private void SerializeKeyValuePair(string name, object obj, StreamWriter sw)
         {
             var type = obj.GetType();
             var keyType = type.GetGenericArguments()[0];
@@ -496,7 +496,7 @@ namespace NeoCortexApi.Entities
 
         }
 
-        private static void SerializeDictionary(string name, object obj, StreamWriter sw, List<string> ignoreMembers = null)
+        private void SerializeDictionary(string name, object obj, StreamWriter sw, List<string> ignoreMembers = null)
         {
             var type = obj.GetType();
             if (type.IsGenericType)
@@ -525,7 +525,7 @@ namespace NeoCortexApi.Entities
             }
         }
 
-        private static void SerializeBegin(string propName, StreamWriter sw, Type type)
+        private void SerializeBegin(string propName, StreamWriter sw, Type type)
         {
             var listString = new List<string> { "Begin" };
 
@@ -541,7 +541,7 @@ namespace NeoCortexApi.Entities
             sw.WriteLine(String.Join(' ', listString));
         }
 
-        private static void SerializeEnd(string propName, StreamWriter sw, Type type)
+        private void SerializeEnd(string propName, StreamWriter sw, Type type)
         {
             sw.WriteLine();
             var listString = new List<string> { "End" };
@@ -558,6 +558,7 @@ namespace NeoCortexApi.Entities
             sw.WriteLine(String.Join(' ', listString));
         }
 
+        // TODO:-
         private static string ReadGenericBegin(string propName, Type type = null)
         {
             var listString = new List<string> { "Begin" };
@@ -589,7 +590,7 @@ namespace NeoCortexApi.Entities
         }
 
 
-        public static void SerializeValue(string propertyName, object val, StreamWriter sw)
+        public void SerializeValue(string propertyName, object val, StreamWriter sw)
         {
 
             var content = val.ToString();
@@ -603,7 +604,7 @@ namespace NeoCortexApi.Entities
         }
 
  
-        private static void SerializeIEnumerable(string propertyName, object obj, StreamWriter sw, List<string> ignoreMembers = null)
+        private void SerializeIEnumerable(string propertyName, object obj, StreamWriter sw, List<string> ignoreMembers = null)
         {
             var type = obj.GetType();
             if (IsMultiDimensionalArray(obj))
@@ -644,7 +645,7 @@ namespace NeoCortexApi.Entities
             }
         }
 
-        private static bool IsMultiDimensionalArray(object obj)
+        private bool IsMultiDimensionalArray(object obj)
         {
             var array = obj as Array;
             if (array == null)
@@ -654,7 +655,7 @@ namespace NeoCortexApi.Entities
             return false;
         }
 
-        private static void SerializeMultidimensionalArray(object obj, string name, StreamWriter sw)
+        private void SerializeMultidimensionalArray(object obj, string name, StreamWriter sw)
         {
             var array = obj as Array;
 
@@ -711,7 +712,7 @@ namespace NeoCortexApi.Entities
             //}
         }
 
-        public static List<string> IterateMultiDimArray(Array array)
+        public List<string> IterateMultiDimArray(Array array)
         {
             var result = new List<string>();
             var dimensions = new List<int>();
@@ -740,7 +741,7 @@ namespace NeoCortexApi.Entities
             return result;
         }
 
-        private static int[] GetIndexesFromFlatIndex(int flatIndex, List<int> dimensions)
+        private int[] GetIndexesFromFlatIndex(int flatIndex, List<int> dimensions)
         {
             var result = new List<int>();
             var reversedDims = dimensions.Reverse<int>().ToList();
@@ -771,7 +772,7 @@ namespace NeoCortexApi.Entities
         /// <param name="sw"></param>
         /// <param name="propertyType"></param>
         /// <param name="ignoreMembers"></param>
-        public static void Serialize(object obj, string name, StreamWriter sw, Type propertyType = null, List<string> ignoreMembers = null)
+        public void Serialize(object obj, string name, StreamWriter sw, Type propertyType = null, List<string> ignoreMembers = null)
         {
             if (obj == null)
             {
@@ -838,7 +839,7 @@ namespace NeoCortexApi.Entities
 
         
 
-        public static void SerializeObject(object obj, string name, StreamWriter sw, List<string> ignoreMembers = null)
+        public void SerializeObject(object obj, string name, StreamWriter sw, List<string> ignoreMembers = null)
         {
             if (obj == null)
                 return;
@@ -904,7 +905,7 @@ namespace NeoCortexApi.Entities
             return fields;
         }
 
-        private static List<PropertyInfo> GetProperties(Type type)
+        private List<PropertyInfo> GetProperties(Type type)
         {
             var properties = type.GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic).ToList();
             //if (type.BaseType != null)
@@ -915,7 +916,7 @@ namespace NeoCortexApi.Entities
             return properties;
         }
 
-        private static void SerializeDistalDendrite(object obj, string name, StreamWriter sw)
+        private void SerializeDistalDendrite(object obj, string name, StreamWriter sw)
         {
             var ignoreMembers = new List<string> { nameof(DistalDendrite.ParentCell) };
             SerializeObject(obj, name, sw, ignoreMembers);
@@ -929,7 +930,7 @@ namespace NeoCortexApi.Entities
             }
         }
 
-        private static void SerializeHtmConfig(object obj, string name, StreamWriter sw)
+        private void SerializeHtmConfig(object obj, string name, StreamWriter sw)
         {
             var excludeEntries = new List<string> { nameof(HtmConfig.Random) };
             SerializeObject(obj, name, sw, excludeEntries);
@@ -939,7 +940,7 @@ namespace NeoCortexApi.Entities
 
         }
 
-        private static void SerializeHomeostaticPlasticityController(object obj, string name, StreamWriter sw)
+        private void SerializeHomeostaticPlasticityController(object obj, string name, StreamWriter sw)
         {
             var excludeEntries = new List<string> { "m_OnStabilityStatusChanged" };
             SerializeObject(obj, name, sw, excludeEntries);
@@ -1327,7 +1328,7 @@ namespace NeoCortexApi.Entities
 
             obj = (T)Activator.CreateInstance(type);
 
-            var properties = GetProperties(type);
+            var properties = type.GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic).ToList(); ;
             var fields = GetFields(type);
             while (sr.Peek() > 0)
             {

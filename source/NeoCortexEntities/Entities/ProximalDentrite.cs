@@ -283,7 +283,8 @@ namespace NeoCortexApi.Entities
             {
                 nameof(Segment.Synapses)
             };
-            HtmSerializer.SerializeObject(obj, name, sw, ignoreMembers);
+            HtmSerializer serializer = new HtmSerializer(new HtmSerializationFormatter());
+            serializer.SerializeObject(obj, name, sw, ignoreMembers);
         }
 
         public static object Deserialize<T>(StreamReader sr, string name)

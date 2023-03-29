@@ -326,7 +326,8 @@ namespace NeoCortexApi.Encoders
                 nameof(EncoderBase.topDownMapping),
 
             };
-            HtmSerializer.SerializeObject(obj, name, sw, ignoreMembers: excludeMembers);
+            HtmSerializer serializer = new HtmSerializer(new HtmSerializationFormatter());
+            serializer.SerializeObject(obj, name, sw, ignoreMembers: excludeMembers);
         }
 
         public static object Deserialize<T>(StreamReader sr, string name)

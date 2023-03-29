@@ -46,9 +46,11 @@ namespace UnitTestsProject
             var distSeg2 = new DistalDendrite(cells[0], 44, 24, 34, 1.0, 100);
             cells[0].DistalDendrites.Add(distSeg2);
 
+
             using (StreamWriter sw = new StreamWriter(fileName))
             {
-                HtmSerializer.Serialize(cells, null, sw);
+
+                serializer.Serialize(cells, null, sw);
             }
 
             using (StreamReader sr = new StreamReader(fileName))
@@ -64,7 +66,8 @@ namespace UnitTestsProject
         {
             using (StreamWriter sw = new StreamWriter(fileName))
             {
-                HtmSerializer.Serialize(new List<string> { "bla" }, null, sw);
+                HtmSerializer serializer = new HtmSerializer(new HtmSerializationFormatter());
+                serializer.Serialize(new List<string> { "bla" }, null, sw);
             }
 
         }
@@ -89,7 +92,8 @@ namespace UnitTestsProject
 
             using (StreamWriter sw = new StreamWriter(fileName))
             {
-                HtmSerializer.Serialize(dict, null, sw);
+                HtmSerializer serializer = new HtmSerializer(new HtmSerializationFormatter());
+                serializer.Serialize(dict, null, sw);
             }
             using (StreamReader sr = new StreamReader(fileName))
             {
@@ -189,7 +193,7 @@ namespace UnitTestsProject
 
             using (StreamWriter sw = new StreamWriter(fileName))
             {
-                HtmSerializer.Serialize(dict, null, sw);
+                serializer.Serialize(dict, null, sw);
             }
 
             using (StreamReader sr = new StreamReader(fileName))
@@ -228,7 +232,8 @@ namespace UnitTestsProject
 
             using (var sw = new StreamWriter(fileName))
             {
-                HtmSerializer.Serialize(array, null, sw);
+                HtmSerializer serializer = new HtmSerializer(new HtmSerializationFormatter());
+                serializer.Serialize(array, null, sw);
             }
             var reader = new StreamReader(fileName);
 
@@ -246,10 +251,11 @@ namespace UnitTestsProject
         public void SerializationIntegerListTest()
         {
             var array = new List<int> { 45, 34 };
+            HtmSerializer serializer = new HtmSerializer(new HtmSerializationFormatter());
 
             using (var sw = new StreamWriter(fileName))
             {
-                HtmSerializer.Serialize(array, null, sw);
+                serializer.Serialize(array, null, sw);
             }
             var reader = new StreamReader(fileName);
 
@@ -266,7 +272,9 @@ namespace UnitTestsProject
 
             using (var sw = new StreamWriter(fileName))
             {
-                HtmSerializer.Serialize(array, null, sw);
+                HtmSerializer serializer = new HtmSerializer(new HtmSerializationFormatter());
+
+                serializer.Serialize(array, null, sw);
             }
             var reader = new StreamReader(fileName);
 
@@ -311,7 +319,9 @@ namespace UnitTestsProject
 
             using (var sw = new StreamWriter(fileName))
             {
-                HtmSerializer.Serialize(htmConfig_L2, null, sw);
+                HtmSerializer serializer = new HtmSerializer(new HtmSerializationFormatter());
+
+                serializer.Serialize(htmConfig_L2, null, sw);
             }
             using (var sr = new StreamReader(fileName))
             {
@@ -359,7 +369,9 @@ namespace UnitTestsProject
 
             using (var sw = new StreamWriter(fileName))
             {
-                HtmSerializer.Serialize(mem, null, sw);
+                HtmSerializer serializer = new HtmSerializer(new HtmSerializationFormatter());
+
+                serializer.Serialize(mem, null, sw);
             }
             using (var sr = new StreamReader(fileName))
             {
@@ -413,7 +425,9 @@ namespace UnitTestsProject
 
             using (var sw = new StreamWriter(fileName))
             {
-                HtmSerializer.Serialize(hpa_sp_L2, null, sw);
+                HtmSerializer serializer = new HtmSerializer(new HtmSerializationFormatter());
+
+                serializer.Serialize(hpa_sp_L2, null, sw);
             }
             using (var sr = new StreamReader(fileName))
             {
@@ -439,7 +453,9 @@ namespace UnitTestsProject
 
             using (var sw = new StreamWriter(fileName))
             {
-                HtmSerializer.Serialize(mem.Memory, null, sw);
+                HtmSerializer serializer = new HtmSerializer(new HtmSerializationFormatter());
+
+                serializer.Serialize(mem.Memory, null, sw);
             }
             using (var sr = new StreamReader(fileName))
             {
@@ -460,7 +476,9 @@ namespace UnitTestsProject
 
             using (var sw = new StreamWriter(fileName))
             {
-                HtmSerializer.Serialize(mem.HtmConfig, null, sw);
+                HtmSerializer serializer = new HtmSerializer(new HtmSerializationFormatter());
+
+                serializer.Serialize(mem.HtmConfig, null, sw);
             }
             using (var sr = new StreamReader(fileName))
             {
@@ -481,7 +499,9 @@ namespace UnitTestsProject
 
             using (var sw = new StreamWriter(fileName))
             {
-                HtmSerializer.Serialize(mem, null, sw);
+                HtmSerializer serializer = new HtmSerializer(new HtmSerializationFormatter());
+
+                serializer.Serialize(mem, null, sw);
             }
             using (var sr = new StreamReader(fileName))
             {
@@ -506,7 +526,9 @@ namespace UnitTestsProject
 
             using (var sw = new StreamWriter(fileName))
             {
-                HtmSerializer.Serialize(sp, null, sw);
+                HtmSerializer serializer = new HtmSerializer(new HtmSerializationFormatter());
+
+                serializer.Serialize(sp, null, sw);
             }
             using (var sr = new StreamReader(fileName))
             {
@@ -531,7 +553,9 @@ namespace UnitTestsProject
 
             using (var sw = new StreamWriter(fileName))
             {
-                HtmSerializer.Serialize(sp, null, sw);
+                HtmSerializer serializer = new HtmSerializer(new HtmSerializationFormatter());
+
+                serializer.Serialize(sp, null, sw);
             }
             using (var sr = new StreamReader(fileName))
             {
@@ -552,7 +576,9 @@ namespace UnitTestsProject
 
             using (var sw = new StreamWriter(fileName))
             {
-                HtmSerializer.Serialize(mem, null, sw);
+                HtmSerializer serializer = new HtmSerializer(new HtmSerializationFormatter());
+
+                serializer.Serialize(mem, null, sw);
             }
             using (var sr = new StreamReader(fileName))
             {
@@ -573,7 +599,9 @@ namespace UnitTestsProject
 
             using (var sw = new StreamWriter(fileName))
             {
-                HtmSerializer.Serialize(tm, null, sw);
+                HtmSerializer serializer = new HtmSerializer(new HtmSerializationFormatter());
+
+                serializer.Serialize(tm, null, sw);
             }
             using (var sr = new StreamReader(fileName))
             {
@@ -603,7 +631,9 @@ namespace UnitTestsProject
             ScalarEncoder encoder = new ScalarEncoder(settings);
             using (var sw = new StreamWriter(fileName))
             {
-                HtmSerializer.Serialize(encoder, null, sw);
+                HtmSerializer serializer = new HtmSerializer(new HtmSerializationFormatter());
+
+                serializer.Serialize(encoder, null, sw);
             }
             using (var sr = new StreamReader(fileName))
             {
@@ -884,7 +914,9 @@ namespace UnitTestsProject
 
             using (var swrt = new StreamWriter(fileName))
             {
-                HtmSerializer.Serialize(layer1, null, swrt);
+                HtmSerializer serializer = new HtmSerializer(new HtmSerializationFormatter());
+
+                serializer.Serialize(layer1, null, swrt);
             }
             using (var sr = new StreamReader(fileName))
             {
@@ -913,7 +945,9 @@ namespace UnitTestsProject
             var kv = new KeyValuePair<int, Animal>(1, new Cat { Fur = true, Legs = 4 });
             using (StreamWriter sw = new StreamWriter(fileName))
             {
-                HtmSerializer.Serialize(kv, null, sw);
+                HtmSerializer serializer = new HtmSerializer(new HtmSerializationFormatter());
+
+                serializer.Serialize(kv, null, sw);
             }
 
             using (StreamReader sr = new StreamReader(fileName))
@@ -928,7 +962,9 @@ namespace UnitTestsProject
             Animal a = new Cat { Fur = true, Legs = 4 };
             using (StreamWriter sw = new StreamWriter(fileName))
             {
-                HtmSerializer.Serialize((Animal)a, "bla", sw, typeof(Animal));
+                HtmSerializer serializer = new HtmSerializer(new HtmSerializationFormatter());
+
+                serializer.Serialize((Animal)a, "bla", sw, typeof(Animal));
             }
             using (StreamReader sr = new StreamReader(fileName))
             {
@@ -944,7 +980,9 @@ namespace UnitTestsProject
             cats[0, 1] = new Cat { Fur = true, Legs = 3 };
             using (StreamWriter sw = new StreamWriter(fileName))
             {
-                HtmSerializer.Serialize(cats, null, sw);
+                HtmSerializer serializer = new HtmSerializer(new HtmSerializationFormatter());
+
+                serializer.Serialize(cats, null, sw);
             }
 
             using (StreamReader sr = new StreamReader(fileName))
@@ -961,9 +999,10 @@ namespace UnitTestsProject
                 new Cat { Fur = false, Legs = 2 },
                 new Cat { Fur = true, Legs = 3 },
             };
+            HtmSerializer serializer = new HtmSerializer(new HtmSerializationFormatter());
             using (StreamWriter sw = new StreamWriter(fileName))
             {
-                HtmSerializer.Serialize(cats, null, sw);
+                serializer.Serialize(cats, null, sw);
             }
 
             using (StreamReader sr = new StreamReader(fileName))
@@ -975,18 +1014,20 @@ namespace UnitTestsProject
         [TestMethod]
         public void IterateMultiDimArrayTest()
         {
+            HtmSerializer serializer = new HtmSerializer(new HtmSerializationFormatter());
             var array = new int[4, 5, 3];
 
-            var listIndexes = HtmSerializer.IterateMultiDimArray(array);
+            var listIndexes = serializer.IterateMultiDimArray(array);
         }
 
         [TestMethod]
         public void RandomTest()
         {
             var r = new Random();
+            HtmSerializer serializer = new HtmSerializer(new HtmSerializationFormatter());
             using (StreamWriter sw = new StreamWriter(fileName))
             {
-                HtmSerializer.Serialize(r, null, sw);
+                serializer.Serialize(r, null, sw);
             }
             using (StreamReader sr = new StreamReader(fileName))
             {
@@ -1015,7 +1056,8 @@ namespace UnitTestsProject
 
             using (StreamWriter sw = new StreamWriter($"ser_{nameof(SerializeConnectionsWithActiveSegmentTest)}.txt"))
             {
-                HtmSerializer.Serialize(connections, null, sw);
+                HtmSerializer serializer = new HtmSerializer(new HtmSerializationFormatter());
+                serializer.Serialize(connections, null, sw);
             }
             using (StreamReader sr = new StreamReader($"ser_{nameof(SerializeConnectionsWithActiveSegmentTest)}.txt"))
             {
@@ -1213,7 +1255,8 @@ namespace UnitTestsProject
 
             using (var swrt = new StreamWriter(fileName))
             {
-                HtmSerializer.Serialize(cortexLayer, null, swrt);
+                HtmSerializer serializer = new HtmSerializer(new HtmSerializationFormatter());
+                serializer.Serialize(cortexLayer, null, swrt);
             }
 
             using var sr = new StreamReader(fileName);
@@ -1433,7 +1476,8 @@ namespace UnitTestsProject
 
                 using (var swrt = new StreamWriter(fileName))
                 {
-                    HtmSerializer.Serialize(cortexLayer, null, swrt);
+                    HtmSerializer serializer = new HtmSerializer(new HtmSerializationFormatter());
+                    serializer.Serialize(cortexLayer, null, swrt);
                 }
 
                 FileInfo fileInfo = new FileInfo(fileName);
@@ -1637,7 +1681,9 @@ namespace UnitTestsProject
                 Stopwatch stopwatch = Stopwatch.StartNew();
                 using (var swrt = new StreamWriter(fileName))
                 {
-                    HtmSerializer.Serialize(cortexLayer, null, swrt);
+                    HtmSerializer serializer = new HtmSerializer(new HtmSerializationFormatter());
+
+                    serializer.Serialize(cortexLayer, null, swrt);
                 }
                 stopwatch.Stop();
                 Console.WriteLine(stopwatch.ElapsedMilliseconds);

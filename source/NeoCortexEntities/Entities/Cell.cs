@@ -255,7 +255,8 @@ namespace NeoCortexApi.Entities
                 nameof(Cell.ReceptorSynapses),
                 nameof(m_Hashcode)
             };
-            HtmSerializer.SerializeObject(obj, name, sw, ignoreMembers);
+            HtmSerializer serializer = new HtmSerializer(new HtmSerializationFormatter());
+            serializer.SerializeObject(obj, name, sw, ignoreMembers);
             //var cell = obj as Cell;
             //if (cell != null)
             //{

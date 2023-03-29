@@ -1007,7 +1007,8 @@ namespace NeoCortexApi.Entities
                 nameof(HtmConfig.synPermActiveInc),
                 nameof(HtmConfig.synPermConnected)
             };
-            HtmSerializer.SerializeObject(obj, name, sw, excludeMembers);
+            HtmSerializer serializer = new HtmSerializer(new HtmSerializationFormatter());
+            serializer.SerializeObject(obj, name, sw, excludeMembers);
         }
 
         public static object Deserialize<T>(StreamReader sr, string name)

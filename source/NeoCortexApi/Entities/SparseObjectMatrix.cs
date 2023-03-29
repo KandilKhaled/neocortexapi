@@ -326,7 +326,9 @@ namespace NeoCortexApi.Entities
 
         public void Serialize(object obj, string name, StreamWriter sw)
         {
-            HtmSerializer.SerializeObject(obj, name, sw);
+            HtmSerializer serializer = new HtmSerializer(new HtmSerializationFormatter());
+
+            serializer.SerializeObject(obj, name, sw);
 
             //var matrixColumns = obj as SparseObjectMatrix<Column>;
             //if (matrixColumns != null)

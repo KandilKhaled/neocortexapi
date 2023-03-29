@@ -588,9 +588,11 @@ namespace NeoCortexApi
 
             if (obj is HomeostaticPlasticityController controller)
             {
-                HtmSerializer.SerializeObject(obj, name, sw, excludeEntries);
+                HtmSerializer serializer = new HtmSerializer(new HtmSerializationFormatter());
+
+                serializer.SerializeObject(obj, name, sw, excludeEntries);
                 var convertInOutMap = controller.m_InOutMap.ToDictionary(kv => kv.Key, kv => new KeyValuePair<int, int[]>(kv.Value.Length, ArrayUtils.IndexesWithNonZeros(kv.Value)));
-                HtmSerializer.Serialize(convertInOutMap, "convertInOutMap", sw);
+                serializer.Serialize(convertInOutMap, "convertInOutMap", sw);
             }
 
 
