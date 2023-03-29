@@ -614,9 +614,7 @@ namespace UnitTestsProject
             using (StreamReader sr = new StreamReader($"ser_{nameof(SerializeDistalDendrite)}.txt"))
             {
 
-                HtmSerializer ser = new HtmSerializer(new HtmSerializationFormatter());
-
-                DistalDendrite distSegment1 = ser.DeserializeDistalDendrite(sr);
+                DistalDendrite distSegment1 = DistalDendrite.Deserialize(sr);
 
                 Assert.IsTrue(distSegment1.Equals(distSeg1));
 

@@ -197,7 +197,7 @@ namespace NeoCortexApi.Entities
         {
             HtmSerializer ser = new HtmSerializer(new HtmSerializationFormatter());
 
-            ser.SerializeBegin(nameof(Segment), writer);
+            ser.SerializeBegin(nameof(DistalDendrite), writer);
 
             //ser.SerializeValue(this.LastUsedIteration, writer);
             ser.SerializeValue<int>(this.m_Ordinal, writer);

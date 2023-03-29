@@ -1754,7 +1754,7 @@ namespace NeoCortexApi.Entities
         public long ReadLongValue(String reader)
         {
             reader = reader.Trim();
-            long val = Convert.ToInt64(reader);
+            long val = (long)Convert.ToDecimal(reader);
             return val;
 
         }
@@ -2338,6 +2338,8 @@ namespace NeoCortexApi.Entities
         }
 
 
+       
+
         public static bool IsEqual(object obj1, object obj2)
         {
             if (obj1 == null && obj2 == null)
@@ -2389,15 +2391,21 @@ namespace NeoCortexApi.Entities
             }
             else if (type.IsArray)
             {
+                var s = (Array)obj1;
+                var s2 = (Array)obj2;
+                if (s.Length != s2.Length)
+                {
+                    return false;
+                }
                 var array1 = (IEnumerable)obj1;
                 var array2 = (IEnumerable)obj2;
-
                 var sequence1 = array1.GetEnumerator();
                 var sequence2 = array2.GetEnumerator();
-
+               
                 while (sequence1.MoveNext())
                 {
                     sequence2.MoveNext();
+
                     if (!IsEqual(sequence1.Current, sequence2.Current))
                     {
                         return false;
@@ -2438,5 +2446,7 @@ namespace NeoCortexApi.Entities
         }
 
     }
+
+
 
 }
