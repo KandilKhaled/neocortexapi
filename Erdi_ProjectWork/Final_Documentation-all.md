@@ -5,7 +5,9 @@ The purpose of this document is to explain the methods in the Serializer, in ord
 
 ## The code is an example of custom serialization, it's a class called HtmSerializer which contains several methods that handle the serialization and deserialization of different types. The methods include:
 
-## SerializeBegin(string typeName, StreamWriter sw) - This method is used to write the start marker of the type that is being serialized.
+## SerializeBegin(string typeName, StreamWriter sw)
+
+This method is used to write the start marker of the type that is being serialized.
 
 The expected parameter:
 
@@ -18,7 +20,9 @@ Example: https://github.com/KandilKhaled/neocortexapi/blob/6ac4ee5f46e9000ad5974
 
 ===
 
-## ReadBegin(string typeName) - This method reads the start marker of the type that is being serialized.
+## ReadBegin(string typeName)
+
+This method reads the start marker of the type that is being serialized.
 
 The expected parameter:
 
@@ -32,7 +36,9 @@ Example: https://github.com/KandilKhaled/neocortexapi/blob/6ac4ee5f46e9000ad5974
 
 ===
 
-##  public static void Reset() This code is defining a static method "Reset" in a class. The method has three operations:
+##  public static void Reset() 
+
+This code is defining a static method "Reset" in a class. The method has three operations:
 
 It clears the contents of a dictionary "SerializedHashCodes".
 
