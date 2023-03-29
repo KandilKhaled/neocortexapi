@@ -342,7 +342,7 @@ namespace NeoCortexApi.Entities
         {
             var ignoreMembers = new List<string> { /*"Item"*/ };
 
-            return HtmSerializer.DeserializeObject<T>(sr, name, ignoreMembers);
+            return HtmSerializer.DeserializeObject<T>(sr, new HtmSerializationFormatter(), name, ignoreMembers);
         }
         #endregion
     }

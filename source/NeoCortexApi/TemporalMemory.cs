@@ -906,7 +906,7 @@ namespace NeoCortexApi
 
         public static object Deserialize<T>(StreamReader sr, string name)
         {
-            return HtmSerializer.DeserializeObject<T>(sr, name);
+            return HtmSerializer.DeserializeObject<T>(sr, new HtmSerializationFormatter(), name);
         }
     }
 }

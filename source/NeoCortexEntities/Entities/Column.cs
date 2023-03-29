@@ -543,7 +543,7 @@ namespace NeoCortexApi.Entities
 
         public static object Deserialize<T>(StreamReader sr, string name)
         {
-            return HtmSerializer.DeserializeObject<Column>(sr, name);
+            return HtmSerializer.DeserializeObject<Column>(sr, new HtmSerializationFormatter(), name);
         }
     }
 }

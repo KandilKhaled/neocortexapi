@@ -319,7 +319,7 @@ namespace NeoCortexApi.Entities
         public static Segment Deserialize1(StreamReader sr, string propName)
         {
 
-            var result = HtmSerializer.DeserializeObject<Segment>(sr, propName);
+            var result = HtmSerializer.DeserializeObject<Segment>(sr, new HtmSerializationFormatter(), propName);
             return result;
         }
 
@@ -348,7 +348,7 @@ namespace NeoCortexApi.Entities
 
         public static object Deserialize<T>(StreamReader sr, string name)
         {
-            var distal = HtmSerializer.DeserializeObject<T>(sr, name);
+            var distal = HtmSerializer.DeserializeObject<T>(sr, new HtmSerializationFormatter(), name);
             return distal;
         }
     }

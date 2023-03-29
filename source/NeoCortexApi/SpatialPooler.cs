@@ -1440,7 +1440,7 @@ namespace NeoCortexApi
 
         public static object Deserialize<T>(StreamReader sr, string propName)
         {
-            var obj = HtmSerializer.DeserializeObject<T>(sr, propName);
+            var obj = HtmSerializer.DeserializeObject<T>(sr, new HtmSerializationFormatter(), propName);
 
             var sp = obj as SpatialPooler;
             if (sp == null)

@@ -268,7 +268,7 @@ namespace NeoCortexApi.Entities
         {
             if (typeof(T) != typeof(Cell))
                 return null;
-            var cell = HtmSerializer.DeserializeObject<Cell>(sr, name);
+            var cell = HtmSerializer.DeserializeObject<Cell>(sr, new HtmSerializationFormatter(), name);
 
             //foreach (var distalDentrite in cell.DistalDendrites)
             //{

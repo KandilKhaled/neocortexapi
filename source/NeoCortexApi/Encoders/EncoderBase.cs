@@ -333,7 +333,7 @@ namespace NeoCortexApi.Encoders
         public static object Deserialize<T>(StreamReader sr, string name)
         {
             var excludeMembers = new List<string> { nameof(EncoderBase.Properties) };
-            return HtmSerializer.DeserializeObject<T>(sr, name, excludeMembers);
+            return HtmSerializer.DeserializeObject<T>(sr, new HtmSerializationFormatter(), name, excludeMembers);
         }
 
         public bool Equals(IHtmModule other)

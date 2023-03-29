@@ -602,13 +602,13 @@ namespace NeoCortexApi
         {
             var excludeEntries = new List<string> { "convertInOutMap" };
 
-            var controller = HtmSerializer.DeserializeObject<T>(sr, name, excludeEntries, (obj, propName) =>
+            var controller = HtmSerializer.DeserializeObject<T>(sr, new HtmSerializationFormatter(), name, excludeEntries, (obj, propName) =>
             {
                 if (obj is HomeostaticPlasticityController hpc)
                 {
                     if (propName == "convertInOutMap")
                     {
-                        var convertInOutMap = HtmSerializer.Deserialize<Dictionary<string, KeyValuePair<int, int[]>>>(sr, propName);
+                        var convertInOutMap = HtmSerializer.Deserialize<Dictionary<string, KeyValuePair<int, int[]>>>(sr, new HtmSerializationFormatter(), propName);
 
                         Dictionary<string, int[]> inOutMap = new Dictionary<string, int[]>();
                         foreach (var map in convertInOutMap)

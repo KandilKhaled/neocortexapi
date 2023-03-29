@@ -289,7 +289,7 @@ namespace NeoCortexApi.Entities
 
         public static object Deserialize<T>(StreamReader sr, string name)
         {
-            var proximal = HtmSerializer.DeserializeObject<ProximalDendrite>(sr, name);
+            var proximal = HtmSerializer.DeserializeObject<ProximalDendrite>(sr, new HtmSerializationFormatter(), name);
             if (proximal.RFPool != null)
             {
                 proximal.Synapses = proximal.RFPool?.m_SynapsesBySourceIndex.Select(kv => kv.Value).ToList();

@@ -363,7 +363,7 @@ namespace NeoCortexApi.Entities
             {
                 //"synapsesList"
             };
-            var matrix = HtmSerializer.DeserializeObject<SparseObjectMatrix<T>>(sr, name, ignoreMembers, (m, propName) =>
+            var matrix = HtmSerializer.DeserializeObject<SparseObjectMatrix<T>>(sr, new HtmSerializationFormatter(), name, ignoreMembers, (m, propName) =>
             {
                 //var matrixColumns = m as SparseObjectMatrix<Column>;
                 //if (matrixColumns == null)

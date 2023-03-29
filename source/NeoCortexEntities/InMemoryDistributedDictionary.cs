@@ -579,7 +579,7 @@ namespace NeoCortexApi.Entities
 
         public static object Deserialize<T>(StreamReader sr, string propName)
         {
-            return HtmSerializer.DeserializeObject<InMemoryDistributedDictionary<TKey, TValue>>(sr, propName);
+            return HtmSerializer.DeserializeObject<InMemoryDistributedDictionary<TKey, TValue>>(sr, new HtmSerializationFormatter(), propName);
             int numElements = 0;
             int currentDictIndex = 0;
             int currentIndex = 0;
@@ -600,23 +600,23 @@ namespace NeoCortexApi.Entities
 
                 if (content.Contains("numElements"))
                 {
-                    numElements = HtmSerializer.Deserialize<int>(sr, "numElements");
+                    numElements = HtmSerializer.Deserialize<int>(sr, new HtmSerializationFormatter(),"numElements");
                 }
                 else if (content.Contains("currentDictIndex"))
                 {
-                    currentDictIndex = HtmSerializer.Deserialize<int>(sr, "currentDictIndex");
+                    currentDictIndex = HtmSerializer.Deserialize<int>(sr, new HtmSerializationFormatter(), "currentDictIndex");
                 }
                 else if (content.Contains("currentIndex"))
                 {
-                    currentIndex = HtmSerializer.Deserialize<int>(sr, "currentIndex");
+                    currentIndex = HtmSerializer.Deserialize<int>(sr, new HtmSerializationFormatter(), "currentIndex");
                 }
                 else if (content.Contains("htmConfig"))
                 {
-                    htmConfig = HtmSerializer.Deserialize<HtmConfig>(sr, "htmConfig");
+                    htmConfig = HtmSerializer.Deserialize<HtmConfig>(sr, new HtmSerializationFormatter(), "htmConfig");
                 }
                 else if (content.Contains("dictList"))
                 {
-                    dictList = HtmSerializer.Deserialize<Dictionary<TKey, TValue>[]>(sr, "dictList");
+                    dictList = HtmSerializer.Deserialize<Dictionary<TKey, TValue>[]>(sr, new HtmSerializationFormatter(), "dictList");
                 }
             }
             var inMemDict = new InMemoryDistributedDictionary<TKey, TValue>();

@@ -1013,7 +1013,7 @@ namespace NeoCortexApi.Entities
 
         public static object Deserialize<T>(StreamReader sr, string name)
         {
-            var htmConfig = HtmSerializer.DeserializeObject<HtmConfig>(sr, name);
+            var htmConfig = HtmSerializer.DeserializeObject<HtmConfig>(sr, new HtmSerializationFormatter(), name);
             return htmConfig;
         }
         #endregion

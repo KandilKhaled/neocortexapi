@@ -113,12 +113,12 @@ namespace NeoCortexApi
                 }
                 if (content.Contains(nameof(ThreadSafeRandom.seed)))
                 {
-                    seed = HtmSerializer.Deserialize<int>(sr, nameof(ThreadSafeRandom.seed));
+                    seed = HtmSerializer.Deserialize<int>(sr, new HtmSerializationFormatter(),nameof(ThreadSafeRandom.seed));
 
                 }
                 if (content.Contains(nameof(ThreadSafeRandom.counter)))
                 {
-                    counter = HtmSerializer.Deserialize<int>(sr, nameof(ThreadSafeRandom.counter));
+                    counter = HtmSerializer.Deserialize<int>(sr, new HtmSerializationFormatter(), nameof(ThreadSafeRandom.counter));
 
                 }
             }

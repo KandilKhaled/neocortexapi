@@ -352,11 +352,11 @@ namespace NeoCortexApi.Entities
 
         public static object Deserialize<T>(StreamReader sr, string name)
         {
-            return HtmSerializer.DeserializeObject<Pool>(sr, name, new List<string> { "synapses" }, (pool, propName) =>
+            return HtmSerializer.DeserializeObject<Pool>(sr, new HtmSerializationFormatter(), name, new List<string> { "synapses" }, (pool, propName) =>
             {
                 if (propName == "synapses")
                 {
-                    var synapses = HtmSerializer.Deserialize<List<Synapse>>(sr, propName);
+                    var synapses = HtmSerializer.Deserialize<List<Synapse>>(sr, new HtmSerializationFormatter(), propName);
                     pool.m_SynapsesBySourceIndex = synapses.ToDictionary(s => s.InputIndex);
                     pool.size = synapses.Count;
                 }
