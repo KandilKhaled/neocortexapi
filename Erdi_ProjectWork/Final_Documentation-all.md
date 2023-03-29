@@ -644,8 +644,8 @@ Example: https://github.com/KandilKhaled/neocortexapi/blob/6ac4ee5f46e9000ad5974
  
 ## private static object CastListToType(List<object> enumerable, Type elementType)
 
-
-The CastListToType method is used to convert a list of objects to a specific type. It uses the Cast method of the System.Linq.Enumerable class to do the conversion.
+Used to convert a list of objects to a specific type. 
+It uses the Cast method of the System.Linq.Enumerable class to do the conversion.
 
 Example: https://github.com/KandilKhaled/neocortexapi/blob/6ac4ee5f46e9000ad59746b4f008aca920c16254/source/NeoCortexEntities/HtmSerializer.cs#L933
 
