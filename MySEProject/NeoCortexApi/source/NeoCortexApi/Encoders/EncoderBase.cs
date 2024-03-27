@@ -312,7 +312,7 @@ namespace NeoCortexApi.Encoders
 
         public void Serialize(object obj, string name, StreamWriter sw)
         {
-            HtmSerializer ser = new HtmSerializer(new HtmSerializationFormatter());
+            HtmSerializer ser = new HtmSerializer(new HtmSerializationFormatter());  // new HtmSerializer instantiation 
 
             var excludeMembers = new List<string> 
             { 
